@@ -121,15 +121,15 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Resident Name</label>
-                                <input type="text" class="form-control" name="residentName" />
+                                <input type="text" class="form-control" name="residentName" required  />
                             </div>
                             <div class="form-group" required="required">
                                 <label>Date of Birth</label>
-                                <input type="date" class="form-control" name="dateBirth" />
+                                <input type="date" class="form-control" name="dateBirth" required/>
                             </div>
                             <div class="form-group" required="required">
                                 <label>Age</label>
-                                <input type="text" class="form-control" name="age" />
+                                <input type="text" class="form-control" name="age" required />
                             </div>
                             <div class="form-group" required="required">
                                 <label>Sex</label>
@@ -148,16 +148,16 @@ if(isset($_SESSION['user_data'])){
                                     <option value="Rosal">Rosal</option>
                                 </select>
                             </div>
-                            <div class="form-group" required="required">
+                            <div class="form-group" required="required" required>
                                 <label>Contact Number</label>
                                 <input type="text" class="form-control" name="contactNumber" />
                             </div>
-                            <div class="form-group" required="required">
+                            <div class="form-group" required="required" required>
                                 <label>Quantity</label>
                                 <input type="number" value=0 min="0" max="999999999" class="form-control"
                                     name="quantity_req" />
                             </div>
-                            <div class="form-group" required="required">
+                            <div class="form-group" required="required" required>
                                 <label>Given Date</label>
                                 <input type="date" class="form-control" name="givenDate" />
                             </div>
@@ -165,7 +165,7 @@ if(isset($_SESSION['user_data'])){
                                 <button name="add_rec" class="btn btn-warning form-control"><i
                                         class="glyphicon glyphicon-edit"></i> Request</button>
                             </div>
-                        <?php require_once '../admin_query/add_query_records.php'?>
+                            <?php require_once '../admin_query/add_query_records.php'?>
 						</form>
                     </div>
                 </div>

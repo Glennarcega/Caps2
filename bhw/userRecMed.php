@@ -55,7 +55,7 @@ if(isset($_SESSION['user_data'])){
         <span class="tooltip">Analytics</span>
       </li>
       <li>
-        <a href="userRecMedd.php">
+        <a href="userRecMed.php">
           <i class="bx bx-folder"></i>
           <span class="link_name">Records</span>
         </a>
@@ -79,8 +79,7 @@ if(isset($_SESSION['user_data'])){
   <div class="profile_details">
     <img src="../img/admin-default.png" alt="profile image">
     <div class="profile_content">
-      
-      <div class="name"> <label> <?php echo $fetch['name']; ?>"<label></div>
+    <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
     </div>
   </div>
   <a href="../logout.php" id="log_out">

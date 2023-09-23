@@ -73,7 +73,7 @@ if(isset($_SESSION['user_data'])){
       <li>
           <a href="account.php">
             <i class="bx bx-user-pin"></i>
-            <span class="link_name">Accout</span>
+            <span class="link_name">Account</span>
           </a>
           <span class="tooltip">Account</span>
         </li>
@@ -88,7 +88,7 @@ if(isset($_SESSION['user_data'])){
           <div class="profile_details">
           <img src="../img/admin-default.png" alt="profile image">
         <div class="profile_content">
-        <div class="name"><?php echo $name; ?></div>
+        <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
         </div>
     </div>
   <a href="../logout.php" id="log_out">

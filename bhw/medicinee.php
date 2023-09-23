@@ -78,7 +78,7 @@ if(isset($_SESSION['user_data'])){
   <div class="profile_details">
     <img src="../img/admin-default.png" alt="profile image">
     <div class="profile_content">
-      <div class="name"><?php echo $name; ?></div>
+    <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
     </div>
   </div>
   <a href="../logout.php" id="log_out">
@@ -104,44 +104,45 @@ if(isset($_SESSION['user_data'])){
               <?=$_GET['success']?>
             </div>
             <?php } ?>
-          
-          <table id="table" class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Expiration Date</th>
-                <th>Status</th>
-                <th>Request</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-                $query = $conn->query("SELECT * FROM `medicines`") or die(mysqli_error());
-                while ($fetch = $query->fetch_array()) {
-                  $status = $fetch['status'];
-                  $disableButton = ($status == 'unavailable') ? 'disabled' : ''; // Check status and disable button if 'Unavailable'
-              ?>
-                  <!-- ... -->
-                  <tr>
-                    <td><?php echo $fetch['productName'] ?></td>
-                
-                    <td><?php echo $fetch['total'] ?></td>
-                    <td><?php echo $fetch['expDate'] ?></td>
-                    <td><?php echo $status ?></td>
-                  <!-- ... -->
-                  <td>
+  
+
+<table id="table" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Expiration Date</th>
+            <th>Status</th>
+            <th>Request</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $query = $conn->query("SELECT * FROM medicines") or die(mysqli_error());
+        while ($fetch = $query->fetch_array()) {
+            $status = $fetch['status'];
+            $disableButton = ($status == 'unavailable' || $fetch['total'] == 0) ? 'disabled' : ''; // Check status and quantity
+
+            // ...
+        ?>
+            <!-- ... -->
+            <tr>
+                <td><?php echo $fetch['productName'] ?></td>
+                <td><?php echo $fetch['total'] ?></td>
+                <td><?php echo $fetch['expDate'] ?></td>
+                <td><?php echo $status ?></td>
+                <!-- ... -->
+                <td>
                     <center>
-                      <?php if ($status == 'unavailable'): ?>
-                        <button class="btn btn-warning" disabled>Request</button>
-                      <?php else: ?>
-                        <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
-                      <?php endif; ?>
+                        <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
+                            <button class="btn btn-warning" disabled>Request</button>
+                        <?php else: ?>
+                            <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+                        <?php endif; ?>
                     </center>
-                  </td>
-  <!-- ... -->
-                    
+                </td>
+                
                     <td>
                       <center>
                         <a class="btn btn-warning" href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a>
@@ -149,11 +150,17 @@ if(isset($_SESSION['user_data'])){
                       </center>
                     </td>
                   </tr>
-  <!-- ... -->
-  
-              <?php
-                }
-              ?>
+                <!-- ... -->
+            </tr>
+            <!-- ... -->
+        <?php
+        }
+        ?>
+    </tbody>
+</table>
+
+                
+
             </tbody>
           </table>
         </div>

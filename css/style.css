@@ -1,0 +1,13 @@
+
+#menu{
+	list-style-type:none;
+	font-size:18px;
+}
+
+#menu li{
+	display:inline;
+}
+.btn btn-primary btn-lg{
+	height: 1000px;
+
+}

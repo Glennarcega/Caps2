@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+  
+}
+
+form{
+    
+    border-radius: 20px;
+    margin-top:30px ;
+    width: 400px;
+    background-color: #FFFACD;
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    padding: 50px;
+    text-align: center;
+    min-height: 500px;
+    
+}
+body{
+    background-color: #04c487!important;
+
+
+}
+
+.form-control{
+    box-shadow: none;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 4px 4px 0 0;
+    }
+ h4{
+    font-size: 2rem !important;
+    font-weight: 700;
+ }  
+ .form-label{
+    font-weight: 800 !important;
+ }
+ .logo {
+    width: 150px;
+    height: 110px;
+    border-radius: 50%;
+    margin: auto;
+    margin-bottom: 0px;
+    display: block;
+}
+
+.btn-primary{
+   
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, rgb(0, 59, 23) 0%, rgb(14, 154, 58) 35%, rgb(0, 255, 38) 100%);
+    
+}
+
+.form-container form .error-msg{
+   margin:10px 0;
+   display: block;
+   background: crimson;
+   color:#fff;
+   border-radius: 5px;
+   font-size: 20px;
+   padding:10px;
+}
+
+@media (min-width: 300px) and (max-width: 480px) { 
+  
+   
+}
+
+@media (min-width: 481px) and (max-width: 768px) { 
+    
+}
+
+@media (min-width: 769px) and (max-width: 1200px) { 
+   
+  
+  }
+
+
+  @media (min-width: 1201px) and (max-width: 2080px) { 
+  
+  }
+
+
+ 

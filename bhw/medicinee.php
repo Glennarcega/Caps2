@@ -188,6 +188,15 @@ if(isset($_SESSION['user_data'])){
 		$("#table").DataTable();
 	});
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if URL contains 'success' parameter and remove it
+    if (window.location.search.includes('success')) {
+        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
+});
+</script>
 </body>
 </html>
 <?php

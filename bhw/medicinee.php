@@ -119,44 +119,41 @@ if(isset($_SESSION['user_data'])){
         </tr>
     </thead>
     <tbody>
-        <?php
-        $query = $conn->query("SELECT * FROM medicines") or die(mysqli_error());
-        while ($fetch = $query->fetch_array()) {
-            $status = $fetch['status'];
-            $disableButton = ($status == 'unavailable' || $fetch['total'] == 0) ? 'disabled' : ''; // Check status and quantity
+    <?php
+$query = $conn->query("SELECT * FROM medicines") or die(mysqli_error());
+while ($fetch = $query->fetch_array()) {
+    $status = ($fetch['total'] == 0) ? 'unavailable' : $fetch['status']; // Check if quantity is zero
 
-            // ...
-        ?>
-            <!-- ... -->
-            <tr>
-                <td><?php echo $fetch['productName'] ?></td>
-                <td><?php echo $fetch['total'] ?></td>
-                <td><?php echo $fetch['expDate'] ?></td>
-                <td><?php echo $status ?></td>
-                <!-- ... -->
-                <td>
-                    <center>
-                        <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
-                            <button class="btn btn-warning" disabled>Request</button>
-                        <?php else: ?>
-                            <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
-                        <?php endif; ?>
-                    </center>
-                </td>
-                
-                    <td>
-                      <center>
-                        <a class="btn btn-warning" href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a>
-                        <a class="btn btn-danger" onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>">Delete</a>
-                      </center>
-                    </td>
-                  </tr>
-                <!-- ... -->
-            </tr>
-            <!-- ... -->
-        <?php
-        }
-        ?>
+    // ...
+?>
+<!-- ... -->
+<tr>
+    <td><?php echo $fetch['productName'] ?></td>
+    <td><?php echo $fetch['total'] ?></td>
+    <td><?php echo $fetch['expDate'] ?></td>
+    <td><?php echo $status ?></td>
+    <!-- ... -->
+    <td>
+        <center>
+            <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
+                <button class="btn btn-warning" disabled>Request</button>
+            <?php else: ?>
+                <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+            <?php endif; ?>
+        </center>
+    </td>
+    <td>
+        <center>
+            <a class="btn btn-warning" href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a>
+            <a class="btn btn-danger" onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>">Delete</a>
+        </center>
+    </td>
+</tr>
+<!-- ... -->
+<?php
+}
+?>
+
     </tbody>
 </table>
 

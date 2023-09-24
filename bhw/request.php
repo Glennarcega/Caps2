@@ -133,14 +133,14 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Sex</label>
-                                <select class="form-control" required="required" name="sex">
+                                <select class="form-control" required="required" name="sex" required>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Sitio</label>
-                                <select class="form-control" required="required" name="address">
+                                <select class="form-control" required="required" name="address" required>
                                     <option value="IlangIlang">Ilang-Ilang</option>
                                     <option value="Orchids">Orchids</option>
                                     <option value="Sampagita">Sampagita</option>
@@ -148,18 +148,18 @@ if(isset($_SESSION['user_data'])){
                                     <option value="Rosal">Rosal</option>
                                 </select>
                             </div>
-                            <div class="form-group" required="required" required>
+                            <div class="form-group" required="required" >
                                 <label>Contact Number</label>
-                                <input type="text" class="form-control" name="contactNumber" />
+                                <input type="text" class="form-control" name="contactNumber" required />
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Quantity</label>
-                                <input type="number" value=0 min="0" max="999999999" class="form-control"
-                                    name="quantity_req" />
+                                <input type="number"  min="0" max="999999999" class="form-control"
+                                    name="quantity_req" required />
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Given Date</label>
-                                <input type="date" class="form-control" name="givenDate" />
+                                <input type="date" class="form-control" name="givenDate" required />
                             </div>
                             <div class="form-group">
                                 <button name="add_rec" class="btn btn-warning form-control"><i

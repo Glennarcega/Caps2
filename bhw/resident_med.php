@@ -116,8 +116,15 @@ if(isset($_SESSION['user_data'])){
   </div>
   <br />
 			
-				<a class="btn btn-success" href="add_med_res.php"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>
-   
+        <?php
+if (isset($_GET['residentId'])) {
+    $residentId = $_GET['residentId'];
+    echo '<a class="btn btn-success" href="add_med_res.php?residentId=' . $residentId . '"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>';
+} else {
+    echo '<p>Resident ID not provided.</p>';
+}
+?>
+
 				<br />
 				<br />
 		

@@ -94,7 +94,30 @@ if(isset($_SESSION['user_data'])){
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="alert alert-info">Medicine</div>
+        <div>
+        <?php
+      if (isset($_GET['residentId'])) {
+        $desiredResidentId = $_GET['residentId'];
+        
+        // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
+        $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
+        while ($fetch = $query->fetch_assoc()) {
+            
+          // Display the records within the table rows
+      
+    
+          echo '<h2>' . $fetch['residentName'] . '</h2>';
+  
+      }
+    } else {
+        echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
+    }
+    ?>
+  </div>
+  <br />
+			
 				<a class="btn btn-success" href="add_med_res.php"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>
+   
 				<br />
 				<br />
 		
@@ -107,12 +130,12 @@ if(isset($_SESSION['user_data'])){
 				<table id="table" class="table table-bordered">
 					<thead>
 						<tr>
+         
 							<th>Product Name</th>
 							<th>Quantity</th>
 							<th>Given Date</th>
 						</tr>
 					</thead>
-					<!-- ... Previous HTML code ... -->
 
 <tbody>
     <?php  
@@ -121,10 +144,12 @@ if(isset($_SESSION['user_data'])){
         
         // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
         $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
-        
+
         if ($query->num_rows > 0) {
             while ($fetch = $query->fetch_assoc()) {
+            
                 // Display the records within the table rows
+            
                 echo '<tr>';
                 echo '<td>' . $fetch['productName'] . '</td>';
                 echo '<td>' . $fetch['quantity_req'] . '</td>';
@@ -182,3 +207,6 @@ if(isset($_SESSION['user_data'])){
 else{
 	header("Location:.././index.php?error=UnAuthorized Access");
 }
+
+
+

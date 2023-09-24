@@ -24,7 +24,6 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
-
 </head>
 <body>
   <div class="sidebar">
@@ -41,7 +40,7 @@ if(isset($_SESSION['user_data'])){
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="#">
+        <a href="../logout.php">
           <i class="bx bx-chat"></i>
           <span class="link_name">Anouncements</span>
         </a>
@@ -68,6 +67,7 @@ if(isset($_SESSION['user_data'])){
         </a>
         <span class="tooltip">Medicine</span>
       </li>
+        
       <li>
         <a href="#">
           <i class="bx bx-cog"></i>
@@ -88,67 +88,80 @@ if(isset($_SESSION['user_data'])){
   </li>
     </ul>
   </div>
-  <section class="home-section">
-    <div class="text">Records</div>
-    <div class = "container-fluid">
-		<div class = "panel panel-default">
-			<div class = "panel-body">
-				<div class = "alert alert-info">Records</div>
-				
-				<br />
-				<?php if (isset($_GET['success'])) { ?>
-					<div class="alert alert-success" role="alert">
-						<?=$_GET['success']?>
-					</div>
-					<?php } ?>
-				<br />
-				<table id = "table" class = "table table-bordered">
-					<thead>
-						<tr>
-							
-							<th>Resident Name</th>
-							<th>Date of Birth</th>
-							<th>Age</th>
-							<th>Sex</th>
-							<th>Address</th>
-							<th>Contact Number</th>
-							
-							<th>Action</th>
-							
+  <section class="home-section"> 
+  <div class="text">Medicine</div>
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="alert alert-info">Medicine</div>
+           <br /> <br />
+      
+          <?php if (isset($_GET['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+              <?=$_GET['success']?>
+            </div>
+            <?php } ?>
+  
 
-						</tr>
-					</thead>
-					<tbody>
-					<?php
-						$query = $conn->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
-						while($fetch = $query->fetch_array()){
-					?>	
-						<tr>
-							
-							<td><?php echo $fetch['residentName']?></td>
-							<td><?php echo $fetch['dateBirth']?></td>
-							<td><?php echo $fetch['age']?></td>
-							<td><?php echo $fetch['sex']?></td>
-							<td><?php echo $fetch['address']?></td>
-							<td><?php echo $fetch['contactNumber']?></td>
-			
-							<td><center> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_rec.php?residentId=<?php echo $fetch['residentId']?>"> Delete</a>
-							<a class="btn btn-warning" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
-							
+<table id="table" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Expiration Date</th>
+            <th>Status</th>
+            <th>Request</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $query = $conn->query("SELECT * FROM medicines") or die(mysqli_error());
+        while ($fetch = $query->fetch_array()) {
+            $status = $fetch['status'];
+            $disableButton = ($status == 'unavailable' || $fetch['total'] == 0) ? 'disabled' : ''; // Check status and quantity
+
+            // ...
+        ?>
+            <!-- ... -->
+            <tr>
+                <td><?php echo $fetch['productName'] ?></td>
+                <td><?php echo $fetch['total'] ?></td>
+                <td><?php echo $fetch['expDate'] ?></td>
+                <td><?php echo $status ?></td>
+                <!-- ... -->
+                <td>
+                    <center>
+                        <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
+                            <button class="btn btn-warning" disabled>Request</button>
+                        <?php else: ?>
+                            <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+                        <?php endif; ?>
+                    </center>
+                </td>
+                
+                  </tr>
+                <!-- ... -->
             </tr>
-						
-					<?php
-						}
-					?>	
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+            <!-- ... -->
+        <?php
+        }
+        ?>
+    </tbody>
+</table>
+
+                
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
 
   </section>
-  <!-- Scripts -->
+  
+
   <script src="../cssmainmenu/script.js"></script>
   <script type = "text/javascript">
 	function confirmationDelete(anchor){
@@ -167,7 +180,7 @@ if(isset($_SESSION['user_data'])){
 	});
 </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     // Check if URL contains 'success' parameter and remove it
     if (window.location.search.includes('success')) {
         var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;

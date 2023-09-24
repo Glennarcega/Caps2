@@ -90,57 +90,57 @@ if(isset($_SESSION['user_data'])){
   </div>
   <section class="home-section">
     <div class="text">Records</div>
-    <div class = "container-fluid">
-		<div class = "panel panel-default">
-			<div class = "panel-body">
-				<div class = "alert alert-info">Records</div>
-				
+				<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="alert alert-info">Medicine</div>
+				<a class="btn btn-success" href="add_med_res.php"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>
 				<br />
+				<br />
+		
 				<?php if (isset($_GET['success'])) { ?>
 					<div class="alert alert-success" role="alert">
 						<?=$_GET['success']?>
 					</div>
-					<?php } ?>
-				<br />
-				<table id = "table" class = "table table-bordered">
+				<?php } ?>
+				
+				<table id="table" class="table table-bordered">
 					<thead>
 						<tr>
-							
-							<th>Resident Name</th>
-							<th>Date of Birth</th>
-							<th>Age</th>
-							<th>Sex</th>
-							<th>Address</th>
-							<th>Contact Number</th>
-							
-							<th>Action</th>
-							
-
+							<th>Product Name</th>
+							<th>Quantity</th>
+							<th>Given Date</th>
 						</tr>
 					</thead>
-					<tbody>
-					<?php
-						$query = $conn->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
-						while($fetch = $query->fetch_array()){
-					?>	
-						<tr>
-							
-							<td><?php echo $fetch['residentName']?></td>
-							<td><?php echo $fetch['dateBirth']?></td>
-							<td><?php echo $fetch['age']?></td>
-							<td><?php echo $fetch['sex']?></td>
-							<td><?php echo $fetch['address']?></td>
-							<td><?php echo $fetch['contactNumber']?></td>
-			
-							<td><center> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_rec.php?residentId=<?php echo $fetch['residentId']?>"> Delete</a>
-							<a class="btn btn-warning" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
-							
-            </tr>
-						
-					<?php
-						}
-					?>	
-					</tbody>
+					<!-- ... Previous HTML code ... -->
+
+<tbody>
+    <?php  
+    if (isset($_GET['residentId'])) {
+        $desiredResidentId = $_GET['residentId'];
+        
+        // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
+        $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
+        
+        if ($query->num_rows > 0) {
+            while ($fetch = $query->fetch_assoc()) {
+                // Display the records within the table rows
+                echo '<tr>';
+                echo '<td>' . $fetch['productName'] . '</td>';
+                echo '<td>' . $fetch['quantity_req'] . '</td>';
+                echo '<td>' . $fetch['givenDate'] . '</td>';
+                echo '</tr>';
+            }
+        } else {
+            echo '<tr><td colspan="3">No records found for this resident ID.</td></tr>';
+        }
+    } else {
+        echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
+    }
+    ?>
+</tbody>
+
+
 				</table>
 			</div>
 		</div>

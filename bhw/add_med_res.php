@@ -134,7 +134,14 @@ while ($fetch = $query->fetch_array()) {
             <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
                 <button class="btn btn-warning" disabled>Request</button>
             <?php else: ?>
-                <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+              <?php
+              if (isset($_GET['residentId'])) {
+                $residentId = $_GET['residentId'];
+                echo '<a class="btn btn-warning" href="med_request_add.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>'; 
+               } else {
+                echo '<p>Resident ID not provided.</p>';
+            }
+            ?>
             <?php endif; ?>
         </center>
     </td>

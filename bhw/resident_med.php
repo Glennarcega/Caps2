@@ -113,6 +113,7 @@ if(isset($_SESSION['user_data'])){
         echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
     }
     ?>
+    
   </div>
   <br />
 			
@@ -150,7 +151,7 @@ if (isset($_GET['residentId'])) {
         $desiredResidentId = $_GET['residentId'];
         
         // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-        $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
+        $query = $conn->query("SELECT * FROM request_medicine WHERE residentId = '$desiredResidentId'");
 
         if ($query->num_rows > 0) {
             while ($fetch = $query->fetch_assoc()) {

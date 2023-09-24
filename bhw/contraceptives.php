@@ -67,7 +67,13 @@ if(isset($_SESSION['user_data'])){
         </a>
         <span class="tooltip">Medicine</span>
       </li>
-        
+      <li>
+        <a href="contraceptives.php">
+            <i class="bx bx-capsule"></i>
+            <span class="link_name">Contraceptives</span>
+        </a>
+        <span class="tooltip">Contraceptives</span>
+        </li>
       <li>
         <a href="#">
           <i class="bx bx-cog"></i>
@@ -93,8 +99,8 @@ if(isset($_SESSION['user_data'])){
     <div class="container-fluid">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="alert alert-info">Medicine</div>
-          <a href="add_med.php" class="btn btn-success"> Add Medicine</a>
+          <div class="alert alert-info">Contraceptives</div>
+          <a href="add_med.php" class="btn btn-success"> Add Contraceptives</a>
 </a>
 
            <br />

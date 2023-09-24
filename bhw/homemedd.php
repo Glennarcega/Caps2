@@ -96,10 +96,17 @@ if(isset($_SESSION['user_data'])){
       </li>
       <li>
         <a href="medicinee.php">
-          <i class="bx bx-cart-alt"></i>
+          <i class="bx bx-plus-medical"></i>
           <span class="link_name">Medicine</span>
         </a>
         <span class="tooltip">Medicine</span>
+      </li>
+      <li>
+        <a href="contraceptives.php">
+          <i class="bx bx-capsule"></i>
+          <span class="link_name">Contraceptives</span>
+        </a>
+        <span class="tooltip">Contraceptives</span>
       </li>
       <li>
         <a href="#">

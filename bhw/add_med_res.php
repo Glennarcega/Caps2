@@ -135,7 +135,7 @@ if(isset($_SESSION['user_data'])){
                         <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
                             <button class="btn btn-warning" disabled>Request</button>
                         <?php else: ?>
-                            <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+                            <a class="btn btn-warning" href="med_request_add.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
                         <?php endif; ?>
                     </center>
                 </td>

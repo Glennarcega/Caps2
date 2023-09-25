@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2023 at 05:26 PM
+-- Generation Time: Sep 25, 2023 at 04:32 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -42,8 +42,8 @@ CREATE TABLE `medicines` (
 --
 
 INSERT INTO `medicines` (`productId`, `productName`, `quantity1`, `total`, `expDate`, `status`, `action`) VALUES
-(1, 'biogesic 2', 12, 0, '2023-07-25', 'available', ''),
-(2, 'bioflu', 1000, 980, '2023-07-16', 'available', ''),
+(1, 'biogesic 2', 100, 95, '2023-07-25', 'available', ''),
+(2, 'bioflu', 1000, 930, '2023-07-16', 'available', ''),
 (3, 'condom', 1, 0, '2023-07-16', 'available', ''),
 (4, 'cdm', 1, 0, '2023-09-19', 'available', ''),
 (5, 'popo', 1, 0, '2023-09-21', 'available', ''),
@@ -59,7 +59,6 @@ CREATE TABLE `request_medicine` (
   `residentId` varchar(100) NOT NULL,
   `productId` varchar(100) NOT NULL,
   `productName` varchar(200) NOT NULL,
-  `quantity1` int(100) NOT NULL,
   `quantity_req` int(100) NOT NULL,
   `givenDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -68,14 +67,10 @@ CREATE TABLE `request_medicine` (
 -- Dumping data for table `request_medicine`
 --
 
-INSERT INTO `request_medicine` (`residentId`, `productId`, `productName`, `quantity1`, `quantity_req`, `givenDate`) VALUES
-('', '2', 'bioflu', 0, 1, '2023-09-24'),
-('213', '1', 'biogesic 2', 0, 1, '2023-09-24'),
-('246', '2', 'bioflu', 0, 2, '2023-09-24'),
-('246', '2', 'bioflu', 0, 1, '0000-00-00'),
-('230', '2', 'bioflu', 0, 1, '2023-09-24'),
-('230', '2', 'bioflu', 0, 1, '0000-00-00'),
-('', '2', 'bioflu', 0, 12, '1221-12-12');
+INSERT INTO `request_medicine` (`residentId`, `productId`, `productName`, `quantity_req`, `givenDate`) VALUES
+('257', '2', 'bioflu', 6, '2023-09-25'),
+('257', '2', 'bioflu', 2, '2023-09-25'),
+('257', '1', 'biogesic 2', 5, '2023-09-25');
 
 -- --------------------------------------------------------
 
@@ -91,62 +86,15 @@ CREATE TABLE `residentrecords` (
   `age` int(10) NOT NULL,
   `sex` varchar(10) NOT NULL,
   `address` varchar(100) NOT NULL,
-  `contactNumber` varchar(11) NOT NULL,
-  `productName` varchar(100) NOT NULL,
-  `quantity_req` int(100) NOT NULL,
-  `givenDate` date NOT NULL
+  `contactNumber` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `residentrecords`
 --
 
-INSERT INTO `residentrecords` (`residentId`, `productId`, `residentName`, `dateBirth`, `age`, `sex`, `address`, `contactNumber`, `productName`, `quantity_req`, `givenDate`) VALUES
-(210, 1, 'arcega glenn', '2023-09-22', 12, 'Male', 'IlangIlang', '09283782137', 'biogesic 2', 1, '2023-09-22'),
-(211, 1, 'ako', '2023-09-30', 90, 'Male', 'IlangIlang', '091301298', 'biogesic 2', 12, '2023-09-23'),
-(212, 1, 'kda', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'biogesic 2', 8, '0000-00-00'),
-(213, 1, '', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'biogesic 2', 9, '0000-00-00'),
-(214, 1, '', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'biogesic 2', 2, '0000-00-00'),
-(215, 1, 'tuko', '2023-09-23', 12, 'Male', 'IlangIlang', '0192480432', 'biogesic 2', 2, '2023-09-23'),
-(216, 1, 'mayvel', '2023-09-23', 12, 'Male', 'IlangIlang', '092388219', 'biogesic 2', 1, '2023-09-23'),
-(217, 4, 'wangot', '2023-09-23', 87, 'Male', 'IlangIlang', '1321323', 'cdm', 7, '2023-09-23'),
-(218, 5, 'ty', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'popo', 10, '2023-09-23'),
-(219, 5, 'jojo', '2023-09-23', 12, 'Male', 'IlangIlang', '0930812', 'popo', 12, '2023-09-23'),
-(220, 5, 'jiji', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'popo', 89, '0000-00-00'),
-(221, 5, 'jiji', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'popo', 89, '0000-00-00'),
-(222, 1, 'swswswsws', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'biogesic 2', 12, '0000-00-00'),
-(223, 1, 'qwerty', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'biogesic 2', 12, '0000-00-00'),
-(224, 5, 'areraer', '2023-10-04', 13, 'Male', 'IlangIlang', '4092389785', 'popo', 1, '2023-09-23'),
-(225, 4, 'glennnnnnn177777777', '2023-09-23', 21, 'Male', 'IlangIlang', '09381283', 'cdm', 1, '2023-09-23'),
-(226, 4, 'loydi', '2023-09-23', 21, 'Male', 'IlangIlang', '09213425678', 'cdm', 2, '2023-09-23'),
-(227, 4, 'ito', '0000-00-00', 12, 'Male', 'IlangIlang', '09137892173', 'cdm', 1, '2023-09-23'),
-(228, 4, 'glennnnnnn177777777', '0000-00-00', 21, 'Male', 'IlangIlang', '9204912801', 'cdm', 1, '2023-09-23'),
-(229, 1, 'arce', '0000-00-00', 13, 'Male', 'IlangIlang', '089329034', 'biogesic 2', 1, '2023-09-23'),
-(230, 1, 'arce', '0000-00-00', 13, 'Male', 'IlangIlang', '089329034', 'biogesic 2', 1, '2023-09-23'),
-(231, 4, '', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'cdm', 0, '0000-00-00'),
-(232, 1, 'ev', '0000-00-00', 12, 'Male', 'IlangIlang', '', 'biogesic 2', 1, '0000-00-00'),
-(233, 1, 'akoo', '0000-00-00', 0, 'Male', 'IlangIlang', '02948143', 'biogesic 2', 1, '0000-00-00'),
-(234, 1, 'nbwhgd', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'biogesic 2', 12, '0000-00-00'),
-(235, 1, 'e2qmdw', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'biogesic 2', 1, '0000-00-00'),
-(236, 1, 'fjiw', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'biogesic 2', 1, '0000-00-00'),
-(237, 2, 'bescfesfc', '2023-09-23', 12, 'Male', 'IlangIlang', '090284292', 'bioflu', 149, '2023-09-23'),
-(238, 5, 'h3ud', '2023-09-23', 23, 'Male', 'IlangIlang', '0918398293', 'popo', 1, '2023-09-23'),
-(239, 3, 'ateawuvd', '0000-00-00', 22, 'Male', 'IlangIlang', '09183201423', 'condom', 1, '2023-09-23'),
-(240, 2, 'arce', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'bioflu', 0, '0000-00-00'),
-(241, 6, 'bayaw', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'lagu', 0, '0000-00-00'),
-(242, 5, 'bayaw', '2023-09-24', 12, 'Male', 'IlangIlang', '', 'popo', 0, '0000-00-00'),
-(243, 3, 'arce', '2023-09-24', 21, 'Male', 'IlangIlang', '', 'condom', 0, '0000-00-00'),
-(244, 3, 'areca', '2002-12-23', 12, 'Male', 'IlangIlang', '19312034303', 'condom', 1, '2013-12-23'),
-(245, 6, 'taieieiiieieieieeieiei', '0000-00-00', 12, 'Male', 'IlangIlang', '1212', 'lagu', 1, '0122-12-12'),
-(246, 1, 'arcega', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'biogesic 2', 12, '0000-00-00'),
-(247, 2, 'ikaw lang', '2023-09-24', 12, 'Male', 'IlangIlang', '29038184093', 'bioflu', 12, '2023-09-24'),
-(248, 4, 'aso', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'cdm', 1, '0000-00-00'),
-(249, 5, 'glaiza mae arcxega', '0000-00-00', 0, 'Male', 'IlangIlang', '', 'popo', 1, '2023-09-24'),
-(250, 5, 'arcega glenn', '0000-00-00', 12, 'Male', 'IlangIlang', '', 'popo', 0, '0000-00-00'),
-(251, 5, 'dedq', '2212-12-21', 12, 'Male', 'IlangIlang', '', 'popo', 0, '0000-00-00'),
-(252, 5, 'fwew', '2212-11-21', 12, 'Male', 'IlangIlang', '1242143434', 'popo', 1, '1121-12-12'),
-(253, 2, 'michael tae', '0012-12-12', 12, 'Male', 'IlangIlang', '12132432534', 'bioflu', 12, '1221-12-12'),
-(254, 2, 'fwefcw', '0021-12-21', 12, 'Male', 'IlangIlang', '12134235432', 'bioflu', 8, '1221-12-12');
+INSERT INTO `residentrecords` (`residentId`, `productId`, `residentName`, `dateBirth`, `age`, `sex`, `address`, `contactNumber`) VALUES
+(257, 2, 'arcega glenn emerson', '2001-11-17', 21, 'Male', 'IlangIlang', '09123456789');
 
 -- --------------------------------------------------------
 
@@ -247,7 +195,7 @@ ALTER TABLE `medicines`
 -- AUTO_INCREMENT for table `residentrecords`
 --
 ALTER TABLE `residentrecords`
-  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -22,9 +22,12 @@ if (isset($_POST['add_rec'])) {
             // Sufficient quantity available, update and insert
             $quantity = $availableQuantity - $quantity_req;
             $conn->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
-            $query = $conn->query("INSERT INTO residentrecords (productId, residentName, dateBirth, age, sex, address, contactNumber, productName, quantity_req, givenDate) VALUES ('$productId', '$residentName', '$dateBirth', '$age', '$sex', '$address', '$contactNumber', '$productName', '$quantity_req', '$givenDate')");
+            $query = $conn->query("INSERT INTO residentrecords (productId, residentName, dateBirth, age, sex, address, contactNumber) VALUES ('$productId', '$residentName', '$dateBirth', '$age', '$sex', '$address', '$contactNumber')");
 
             if ($query) {
+                $residentId = mysqli_insert_id($conn);
+                $query = $conn->query("INSERT INTO request_medicine (residentId, productId, productName, quantity_req, givenDate) VALUES ('$residentId','$productId','$productName', '$quantity_req', '$givenDate')");
+
                 echo '<script>window.location.href = "./userRecMed.php?success=Add Request Successfully";</script>';
                 exit(); // Add this line to stop further script execution
             } else {

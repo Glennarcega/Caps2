@@ -115,7 +115,6 @@ if(isset($_SESSION['user_data'])){
 					<?php } ?>
 				<br />
                     <br />
-                    <div class="text"><?php echo $residentName; ?> Record</div>
                     <div class="col-md-4">
                         <?php
                         $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
@@ -130,10 +129,12 @@ if(isset($_SESSION['user_data'])){
                                 if (isset($_GET['residentId'])) {
                                     // Retrieve the 'residentId' value from the URL
                                     $residentId = $_GET['residentId'];
+                                  
                                     
                                     // Now, you have the 'residentId' value in the $residentId variable
                                     // You can use it for database operations or any other purpose
                                     echo "Resident ID: " . $residentId;
+                                
                                 } else {
                                     // Handle the case where 'residentId' is not provided in the URL
                                     echo "Resident ID not found in the URL.";

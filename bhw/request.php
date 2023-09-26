@@ -63,7 +63,7 @@ if(isset($_SESSION['user_data'])){
             </li>
             <li>
                 <a href="medicinee.php">
-                    <i class="bx bx-cart-alt"></i>
+                    <i class="bx bx-plus-medical"></i>
                     <span class="link_name">Medicine</span>
                 </a>
                 <span class="tooltip">Medicine</span>
@@ -163,7 +163,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group">
                                 <button name="add_rec" class="btn btn-warning form-control"><i
-                                        class="glyphicon glyphicon-edit"></i> Request</button>
+                                        class="bx bx-pencil"></i> Request</button>
                             </div>
                             <?php require_once '../admin_query/add_query_records.php'?>
 						</form>

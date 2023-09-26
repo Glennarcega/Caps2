@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2023 at 04:32 PM
+-- Generation Time: Sep 26, 2023 at 03:57 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -42,12 +42,7 @@ CREATE TABLE `medicines` (
 --
 
 INSERT INTO `medicines` (`productId`, `productName`, `quantity1`, `total`, `expDate`, `status`, `action`) VALUES
-(1, 'biogesic 2', 100, 95, '2023-07-25', 'available', ''),
-(2, 'bioflu', 1000, 930, '2023-07-16', 'available', ''),
-(3, 'condom', 1, 0, '2023-07-16', 'available', ''),
-(4, 'cdm', 1, 0, '2023-09-19', 'available', ''),
-(5, 'popo', 1, 0, '2023-09-21', 'available', ''),
-(6, 'lagu', 1, 0, '2023-09-23', 'available', '');
+(45, 'condom', 0, 90, '2024-03-30', 'available', '');
 
 -- --------------------------------------------------------
 
@@ -70,7 +65,11 @@ CREATE TABLE `request_medicine` (
 INSERT INTO `request_medicine` (`residentId`, `productId`, `productName`, `quantity_req`, `givenDate`) VALUES
 ('257', '2', 'bioflu', 6, '2023-09-25'),
 ('257', '2', 'bioflu', 2, '2023-09-25'),
-('257', '1', 'biogesic 2', 5, '2023-09-25');
+('257', '1', 'biogesic 2', 5, '2023-09-25'),
+('258', '1', 'biogesic 2', 2, '2023-09-26'),
+('259', '4', 'cdm', 1, '0212-12-12'),
+('260', '45', 'condom', 10, '2023-09-26'),
+('260', '46', 'biogesic', 10, '2023-09-26');
 
 -- --------------------------------------------------------
 
@@ -94,7 +93,7 @@ CREATE TABLE `residentrecords` (
 --
 
 INSERT INTO `residentrecords` (`residentId`, `productId`, `residentName`, `dateBirth`, `age`, `sex`, `address`, `contactNumber`) VALUES
-(257, 2, 'arcega glenn emerson', '2001-11-17', 21, 'Male', 'IlangIlang', '09123456789');
+(260, 45, 'arcega glenn emerson', '2001-11-17', 21, 'Male', 'IlangIlang', '09298138323');
 
 -- --------------------------------------------------------
 
@@ -166,8 +165,7 @@ ALTER TABLE `medicines`
 -- Indexes for table `residentrecords`
 --
 ALTER TABLE `residentrecords`
-  ADD PRIMARY KEY (`residentId`),
-  ADD KEY `residentrecords_ibfk_1` (`productId`);
+  ADD PRIMARY KEY (`residentId`);
 
 --
 -- Indexes for table `users`
@@ -189,29 +187,19 @@ ALTER TABLE `usertypes`
 -- AUTO_INCREMENT for table `medicines`
 --
 ALTER TABLE `medicines`
-  MODIFY `productId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `productId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `residentrecords`
 --
 ALTER TABLE `residentrecords`
-  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `residentrecords`
---
-ALTER TABLE `residentrecords`
-  ADD CONSTRAINT `residentrecords_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `medicines` (`productId`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

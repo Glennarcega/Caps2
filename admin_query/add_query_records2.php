@@ -20,7 +20,7 @@ if (isset($_POST['add_rec'])) {
             $query = $conn->query("INSERT INTO request_medicine (residentId,productId,productName,quantity_req, givenDate) VALUES ('$residentId','$productId','$productName', '$quantity_req', '$givenDate')");
 
             if ($query) {
-                echo '<script>window.location.href = "medicinee.php?success=Add Request Successfully";</script>';
+                echo '<script>window.location.href = "resident_med.php?success=Add Request Successfully";</script>';
                 exit(); // Add this line to stop further script execution
             } else {
                 echo "Error: " . mysqli_error($conn);

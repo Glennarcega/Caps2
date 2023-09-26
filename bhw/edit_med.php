@@ -61,7 +61,7 @@ if(isset($_SESSION['user_data'])){
       </li>
       <li>
         <a href="medicinee.php">
-          <i class="bx bx-cart-alt"></i>
+          <i class="bx bx-plus-medical"></i>
           <span class="link_name">Medicine</span>
         </a>
         <span class="tooltip">Medicine</span>
@@ -125,7 +125,7 @@ if(isset($_SESSION['user_data'])){
 						
 						<br />
 						<div class = "form-group">
-							<button name = "edit_med" class = "btn btn-warning form-control"><i class = "glyphicon glyphicon-edit"></i> Save Changes</button>
+							<button name = "edit_med" class = "btn btn-warning form-control"><i class = "bx bx-save"></i> Save Changes</button>
 						</div>
 					</form>
 					<?php require_once '../admin_query/edit_query_med.php'?>

@@ -69,7 +69,7 @@ if(isset($_SESSION['user_data'])){
       <li>
         <a href="homemedd.php">
           <i class="bx bx-grid-alt"></i>
-          <span class="link_name">Dashboard</span>
+          <span class="link_name" >Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
       </li>

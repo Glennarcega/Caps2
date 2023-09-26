@@ -62,7 +62,7 @@ if(isset($_SESSION['user_data'])){
       </li>
       <li>
         <a href="medicinee.php">
-          <i class="bx bx-cart-alt"></i>
+          <i class="bx bx-plus-medical"></i>
           <span class="link_name">Medicine</span>
         </a>
         <span class="tooltip">Medicine</span>
@@ -94,7 +94,8 @@ if(isset($_SESSION['user_data'])){
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="alert alert-info">Medicine</div>
-          <a href="add_med.php" class="btn btn-success"> Add Medicine</a>
+          <a class="btn btn-success" href="add_med.php?"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>
+         
 </a>
 
            <br />

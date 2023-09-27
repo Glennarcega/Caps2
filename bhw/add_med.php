@@ -137,7 +137,7 @@ if(isset($_SESSION['user_data'])){
 						<br />
 						<br />
 						<div class = "form-group">
-							<button name = "add_med" class = "btn btn-info form-control"><i class = "glyphicon glyphicon-save"></i> Saved</button>
+							<button name = "add_med" class = "btn btn-info form-control"><i class = "bx bx-save"></i> Saved</button>
 						</div>
 					</form>
           <?php

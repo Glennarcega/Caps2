@@ -1,5 +1,8 @@
 <?php
 if (isset($_POST['add_rec'])) {
+    @include "../connection/connect.php";
+    // Include your database connection code here (e.g., $conn = new mysqli(...);)
+
     $residentId = isset($_GET['residentId']) ? $_GET['residentId'] : '';
     $productId = $_POST['productId'];
     $productName = $_POST['productName'];
@@ -8,28 +11,36 @@ if (isset($_POST['add_rec'])) {
 
     // Fetch the data from the 'medicines' table
     $fetchQuery = $conn->query("SELECT total FROM medicines WHERE productId = '$productId'");
-    $fetch = $fetchQuery->fetch_assoc();
 
-    if ($fetchQuery && $fetch) {
-        $availableQuantity = $fetch['total'];
+    if ($fetchQuery) {
+        $fetch = $fetchQuery->fetch_assoc();
 
-        if ($availableQuantity >= $quantity_req) {
-            // Sufficient quantity available, update and insert
-            $quantity = $availableQuantity - $quantity_req;
-            $conn->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
-            $query = $conn->query("INSERT INTO request_medicine (residentId,productId,productName,quantity_req, givenDate) VALUES ('$residentId','$productId','$productName', '$quantity_req', '$givenDate')");
+        if ($fetch) {
+            $availableQuantity = $fetch['total'];
 
-            if ($query) {
-                echo '<script>window.location.href = "resident_med.php?residentId=' . $residentId . '";</script>';
+            if ($availableQuantity >= $quantity_req) {
+                // Sufficient quantity available, update and insert
+                $quantity = $availableQuantity - $quantity_req;
+                $updateQuery = $conn->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
 
-                exit(); // Add this line to stop further script execution
+                if ($updateQuery) {
+                    $insertQuery = $conn->query("INSERT INTO request_medicine (residentId, productId, productName, quantity_req, givenDate) VALUES ('$residentId', '$productId', '$productName', '$quantity_req', '$givenDate')");
 
+                    if ($insertQuery) {
+                        echo '<script>window.location.href = "resident_med.php?residentId=' . $residentId . '";</script>';
+                        exit();
+                    } else {
+                        echo "Error: " . mysqli_error($conn);
+                    }
+                } else {
+                    echo "Error: Failed to update medicine quantity.";
+                }
             } else {
-                echo "Error: " . mysqli_error($conn);
+                // Insufficient quantity, show an error message
+                echo '<script>alert("Insufficient quantity available.");</script>';
             }
         } else {
-            // Insufficient quantity, show an error message
-            echo '<script>alert("Insufficient quantity available.");</script>';
+            echo "Error: Medicine with productId $productId not found.";
         }
     } else {
         echo "Error: Failed to fetch medicine data.";

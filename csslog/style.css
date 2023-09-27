@@ -1,172 +1,91 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
-body {
-  background-color: #04c487 !important;
-}
-
-* {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  text-decoration: none;
-}
-
-.form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-image: url('path/to/your-background-image.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-form {
-  border-radius: 20px;
-  width: 400px;
-  background-color: rgba(255, 250, 205, 0.9);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  text-align: center;
-}
-
-.logo {
-  width: 150px;
-  height: 110px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-}
-
-h4 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333; /* Change the color to your liking */
-}
-
-.form-label {
-  font-weight: 800;
-}
-
-.form-control {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  border: none;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  padding: 10px;
-  width: 100%;
-  transition: box-shadow 0.3s ease;
-}
-
-.form-control:focus {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  outline: none;
-}
-
-/* Add this CSS for the improved login button */
-
-.btn-primary {
-    background: linear-gradient(90deg, rgb(0, 59, 23) 0%, rgb(14, 154, 58) 35%, rgb(0, 255, 38) 100%);
-    color: #fff; /* Button text color */
-    font-size: 18px; /* Increase font size */
-    padding: 14px 28px; /* Adjust padding for a larger button */
-    border: none; /* Remove button border */
-    border-radius: 50px; /* Add border-radius for rounded corners */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Add transitions for hover and focus effects */
-  }
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
   
-  .btn-primary:hover {
-    background-color: #0056b3; /* Change button color on hover */
-    transform: scale(1.05); /* Slight scale-up on hover */
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.4); /* Add box shadow on hover */
-  }
-  
-  .btn-primary:focus {
-    outline: none; /* Remove outline on focus for better aesthetics */
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.4); /* Add box shadow on focus */
-  }
-  
-  /* Optional: If you want to add a gradient effect to the button */
-  .btn-primary::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
+}
+
+form{
+    
+    border-radius: 20px;
+    margin-top:30px ;
+    width: 400px;
+    background-color: #FFFACD;
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    padding: 50px;
+    text-align: center;
+    min-height: 500px;
+    
+}
+body{
+    background-color: #04c487!important;
+
+
+}
+
+.form-control{
+    box-shadow: none;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 4px 4px 0 0;
+    }
+ h4{
+    font-size: 2rem !important;
+    font-weight: 700;
+ }  
+ .form-label{
+    font-weight: 800 !important;
+ }
+ .logo {
+    width: 150px;
+    height: 110px;
+    border-radius: 50%;
+    margin: auto;
+    margin-bottom: 0px;
+    display: block;
+}
+
+.btn-primary{
+   
     width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #007bff 0%, #0056b3 100%); /* Gradient background */
-    border-radius: inherit; /* Match button's border-radius */
-    opacity: 0; /* Initially transparent */
-    transition: opacity 0.3s ease; /* Add transition for gradient effect */
-  }
-  
-  .btn-primary:hover::before {
-    opacity: 1; /* Show gradient on hover */
-  }
-  
-.error-msg {
-  margin: 10px 0;
-  display: block;
-  background: crimson;
-  color: #fff;
-  border-radius: 5px;
-  font-size: 16px;
-  padding: 10px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, rgb(0, 59, 23) 0%, rgb(14, 154, 58) 35%, rgb(0, 255, 38) 100%);
+    
 }
 
-@media (max-width: 768px) {
-  form {
-    width: 80%;
-  }
+.form-container form .error-msg{
+   margin:10px 0;
+   display: block;
+   background: crimson;
+   color:#fff;
+   border-radius: 5px;
+   font-size: 20px;
+   padding:10px;
 }
 
-/* ... Your existing CSS ... */
+@media (min-width: 300px) and (max-width: 480px) { 
+  
+   
+}
 
-@media (max-width: 768px) {
-    form {
-      width: 90%; /* Adjust the width as needed for smaller screens */
-      padding: 20px; /* Increase padding for smaller screens */
-    }
+@media (min-width: 481px) and (max-width: 768px) { 
+    
+}
+
+@media (min-width: 769px) and (max-width: 1200px) { 
+   
   
-    .logo {
-      width: 100px; /* Reduce the logo size for smaller screens */
-      height: 80px; /* Reduce the logo size for smaller screens */
-      margin-bottom: 10px;
-    }
-  
-    h4 {
-      font-size: 1.5rem; /* Reduce font size for smaller screens */
-    }
-  
-    .form-label {
-      font-size: 18px; /* Reduce font size for smaller screens */
-    }
-  
-    .form-control {
-      padding: 8px;
-    }
-  
-    .btn-primary {
-      font-size: 16px; /* Reduce font size for smaller screens */
-    }
-  
-    .error-msg {
-      font-size: 14px; /* Reduce font size for smaller screens */
-    }
   }
+
+
+  @media (min-width: 1201px) and (max-width: 2080px) { 
   
-  @media (max-width: 480px) {
-    form {
-      width: 95%; /* Further reduce the width for very small screens */
-      padding: 15px; /* Adjust padding for very small screens */
-    }
-  
-    .logo {
-      width: 80px; /* Further reduce the logo size for very small screens */
-      height: 60px; /* Further reduce the logo size for very small screens */
-    }
   }
-  
+
+
+ 

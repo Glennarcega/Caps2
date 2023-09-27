@@ -12,6 +12,9 @@ if(isset($_SESSION['user_data'])){
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
+  if (isset($_GET['success']) && $_GET['success'] == 1) {
+    echo '<div class="success-message">Medicine request added successfully!</div>';
+}
 
 ?>
 <!DOCTYPE html>

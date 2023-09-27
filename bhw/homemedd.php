@@ -32,7 +32,9 @@ if(isset($_SESSION['user_data'])){
 	$addresses = array();
 
 	$res = mysqli_query($link, "SELECT * FROM residentrecords");
+
 	while ($row = mysqli_fetch_array($res)) {
+
 		$address["label"] = $row["address"];
 		$address["y"] = $row["quantity_req"];
 		$addresses[] = $address;

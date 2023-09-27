@@ -119,9 +119,7 @@ if(isset($_SESSION['user_data'])){
 							<th>Sex</th>
 							<th>Address</th>
 							<th>Contact Number</th>
-							<th>Product Name</th>
-							<th>Quantity</th>
-							<th>Given Date</th>
+						
 						
 							
 						</tr>
@@ -139,9 +137,7 @@ if(isset($_SESSION['user_data'])){
 							<td><?php echo $fetch['sex']?></td>
 							<td><?php echo $fetch['address']?></td>
 							<td><?php echo $fetch['contactNumber']?></td>
-							<td><?php echo $fetch['productName']?></td>
-							<td><?php echo $fetch['quantity_req']?></td>
-							<td><?php echo $fetch['givenDate']?></td>
+							
 						</tr>
 						
 					<?php

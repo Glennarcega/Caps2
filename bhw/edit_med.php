@@ -99,9 +99,17 @@ if(isset($_SESSION['user_data'])){
 						$fetch = $query->fetch_array();
 					?>
 					<form method = "POST" enctype = "multipart/form-data">
+          <div class = "form-group">
+							<label>Sponsor </label>
+							<input type = "text"  class = "form-control" name = sponsor value = "<?php echo $fetch['sponsor']?>" />
+						</div>
 					<div class = "form-group">
 							<label>Product Name </label>
-							<input type = "text"  class = "form-control" name = "productName" value = "<?php echo $fetch['productName']?>" />
+							<input type = "text"  class = "form-control" name = "productName" value = "<?php echo $fetch['productName']?>" required/>
+						</div>
+          <div class = "form-group">
+							<label>Batch </label>
+							<input type = "text"  class = "form-control" name = "batch" value = "<?php echo $fetch['batch']?>" required/>
 						</div>
 					<div class = "form-group">
 							<label>Quantity </label>
@@ -113,7 +121,7 @@ if(isset($_SESSION['user_data'])){
 						</div>
 						<div class = "form-group">
 							<label>Expiration Date </label>
-								<input type = "date"  class = "form-control" name = "expDate" value = "<?php echo $fetch['expDate']?>" />
+								<input type = "date"  class = "form-control" name = "expDate" value = "<?php echo $fetch['expDate']?>" required/>
 						</div>
 						<div class = "form-group">
 							<label>Status</label>

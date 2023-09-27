@@ -105,17 +105,25 @@ if(isset($_SESSION['user_data'])){
 			  <?php } ?>
 
 					<form method = "POST" enctype = "multipart/form-data">
+          <div class = "form-group">
+							<label>Sponsor </label>
+							<input type = "text"  class = "form-control" name = "sponsor" required/>
+						</div>
 						<div class = "form-group">
 							<label>Product Name </label>
-							<input type = "text"  class = "form-control" name = "productName" />
+							<input type = "text"  class = "form-control" name = "productName" required/>
+						</div>
+            <div class = "form-group">
+							<label>Batch </label>
+							<input type = "text"  class = "form-control" name = "batch" required/>
 						</div>
 						<div class = "form-group">
 							<label>Quantity </label>
-							<input type = "number" min = "0" max = "999999999" class = "form-control" name = "total" />
+							<input type = "number" min = "0" max = "999999999" class = "form-control" name = "total" required/>
 						</div>
 						<div class = "form-group">
 							<label>Expiration Date </label>
-								<input type = "date"  class = "form-control" name = "expDate" />
+								<input type = "date"  class = "form-control" name = "expDate" required/>
 						</div>
 						
 						<div class = "form-group">
@@ -134,11 +142,13 @@ if(isset($_SESSION['user_data'])){
 					</form>
           <?php
                 if(isset($_POST['add_med'])){
+                $sponsor = $_POST['sponsor'];
                 $productName = $_POST['productName'];
+                $batch = $_POST['batch'];
                 $total = $_POST['total'];
                 $expDate = $_POST['expDate'];
                 $status = $_POST['status'];
-                $conn->query("INSERT INTO `medicines` (productName,total,expDate,status) VALUES('$productName', '$total','$expDate','$status')") or die(mysqli_error());
+                $conn->query("INSERT INTO `medicines` (sponsor,productName,batch,total,expDate,status) VALUES('$sponsor','$productName','$batch', '$total','$expDate','$status')") or die(mysqli_error());
                 if($conn){
                   header("Location:medicinee.php?success=Added Medicine Successfully");
                 }

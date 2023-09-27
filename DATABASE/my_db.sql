@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2023 at 03:57 AM
+-- Generation Time: Sep 27, 2023 at 02:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -30,6 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `medicines` (
   `productId` int(30) NOT NULL,
   `productName` varchar(100) NOT NULL,
+  `sponsor` varchar(100) NOT NULL,
+  `batch` varchar(100) NOT NULL,
   `quantity1` int(10) NOT NULL,
   `total` int(10) NOT NULL,
   `expDate` date NOT NULL,
@@ -41,8 +43,8 @@ CREATE TABLE `medicines` (
 -- Dumping data for table `medicines`
 --
 
-INSERT INTO `medicines` (`productId`, `productName`, `quantity1`, `total`, `expDate`, `status`, `action`) VALUES
-(45, 'condom', 0, 90, '2024-03-30', 'available', '');
+INSERT INTO `medicines` (`productId`, `productName`, `sponsor`, `batch`, `quantity1`, `total`, `expDate`, `status`, `action`) VALUES
+(55, 'condom', 'shell', 'batch 2', 20, 120, '2003-12-12', 'available', '');
 
 -- --------------------------------------------------------
 
@@ -69,7 +71,58 @@ INSERT INTO `request_medicine` (`residentId`, `productId`, `productName`, `quant
 ('258', '1', 'biogesic 2', 2, '2023-09-26'),
 ('259', '4', 'cdm', 1, '0212-12-12'),
 ('260', '45', 'condom', 10, '2023-09-26'),
-('260', '46', 'biogesic', 10, '2023-09-26');
+('260', '46', 'biogesic', 10, '2023-09-26'),
+('260', '45', 'condom', 5, '2023-09-26'),
+('260', '45', 'condom', 1, '2023-09-26'),
+('260', '45', 'condom', 1, '2023-09-26'),
+('260', '45', 'condom', 3, '2023-09-26'),
+('260', '45', 'condom', 10, '2023-09-27'),
+('260', '45', 'condom', 1, '2023-09-27'),
+('260', '45', 'condom', 1, '1212-12-12'),
+('260', '45', 'condom', 8, '1212-12-12'),
+('261', '45', 'condom', 12, '0121-02-12'),
+('261', '45', 'condom', 8, '0000-00-00'),
+('261', '45', 'condom', 30, '1212-12-12'),
+('260', '45', 'condom', 1, '1221-12-12'),
+('260', '45', 'condom', 5, '0002-03-23'),
+('260', '45', 'condom', 1, '0012-12-12'),
+('260', '45', 'condom', 1, '0000-00-00'),
+('260', '45', 'condom', 1, '1212-12-12'),
+('261', '45', 'condom', 1, '1212-12-12'),
+('260', '45', 'condom', 1, '0121-12-12'),
+('260', '45', 'condom', 12, '0121-12-12'),
+('260', '45', 'condom', 7, '1212-12-12'),
+('260', '45', 'condom', 1, '1221-12-12'),
+('261', '45', 'condom', 1, '2112-02-11'),
+('261', '45', 'condom', 2, '3232-12-31'),
+('261', '45', 'condom', 1, '0121-12-12'),
+('261', '45', 'condom', 12, '0012-12-12'),
+('260', '45', 'condom', 3, '1212-12-12'),
+('260', '45', 'condom', 5, '1212-12-12'),
+('261', '45', 'condom', 5, '1212-02-12'),
+('261', '45', 'condom', 3, '2023-09-27'),
+('261', '45', 'condom', 1, '1221-12-12'),
+('261', '45', 'condom', 1, '0000-00-00'),
+('261', '45', 'condom', 1, '1221-12-12'),
+('261', '45', 'condom', 1, '1221-12-12'),
+('261', '45', 'condom', 3, '1221-12-12'),
+('261', '45', 'condom', 1, '2121-12-21'),
+('261', '45', 'condom', 4, '0000-00-00'),
+('261', '45', 'condom', 1, '0000-00-00'),
+('261', '45', 'condom', 1, '0000-00-00'),
+('261', '45', 'condom', 3, '0000-00-00'),
+('260', '45', 'condom', 1, '1212-12-12'),
+('260', '45', 'condom', 1, '1221-12-12'),
+('261', '47', 'tae', 1, '0000-00-00'),
+('261', '47', 'tae', 1, '0000-00-00'),
+('261', '47', 'tae', 1, '2023-09-27'),
+('262', '47', 'tae', 21, '1221-02-12'),
+('262', '45', 'condom', 1, '2023-09-27'),
+('262', '45', 'condom', 1, '2023-09-27'),
+('262', '47', 'tae', 1, '2023-09-28'),
+('263', '47', 'tae', 12, '2023-09-26'),
+('263', '47', 'tae', 3, '2023-09-27'),
+('263', '45', 'condom', 1, '2023-09-30');
 
 -- --------------------------------------------------------
 
@@ -93,7 +146,10 @@ CREATE TABLE `residentrecords` (
 --
 
 INSERT INTO `residentrecords` (`residentId`, `productId`, `residentName`, `dateBirth`, `age`, `sex`, `address`, `contactNumber`) VALUES
-(260, 45, 'arcega glenn emerson', '2001-11-17', 21, 'Male', 'IlangIlang', '09298138323');
+(260, 45, 'arcega glenn emerson', '2001-11-17', 21, 'Male', 'IlangIlang', '09298138323'),
+(261, 45, 'tukmol', '1212-12-12', 21, 'Male', 'IlangIlang', '90218398129'),
+(262, 47, 'sesi', '1212-12-12', 21, 'Male', 'IlangIlang', '21201391243'),
+(263, 47, 'mama', '2009-11-12', 12, 'Male', 'IlangIlang', '0293102382');
 
 -- --------------------------------------------------------
 
@@ -121,15 +177,13 @@ INSERT INTO `users` (`id`, `role`, `username`, `password`, `name`, `usertype`) V
 (38, 'user', 'B', '9d5ed678fe57bcca610140957afab571', 'B', 2),
 (39, 'user', 'C', '0d61f8370cad1d412f80b84d143e1257', 'C', 2),
 (40, 'user', 'D', '8277e0910d750195b448797616e091ad', 'D', 2),
-(41, 'user', '', '8fa14cdd754f91cc6554c9e71929cce7', 'f', 2),
-(42, 'user', 'tukmol@gmail.com', '54cc3dafa5fe482436322bbe9d9f239c', 'tukmol', 0),
 (43, 'admin', 'ako@gmail.com', '1cd13479e5609d79971c69051158a27f', 'ako', 0),
 (44, 'user', 'enhfijdqi', 'c4ca4238a0b923820dcc509a6f75849b', 'gy', 0),
 (45, 'user', 'q', '7694f4a66316e53c8cdd9d9954bd611d', 'q', 0),
 (46, 'admin', 'w', 'f1290186a5d0b1ceab27f4e77c0c5d68', 'w', 0),
 (47, 'admin', 'zz', '25ed1bcb423b0b7200f485fc5ff71c8e', 'zz', 0),
 (48, 'user', 'kkk', 'cb42e130d1471239a27fca6228094f0e', 'kkk', 2),
-(49, 'user', 'tae', '4752d51bd71f704beec34b798c76ca9e', 'tae', 2);
+(50, 'admin', 'arcega', '8d07c770575eac9044838726f6e05274', 'arcega', 2);
 
 -- --------------------------------------------------------
 
@@ -187,19 +241,19 @@ ALTER TABLE `usertypes`
 -- AUTO_INCREMENT for table `medicines`
 --
 ALTER TABLE `medicines`
-  MODIFY `productId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `productId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `residentrecords`
 --
 ALTER TABLE `residentrecords`
-  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
+  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

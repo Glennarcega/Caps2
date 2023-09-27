@@ -179,7 +179,18 @@ if(isset($_SESSION['user_data'])){
         </div>
     </section>
 
-    <script src="../cssmainmenu/script.js
+= </body>
+ <script src="../cssmainmenu/script.js"></script>
+ <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Check if URL contains 'success' parameter and remove it
+    if (window.location.search.includes('success')) {
+        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
+});
+</script>
+</html>
     <?php
 }
 else{

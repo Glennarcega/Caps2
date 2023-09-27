@@ -46,7 +46,8 @@ if(isset($_SESSION['user_data'])){
 		  
 		  
 		
-			 <input type="submit" class="btn btn-primary mt-0">
+				   <input type="submit" class="btn btn-primary mt-0" value="Login">
+
 		</form>
       </div>
 	  <script type="text/javascript">

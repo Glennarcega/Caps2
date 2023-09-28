@@ -114,20 +114,28 @@ if(isset($_SESSION['user_data'])){
 						</tr>
 					</thead>
 					<tbody>
-						<?php  
-							$query = $conn->query("SELECT * FROM `users`") or die(mysqli_error());
-							while($fetch = $query->fetch_array()){
-						?>
-						<tr>
-							<td><?php echo $fetch['username']?></td>
-							<td><?php echo $fetch['name']?></td>
-							<td><?php echo $fetch['role']?></td>
-							<td><?php echo md5($fetch['password'])?></td> 
-						
-						</tr>
-						<?php
-							}
-						?>
+					<?php  
+$query = $conn->query("SELECT * FROM users WHERE usertype = 1 OR usertype = 2;") or die(mysqli_error($conn));
+while ($fetch = $query->fetch_array()) {
+    ?>
+    <tr>
+        <td><?php echo $fetch['username'] ?></td>
+        <td><?php echo $fetch['name'] ?></td>
+        <td>
+            <?php 
+            if ($fetch['usertype'] == 1) {
+                echo 'admin';
+            } elseif ($fetch['usertype'] == 2) {
+                echo 'barangay';
+            }
+            ?>
+        </td>
+        <td><?php echo md5($fetch['password']) ?></td> 
+    </tr>
+    <?php
+}
+?>
+
 					</tbody>
 				</table>
 			</div>

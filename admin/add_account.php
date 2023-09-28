@@ -119,7 +119,7 @@ if(isset($_SESSION['user_data'])){
 	  </div>
 	  <div class = "form-group">
 			<label>Username </label>
-				<input type = "text"  class = "form-control" name = "username" />
+				<input type = "text"  class = "form-control" name = "username" required/>
 	  </div>
 	  <div class = "form-group">
 			<label>Password </label>
@@ -129,13 +129,50 @@ if(isset($_SESSION['user_data'])){
 			<label>Confirm Password </label>
 				<input type = "password"  class = "form-control" name = "cpassword" required placeholder="Confirm your password" />
 	  </div>	
-	  <div class = "form-group">
-			<label>Role</label>
-			<select class = "form-control" required = required name = "role">
-				<option value="user">User</option>
-				<option value="admin">Admin</option>
-			</select>
-		</div>
+    <label>Usertype</label>
+<select class="form-control" required="required" name="usertype" id="usertypeSelect">
+    <option value="" disabled selected>Select Usertype</option>
+    <option value="2">User</option>
+    <option value="1">Admin</option>
+</select>
+</div>
+<div class="form-group" id="adminRole" style="display: none;">
+    <label>Role</label>
+     <input type="text" value="admin" class="form-control" name="role" required/>
+</div>
+<div class="form-group" id="userRole" style="display: none;">
+    <label>Role</label>
+    <input type="text" value="bhw" class="form-control" name="role" required/>
+</div>
+
+<script>
+// Get references to the select element and the role input groups
+const usertypeSelect = document.getElementById('usertypeSelect');
+const userRole = document.getElementById('userRole');
+const adminRole = document.getElementById('adminRole');
+
+// Add an event listener to the usertypeSelect element
+usertypeSelect.addEventListener('change', function () {
+    // Check if the selected value is "user"
+    if (usertypeSelect.value === '2') {
+        // Hide the adminRole and show the userRole
+        userRole.style.display = 'block';
+        adminRole.style.display = 'none';
+    } else if (usertypeSelect.value === '1') {
+        // Hide the userRole and show the adminRole
+        adminRole.style.display = 'block';
+        userRole.style.display = 'none';
+        
+    } else {
+        // If the placeholder is selected, hide both roles
+        userRole.style.display = 'none';
+        adminRole.style.display = 'none';
+    }
+});
+</script>
+
+
+
 	  <br></br>
 	  <div class = "form-group">
 			<button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "glyphicon glyphicon-edit"></i> Add Account</button>
@@ -149,22 +186,26 @@ if(isset($_POST['submit'])){
    $username = mysqli_real_escape_string($conn, $_POST['username']);
    $pass = md5($_POST['password']);
    $cpass = md5($_POST['cpassword']);
+   $usertype = $_POST['usertype'];
    $role = $_POST['role'];
+   
 
    $select = " SELECT * FROM users WHERE name = '$name'";
    $result = mysqli_query($conn, $select);
 
    if(mysqli_num_rows($result) > 0){
     $_SESSION['error_message'] = "Username already exists!";
-	    header("Location: ../admin/add_account.php?error=Username already exist!");
+      echo '<script>window.location.href = "../admin/add_account.php?error=Username already exist!";</script>';
+
    }else{
 
       if($pass != $cpass){
-		      header("Location: ../admin/add_account.php?error=Password not matched!");
+        echo '<script>window.location.href = "../admin/add_account.php?error=Password not matched!";</script>';
       }else{
-         $insert = "INSERT INTO users(name,username, password, role,usertype) VALUES('$name','$username','$pass','$role','2')";
+         $insert = "INSERT INTO users(name,username, password,usertype,role) VALUES('$name','$username','$pass','$usertype','$role')";
          mysqli_query($conn, $insert);
-         header('location:../admin/add_account.php?');
+         echo '<script>window.location.href = "../admin/RegisteredUserAdmin.php?success=Add Account Succesfully";</script>';
+
       }
    }
 

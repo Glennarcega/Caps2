@@ -120,19 +120,22 @@ if(isset($_SESSION['user_data'])){
 					</thead>
 					<tbody>
 						<?php  
-							$query = $conn->query("SELECT * FROM `users` WHERE role ='user'") or die(mysqli_error());
+							$query = $conn->query("SELECT * FROM `users` WHERE usertype ='2'") or die(mysqli_error());
 							while($fetch = $query->fetch_array()){
 						?>
 						<tr>
 						<td><?php echo $fetch['username']?></td>
 							<td><?php echo $fetch['name']?></td>
-							<td><?php echo $fetch['role']?></td>
+              <td>
+    <?php echo ($fetch['usertype'] == 2) ? 'barangay' : ''; ?>
+</td>
 							<td><?php echo md5($fetch['password'])?></td>
 							<td><center><a class = "btn btn-warning" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a></center></td>
 						</tr>
 						<?php
 							}
 						?>
+            
 					</tbody>
 				</table>
 			</div>

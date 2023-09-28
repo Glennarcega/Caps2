@@ -31,7 +31,7 @@ if(isset($_SESSION['user_data'])){
 	// Fetch data for the address graph
 	$addresses = array();
 
-	$res = mysqli_query($link, "SELECT * FROM residentrecords");
+	$res = mysqli_query($link, "SELECT residentrecords.address, request_medicine.quantity_req FROM residentrecords, request_medicine; ");
 
 	while ($row = mysqli_fetch_array($res)) {
 

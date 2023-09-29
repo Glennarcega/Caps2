@@ -159,16 +159,18 @@ if(isset($_POST['submit'])){
 
    if(mysqli_num_rows($result) > 0){
     $_SESSION['error_message'] = "Username already exists!";
-      echo '<script>window.location.href = "../admin/add_account.php?error=Username already exist!";</script>';
+    echo '<script>window.location.href = "add_account.php?error=Username already exist!";</script>';
 
    }else{
 
       if($pass != $cpass){
-        echo '<script>window.location.href = "../admin/add_account.php?error=Password not matched!";</script>';
+        $_SESSION['error_message'] = "Password not matched!";
+        echo '<script>window.location.href = "add_account.php?error=Password not matched!";</script>';
       }else{
          $insert = "INSERT INTO users(name,username, password,usertype) VALUES('$name','$username','$pass','$usertype')";
          mysqli_query($conn, $insert);
-         echo '<script>window.location.href = "../admin/RegisteredUserAdmin.php?success=Add Account Succesfully";</script>';
+         $_SESSION['success'] = "Add Account Succesfully";
+         echo '<script>window.location.href = "RegisteredUserAdmin.php?success=Add Account Succesfully";</script>';
 
       }
    }

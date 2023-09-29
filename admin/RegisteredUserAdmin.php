@@ -103,6 +103,11 @@ if(isset($_SESSION['user_data'])){
 		<div class="panel panel-default">
 			<div class="panel-body">
       <div class = "alert alert-info">RegisteredAdmin/User</div>
+      <?php if (isset($_GET['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+              <?=$_GET['success']?>
+            </div>
+            <?php } ?>
       <table id = "table" class = "table table-bordered">
 					<thead>
 						<tr>

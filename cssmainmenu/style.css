@@ -68,7 +68,7 @@ body{
   top:50%;
   right: 0;
   transform: translateY(-50%);
-  font-size: 23px;
+  font-size: 20px;
   text-align: center;
   cursor: pointer;
   transition: all .5s ease;
@@ -148,15 +148,7 @@ body{
   padding: 0 20px 0 50px;
 }
 
-.sidebar .bx-search{
-  position: absolute;
-  top:50%;
-  left:0;
-  transform: translateY(-50%);
-  font-size: 22px;
-  background-color: var(--color-second);
-  color: var(--color-white);
-}
+
 
 .sidebar li a{
   display: flex;
@@ -190,7 +182,7 @@ body{
 
 .sidebar li a .link_name{
   color:var(--color-white);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 370;
   white-space: nowrap;
   pointer-events: auto;

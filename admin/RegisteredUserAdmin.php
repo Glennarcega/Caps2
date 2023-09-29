@@ -126,7 +126,7 @@ while ($fetch = $query->fetch_array()) {
             if ($fetch['usertype'] == 1) {
                 echo 'admin';
             } elseif ($fetch['usertype'] == 2) {
-                echo 'barangay';
+                echo 'BHW';
             }
             ?>
         </td>

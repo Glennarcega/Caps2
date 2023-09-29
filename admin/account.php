@@ -127,7 +127,7 @@ if(isset($_SESSION['user_data'])){
 						<td><?php echo $fetch['username']?></td>
 							<td><?php echo $fetch['name']?></td>
               <td>
-    <?php echo ($fetch['usertype'] == 2) ? 'barangay' : ''; ?>
+    <?php echo ($fetch['usertype'] == 2) ? 'BHW' : ''; ?>
 </td>
 							<td><?php echo md5($fetch['password'])?></td>
 							<td><center><a class = "btn btn-warning" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a></center></td>

@@ -118,10 +118,11 @@ if(isset($_SESSION['user_data'])){
 						</div>
 						<div class = "form-group">
 							<label>Role</label>
-							<select class = "form-control" required = required name = "role">
-								<option value="user">User</option>
-								<option value="admin">Admin</option>
-							</select>
+							<select class="form-control" required="required" name="usertype" id="usertypeSelect">
+                <option value="" disabled selected>Select Usertype</option>
+                <option value="2">BHW</option>
+                <option value="1">Admin</option>
+               </select>
 						</div>
 				
 						<div class = "form-group">

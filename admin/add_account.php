@@ -132,46 +132,10 @@ if(isset($_SESSION['user_data'])){
     <label>Usertype</label>
 <select class="form-control" required="required" name="usertype" id="usertypeSelect">
     <option value="" disabled selected>Select Usertype</option>
-    <option value="2">User</option>
+    <option value="2">BHW</option>
     <option value="1">Admin</option>
 </select>
 </div>
-<div class="form-group" id="adminRole" style="display: none;">
-    <label>Role</label>
-     <input type="text" value="admin" class="form-control" name="role" required/>
-</div>
-<div class="form-group" id="userRole" style="display: none;">
-    <label>Role</label>
-    <input type="text" value="bhw" class="form-control" name="role" required/>
-</div>
-
-<script>
-// Get references to the select element and the role input groups
-const usertypeSelect = document.getElementById('usertypeSelect');
-const userRole = document.getElementById('userRole');
-const adminRole = document.getElementById('adminRole');
-
-// Add an event listener to the usertypeSelect element
-usertypeSelect.addEventListener('change', function () {
-    // Check if the selected value is "user"
-    if (usertypeSelect.value === '2') {
-        // Hide the adminRole and show the userRole
-        userRole.style.display = 'block';
-        adminRole.style.display = 'none';
-    } else if (usertypeSelect.value === '1') {
-        // Hide the userRole and show the adminRole
-        adminRole.style.display = 'block';
-        userRole.style.display = 'none';
-        
-    } else {
-        // If the placeholder is selected, hide both roles
-        userRole.style.display = 'none';
-        adminRole.style.display = 'none';
-    }
-});
-</script>
-
-
 
 	  <br></br>
 	  <div class = "form-group">
@@ -187,7 +151,7 @@ if(isset($_POST['submit'])){
    $pass = md5($_POST['password']);
    $cpass = md5($_POST['cpassword']);
    $usertype = $_POST['usertype'];
-   $role = $_POST['role'];
+
    
 
    $select = " SELECT * FROM users WHERE name = '$name'";
@@ -202,7 +166,7 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
         echo '<script>window.location.href = "../admin/add_account.php?error=Password not matched!";</script>';
       }else{
-         $insert = "INSERT INTO users(name,username, password,usertype,role) VALUES('$name','$username','$pass','$usertype','$role')";
+         $insert = "INSERT INTO users(name,username, password,usertype) VALUES('$name','$username','$pass','$usertype')";
          mysqli_query($conn, $insert);
          echo '<script>window.location.href = "../admin/RegisteredUserAdmin.php?success=Add Account Succesfully";</script>';
 

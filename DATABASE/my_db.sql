@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2023 at 02:20 PM
+-- Generation Time: Sep 29, 2023 at 03:25 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -159,7 +159,6 @@ INSERT INTO `residentrecords` (`residentId`, `productId`, `residentName`, `dateB
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `role` enum('user','admin') NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -170,20 +169,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role`, `username`, `password`, `name`, `usertype`) VALUES
-(26, 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 1),
-(34, 'user', 'bhw', '6adcff9bb6c324d349dfd67c82e1e832', 'bhw', 2),
-(37, 'user', 'a', '0cc175b9c0f1b6a831c399e269772661', 'a', 2),
-(38, 'user', 'B', '9d5ed678fe57bcca610140957afab571', 'B', 2),
-(39, 'user', 'C', '0d61f8370cad1d412f80b84d143e1257', 'C', 2),
-(40, 'user', 'D', '8277e0910d750195b448797616e091ad', 'D', 2),
-(43, 'admin', 'ako@gmail.com', '1cd13479e5609d79971c69051158a27f', 'ako', 0),
-(44, 'user', 'enhfijdqi', 'c4ca4238a0b923820dcc509a6f75849b', 'gy', 0),
-(45, 'user', 'q', '7694f4a66316e53c8cdd9d9954bd611d', 'q', 0),
-(46, 'admin', 'w', 'f1290186a5d0b1ceab27f4e77c0c5d68', 'w', 0),
-(47, 'admin', 'zz', '25ed1bcb423b0b7200f485fc5ff71c8e', 'zz', 0),
-(48, 'user', 'kkk', 'cb42e130d1471239a27fca6228094f0e', 'kkk', 2),
-(50, 'admin', 'arcega', '8d07c770575eac9044838726f6e05274', 'arcega', 2);
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `usertype`) VALUES
+(26, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 1),
+(73, 'bhw', '6adcff9bb6c324d349dfd67c82e1e832', 'bhw', 2);
 
 -- --------------------------------------------------------
 
@@ -253,7 +241,7 @@ ALTER TABLE `residentrecords`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

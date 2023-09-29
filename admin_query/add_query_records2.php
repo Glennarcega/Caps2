@@ -6,6 +6,7 @@ if (isset($_POST['add_rec'])) {
     $residentId = isset($_GET['residentId']) ? $_GET['residentId'] : '';
     $productId = $_POST['productId'];
     $productName = $_POST['productName'];
+    $unit = $_POST['unit'];
     $quantity_req = $_POST['quantity_req'];
     $givenDate = $_POST['givenDate'];
 
@@ -24,7 +25,7 @@ if (isset($_POST['add_rec'])) {
                 $updateQuery = $conn->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
 
                 if ($updateQuery) {
-                    $insertQuery = $conn->query("INSERT INTO request_medicine (residentId, productId, productName, quantity_req, givenDate) VALUES ('$residentId', '$productId', '$productName', '$quantity_req', '$givenDate')");
+                    $insertQuery = $conn->query("INSERT INTO request_medicine (residentId, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate')");
 
                     if ($insertQuery) {
                         echo '<script>window.location.href = "resident_med.php?residentId=' . $residentId . '";</script>';

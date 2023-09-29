@@ -143,6 +143,7 @@ if (isset($_GET['residentId'])) {
 						<tr>
          
 							<th>Product Name</th>
+              <th>Unit</th>
 							<th>Quantity</th>
 							<th>Given Date</th>
 						</tr>
@@ -163,6 +164,7 @@ if (isset($_GET['residentId'])) {
             
                 echo '<tr>';
                 echo '<td>' . $fetch['productName'] . '</td>';
+                echo '<td>' . $fetch['unit'] . '</td>';
                 echo '<td>' . $fetch['quantity_req'] . '</td>';
                 echo '<td>' . $fetch['givenDate'] . '</td>';
                 echo '</tr>';

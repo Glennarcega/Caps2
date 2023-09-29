@@ -107,6 +107,7 @@ if(isset($_SESSION['user_data'])){
     <thead>
         <tr>
             <th>Product Name</th>
+            <th>Unit</th>
             <th>Quantity</th>
             <th>Expiration Date</th>
             <th>Status</th>
@@ -125,6 +126,7 @@ while ($fetch = $query->fetch_array()) {
 <!-- ... -->
 <tr>
     <td><?php echo $fetch['productName'] ?></td>
+    <td><?php echo $fetch['unit'] ?></td>
     <td><?php echo $fetch['total'] ?></td>
     <td><?php echo $fetch['expDate'] ?></td>
     <td><?php echo $status ?></td>

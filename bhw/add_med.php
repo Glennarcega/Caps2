@@ -113,12 +113,16 @@ if(isset($_SESSION['user_data'])){
 							<input type = "text"  class = "form-control" id="prodname" name = "productName" required/>
 						</div>
             <div class = "form-group">
+							<label>Unit </label>
+							<input type = "text"  class = "form-control" name = "unit" placeholder ="" required/>
+						</div>
+            <div class = "form-group">
 							<label>Batch </label>
 							<input type = "text"  class = "form-control" name = "batch" placeholder ="Ex. Batch 1" required/>
 						</div>
 						<div class = "form-group">
 							<label>Quantity </label>
-							<input type = "number" min = "0" max = "999999999" class = "form-control" name = "total" placeholder ="1-1500" required/>
+							<input type = "number" min = "0" max = "999999999" class = "form-control" name = "total" placeholder ="" required/>
 						</div>
 						<div class = "form-group">
 							<label>Expiration Date </label>
@@ -143,11 +147,12 @@ if(isset($_SESSION['user_data'])){
                 if(isset($_POST['add_med'])){
                 $sponsor = $_POST['sponsor'];
                 $productName = $_POST['productName'];
+                $unit = $_POST['unit'];
                 $batch = $_POST['batch'];
                 $total = $_POST['total'];
                 $expDate = $_POST['expDate'];
                 $status = $_POST['status'];
-                $conn->query("INSERT INTO `medicines` (sponsor,productName,batch,total,expDate,status) VALUES('$sponsor','$productName','$batch', '$total','$expDate','$status')") or die(mysqli_error());
+                $conn->query("INSERT INTO `medicines` (sponsor,productName,unit,batch,total,expDate,status) VALUES('$sponsor','$productName','$unit','$batch', '$total','$expDate','$status')") or die(mysqli_error());
                 if($conn){
                   echo '<script>window.location.href = "./medicinee.php?success=Add Request Successfully";</script>';
                 }

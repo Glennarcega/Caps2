@@ -153,6 +153,11 @@ if(isset($_SESSION['user_data'])){
                                     value="<?php echo $fetch['productName']; ?>" readonly />
                             </div>
                             <div class="form-group">
+                                <label>Unit</label>
+                                <input type="text" class="form-control" name="unit"
+                                    value="<?php echo $fetch['unit']; ?>" readonly />
+                            </div>
+                            <div class="form-group">
                                 <label>Product Quantity</label>
                                 <input type="text" class="form-control" name="total"
                                     value="<?php echo $fetch['total']; ?>" readonly />

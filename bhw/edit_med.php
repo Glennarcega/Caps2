@@ -107,6 +107,10 @@ if(isset($_SESSION['user_data'])){
 							<label>Product Name </label>
 							<input type = "text"  class = "form-control" name = "productName" value = "<?php echo $fetch['productName']?>" required/>
 						</div>
+            <div class = "form-group">
+							<label>Unit </label>
+							<input type = "text"  class = "form-control" name = "unit" value = "<?php echo $fetch['unit']?>" required/>
+						</div>
           <div class = "form-group">
 							<label>Batch </label>
 							<input type = "text"  class = "form-control" name = "batch" value = "<?php echo $fetch['batch']?>" required/>

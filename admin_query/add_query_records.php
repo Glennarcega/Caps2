@@ -8,6 +8,7 @@ if (isset($_POST['add_rec'])) {
     $address = $_POST['address'];
     $contactNumber = $_POST['contactNumber'];
     $productName = $_POST['productName'];
+    $unit = $_POST['unit'];
     $quantity_req = $_POST['quantity_req'];
     $givenDate = $_POST['givenDate'];
 
@@ -26,7 +27,7 @@ if (isset($_POST['add_rec'])) {
 
             if ($query) {
                 $residentId = mysqli_insert_id($conn);
-                $query = $conn->query("INSERT INTO request_medicine (residentId, productId, productName, quantity_req, givenDate) VALUES ('$residentId','$productId','$productName', '$quantity_req', '$givenDate')");
+                $query = $conn->query("INSERT INTO request_medicine (residentId, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$productId','$productName','$unit', '$quantity_req', '$givenDate')");
 
                 echo '<script>window.location.href = "./userRecMed.php?success=Add Request Successfully";</script>';
                 exit(); // Add this line to stop further script execution

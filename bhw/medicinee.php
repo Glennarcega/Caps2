@@ -113,6 +113,7 @@ if(isset($_SESSION['user_data'])){
         <tr>
             <th>Sponsor</th>
             <th>Product Name</th>
+            <th>Unit</th>
             <th>Batch</th>
             <th>Quantity</th>
             <th>Expiration Date</th>
@@ -133,6 +134,7 @@ while ($fetch = $query->fetch_array()) {
 <tr>
     <td><?php echo $fetch['sponsor'] ?></td>
     <td><?php echo $fetch['productName'] ?></td>
+    <td><?php echo $fetch['unit'] ?></td>
     <td><?php echo $fetch['batch'] ?></td>
     <td><?php echo $fetch['total'] ?></td>
     <td><?php echo $fetch['expDate'] ?></td>

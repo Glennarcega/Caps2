@@ -100,7 +100,7 @@ if(isset($_SESSION['user_data'])){
     <div class = "container-fluid">
 		<div class = "panel panel-default">
 			<div class = "panel-body">
-				<div class = "alert alert-info">Accounts</div>
+      <div class = "alert alert-info">Accounts</div>
 				<a class = "btn btn-success" href = "add_account.php"><i class = "glyphicon glyphicon-plus"></i> Create New Account</a>
 				<br />
 				<br />

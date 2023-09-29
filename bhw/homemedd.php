@@ -6,7 +6,6 @@ if(isset($_SESSION['user_data'])){
 		header("Location:.././admin/Dashboard.php");
 	}
 
-
 	$data=array();
 	$qr=mysqli_query($conn,"select * from users where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
@@ -16,6 +15,7 @@ if(isset($_SESSION['user_data'])){
 ?>
 <!DOCTYPE html>
 <?php
+
 	// Fetch data for the medicine graph
 	$link = mysqli_connect("localhost", "root", "");
 	mysqli_select_db($link, "my_db");
@@ -28,18 +28,45 @@ if(isset($_SESSION['user_data'])){
 		$medicines[] = $medicine;
 	}
 
-	// Fetch data for the address graph
-	$addresses = array();
+// Fetch data for the address graph
+$addresses = array();
 
-	$res = mysqli_query($link, "SELECT residentrecords.address, request_medicine.quantity_req FROM residentrecords, request_medicine; ");
+// Assuming "resident_id" is the common identifier between tables
+$res = mysqli_query($link, "SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
+FROM residentrecords LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
+ GROUP BY residentrecords.address");
 
-	while ($row = mysqli_fetch_array($res)) {
+if (!$res) {
+    // Handle the query error
+    die("Query failed: " . mysqli_error($link));
+}
 
-		$address["label"] = $row["address"];
-		$address["y"] = $row["quantity_req"];
-		$addresses[] = $address;
-	}
+while ($row = mysqli_fetch_array($res)) {
+    $address["label"] = $row["address"];
+    $address["y"] = $row["total_quantity"];
+    $addresses[] = $address;
+}
+
 ?>
+
+<head>
+	<title>Barangay Health Worker</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	
+	<style>
+    .chart-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .chart {
+        width: 48%;
+    }
+</style>
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
@@ -132,7 +159,8 @@ if(isset($_SESSION['user_data'])){
   </div>
   <section class="home-section">
     <div class="text">Dashboard</div>
-    
+     <div class="container-fluid">
+
 	<div class="chart-container">
         <!-- Medicine graph -->
         <div class="chart">
@@ -146,8 +174,9 @@ if(isset($_SESSION['user_data'])){
 	<div class="chart">
             <div id="addressChartContainer" style="height: 300px;"></div>
         </div>
+    
+    
     </div>
-
 	<!-- Include the CanvasJS library -->
 	<script src="../js/canvasjs.min.js"></script>
 	<!-- Render the graphs -->
@@ -193,20 +222,16 @@ if(isset($_SESSION['user_data'])){
 			addressChart.render();
 		}
 	</script>
-    
-  </section>
-  <script type="text/javascript">
+</body>
+<script type="text/javascript">
     history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
     };
 </script>
-
-  <!-- Scripts -->
-  <script src="script.js"></script>
-  <script src="../cssmainmenu/script.js"></script>
-</body>
 </html>
+	<!--   <script src="../cssmainmenu/script.js"></script> -->
+
 <?php
 }
 else{

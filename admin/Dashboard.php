@@ -60,9 +60,9 @@ if(isset($_SESSION['user_data'])){
         <li>
           <a href="RegisteredUserAdmin.php">
             <i class="bx bx-user-pin"></i>
-            <span class="link_name">Registered Admin/User</span>
+            <span class="link_name">Registered Accounts</span>
           </a>
-          <span class="tooltip">Registered</span>
+          <span class="tooltip">Registered Accounts</span>
         </li>
         <li>
           <a href="account.php">

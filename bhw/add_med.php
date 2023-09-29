@@ -79,7 +79,7 @@ if(isset($_SESSION['user_data'])){
   <div class="profile_details">
     <img src="../img/admin-default.png" alt="profile image">
     <div class="profile_content">
-      <div class="name"><?php echo $name; ?></div>
+    <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
     </div>
   </div>
   <a href="../logout.php" id="log_out">
@@ -103,23 +103,22 @@ if(isset($_SESSION['user_data'])){
 				  <?=$_GET['success']?>
 			  </div>
 			  <?php } ?>
-
 					<form method = "POST" enctype = "multipart/form-data">
-          <div class = "form-group">
-							<label>Sponsor </label>
-							<input type = "text"  class = "form-control" name = "sponsor" required/>
-						</div>
+          <div class="form-group">
+              <label for="sponsor">Sponsor </label>
+              <input type="text" class="form-control" id="sponsor" name="sponsor" required/>
+          </div>
 						<div class = "form-group">
 							<label>Product Name </label>
-							<input type = "text"  class = "form-control" name = "productName" required/>
+							<input type = "text"  class = "form-control" id="prodname" name = "productName" required/>
 						</div>
             <div class = "form-group">
 							<label>Batch </label>
-							<input type = "text"  class = "form-control" name = "batch" required/>
+							<input type = "text"  class = "form-control" name = "batch" placeholder ="Ex. Batch 1" required/>
 						</div>
 						<div class = "form-group">
 							<label>Quantity </label>
-							<input type = "number" min = "0" max = "999999999" class = "form-control" name = "total" required/>
+							<input type = "number" min = "0" max = "999999999" class = "form-control" name = "total" placeholder ="1-1500" required/>
 						</div>
 						<div class = "form-group">
 							<label>Expiration Date </label>
@@ -150,7 +149,7 @@ if(isset($_SESSION['user_data'])){
                 $status = $_POST['status'];
                 $conn->query("INSERT INTO `medicines` (sponsor,productName,batch,total,expDate,status) VALUES('$sponsor','$productName','$batch', '$total','$expDate','$status')") or die(mysqli_error());
                 if($conn){
-                  header("Location:medicinee.php?success=Added Medicine Successfully");
+                  echo '<script>window.location.href = "./medicinee.php?success=Add Request Successfully";</script>';
                 }
                 else{
                   header("Location:medicinee.php?error=Failed to Add Medicine");
@@ -179,6 +178,20 @@ if(isset($_SESSION['user_data'])){
 	$(document).ready(function(){
 		$("#table").DataTable();
 	});
+</script>
+<script>
+    document.getElementById("sponsor").addEventListener("input", function () {
+        var input = this.value;
+        if (input.length > 0) {
+            this.value = input.charAt(0).toUpperCase() + input.slice(1);
+        }
+    });
+    document.getElementById("prodname").addEventListener("input", function () {
+        var input = this.value;
+        if (input.length > 0) {
+            this.value = input.charAt(0).toUpperCase() + input.slice(1);
+        }
+    });
 </script>
 </body>
 </html>

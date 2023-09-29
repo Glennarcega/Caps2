@@ -121,7 +121,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Resident Name</label>
-                                <input type="text" class="form-control" name="residentName" required  />
+                                <input type="text" class="form-control" name="residentName" placeholder="LN,FN,MI." required  />
                             </div>
                             <div class="form-group" required="required">
                                 <label>Date of Birth</label>
@@ -143,19 +143,22 @@ if(isset($_SESSION['user_data'])){
                                 <select class="form-control" required="required" name="address" required>
                                     <option value="IlangIlang">Ilang-Ilang</option>
                                     <option value="Orchids">Orchids</option>
-                                    <option value="Sampagita">Sampagita</option>
+                                    <option value="Sampaguita">Sampaguita</option>
                                     <option value="Camia">Camia</option>
                                     <option value="Rosal">Rosal</option>
+                                    <option value="MalitamDos">Malitam Dos</option>
+                                    <option value="MalitamTres">Malitam Tres</option>
+                                    <option value="BadjCom">Badjao Community</option>
                                 </select>
                             </div>
                             <div class="form-group" required="required" >
                                 <label>Contact Number</label>
-                                <input type="text" class="form-control" name="contactNumber" required />
+                                <input type="text" class="form-control" name="contactNumber" placeholder ="Ex. 0946" required />
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Quantity</label>
                                 <input type="number"  min="0" max="999999999" class="form-control"
-                                    name="quantity_req" required />
+                                    name="quantity_req"  placeholder ="1-30" required />
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Given Date</label>

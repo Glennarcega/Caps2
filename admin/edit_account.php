@@ -64,9 +64,9 @@ if(isset($_SESSION['user_data'])){
       <li>
           <a href="RegisteredUserAdmin.php">
             <i class="bx bx-user-pin"></i>
-            <span class="link_name">Registered Admin/User</span>
+            <span class="link_name">Registered Accounts</span>
           </a>
-          <span class="tooltip">Registered</span>
+          <span class="tooltip">Registered Accounts</span>
       </li>
         <li>
           <a href="account.php">
@@ -119,7 +119,7 @@ if(isset($_SESSION['user_data'])){
 						<div class = "form-group">
 							<label>Role</label>
 							<select class="form-control" required="required" name="usertype" id="usertypeSelect">
-                <option value="" disabled selected>Select Usertype</option>
+                <option value="" disabled selected>Select User Type</option>
                 <option value="2">BHW</option>
                 <option value="1">Admin</option>
                </select>
@@ -131,7 +131,7 @@ if(isset($_SESSION['user_data'])){
 						</div>
 						<br />
 						<div class = "form-group">
-							<button name = "edit_account" class = "btn btn-warning form-control"> Save Changes</button>
+							<button name = "edit_account" class = "btn btn-warning form-control"><i class = "bx bx-save"></i>  Save Changes</button>
 						</div>
 					</form>
 				</div>

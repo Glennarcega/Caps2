@@ -33,7 +33,7 @@ body{
 }
 
 .sidebar.open{
-  width: 250px;
+  width: 270px;
 }
 
 .sidebar .logo_details{
@@ -190,8 +190,8 @@ body{
 
 .sidebar li a .link_name{
   color:var(--color-white);
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 370;
   white-space: nowrap;
   pointer-events: auto;
   transition: all 0.4s ease;
@@ -306,7 +306,4 @@ body{
 .sidebar.open ~ .home-section{
   left:250px;
   width: calc(100% - 250px);
-}
-.link_name{
-  font-size: 40px;
 }

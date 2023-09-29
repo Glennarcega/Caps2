@@ -78,7 +78,7 @@ if(isset($_SESSION['user_data'])){
           <span class="tooltip">Account</span>
         </li>
       <li>
-        <a href="#">
+        <a href="settings.php">
           <i class="bx bx-cog"></i>
           <span class="link_name">Settings</span>
         </a>

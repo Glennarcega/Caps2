@@ -40,7 +40,7 @@ if(isset($_SESSION['user_data'])){
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="../logout.php">
+        <a href="#">
           <i class="bx bx-chat"></i>
           <span class="link_name">Anouncements</span>
         </a>

@@ -170,7 +170,7 @@ if (isset($_GET['residentId'])) {
                 echo '</tr>';
             }
         } else {
-            echo '<tr><td colspan="3">No records found for this resident ID.</td></tr>';
+            echo '<tr><td colspan="3">No records found! </td></tr>';
         }
     } else {
         echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
@@ -199,11 +199,7 @@ if (isset($_GET['residentId'])) {
 <script src = "../js/jquery.js"></script>
 <script src = "../js/jquery.dataTables.js"></script>
 <script src = "../js/dataTables.bootstrap.js"></script>	
-<script type = "text/javascript">
-	$(document).ready(function(){
-		$("#table").DataTable();
-	});
-</script>
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Check if URL contains 'success' parameter and remove it

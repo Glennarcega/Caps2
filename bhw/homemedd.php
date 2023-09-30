@@ -138,7 +138,7 @@ while ($row = mysqli_fetch_array($res)) {
         <span class="tooltip">Contraceptives</span>
       </li>
       <li>
-        <a href="#">
+        <a href="settings.php">
           <i class="bx bx-cog"></i>
           <span class="link_name">Settings</span>
         </a>

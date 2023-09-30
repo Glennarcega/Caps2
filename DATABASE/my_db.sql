@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2023 at 08:54 AM
+-- Generation Time: Sep 30, 2023 at 12:31 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -36,17 +36,16 @@ CREATE TABLE `medicines` (
   `quantity1` int(10) NOT NULL,
   `total` int(10) NOT NULL,
   `expDate` date NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `action` varchar(100) NOT NULL
+  `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `medicines`
 --
 
-INSERT INTO `medicines` (`productId`, `productName`, `sponsor`, `unit`, `batch`, `quantity1`, `total`, `expDate`, `status`, `action`) VALUES
-(55, 'condom', 'shell', 'boxes', 'batch 2', 15, 0, '2003-12-12', 'available', ''),
-(56, 'lazartan', 'glenn', 'boxes', 'batch 1', 0, 0, '2030-12-12', 'available', '');
+INSERT INTO `medicines` (`productId`, `productName`, `sponsor`, `unit`, `batch`, `quantity1`, `total`, `expDate`, `status`) VALUES
+(55, 'condom', 'shell', 'boxes', 'batch 2', 15, 0, '2003-12-12', 'available'),
+(56, 'lazartan', 'glenn', 'boxes', 'batch 1', 1, 0, '2030-12-12', 'available');
 
 -- --------------------------------------------------------
 
@@ -70,7 +69,8 @@ CREATE TABLE `request_medicine` (
 --
 
 INSERT INTO `request_medicine` (`req_med_Id`, `residentId`, `residentName`, `productId`, `productName`, `unit`, `quantity_req`, `givenDate`) VALUES
-(79, '270', 'glaiza mae arcxega ', '58', 'Mioge', 'boxes', 8, '2023-09-30');
+(79, '270', 'glaiza mae arcxega ', '58', 'Mioge', 'boxes', 8, '2023-09-30'),
+(80, '269', 'arcega glenn emerson ', '56', 'lazartan', 'boxes', 1, '2023-09-30');
 
 -- --------------------------------------------------------
 
@@ -190,7 +190,7 @@ ALTER TABLE `medicines`
 -- AUTO_INCREMENT for table `request_medicine`
 --
 ALTER TABLE `request_medicine`
-  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `residentrecords`

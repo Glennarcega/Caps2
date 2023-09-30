@@ -199,7 +199,11 @@ if (isset($_GET['residentId'])) {
 <script src = "../js/jquery.js"></script>
 <script src = "../js/jquery.dataTables.js"></script>
 <script src = "../js/dataTables.bootstrap.js"></script>	
-
+<script type = "text/javascript">
+	$(document).ready(function(){
+		$("#table").DataTable();
+	});
+</script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Check if URL contains 'success' parameter and remove it

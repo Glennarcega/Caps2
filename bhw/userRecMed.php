@@ -69,6 +69,14 @@ if(isset($_SESSION['user_data'])){
         <span class="tooltip">Medicine</span>
       </li>
       <li>
+        <a href="contraceptives.php">
+            <i class="bx bx-capsule"></i>
+            <span class="link_name">Contraceptives</span>
+        </a>
+        <span class="tooltip">Contraceptives</span>
+        </li>
+      <li>
+      <li>
         <a href="#">
           <i class="bx bx-cog"></i>
           <span class="link_name">Settings</span>
@@ -76,77 +84,65 @@ if(isset($_SESSION['user_data'])){
         <span class="tooltip">Settings</span>
       </li>
       <li class="profile">
-  <div class="profile_details">
-    <img src="../img/admin-default.png" alt="profile image">
-    <div class="profile_content">
-    <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
-    </div>
-  </div>
-  <a href="../logout.php" id="log_out">
-    <i class="bx bx-log-out"></i>
-  </a>
-  </li>
-    </ul>
-  </div>
-  <section class="home-section">
-    <div class="text">Records</div>
-    <div class = "container-fluid">
-		<div class = "panel panel-default">
-			<div class = "panel-body">
-				<div class = "alert alert-info">Records</div>
-				
-				<br />
-				<?php if (isset($_GET['success'])) { ?>
-					<div class="alert alert-success" role="alert">
-						<?=$_GET['success']?>
-					</div>
-					<?php } ?>
-				<br />
-				<table id = "table" class = "table table-bordered">
-					<thead>
-						<tr>
-							
-							<th>Resident Name</th>
-							<th>Date of Birth</th>
-							<th>Age</th>
-							<th>Sex</th>
-							<th>Address</th>
-							<th>Contact Number</th>
-							
-							<th>Action</th>
-							
-
-						</tr>
-					</thead>
-					<tbody>
-					<?php
-						$query = $conn->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
-						while($fetch = $query->fetch_array()){
-					?>	
-						<tr>
-							
-							<td><?php echo $fetch['residentName']?></td>
-							<td><?php echo $fetch['dateBirth']?></td>
-							<td><?php echo $fetch['age']?></td>
-							<td><?php echo $fetch['sex']?></td>
-							<td><?php echo $fetch['address']?></td>
-							<td><?php echo $fetch['contactNumber']?></td>
-			
-							<td><center><a class="btn btn-warning" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
-              
-							
-            </tr>
-						
-					<?php
-						}
-					?>	
-					</tbody>
-				</table>
-			</div>
+      <div class="profile_details">
+        <img src="../img/admin-default.png" alt="profile image">
+        <div class="profile_content">
+        <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
+        </div>
+      </div>
+      <a href="../logout.php" id="log_out">
+        <i class="bx bx-log-out"></i>
+      </a>
+      </li>
+        </ul>
+      </div>
+      <section class="home-section">
+        <div class="text">Records</div>
+          <div class = "container-fluid">
+            <div class = "panel panel-default">
+              <div class = "panel-body">
+                <div class = "alert alert-info">Records</div>
+                <br />
+              <?php if (isset($_GET['success'])) { ?>
+                <div class="alert alert-success" role="alert">
+                  <?=$_GET['success']?>
+                </div>
+                <?php } ?>
+              <br />
+              <table id = "table" class = "table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Resident Name</th>
+                    <th>Date of Birth</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              <tbody>
+              <?php
+                $query = $conn->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
+                while($fetch = $query->fetch_array()){
+              ?>	
+					  	<tr>	
+                <td><?php echo $fetch['residentName']?></td>
+                <td><?php echo $fetch['dateBirth']?></td>
+                <td><?php echo $fetch['age']?></td>
+                <td><?php echo $fetch['sex']?></td>
+                <td><?php echo $fetch['address']?></td>
+                <td><?php echo $fetch['contactNumber']?></td>
+						  	<td><center><a class="btn btn-warning" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
+              </tr>			
+            <?php
+              }
+            ?>	
+            </tbody>
+          </table>
+        </div>
 		</div>
-	</div>
-
-
+	</div>         
   </section>
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>

@@ -67,7 +67,14 @@ if(isset($_SESSION['user_data'])){
         </a>
         <span class="tooltip">Medicine</span>
       </li>
-        
+      <li>
+        <a href="contraceptives.php">
+            <i class="bx bx-capsule"></i>
+            <span class="link_name">Contraceptives</span>
+        </a>
+        <span class="tooltip">Contraceptives</span>
+        </li>
+      <li>  
       <li>
         <a href="#">
           <i class="bx bx-cog"></i>

@@ -116,6 +116,8 @@ if(isset($_SESSION['user_data'])){
 							<th>Username</th>
 							<th>Role</th>
 							<th>Password</th>
+              <th>Action</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -148,11 +150,6 @@ if(isset($_SESSION['user_data'])){
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery.dataTables.js"></script>
 <script src="../js/dataTables.bootstrap.js"></script>
-<script type="text/javascript">
-	$(document).ready(function () {
-		$("#table").DataTable();
-	});
-</script>
 
   <script type = "text/javascript">
 	function confirmationDelete(anchor){
@@ -161,6 +158,11 @@ if(isset($_SESSION['user_data'])){
 			window.location = anchor.attr("href");
 		}
 	} 
+</script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#table").DataTable();
+	});
 </script>
 </body>
 </html>

@@ -146,6 +146,10 @@ if(isset($_SESSION['user_data'])){
   </section>
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
+  <script src = "../js/jquery.js"></script>
+<script src = "../js/jquery.dataTables.js"></script>
+<script src = "../js/dataTables.bootstrap.js"></script> 
+
   <script type = "text/javascript">
 	function confirmationDelete(anchor){
 		var conf = confirm("Are you sure you want to delete this record?");
@@ -153,10 +157,8 @@ if(isset($_SESSION['user_data'])){
 			window.location = anchor.attr("href");
 		}
 	} 
-</script>
-<script src = "../js/jquery.js"></script>
-<script src = "../js/jquery.dataTables.js"></script>
-<script src = "../js/dataTables.bootstrap.js"></script>	
+</script>	
+
 <script type = "text/javascript">
 	$(document).ready(function(){
 		$("#table").DataTable();

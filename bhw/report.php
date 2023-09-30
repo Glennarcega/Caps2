@@ -88,98 +88,84 @@ if(isset($_SESSION['user_data'])){
   </li>
     </ul>
   </div>
-  <section class="home-section"> 
-  <div class="text">Medicine</div>
-    <div class="container-fluid">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="alert alert-info">Medicine</div>
-          <a class="btn btn-success" href="add_med.php?"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>
-         
-</a>
-
-           <br />
-          <br />
+  <section class="home-section">
+    <div class="text">Reports</div>
+				<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="alert alert-info">Reports</div>
+        <div>
+        <?php
+      if (isset($_GET['productId'])) {
+        $desiredProductId = $_GET['productId'];
+        
+        // Replace 'medicine' with your actual table name and 'resident_id' with the actual column name
+        $query = $conn->query("SELECT * FROM medicines WHERE productId = '$desiredProductId'");
+        while ($fetch = $query->fetch_assoc()) {
+            
+          // Display the records within the table rows
       
-          <?php if (isset($_GET['success'])) { ?>
-            <div class="alert alert-success" role="alert">
-              <?=$_GET['success']?>
-            </div>
-            <?php } ?>
-  
+          echo '<h2>' . $fetch['sponsor'] . '</h2>';
 
-<table id="table" class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Sponsor</th>
-            <th>Product Name</th>
-            <th>Unit</th>
-            <th>Batch</th>
-            <th>Quantity</th>
-            <th>Expiration Date</th>
-            <th>Status</th>
-            <th>Request</th>
-            <th>Action</th>
-            <th>Report</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php
-$query = $conn->query("SELECT * FROM medicines") or die(mysqli_error());
-while ($fetch = $query->fetch_array()) {
-    $status = ($fetch['total'] == 0) ? 'unavailable' : $fetch['status']; // Check if quantity is zero
+      }
+    } else {
+        echo '<tr><td colspan="3">product ID not provided in the URL.</td></tr>';
+    }
+    ?>
+    
+  </div>
+  <br />
+				
+				<table id="table" class="table table-bordered">
+					<thead>
+						<tr>
+              <th>Resindent Name</th>
+							<th>Product Name</th>
+              <th>Unit</th>
+							<th>Quantity</th>
+							<th>Given Date</th>
+						</tr>
+					</thead>
 
-    // ...
-?>
-<!-- ... -->
-<tr>
-    <td><?php echo $fetch['sponsor'] ?></td>
-    <td><?php echo $fetch['productName'] ?></td>
-    <td><?php echo $fetch['unit'] ?></td>
-    <td><?php echo $fetch['batch'] ?></td>
-    <td><?php echo $fetch['total'] ?></td>
-    <td><?php echo $fetch['expDate'] ?></td>
-    <td><?php echo $status ?></td>
-    <!-- ... -->
-    <td>
-        <center>
-            <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
-                <button class="btn btn-warning" disabled>Request</button>
-            <?php else: ?>
-                <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
-            <?php endif; ?>
-        </center>
-    </td>
-    <td>
-        <center>
-            <a class="btn btn-warning" href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a>
-            <a class="btn btn-danger" onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>">Delete</a>
-        </center>
-    </td>
-    <td>
-        <center>
-            <a class="btn btn-warning" href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a>
-        </center>
-    </td>
-</tr>
-<!-- ... -->
-<?php
-}
-?>
+<tbody>
+    <?php  
+    if (isset($_GET['productId'])) {
+        $desiredProductId = $_GET['productId'];
+        
+        // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
+        $query = $conn->query("SELECT * FROM request_medicine WHERE productId = '$desiredProductId'");
 
-    </tbody>
-</table>
+        if ($query->num_rows > 0) {
+            while ($fetch = $query->fetch_assoc()) {
+            
+                // Display the records within the table rows
+            
+                echo '<tr>';
+                echo '<td>' . $fetch['residentName'] . '</td>';
+                echo '<td>' . $fetch['productName'] . '</td>';
+                echo '<td>' . $fetch['unit'] . '</td>';
+                echo '<td>' . $fetch['quantity_req'] . '</td>';
+                echo '<td>' . $fetch['givenDate'] . '</td>';
+                echo '</tr>';
+            }
+        } else {
+            echo '<tr><td colspan="3">No records found!.</td></tr>';
+        }
+    } else {
+        echo '<tr><td colspan="3">Product ID not provided in the URL.</td></tr>';
+    }
+    ?>
+</tbody>
 
-                
 
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+				</table>
+			</div>
+		</div>
+	</div>
 
 
   </section>
+
   
 
   <script src="../cssmainmenu/script.js"></script>
@@ -194,11 +180,7 @@ while ($fetch = $query->fetch_array()) {
 <script src = "../js/jquery.js"></script>
 <script src = "../js/jquery.dataTables.js"></script>
 <script src = "../js/dataTables.bootstrap.js"></script>	
-<script type = "text/javascript">
-	$(document).ready(function(){
-		$("#table").DataTable();
-	});
-</script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     // Check if URL contains 'success' parameter and remove it

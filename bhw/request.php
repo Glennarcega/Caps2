@@ -138,14 +138,17 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Sex</label>
-                                <select class="form-control" required="required" name="sex" required>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
+                                <select class="form-control" required="required" name="sex" id="usertypeSelect">
+                                <option value="" disabled selected>Select Sex</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                             </div>
+        
                             <div class="form-group">
                                 <label>Sitio</label>
                                 <select class="form-control" required="required" name="address" required>
+                                    <option value="" disabled selected>Select Sitio</option>
                                     <option value="IlangIlang">Ilang-Ilang</option>
                                     <option value="Orchids">Orchids</option>
                                     <option value="Sampaguita">Sampaguita</option>

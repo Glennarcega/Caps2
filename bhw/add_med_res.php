@@ -106,6 +106,7 @@ if(isset($_SESSION['user_data'])){
 <table id="table" class="table table-bordered">
     <thead>
         <tr>
+            <th>Sponsor</th>
             <th>Product Name</th>
             <th>Unit</th>
             <th>Quantity</th>
@@ -125,6 +126,7 @@ while ($fetch = $query->fetch_array()) {
 ?>
 <!-- ... -->
 <tr>
+    <td><?php echo $fetch['sponsor'] ?></td>
     <td><?php echo $fetch['productName'] ?></td>
     <td><?php echo $fetch['unit'] ?></td>
     <td><?php echo $fetch['total'] ?></td>

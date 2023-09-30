@@ -133,6 +133,7 @@ if(isset($_SESSION['user_data'])){
 							<td><?php echo $fetch['contactNumber']?></td>
 			
 							<td><center><a class="btn btn-warning" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
+              
 							
             </tr>
 						

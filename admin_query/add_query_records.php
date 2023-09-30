@@ -27,7 +27,7 @@ if (isset($_POST['add_rec'])) {
 
             if ($query) {
                 $residentId = mysqli_insert_id($conn);
-                $query = $conn->query("INSERT INTO request_medicine (residentId, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$productId','$productName','$unit', '$quantity_req', '$givenDate')");
+                $query = $conn->query("INSERT INTO request_medicine (residentId, residentName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$residentName','$productId','$productName','$unit', '$quantity_req', '$givenDate')");
 
                 echo '<script>window.location.href = "./userRecMed.php?success=Add Request Successfully";</script>';
                 exit(); // Add this line to stop further script execution

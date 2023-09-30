@@ -108,14 +108,32 @@ if(isset($_SESSION['user_data'])){
                 <div class="panel-body">
                     <div class="alert alert-info">Request Medicine</div>
                     <br />
+        
 				<?php if (isset($_GET['success'])) { ?>
 					<div class="alert alert-success" role="alert">
 						<?=$_GET['success']?>
 					</div>
 					<?php } ?>
-				<br />
-                    <br />
+                   
                     <div class="col-md-4">
+                    <?php
+      if (isset($_GET['residentId'])) {
+        $desiredResidentId = $_GET['residentId'];
+        
+        // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
+        $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
+        while ($fetch = $query->fetch_assoc()) {
+            
+          // Display the records within the table rows
+      
+          
+          // Assuming $fetch['residentName'] contains the desired name
+          $residentName = isset($fetch['residentName']) ? $fetch['residentName'] : '';
+      }
+    } else {
+        echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
+    }
+    ?>
                         <?php
                         $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
                         $query = $conn->query("SELECT * FROM `medicines` WHERE productName = '$productName'") or die(mysqli_error());
@@ -124,7 +142,7 @@ if(isset($_SESSION['user_data'])){
 
                         <form method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                              
+       
                                 <?php
                                 if (isset($_GET['residentId'])) {
                                     // Retrieve the 'residentId' value from the URL
@@ -139,8 +157,15 @@ if(isset($_SESSION['user_data'])){
                                     // Handle the case where 'residentId' is not provided in the URL
                                     echo "Resident ID not found in the URL.";
                                 }
-                                                ?>
-                                
+                                ?>
+                              
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Resident Name</label>
+                                <input type="text" class="form-control" name="residentName" 
+                                value="<?php echo $residentName; ?> "readonly />
+                                  
                             </div>
                             <div class="form-group">
                                 <label>Product ID</label>

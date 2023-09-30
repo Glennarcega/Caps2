@@ -4,6 +4,7 @@ if (isset($_POST['add_rec'])) {
     // Include your database connection code here (e.g., $conn = new mysqli(...);)
 
     $residentId = isset($_GET['residentId']) ? $_GET['residentId'] : '';
+    $residentName = $_POST['residentName'];
     $productId = $_POST['productId'];
     $productName = $_POST['productName'];
     $unit = $_POST['unit'];
@@ -25,7 +26,7 @@ if (isset($_POST['add_rec'])) {
                 $updateQuery = $conn->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
 
                 if ($updateQuery) {
-                    $insertQuery = $conn->query("INSERT INTO request_medicine (residentId, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate')");
+                    $insertQuery = $conn->query("INSERT INTO request_medicine (residentId,residentName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$residentName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate')");
 
                     if ($insertQuery) {
                         echo '<script>window.location.href = "resident_med.php?residentId=' . $residentId . '";</script>';

@@ -144,7 +144,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </a>
         <span class="tooltip">Medicine</span>
       </li>
-        
+      <li>
+        <a href="contraceptives.php">
+            <i class="bx bx-capsule"></i>
+            <span class="link_name">Contraceptives</span>
+        </a>
+        <span class="tooltip">Contraceptives</span>
+        </li>
       <li>
         <a href="settings.php">
           <i class="bx bx-cog"></i>

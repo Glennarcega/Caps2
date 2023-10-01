@@ -116,7 +116,7 @@ if(isset($_SESSION['user_data'])){
   </div>
   <br />
 				
-				<table id="table" class="table table-bordered">
+				<table id="table" class="table table-striped">
 					<thead>
 						<tr>
               <th>Resindent Name</th>

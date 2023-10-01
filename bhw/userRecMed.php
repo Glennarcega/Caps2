@@ -109,7 +109,7 @@ if(isset($_SESSION['user_data'])){
                 </div>
                 <?php } ?>
               <br />
-              <table id = "table" class = "table table-bordered">
+              <table id = "table" class = "table table-striped">
                 <thead>
                   <tr>
                     <th>Resident Name</th>
@@ -118,7 +118,7 @@ if(isset($_SESSION['user_data'])){
                     <th>Sex</th>
                     <th>Address</th>
                     <th>Contact Number</th>
-                    <th>Action</th>
+                    <th><center>Action</center></th>
                   </tr>
                 </thead>
               <tbody>

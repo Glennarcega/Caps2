@@ -138,7 +138,7 @@ if (isset($_GET['residentId'])) {
 					</div>
 				<?php } ?>
 				
-				<table id="table" class="table table-bordered">
+				<table id="table" class="table table-striped">
 					<thead>
 						<tr>
          

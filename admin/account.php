@@ -109,14 +109,14 @@ if(isset($_SESSION['user_data'])){
 				  <?=$_GET['success']?>
 			  </div>
 			  <?php } ?>
-        <table id = "table" class = "table table-bordered">
+        <table id = "table" class = "table table-striped">
 					<thead>
 						<tr>
 						<th>Name</th>
 							<th>Username</th>
 							<th>Role</th>
 							<th>Password</th>
-              <th>Action</th>
+              <th><center>Action</center></th>
 
 						</tr>
 					</thead>

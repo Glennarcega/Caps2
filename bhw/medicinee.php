@@ -115,7 +115,7 @@ if(isset($_SESSION['user_data'])){
             <?php } ?>
   
 
-<table id="table" class="table table-bordered">
+<table id="table" class="table table-striped">
     <thead>
         <tr>
             <th>Sponsor</th>
@@ -126,7 +126,7 @@ if(isset($_SESSION['user_data'])){
             <th>Expiration Date</th>
             <th>Status</th>
             <th>Request</th>
-            <th>Action</th>
+            <th><center>Action</center></th>
             <th>Report</th>
         </tr>
     </thead>

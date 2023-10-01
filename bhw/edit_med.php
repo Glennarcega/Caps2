@@ -130,6 +130,7 @@ if(isset($_SESSION['user_data'])){
 						<div class = "form-group">
 							<label>Status</label>
 							<select class = "form-control" required = required name = "status">
+                <option value="" disabled selected>Status</option>
 								<option value="available">Available</option>
 								<option value="unavailable">Unavailable</option>
 							</select>

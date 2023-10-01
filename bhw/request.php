@@ -126,7 +126,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Resident Name</label>
-                                <input type="text" class="form-control" name="residentName" placeholder="LN,FN,MI." required  />
+                                <input type="text" class="form-control" name="residentName" id ="residentName" placeholder="LN,FN,MI." required  />
                             </div>
                             <div class="form-group" required="required">
                                 <label>Date of Birth</label>
@@ -183,7 +183,14 @@ if(isset($_SESSION['user_data'])){
             </div>
         </div>
     </section>
-
+    <script>
+        document.getElementById("residentName").addEventListener("input", function () {
+        var input = this.value;
+        if (input.length > 0) {
+            this.value = input.charAt(0).toUpperCase() + input.slice(1);
+        }
+    });
+    </script>
     <script src="../cssmainmenu/script.js
     <?php
 }

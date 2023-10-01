@@ -230,7 +230,7 @@ while ($row = mysqli_fetch_array($res)) {
     };
 </script>
 </html>
-	<!--   <script src="../cssmainmenu/script.js"></script> -->
+	<!--   <script src="../cssmainmenu/script.js"></script>  --!
 
 <?php
 }

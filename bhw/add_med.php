@@ -106,7 +106,7 @@ if(isset($_SESSION['user_data'])){
 					<form method = "POST" enctype = "multipart/form-data">
           <div class="form-group">
               <label for="sponsor">Sponsor </label>
-              <input type="text" class="form-control" id="sponsor" name="sponsor" required/>
+              <input type="text" class="form-control" id="sponsor" name="sponsor" placeholder ="Name of the Sponsor" required/>
           </div>
 						<div class = "form-group">
 							<label>Product Name </label>
@@ -118,7 +118,7 @@ if(isset($_SESSION['user_data'])){
 						</div>
             <div class = "form-group">
 							<label>Batch </label>
-							<input type = "text"  class = "form-control" name = "batch" placeholder ="Ex. Batch 1" required/>
+							<input type = "text"  class = "form-control" id ="batch" name = "batch" placeholder ="Ex. Batch 1" required/>
 						</div>
 						<div class = "form-group">
 							<label>Quantity </label>
@@ -132,6 +132,7 @@ if(isset($_SESSION['user_data'])){
 						<div class = "form-group">
 							<label>Status</label>
 							<select class = "form-control" required = required name = "status">
+                <option value="" disabled selected>Status</option>
 								<option value="available">Available</option>
 								<option value="unavailable">Unavailable</option>
 							</select>
@@ -192,6 +193,12 @@ if(isset($_SESSION['user_data'])){
         }
     });
     document.getElementById("prodname").addEventListener("input", function () {
+        var input = this.value;
+        if (input.length > 0) {
+            this.value = input.charAt(0).toUpperCase() + input.slice(1);
+        }
+    });
+    document.getElementById("batch").addEventListener("input", function () {
         var input = this.value;
         if (input.length > 0) {
             this.value = input.charAt(0).toUpperCase() + input.slice(1);

@@ -171,6 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </ul>
   </div>
   <section class="home-section"> 
+  <br></br>
   <div class="container-fluid">
     <div class="panel panel-default">
     <div class="panel-body">
@@ -179,8 +180,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row">
         <div class="col-md-3 border-right">
         <div class="row mt-3">
-    <div class="col-md-12">
+        <div class="col-md-12">
         <label class="labels"><br>Change Avatar</label>
+         <div class = "well" style = "height:200px; width:100%;">
+							<img src = "photo/<?php echo $fetch['photo']?>" height = "150" width = "100"/>
+						</div>
         <input type="file" name="avatar" id="avatar" class="form-control">
     </div>
 </div>

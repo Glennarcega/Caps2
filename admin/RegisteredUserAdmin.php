@@ -78,7 +78,7 @@ if(isset($_SESSION['user_data'])){
           <span class="tooltip">Account</span>
         </li>
       <li>
-        <a href="settings.php">
+       <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
           <i class="bx bx-cog"></i>
           <span class="link_name">Settings</span>
         </a>
@@ -111,8 +111,8 @@ if(isset($_SESSION['user_data'])){
       <table id = "table" class = "table table-striped">
 					<thead>
 						<tr>
+							<th>Email</th>
 							<th>Name</th>
-							<th>Username</th>
 							<th>Role</th>
 							<th>Password</th>
               

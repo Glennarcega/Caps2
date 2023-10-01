@@ -76,7 +76,7 @@ if(isset($_SESSION['user_data'])){
           <span class="tooltip">Account</span>
         </li>
         <li>
-        <a href="settings.php">
+         <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
           <i class="bx bx-cog"></i>
           <span class="link_name">Settings</span>
         </a>
@@ -112,8 +112,16 @@ if(isset($_SESSION['user_data'])){
 							<label>Name </label>
 							<input type = "text" class = "form-control" value = "<?php echo $fetch['name']?>" name = "name" />
 						</div>
+            <div class = "form-group">
+            <label> Address </label>
+              <input type = "text"  class = "form-control" value = "<?php echo $fetch['address']?>" name = "address" required/>
+            </div>
+            <div class = "form-group">
+              <label>Mobile Number </label>
+                <input type = "text"  class = "form-control" value = "<?php echo $fetch['mobile_number']?>" name = "mobile_number" required/>
+            </div>
 						<div class = "form-group">
-							<label>Username </label>
+							<label>Email </label>
 							<input type = "text" class = "form-control" value = "<?php echo $fetch['username']?>" name = "username" />
 						</div>
 						<div class = "form-group">

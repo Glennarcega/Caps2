@@ -75,7 +75,7 @@ if(isset($_SESSION['user_data'])){
           <span class="tooltip">Account</span>
         </li>
         <li>
-        <a href="settings.php">
+        <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
           <i class="bx bx-cog"></i>
           <span class="link_name">Settings</span>
         </a>
@@ -117,17 +117,25 @@ if(isset($_SESSION['user_data'])){
 			<label>Name </label>
 				<input type = "text"  class = "form-control" name = "name" />
 	  </div>
+    <div class = "form-group">
+			<label> Address </label>
+				<input type = "text"  class = "form-control" name = "address" required/>
+	  </div>
+    <div class = "form-group">
+			<label>Mobile Number </label>
+				<input type = "text"  class = "form-control" name = "mobile_number" required/>
+	  </div>
 	  <div class = "form-group">
-			<label>Username </label>
-				<input type = "text"  class = "form-control" name = "username" required/>
+			<label>Email </label>
+				<input type = "text"  class = "form-control" name = "username" placeholder="@gmail.com" required/>
 	  </div>
 	  <div class = "form-group">
 			<label>Password </label>
-				<input type = "password"  class = "form-control" name = "password" required placeholder="Enter your password" />
+				<input type = "password"  class = "form-control" name = "password"  placeholder="Enter your password" required />
 	  </div>	
 	  <div class = "form-group">
 			<label>Confirm Password </label>
-				<input type = "password"  class = "form-control" name = "cpassword" required placeholder="Confirm your password" />
+				<input type = "password"  class = "form-control" name = "cpassword"  placeholder="Confirm your password" required/>
 	  </div>	
     <label>Usertype</label>
 <select class="form-control" required="required" name="usertype" id="usertypeSelect">
@@ -148,10 +156,11 @@ if(isset($_POST['submit'])){
 
    $name = mysqli_real_escape_string($conn, $_POST['name']);
    $username = mysqli_real_escape_string($conn, $_POST['username']);
+   $address = $_POST['address'];
+   $mobile_number = $_POST['mobile_number'];
    $pass = md5($_POST['password']);
    $cpass = md5($_POST['cpassword']);
    $usertype = $_POST['usertype'];
-
    
 
    $select = " SELECT * FROM users WHERE name = '$name'";
@@ -167,7 +176,7 @@ if(isset($_POST['submit'])){
         $_SESSION['error_message'] = "Password not matched!";
         echo '<script>window.location.href = "add_account.php?error=Password not matched!";</script>';
       }else{
-         $insert = "INSERT INTO users(name,username, password,usertype) VALUES('$name','$username','$pass','$usertype')";
+         $insert = "INSERT INTO users(name,aadress,mobile_number,username, password,usertype) VALUES('$name','$address','$mobile_number','$username','$pass','$usertype')";
          mysqli_query($conn, $insert);
          $_SESSION['success'] = "Add Account Succesfully";
          echo '<script>window.location.href = "RegisteredUserAdmin.php?success=Add Account Succesfully";</script>';

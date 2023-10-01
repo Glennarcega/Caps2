@@ -12,43 +12,7 @@ if(isset($_SESSION['user_data'])){
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_FILES["avatar"]) && $_FILES["avatar"]["error"] == UPLOAD_ERR_OK) {
-        // Debugging: Check the uploaded file details
-        var_dump($_FILES);
 
-        $uploadDir = 'C:/xampp/htdocs/Caps2/img//'; // Create an "uploads" directory to store uploaded avatars
-        $avatarName = $_SESSION['user_data']['username'] . "_" . $_FILES["avatar"]["name"];
-        $targetFilePath = $uploadDir . $avatarName;
-        
-        // Check if the file type is allowed (you can customize this based on your requirements)
-        $allowedTypes = array("jpg", "jpeg", "png", "gif");
-        $fileExtension = strtolower(pathinfo($avatarName, PATHINFO_EXTENSION));
-
-        // Debugging: Check the file extension
-        echo "File Extension: " . $fileExtension;
-
-        if (in_array($fileExtension, $allowedTypes)) {
-            if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $targetFilePath)) {
-                // Debugging: Check if the file was moved successfully
-                echo "File moved successfully.";
-
-                // Update the user's profile with the new avatar filename
-                $updateAvatarQuery = "UPDATE users SET avatar = '$avatarName' WHERE id = " . $_SESSION['user_data']['id'];
-                if (mysqli_query($conn, $updateAvatarQuery)) {
-                    $_SESSION['user_data']['avatar'] = $avatarName; // Update the user's avatar session data
-                    echo '<script>alert("Avatar updated successfully.");</script>';
-                } else {
-                    echo '<script>alert("Error updating avatar in the database.");</script>';
-                }
-            } else {
-                echo '<script>alert("Sorry, there was an error uploading your file.");</script>';
-            }
-        } else {
-            echo '<script>alert("Invalid file type. Allowed file types are jpg, jpeg, png, and gif.");</script>';
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>

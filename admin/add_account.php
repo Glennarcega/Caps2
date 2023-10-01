@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 @include "../connection/connect.php";
 if(isset($_SESSION['user_data'])){
 	if($_SESSION['user_data']['usertype']!=1){
@@ -12,7 +11,6 @@ if(isset($_SESSION['user_data'])){
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,16 +100,14 @@ if(isset($_SESSION['user_data'])){
 			<div class = "panel-body">
 				<div class = "alert alert-info">Account / Create Account</div>
 				<div class = "col-md-4">	
-<div class="form-container">
-
-   <form action="" method="POST">
-   <?php if (isset($_SESSION['error_message'])) { ?>
-    <div class="alert alert-danger" role="alert">
+    <div class="form-container">
+    <form action="" method="POST">
+    <?php if (isset($_SESSION['error_message'])) { ?>
+      <div class="alert alert-danger" role="alert">
         <?php echo $_SESSION['error_message']; ?>
     </div>
     <?php unset($_SESSION['error_message']); ?>
     <?php } ?>
-
 	   <br></br>
 	   <div class = "form-group">
 			<label>Name </label>
@@ -144,35 +140,29 @@ if(isset($_SESSION['user_data'])){
     <option value="1">Admin</option>
 </select>
 </div>
-
-	  <br></br>
+ <br></br>
 	  <div class = "form-group">
 			<button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Add Account</button>
 		</div>
+  <?php
+  if(isset($_POST['submit'])){
+      $name = mysqli_real_escape_string($conn, $_POST['name']);
+      $username = mysqli_real_escape_string($conn, $_POST['username']);
+      $address = $_POST['address'];
+      $mobile_number = $_POST['mobile_number'];
+      $pass = md5($_POST['password']);
+      $cpass = md5($_POST['cpassword']);
+      $usertype = $_POST['usertype'];
 
-	  
-<?php
-if(isset($_POST['submit'])){
+    $select = " SELECT * FROM users WHERE name = '$name'";
+    $result = mysqli_query($conn, $select);
 
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $username = mysqli_real_escape_string($conn, $_POST['username']);
-   $address = $_POST['address'];
-   $mobile_number = $_POST['mobile_number'];
-   $pass = md5($_POST['password']);
-   $cpass = md5($_POST['cpassword']);
-   $usertype = $_POST['usertype'];
-   
+    if(mysqli_num_rows($result) > 0){
+      $_SESSION['error_message'] = "Username already exists!";
+      echo '<script>window.location.href = "add_account.php?error=Username already exist!";</script>';
+    }else{
 
-   $select = " SELECT * FROM users WHERE name = '$name'";
-   $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
-    $_SESSION['error_message'] = "Username already exists!";
-    echo '<script>window.location.href = "add_account.php?error=Username already exist!";</script>';
-
-   }else{
-
-      if($pass != $cpass){
+    if($pass != $cpass){
         $_SESSION['error_message'] = "Password not matched!";
         echo '<script>window.location.href = "add_account.php?error=Password not matched!";</script>';
       }else{
@@ -180,19 +170,17 @@ if(isset($_POST['submit'])){
          mysqli_query($conn, $insert);
          $_SESSION['success'] = "Add Account Succesfully";
          echo '<script>window.location.href = "RegisteredUserAdmin.php?success=Add Account Succesfully";</script>';
-
       }
    }
-
 };
-
 ?>
-  </section>
-  <!-- Scripts -->
-  <script src="../cssmainmenu/script.js"></script>
+</section>
+</body>
+<!-- Scripts -->
+<script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>
 <script src = "../js/bootstrap.js"></script>
-</body>
+
 </html>
 
 <?php

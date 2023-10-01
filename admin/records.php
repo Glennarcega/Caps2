@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 @include "../connection/connect.php";
 if(isset($_SESSION['user_data'])){
   if($_SESSION['user_data']['usertype']!=1){
@@ -12,11 +11,9 @@ if(isset($_SESSION['user_data'])){
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
@@ -24,7 +21,6 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
-
 </head>
 <body>
   <div class="sidebar">
@@ -112,16 +108,12 @@ if(isset($_SESSION['user_data'])){
 				<table id = "table" class = "table table-bordered">
 					<thead>
 						<tr>
-							
 							<th>Resident Name</th>
 							<th>Date of Birth</th>
 							<th>Age</th>
 							<th>Sex</th>
 							<th>Address</th>
 							<th>Contact Number</th>
-						
-						
-							
 						</tr>
 					</thead>
 					<tbody>
@@ -130,16 +122,13 @@ if(isset($_SESSION['user_data'])){
 						while($fetch = $query->fetch_array()){
 					?>	
 						<tr>
-							
 							<td><?php echo $fetch['residentName']?></td>
 							<td><?php echo $fetch['dateBirth']?></td>
 							<td><?php echo $fetch['age']?></td>
 							<td><?php echo $fetch['sex']?></td>
 							<td><?php echo $fetch['address']?></td>
 							<td><?php echo $fetch['contactNumber']?></td>
-							
 						</tr>
-						
 					<?php
 						}
 					?>	
@@ -148,9 +137,9 @@ if(isset($_SESSION['user_data'])){
 			</div>
 		</div>
 	</div>
-
-
   </section>
+</body>
+
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
   <script type = "text/javascript">
@@ -169,7 +158,7 @@ if(isset($_SESSION['user_data'])){
 		$("#table").DataTable();
 	});
 </script>
-</body>
+
 </html>
 <?php
 }

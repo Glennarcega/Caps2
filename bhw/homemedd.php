@@ -34,39 +34,18 @@ $addresses = array();
 // Assuming "resident_id" is the common identifier between tables
 $res = mysqli_query($link, "SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
 FROM residentrecords LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
- GROUP BY residentrecords.address");
-
-if (!$res) {
-    // Handle the query error
-    die("Query failed: " . mysqli_error($link));
-}
-
-while ($row = mysqli_fetch_array($res)) {
-    $address["label"] = $row["address"];
-    $address["y"] = $row["total_quantity"];
-    $addresses[] = $address;
-}
-
+GROUP BY residentrecords.address");
+  if (!$res) {
+      // Handle the query error
+      die("Query failed: " . mysqli_error($link));
+  }
+  while ($row = mysqli_fetch_array($res)) {
+      $address["label"] = $row["address"];
+      $address["y"] = $row["total_quantity"];
+      $addresses[] = $address;
+  }
 ?>
 
-<head>
-	<title>Barangay Health Worker</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="../css/style.css" />
-	
-	<style>
-    .chart-container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-
-    .chart {
-        width: 48%;
-    }
-</style>
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
@@ -160,45 +139,39 @@ while ($row = mysqli_fetch_array($res)) {
   <section class="home-section">
     <div class="text">Dashboard</div>
      <div class="container-fluid">
-
-	<div class="chart-container">
-        <!-- Medicine graph -->
-        <div class="chart">
-            <div id="medicineChartContainer" style="height: 300px;"></div>
-        </div>
-
-	<br>
-	<br />
-	<br />
-	<!-- Address graph -->
-	<div class="chart">
-            <div id="addressChartContainer" style="height: 300px;"></div>
-        </div>
-    
-    
+      <div class="chart-container">
+            <!-- Medicine graph -->
+            <div class="chart">
+                <div id="medicineChartContainer" style="height: 300px;"></div>
+            </div>
+        	<br>	<br /><br />
+      <!-- Address graph -->
+      <div class="chart">
+        <div id="addressChartContainer" style="height: 300px;"></div>
+      </div>    
     </div>
-	<!-- Include the CanvasJS library -->
-	<script src="../js/canvasjs.min.js"></script>
-	<!-- Render the graphs -->
-	<script>
-		window.onload = function () {
-			var medicineChart = new CanvasJS.Chart("medicineChartContainer", {
-				animationEnabled: true,
-				theme: "light3",
-				title: {
-					text: "Medicine"
-				},
-				axisY: {
-					title: "Number of Medicine"
-				},
-				axisX: {
-					title: "Product Name"
-				},
-				data: [{
-					type: "column",
-					dataPoints: <?php echo json_encode($medicines, JSON_NUMERIC_CHECK); ?>
-				}]
-			});
+    <!-- Include the CanvasJS library -->
+    <script src="../js/canvasjs.min.js"></script>
+    <!-- Render the graphs -->
+    <script>
+      window.onload = function () {
+        var medicineChart = new CanvasJS.Chart("medicineChartContainer", {
+          animationEnabled: true,
+          theme: "light3",
+          title: {
+            text: "Medicine"
+          },
+          axisY: {
+            title: "Number of Medicine"
+          },
+          axisX: {
+            title: "Product Name"
+          },
+          data: [{
+            type: "column",
+            dataPoints: <?php echo json_encode($medicines, JSON_NUMERIC_CHECK); ?>
+          }]
+        });
 
 			medicineChart.render();
 
@@ -223,15 +196,16 @@ while ($row = mysqli_fetch_array($res)) {
 		}
 	</script>
 </body>
+
+	<!--   <script src="../cssmainmenu/script.js"></script>  -->
 <script type="text/javascript">
     history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
     };
 </script>
-</html>
-	<!--   <script src="../cssmainmenu/script.js"></script>  --!
 
+</html>
 <?php
 }
 else{

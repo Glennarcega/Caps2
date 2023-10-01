@@ -6,7 +6,6 @@ if(isset($_SESSION['user_data'])){
 		header("Location:.././admin/Dashboard.php");
 	}
 
-
 	$data=array();
 	$qr=mysqli_query($conn,"select * from users where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
@@ -15,11 +14,9 @@ if(isset($_SESSION['user_data'])){
   if (isset($_GET['success']) && $_GET['success'] == 1) {
     echo '<div class="success-message">Medicine request added successfully!</div>';
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
@@ -98,96 +95,83 @@ if(isset($_SESSION['user_data'])){
 			<div class="panel-body">
 				<div class="alert alert-info">Medicine</div>
         <div>
-        <?php
-      if (isset($_GET['residentId'])) {
-        $desiredResidentId = $_GET['residentId'];
-        
-        // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-        $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
-        while ($fetch = $query->fetch_assoc()) {
-            
-          // Display the records within the table rows
-      
-    
-          echo '<h2>' . $fetch['residentName'] . '</h2>';
-  
-      }
-    } else {
-        echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
-    }
-    ?>
-    
-  </div>
-  <br />
-			
-        <?php
-if (isset($_GET['residentId'])) {
-    $residentId = $_GET['residentId'];
-    echo '<a class="btn btn-success" href="add_med_res.php?residentId=' . $residentId . '"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>';
-} else {
-    echo '<p>Resident ID not provided.</p>';
-}
-?>
+                  <?php
+                if (isset($_GET['residentId'])) {
+                      $desiredResidentId = $_GET['residentId'];
+                      
+                      // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
+                      $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
+                      while ($fetch = $query->fetch_assoc()) {
+                          
+                        // Display the records within the table rows    
+                        echo '<h2>' . $fetch['residentName'] . '</h2>';
+                    }
+                  } else {
+                    echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
+                }
+                ?>
+              </div>
+              <br />
+                <?php
+                    if (isset($_GET['residentId'])) {
+                        $residentId = $_GET['residentId'];
+                        echo '<a class="btn btn-success" href="add_med_res.php?residentId=' . $residentId . '"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>';
+                    } else {
+                        echo '<p>Resident ID not provided.</p>';
+                    }
+                  ?>
+                  <br /><br />
+              
+                  <?php if (isset($_GET['success'])) { ?>
+                    <div class="alert alert-success" role="alert">
+                      <?=$_GET['success']?>
+                    </div>
+                  <?php } ?>
+                  
+                  <table id="table" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Product Name</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Given Date</th>
+                      </tr>
+                    </thead>
+                <tbody>
+              <?php  
+              if (isset($_GET['residentId'])) {
+                  $desiredResidentId = $_GET['residentId'];
+                  
+                  // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
+                  $query = $conn->query("SELECT * FROM request_medicine WHERE residentId = '$desiredResidentId'");
 
-				<br />
-				<br />
-		
-				<?php if (isset($_GET['success'])) { ?>
-					<div class="alert alert-success" role="alert">
-						<?=$_GET['success']?>
-					</div>
-				<?php } ?>
-				
-				<table id="table" class="table table-striped">
-					<thead>
-						<tr>
-         
-							<th>Product Name</th>
-              <th>Unit</th>
-							<th>Quantity</th>
-							<th>Given Date</th>
-						</tr>
-					</thead>
-
-<tbody>
-    <?php  
-    if (isset($_GET['residentId'])) {
-        $desiredResidentId = $_GET['residentId'];
-        
-        // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-        $query = $conn->query("SELECT * FROM request_medicine WHERE residentId = '$desiredResidentId'");
-
-        if ($query->num_rows > 0) {
-            while ($fetch = $query->fetch_assoc()) {
-            
-                // Display the records within the table rows
-            
-                echo '<tr>';
-                echo '<td>' . $fetch['productName'] . '</td>';
-                echo '<td>' . $fetch['unit'] . '</td>';
-                echo '<td>' . $fetch['quantity_req'] . '</td>';
-                echo '<td>' . $fetch['givenDate'] . '</td>';
-                echo '</tr>';
-            }
-        } else {
-            echo '<tr><td colspan="3">No records found! </td></tr>';
-        }
-    } else {
-        echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
-    }
-    ?>
-</tbody>
-
-
-				</table>
-			</div>
-		</div>
-	</div>
-
-
+                  if ($query->num_rows > 0) {
+                      while ($fetch = $query->fetch_assoc()) {
+                      
+                          // Display the records within the table rows
+                          echo '<tr>';
+                          echo '<td>' . $fetch['productName'] . '</td>';
+                          echo '<td>' . $fetch['unit'] . '</td>';
+                          echo '<td>' . $fetch['quantity_req'] . '</td>';
+                          echo '<td>' . $fetch['givenDate'] . '</td>';
+                          echo '</tr>';
+                      }
+                  } else {
+                      echo '<tr><td colspan="3">No records found! </td></tr>';
+                  }
+              } else {
+                  echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
+              }
+              ?>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </section>
-  <!-- Scripts -->
-  <script src="../cssmainmenu/script.js"></script>
+</body>
+<!-- Scripts -->
+<script src="../cssmainmenu/script.js"></script>
   <script type = "text/javascript">
 	function confirmationDelete(anchor){
 		var conf = confirm("Are you sure you want to delete this record?");
@@ -213,7 +197,6 @@ if (isset($_GET['residentId'])) {
     }
 });
 </script>
-</body>
 </html>
 <?php
 }

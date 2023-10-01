@@ -145,16 +145,11 @@ while ($row = mysqli_fetch_array($res)) {
         <div class="chart">
             <div id="medicineChartContainer" style="height: 300px;"></div>
         </div>
-
-	<br>
-	<br />
-	<br />
+	<br><br /><br />
 	<!-- Address graph -->
 	<div class="chart">
             <div id="addressChartContainer" style="height: 300px;"></div>
-        </div>
-    
-    
+        </div>    
     </div>
 	<!-- Include the CanvasJS library -->
 	<script src="../js/canvasjs.min.js"></script>
@@ -208,9 +203,9 @@ while ($row = mysqli_fetch_array($res)) {
         history.go(1);
     };
 </script>
-</html>
-	<!--   <script src="../cssmainmenu/script.js"></script> -->
+<!--   <script src="../cssmainmenu/script.js"></script> -->
 
+</html>
 <?php
 }
 else{

@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 @include "../connection/connect.php";
 if(isset($_SESSION['user_data'])){
   if($_SESSION['user_data']['usertype']!=1){
@@ -12,19 +11,16 @@ if(isset($_SESSION['user_data'])){
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
-		<link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
-
+	<link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 </head>
 <body> 
   <div class="sidebar">
@@ -105,11 +101,9 @@ if(isset($_SESSION['user_data'])){
 					<thead>
 						<tr>
 							<th>Product Name</th>
-						
 							<th>Quantity</th>
 							<th>Expiration Date</th>
 							<th>Status</th>
-	
 						</tr>
 					</thead>
 					<tbody>
@@ -121,7 +115,7 @@ if(isset($_SESSION['user_data'])){
 									<td><?php echo $fetch['productName'] ?></td>
 									<td><?php echo $fetch['total'] ?></td>
 									<td><?php echo $fetch['expDate'] ?></td>
-                                    <td><?php echo $fetch['status'] ?></td>
+                  <td><?php echo $fetch['status'] ?></td>
 						<?php
 							}
 						?>

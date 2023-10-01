@@ -12,11 +12,9 @@ if(isset($_SESSION['user_data'])){
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
@@ -24,7 +22,6 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
  <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
-
 </head>
 <body>
   <div class="sidebar">
@@ -117,7 +114,6 @@ if(isset($_SESSION['user_data'])){
 							<th>Role</th>
 							<th>Password</th>
               <th><center>Action</center></th>
-
 						</tr>
 					</thead>
 					<tbody>
@@ -129,24 +125,23 @@ if(isset($_SESSION['user_data'])){
 						<td><?php echo $fetch['username']?></td>
 							<td><?php echo $fetch['name']?></td>
               <td>
-    <?php echo ($fetch['usertype'] == 2) ? 'BHW' : ''; ?>
-</td>
-							<td><?php echo md5($fetch['password'])?></td>
-							<td><center><a class = "btn btn-warning" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a></center></td>
+            <?php echo ($fetch['usertype'] == 2) ? 'BHW' : ''; ?>
+             </td>
+                <td><?php echo md5($fetch['password'])?></td>
+                <td><center><a class = "btn btn-warning" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a></center></td>
 						</tr>
 						<?php
 							}
 						?>
-            
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
   </section>
+</body>
     <!-- Scripts -->
-    
-    <script src="../cssmainmenu/script.js"></script>
+ <script src="../cssmainmenu/script.js"></script>
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery.dataTables.js"></script>
 <script src="../js/dataTables.bootstrap.js"></script>
@@ -164,7 +159,7 @@ if(isset($_SESSION['user_data'])){
 		$("#table").DataTable();
 	});
 </script>
-</body>
+
 </html>
 <?php
 }

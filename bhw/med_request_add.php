@@ -24,7 +24,6 @@ if(isset($_SESSION['user_data'])){
         }
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,54 +117,47 @@ if(isset($_SESSION['user_data'])){
                     <div class="col-md-4">
                     <?php
       if (isset($_GET['residentId'])) {
-        $desiredResidentId = $_GET['residentId'];
-        
-        // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-        $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
-        while ($fetch = $query->fetch_assoc()) {
+            $desiredResidentId = $_GET['residentId'];
             
-          // Display the records within the table rows
-      
-          
-          // Assuming $fetch['residentName'] contains the desired name
-          $residentName = isset($fetch['residentName']) ? $fetch['residentName'] : '';
-      }
-    } else {
-        echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
-    }
-    ?>
-                        <?php
-                        $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
-                        $query = $conn->query("SELECT * FROM `medicines` WHERE productName = '$productName'") or die(mysqli_error());
-                        $fetch = $query->fetch_array();
-                        ?>
-
-                        <form method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-       
-                                <?php
-                                if (isset($_GET['residentId'])) {
-                                    // Retrieve the 'residentId' value from the URL
-                                    $residentId = $_GET['residentId'];
-                                  
-                                    
-                                    // Now, you have the 'residentId' value in the $residentId variable
-                                    // You can use it for database operations or any other purpose
-                                    echo "Resident ID: " . $residentId;
-                                
-                                } else {
-                                    // Handle the case where 'residentId' is not provided in the URL
-                                    echo "Resident ID not found in the URL.";
-                                }
-                                ?>
-                              
-                            </div>
+            // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
+            $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
+            while ($fetch = $query->fetch_assoc()) {
+                
+            // Display the records within the table rows
+            
+            // Assuming $fetch['residentName'] contains the desired name
+            $residentName = isset($fetch['residentName']) ? $fetch['residentName'] : '';
+        }
+        } else {
+            echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
+        }
+      ?>
+                        
+            <?php
+                 $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
+                 $query = $conn->query("SELECT * FROM `medicines` WHERE productName = '$productName'") or die(mysqli_error());
+                 $fetch = $query->fetch_array();
+            ?>
+                 <form method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                         <?php
+                            if (isset($_GET['residentId'])) {
+                                 // Retrieve the 'residentId' value from the URL
+                                $residentId = $_GET['residentId'];                                    
+                                // Now, you have the 'residentId' value in the $residentId variable
+                                // You can use it for database operations or any other purpose
+                                echo "Resident ID: " . $residentId;
+                            } else {
+                              // Handle the case where 'residentId' is not provided in the URL
+                                echo "Resident ID not found in the URL.";
+                             }
+                           ?>
+                        </div>
                             
                             <div class="form-group">
                                 <label>Resident Name</label>
                                 <input type="text" class="form-control" name="residentName" 
                                 value="<?php echo $residentName; ?> "readonly />
-                                  
                             </div>
                             <div class="form-group">
                                 <label>Product ID</label>
@@ -209,7 +201,8 @@ if(isset($_SESSION['user_data'])){
         </div>
     </section>
 
-= </body>
+</body>
+
  <script src="../cssmainmenu/script.js"></script>
  <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -220,8 +213,9 @@ if(isset($_SESSION['user_data'])){
     }
 });
 </script>
+
 </html>
-    <?php
+<?php
 }
 else{
 	header("Location:.././index.php?error=UnAuthorized Access");

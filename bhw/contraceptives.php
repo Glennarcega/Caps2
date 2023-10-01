@@ -6,17 +6,14 @@ if(isset($_SESSION['user_data'])){
 		header("Location:.././admin/Dashboard.php");
 	}
 
-
 	$data=array();
 	$qr=mysqli_query($conn,"select * from users where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
@@ -95,28 +92,24 @@ if(isset($_SESSION['user_data'])){
     </ul>
   </div>
   <section class="home-section"> 
-  <div class="text">Medicine</div>
-    <div class="container-fluid">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="alert alert-info">Contraceptives</div>
+   <div class="text">Medicine</div>
+     <div class="container-fluid">
+       <div class="panel panel-default">
+         <div class="panel-body">
+           <div class="alert alert-info">Contraceptives</div>
         
-    </tbody>
-</table>
+              </tbody>
+             </table>     
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </div>
+</section>
 
-                
+</body>
 
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-
-  </section>
-  
-
-  <script src="../cssmainmenu/script.js"></script>
+<script src="../cssmainmenu/script.js"></script>
   <script type = "text/javascript">
 	function confirmationDelete(anchor){
 		var conf = confirm("Are you sure you want to delete this record?");
@@ -142,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-</body>
+
 </html>
 <?php
 }

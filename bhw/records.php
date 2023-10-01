@@ -6,17 +6,14 @@ if(isset($_SESSION['user_data'])){
 		header("Location:.././admin/Dashboard.php");
 	}
 
-
 	$data=array();
 	$qr=mysqli_query($conn,"select * from users where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
@@ -103,7 +100,6 @@ if(isset($_SESSION['user_data'])){
 		<div class = "panel panel-default">
 			<div class = "panel-body">
 				<div class = "alert alert-info">Records</div>
-				
 				<br />
 				<?php if (isset($_GET['success'])) { ?>
 					<div class="alert alert-success" role="alert">
@@ -114,7 +110,6 @@ if(isset($_SESSION['user_data'])){
 				<table id = "table" class = "table table-bordered">
 					<thead>
 						<tr>
-							
 							<th>Resident Name</th>
 							<th>Date of Birth</th>
 							<th>Age</th>
@@ -123,18 +118,15 @@ if(isset($_SESSION['user_data'])){
 							<th>Contact Number</th>
 							<th>Product Name</th>
 							<th>Quantity</th>
-							<th>Given Date</th>
-						
-							
+							<th>Given Date</th>							
 						</tr>
 					</thead>
-					<tbody>
+				<tbody>
 					<?php
 						$query = $conn->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
 						while($fetch = $query->fetch_array()){
 					?>	
 						<tr>
-							
 							<td><?php echo $fetch['residentName']?></td>
 							<td><?php echo $fetch['dateBirth']?></td>
 							<td><?php echo $fetch['age']?></td>
@@ -145,7 +137,6 @@ if(isset($_SESSION['user_data'])){
 							<td><?php echo $fetch['quantity_req']?></td>
 							<td><?php echo $fetch['givenDate']?></td>
 						</tr>
-						
 					<?php
 						}
 					?>	
@@ -154,11 +145,11 @@ if(isset($_SESSION['user_data'])){
 			</div>
 		</div>
 	</div>
+ </section>
+</body>
 
-
-  </section>
-  <!-- Scripts -->
-  <script src="../cssmainmenu/script.js"></script>
+<!-- Scripts -->
+<script src="../cssmainmenu/script.js"></script>
   <script type = "text/javascript">
 	function confirmationDelete(anchor){
 		var conf = confirm("Are you sure you want to delete this record?");
@@ -175,7 +166,7 @@ if(isset($_SESSION['user_data'])){
 		$("#table").DataTable();
 	});
 </script>
-</body>
+
 </html>
 <?php
 }

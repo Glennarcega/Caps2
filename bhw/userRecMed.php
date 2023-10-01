@@ -85,9 +85,9 @@ if(isset($_SESSION['user_data'])){
       </li>
       <li class="profile">
       <div class="profile_details">
-      <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
-        <div class="profile_content">
-        <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
+        <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
+         <div class="profile_content">
+         <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
         </div>
       </div>
       <a href="../logout.php" id="log_out">
@@ -144,6 +144,7 @@ if(isset($_SESSION['user_data'])){
 		</div>
 	</div>         
   </section>
+</body>
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>
@@ -173,7 +174,6 @@ if(isset($_SESSION['user_data'])){
     }
 });
 </script>
-</body>
 </html>
 <?php
 }

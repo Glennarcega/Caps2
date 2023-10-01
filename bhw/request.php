@@ -6,13 +6,11 @@ if(isset($_SESSION['user_data'])){
 		header("Location:.././admin/Dashboard.php");
 	}
 
-
 	$data=array();
 	$qr=mysqli_query($conn,"select * from users where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +88,7 @@ if(isset($_SESSION['user_data'])){
     </div>
 
     <section class="home-section">
-        <div class="text">Request</div>
+      <div class="text">Request</div>
         <div class="container-fluid">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -183,6 +181,7 @@ if(isset($_SESSION['user_data'])){
             </div>
         </div>
     </section>
+</body>
     <script>
         document.getElementById("residentName").addEventListener("input", function () {
         var input = this.value;
@@ -191,8 +190,9 @@ if(isset($_SESSION['user_data'])){
         }
     });
     </script>
-    <script src="../cssmainmenu/script.js
-    <?php
+   <script src="../cssmainmenu/script.js"></script>
+</html>
+<?php
 }
 else{
 	header("Location:.././index.php?error=UnAuthorized Access");

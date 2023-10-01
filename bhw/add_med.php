@@ -17,7 +17,6 @@ if(isset($_SESSION['user_data'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
@@ -90,10 +89,9 @@ if(isset($_SESSION['user_data'])){
   </div>
   <section class="home-section">
     <div class="text">Add Medicine</div>
-    <div class = "container-fluid">
-		<div class = "panel panel-default">
-			<div class = "panel-body">
-			
+     <div class = "container-fluid">
+		  <div class = "panel panel-default">
+		  	<div class = "panel-body">
 				<div class = "alert alert-info">Add Medicine</div>
 				<br />
 				<div class = "col-md-4">	
@@ -103,6 +101,7 @@ if(isset($_SESSION['user_data'])){
 				  <?=$_GET['success']?>
 			  </div>
 			  <?php } ?>
+
 					<form method = "POST" enctype = "multipart/form-data">
           <div class="form-group">
               <label for="sponsor">Sponsor </label>
@@ -137,14 +136,12 @@ if(isset($_SESSION['user_data'])){
 								<option value="unavailable">Unavailable</option>
 							</select>
 						</div>
-						
-						<br />
-						<br />
+						<br /><br />
 						<div class = "form-group">
 							<button name = "add_med" class = "btn btn-info form-control"><i class = "bx bx-save"></i> Saved</button>
 						</div>
 					</form>
-          <?php
+             <?php
                 if(isset($_POST['add_med'])){
                 $sponsor = $_POST['sponsor'];
                 $productName = $_POST['productName'];
@@ -154,19 +151,21 @@ if(isset($_SESSION['user_data'])){
                 $expDate = $_POST['expDate'];
                 $status = $_POST['status'];
                 $conn->query("INSERT INTO `medicines` (sponsor,productName,unit,batch,total,expDate,status) VALUES('$sponsor','$productName','$unit','$batch', '$total','$expDate','$status')") or die(mysqli_error());
+
                 if($conn){
-                  echo '<script>window.location.href = "./medicinee.php?success=Add Request Successfully";</script>';
-                }
+                    echo '<script>window.location.href = "./medicinee.php?success=Add Request Successfully";</script>';
+                  }
                 else{
                   header("Location:medicinee.php?error=Failed to Add Medicine");
-                }
+                  }
                 };
                 ?>
-
 				</div>
 			</div>
 		</div>
 	</div>
+</body>
+
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
   <script type = "text/javascript">
@@ -205,7 +204,7 @@ if(isset($_SESSION['user_data'])){
         }
     });
 </script>
-</body>
+
 </html>
 <?php
 }

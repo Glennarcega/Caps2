@@ -13,22 +13,18 @@ if(isset($_SESSION['user_data'])){
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
-		<link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
-
+	<link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 </head>
 <body>
-  
   <div class="sidebar">
     <div class="logo_details">
       <div class="logo_name">Admin</div>
@@ -115,15 +111,13 @@ if(isset($_SESSION['user_data'])){
 							<th>Name</th>
 							<th>Role</th>
 							<th>Password</th>
-              
-						
 						</tr>
 					</thead>
-					<tbody>
-					<?php  
-$query = $conn->query("SELECT * FROM users WHERE usertype = 1 OR usertype = 2;") or die(mysqli_error($conn));
-while ($fetch = $query->fetch_array()) {
-    ?>
+				<tbody>
+				<?php  
+  $query = $conn->query("SELECT * FROM users WHERE usertype = 1 OR usertype = 2;") or die(mysqli_error($conn));
+  while ($fetch = $query->fetch_array()) {
+      ?>
     <tr>
         <td><?php echo $fetch['username'] ?></td>
         <td><?php echo $fetch['name'] ?></td>
@@ -141,18 +135,17 @@ while ($fetch = $query->fetch_array()) {
     <?php
 }
 ?>
-
-					</tbody>
-				</table>
-			</div>
-		</div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
     </div>
-	</div>
+    </div>
   </div>
- </div>
-    </section>
-    
-				
+</section>
+
+</body>
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
 <script src="../js/jquery.js"></script>
@@ -172,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-</body>
 </html>
 <?php
 }

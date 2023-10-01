@@ -6,7 +6,6 @@ if(isset($_SESSION['user_data'])){
 		header("Location:.././admin/Dashboard.php");
 	}
 
-
 	$data=array();
 	$qr=mysqli_query($conn,"select * from users where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
@@ -16,7 +15,6 @@ if(isset($_SESSION['user_data'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
@@ -94,81 +92,72 @@ if(isset($_SESSION['user_data'])){
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="alert alert-info">Reports</div>
-        <div>
+      <div>
         <?php
-      if (isset($_GET['productId'])) {
-        $desiredProductId = $_GET['productId'];
-        
-        // Replace 'medicine' with your actual table name and 'resident_id' with the actual column name
-        $query = $conn->query("SELECT * FROM medicines WHERE productId = '$desiredProductId'");
-        while ($fetch = $query->fetch_assoc()) {
-            
-          // Display the records within the table rows
-      
-          echo '<h2>' . $fetch['sponsor'] . '</h2>';
-
-      }
-    } else {
-        echo '<tr><td colspan="3">product ID not provided in the URL.</td></tr>';
-    }
-    ?>
-    
-  </div>
-  <br />
-				
-				<table id="table" class="table table-striped">
-					<thead>
-						<tr>
-              <th>Resindent Name</th>
-							<th>Product Name</th>
-              <th>Unit</th>
-							<th>Quantity</th>
-							<th>Given Date</th>
-						</tr>
-					</thead>
-
-<tbody>
-    <?php  
-    if (isset($_GET['productId'])) {
-        $desiredProductId = $_GET['productId'];
-        
-        // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-        $query = $conn->query("SELECT * FROM request_medicine WHERE productId = '$desiredProductId'");
-
-        if ($query->num_rows > 0) {
-            while ($fetch = $query->fetch_assoc()) {
-            
+            if (isset($_GET['productId'])) {
+              $desiredProductId = $_GET['productId'];
+              
+              // Replace 'medicine' with your actual table name and 'resident_id' with the actual column name
+              $query = $conn->query("SELECT * FROM medicines WHERE productId = '$desiredProductId'");
+              while ($fetch = $query->fetch_assoc()) {
+                  
                 // Display the records within the table rows
             
-                echo '<tr>';
-                echo '<td>' . $fetch['residentName'] . '</td>';
-                echo '<td>' . $fetch['productName'] . '</td>';
-                echo '<td>' . $fetch['unit'] . '</td>';
-                echo '<td>' . $fetch['quantity_req'] . '</td>';
-                echo '<td>' . $fetch['givenDate'] . '</td>';
-                echo '</tr>';
+                echo '<h2>' . $fetch['sponsor'] . '</h2>';
+
             }
-        } else {
-            echo '<tr><td colspan="3">No records found!.</td></tr>';
-        }
-    } else {
-        echo '<tr><td colspan="3">Product ID not provided in the URL.</td></tr>';
-    }
-    ?>
-</tbody>
+          } else {
+              echo '<tr><td colspan="3">product ID not provided in the URL.</td></tr>';
+          }
+        ?>
+      </div>
+    <br />
+          <table id="table" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Resindent Name</th>
+                <th>Product Name</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Given Date</th>
+              </tr>
+            </thead>
+          <tbody>
+      <?php  
+          if (isset($_GET['productId'])) {
+              $desiredProductId = $_GET['productId'];
+              
+              // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
+              $query = $conn->query("SELECT * FROM request_medicine WHERE productId = '$desiredProductId'");
 
+              if ($query->num_rows > 0) {
+                  while ($fetch = $query->fetch_assoc()) {
+                  
+                      // Display the records within the table rows
+                      echo '<tr>';
+                      echo '<td>' . $fetch['residentName'] . '</td>';
+                      echo '<td>' . $fetch['productName'] . '</td>';
+                      echo '<td>' . $fetch['unit'] . '</td>';
+                      echo '<td>' . $fetch['quantity_req'] . '</td>';
+                      echo '<td>' . $fetch['givenDate'] . '</td>';
+                      echo '</tr>';
+                  }
+              } else {
+                  echo '<tr><td colspan="3">No records found!.</td></tr>';
+              }
+          } else {
+              echo '<tr><td colspan="3">Product ID not provided in the URL.</td></tr>';
+          }
+          ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</section>
+</body>
 
-				</table>
-			</div>
-		</div>
-	</div>
-
-
-  </section>
-
-  
-
-  <script src="../cssmainmenu/script.js"></script>
+<script src="../cssmainmenu/script.js"></script>
   <script type = "text/javascript">
 	function confirmationDelete(anchor){
 		var conf = confirm("Are you sure you want to delete this record?");
@@ -190,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-</body>
+
 </html>
 <?php
 }

@@ -160,9 +160,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </li>
       <li class="profile">
   <div class="profile_details">
+  <img src="../img/admin-default.png" alt="profile image">
     <div class="profile_content">
-    <img class="rounded-circle mt-5" width="150px" src="/Caps2/img/<?php echo $_SESSION['user_data']['avatar']; ?>">
-    </div>
+    <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>    </div>
   </div>
   <a href="../logout.php" id="log_out">
     <i class="bx bx-log-out"></i>
@@ -188,15 +188,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="First Name" value=""></div>
+                <?php
+					$query = $conn->query("SELECT * FROM `users`") or die(mysqli_error());
+					$fetch = $query->fetch_array();
+				?>
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" value = "<?php echo $_SESSION['user_data']['name']; ?>" class="form-control" placeholder="First Name" value=""></div>
                     <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
                     
-                    <div class="col-md-6"><label class="labels"><br>Email</label><input type="text" class="form-control" value="" placeholder="Email"></div>
+                    <div class="col-md-6"><label class="labels"><br>Email</label><input type="text" value = "<?php echo $_SESSION['user_data']['username']; ?>" class="form-control" value="" placeholder="Email"></div>
 
                 </div>
                 <div class="row mt-3">
-                <div class="col-md-6"><label class="labels"><br>Mobile Number</label><input type="text" class="form-control" value="" placeholder="Ex.0946"></div>
-                    <div class="col-md-12"><label class="labels"><br>Address</label><input type="text" class="form-control" placeholder="Address" value=""></div>
+                <div class="col-md-6"><label class="labels"><br>Mobile Number</label><input type="text" value = "<?php echo $_SESSION['user_data']['mobile_number']; ?>" class="form-control" value="" placeholder="Ex.0946"></div>
+                    <div class="col-md-12"><label class="labels"><br>Address</label><input type="text" value = "<?php echo $_SESSION['user_data']['address']; ?>" class="form-control" placeholder="Address" value=""></div>
                 </div>
                 <br>
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>

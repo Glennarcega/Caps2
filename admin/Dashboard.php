@@ -125,7 +125,7 @@ while ($row = mysqli_fetch_array($res)) {
       </li>
       <li class="profile">
   <div class="profile_details">
-    <img src="../img/admin-default.png" alt="profile image">
+  <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
     <div class="profile_content">
     <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
     </div>

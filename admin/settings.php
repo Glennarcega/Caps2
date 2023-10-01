@@ -131,8 +131,8 @@ if(isset($_SESSION['user_data'])){
                 <div class="row mt-2">
                     <div class="col-md-6"><label class="labels">Name</label><input type="text" name="name" value = "<?php echo $_SESSION['user_data']['name']; ?>" class="form-control" placeholder="First Name" value=""></div>
                     <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
-                    
                     <div class="col-md-6"><label class="labels"><br>Email</label><input type="text" name="username" value = "<?php echo $_SESSION['user_data']['username']; ?>" class="form-control" value="" placeholder="Email"></div>
+                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
 
                 </div>
                 <div class="row mt-3">
@@ -140,7 +140,7 @@ if(isset($_SESSION['user_data'])){
                     <div class="col-md-12"><label class="labels"><br>Address</label><input type="text" name="address" value = "<?php echo $_SESSION['user_data']['address']; ?>" class="form-control" placeholder="Address" value=""></div>
                 </div>
                 <br>
-                <button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Save Profile</button>
+                <div class="mt-5 text-center"> <button type = "submit" name="submit" class = "btn btn-primary profile-button"> Save Profile</button></div>
             </div>
       </form>
                           

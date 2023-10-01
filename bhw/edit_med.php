@@ -67,7 +67,7 @@ if(isset($_SESSION['user_data'])){
         <span class="tooltip">Medicine</span>
       </li>
       <li>
-        <a href="settings.php">
+      <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
           <i class="bx bx-cog"></i>
           <span class="link_name">Settings</span>
         </a>
@@ -75,7 +75,7 @@ if(isset($_SESSION['user_data'])){
       </li>
       <li class="profile">
   <div class="profile_details">
-    <img src="../img/admin-default.png" alt="profile image">
+  <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
     <div class="profile_content">
       <div class="name"><?php echo $name; ?></div>
     </div>

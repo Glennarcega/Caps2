@@ -149,7 +149,7 @@ if(isset($_SESSION['user_data'])){
           <div class="col-md-12">
           <form method = "POST" enctype = "multipart/form-data">
               <label class="labels"><br>Change Avatar</label>
-              <div class = "well" style = "height:200px; width:100%;">
+              <div class = "well" style = "height:200px; width:265px;">
                   <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>" height = "160" width = "225"/>
                   </div>
                   <input type="file" name="photo" id="photo" class="form-control" value="../photo/<?php echo $_SESSION['user_data']['photo']?>">

@@ -171,34 +171,38 @@ if(isset($_SESSION['user_data'])){
                     <div class="mt-5 text-center"> <button type = "submit" name="submit" class = "btn btn-primary profile-button"> Save Profile</button></div>
               </div>
             </form>
-
-                <?php
-                   if (isset($_POST['submit'])) {
-                    $fname = $_POST['fname'];
-                    $lname = $_POST['lname'];
-                    $address = $_POST['address'];
-                    $mobile_number = $_POST['mobile_number'];
-                    $username = $_POST['username'];
-                
-                    // Check if a new photo was uploaded
-                    if (!empty($_FILES['photo']['tmp_name'])) {
-                        $photo = addslashes(file_get_contents($_FILES['photo']['tmp_name']));
-                        $photo_name = addslashes($_FILES['photo']['name']);
-                        $photo_size = getimagesize($_FILES['photo']['tmp_name']);
-                        move_uploaded_file($_FILES['photo']['tmp_name'], "../photo/" . $_FILES['photo']['name']);
-                    } else {
-                        // If no new photo was uploaded, retain the existing photo
-                        $photo = $_SESSION['user_data']['photo'];
-                        $photo_name = $_SESSION['user_data']['photo'];
-                    }
-                
-                    $query = $conn->query("UPDATE `users` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `username` = '$username', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
-                    
-                    echo '<script>alert("Update Successfully. Click OK to logout and Login again to see changes.");</script>';
-    
-                    // Automatically redirect to the logout page
-                    echo '<script>window.location.href = "../index.php";</script>';                }
-                
+            <?php
+                  if (isset($_POST['submit'])) {
+                      $fname = $_POST['fname'];
+                      $lname = $_POST['lname'];
+                      $address = $_POST['address'];
+                      $mobile_number = $_POST['mobile_number'];
+                      $username = $_POST['username'];
+                  
+                      // Check if the username (presumably an email address) contains the "@" symbol
+                      if (strpos($username, "@") === false) {
+                          $_SESSION['error_message'] = "Invalid email address format!";
+                          echo '<script>window.location.href = "edit_profile.php?id=' . $_SESSION['user_data']['id'] . '&error=Invalid email address format!";</script>';
+                        } else {
+                          // Check if a new photo was uploaded
+                          if (!empty($_FILES['photo']['tmp_name'])) {
+                              $photo = addslashes(file_get_contents($_FILES['photo']['tmp_name']));
+                              $photo_name = addslashes($_FILES['photo']['name']);
+                              $photo_size = getimagesize($_FILES['photo']['tmp_name']);
+                              move_uploaded_file($_FILES['photo']['tmp_name'], "../photo/" . $_FILES['photo']['name']);
+                          } else {
+                              // If no new photo was uploaded, retain the existing photo
+                              $photo = $_SESSION['user_data']['photo'];
+                              $photo_name = $_SESSION['user_data']['photo'];
+                          }
+                          $query = $conn->query("UPDATE `users` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `username` = '$username', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+                  
+                          echo '<script>alert("Update Successfully. Click OK to logout and Login again to see changes.");</script>';
+                  
+                          // Automatically redirect to the logout page
+                          echo '<script>window.location.href = "../index.php";</script>';
+                      }
+                  }
                   ?>
                 </div>
                 </div>

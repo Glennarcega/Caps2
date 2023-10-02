@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2023 at 08:12 AM
+-- Generation Time: Oct 02, 2023 at 03:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -44,8 +44,9 @@ CREATE TABLE `medicines` (
 --
 
 INSERT INTO `medicines` (`productId`, `productName`, `sponsor`, `unit`, `batch`, `quantity1`, `total`, `expDate`, `status`) VALUES
-(55, 'condom', 'shell', 'boxes', 'batch 2', 15, 0, '2003-12-12', 'available'),
-(56, 'lazartan', 'glenn', 'boxes', 'batch 1', 1, 0, '2030-12-12', 'available');
+(55, 'condom', 'shell', 'boxes', 'batch 2', 1, 0, '2003-12-12', 'available'),
+(56, 'lazartan', 'glenn', 'boxes', 'batch 1', 1, 1, '2030-12-12', 'available'),
+(59, 'Pills', 'Kirt', 'tablet', 'Batch 1', 0, 99, '2029-10-24', 'available');
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,9 @@ CREATE TABLE `request_medicine` (
 
 INSERT INTO `request_medicine` (`req_med_Id`, `residentId`, `residentName`, `productId`, `productName`, `unit`, `quantity_req`, `givenDate`) VALUES
 (79, '270', 'glaiza mae arcxega ', '58', 'Mioge', 'boxes', 8, '2023-09-30'),
-(80, '269', 'arcega glenn emerson ', '56', 'lazartan', 'boxes', 1, '2023-09-30');
+(80, '269', 'arcega glenn emerson ', '56', 'lazartan', 'boxes', 1, '2023-09-30'),
+(81, '272', 'Kristy ', '59', 'Pills', 'tablet', 1, '2023-10-01'),
+(82, '269', 'arcega glenn emerson ', '55', 'condom', 'boxes', 1, '2023-10-01');
 
 -- --------------------------------------------------------
 
@@ -94,7 +97,8 @@ CREATE TABLE `residentrecords` (
 --
 
 INSERT INTO `residentrecords` (`residentId`, `productId`, `residentName`, `dateBirth`, `age`, `sex`, `address`, `contactNumber`) VALUES
-(269, 56, 'arcega glenn emerson', '2001-11-17', 21, 'Male', 'IlangIlang', '0912083928');
+(269, 56, 'arcega glenn emerson', '2001-11-17', 21, 'Male', 'IlangIlang', '0912083928'),
+(272, 59, 'Kristy ', '2002-06-05', 42, 'Female', 'BadjCom', '0901278128');
 
 -- --------------------------------------------------------
 
@@ -106,7 +110,8 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(200) NOT NULL,
   `usertype` int(2) NOT NULL,
   `address` varchar(200) NOT NULL,
   `mobile_number` varchar(12) NOT NULL,
@@ -117,14 +122,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `name`, `usertype`, `address`, `mobile_number`, `photo`) VALUES
-(26, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 1, '', '', ''),
-(74, 'glenn', '3c784bff199ef62ecc2f3a988f395c62', 'glenn', 2, '', '', ''),
-(76, 'atupaw', '6548eac8ff3b15d06bf5b2b855860150', 'atupaw', 1, '', '', ''),
-(77, 'a', '0cc175b9c0f1b6a831c399e269772661', 'a', 1, '', '', ''),
-(78, 'tattoo', '306743b0726f2348d0299ae0d88967c0', 'tattoo', 2, '', '', ''),
-(79, 'wdw', 'c20ad4d76fe97759aa27a0c99bff6710', 'dwq', 2, '', '', ''),
-(80, 'glenn@gmail.com', '3c784bff199ef62ecc2f3a988f395c62', 'glenn emerson arcega', 2, 'tabangao ambulong', '09137211467', '');
+INSERT INTO `users` (`id`, `username`, `password`, `fname`, `lname`, `usertype`, `address`, `mobile_number`, `photo`) VALUES
+(26, 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'adminn', 'admin', 1, 'ambulong', '09231232324', 'profile.jpg'),
+(81, 'bhw@gmail.com', '6adcff9bb6c324d349dfd67c82e1e832', 'bhw', 'bhw', 2, 'malitam dos', '0913892839', '');
 
 -- --------------------------------------------------------
 
@@ -188,25 +188,25 @@ ALTER TABLE `usertypes`
 -- AUTO_INCREMENT for table `medicines`
 --
 ALTER TABLE `medicines`
-  MODIFY `productId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `productId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `request_medicine`
 --
 ALTER TABLE `request_medicine`
-  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `residentrecords`
 --
 ALTER TABLE `residentrecords`
-  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
+  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -111,11 +111,11 @@ if(isset($_SESSION['user_data'])){
 	   <br></br>
 	   <div class = "form-group">
 			<label>First Name </label>
-				<input type = "text"  class = "form-control" name = "fname" />
+				<input type = "text"  class = "form-control" name = "fname" required/>
 	  </div>
     <div class = "form-group">
 			<label>Last Name </label>
-				<input type = "text"  class = "form-control" name = "lname" />
+				<input type = "text"  class = "form-control" name = "lname" required/>
 	  </div>
     <div class = "form-group">
 			<label> Address </label>
@@ -164,7 +164,7 @@ if(isset($_SESSION['user_data'])){
         $_SESSION['error_message'] = "Invalid email address format!";
         echo '<script>window.location.href = "add_account.php?error=Invalid email address format!";</script>';
     } else {
-        $select = "SELECT * FROM users WHERE name = '$name'";
+        $select = "SELECT * FROM users WHERE username = '$username'";
         $result = mysqli_query($conn, $select);
 
         if (mysqli_num_rows($result) > 0) {
@@ -175,7 +175,7 @@ if(isset($_SESSION['user_data'])){
                 $_SESSION['error_message'] = "Password not matched!";
                 echo '<script>window.location.href = "add_account.php?error=Password not matched!";</script>';
             } else {
-                $insert = "INSERT INTO users(fname,lname,aadress,mobile_number,username, password,usertype) VALUES('$fname','$lname','$address','$mobile_number','$username','$pass','$usertype')";
+                $insert = "INSERT INTO users(fname,lname,address,mobile_number,username, password,usertype) VALUES('$fname','$lname','$address','$mobile_number','$username','$pass','$usertype')";
                 mysqli_query($conn, $insert);
                 $_SESSION['success'] = "Add Account Successfully";
                 echo '<script>window.location.href = "RegisteredUserAdmin.php?success=Add Account Successfully";</script>';

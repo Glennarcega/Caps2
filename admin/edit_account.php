@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 @include "../connection/connect.php";
 if(isset($_SESSION['user_data'])){
   if($_SESSION['user_data']['usertype']!=1){
@@ -84,7 +83,7 @@ if(isset($_SESSION['user_data'])){
           <div class="profile_details">
           <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
         <div class="profile_content">
-        <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
+        <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
       </div>
       </div>
   <a href="../logout.php" id="log_out">
@@ -106,10 +105,14 @@ if(isset($_SESSION['user_data'])){
 				<br />
 				<div class = "col-md-4">	
 					<form method = "POST" action = "../admin_query/edit_query_account.php?id=<?php echo $fetch['id']?>">
-						<div class = "form-group">
-							<label>Name </label>
-							<input type = "text" class = "form-control" value = "<?php echo $fetch['name']?>" name = "name" />
-						</div>
+            <div class = "form-group">
+            <label>First Name </label>
+            <input type = "text"  class = "form-control" value = "<?php echo $fetch['fname']?>" name = "fname" />
+            </div>
+            <div class = "form-group">
+              <label>Last Name </label>
+                <input type = "text"  class = "form-control" value = "<?php echo $fetch['lname']?>" name = "lname" />
+            </div>
             <div class = "form-group">
             <label> Address </label>
               <input type = "text"  class = "form-control" value = "<?php echo $fetch['address']?>" name = "address" required/>

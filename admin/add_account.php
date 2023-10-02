@@ -83,7 +83,7 @@ if(isset($_SESSION['user_data'])){
         <div class="profile_details">
         <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
           <div class="profile_content">
-          <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
+          <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
            <a href="../logout.php">
             <span class="link_name">Logout</span>
             </a>
@@ -110,8 +110,12 @@ if(isset($_SESSION['user_data'])){
     <?php } ?>
 	   <br></br>
 	   <div class = "form-group">
-			<label>Name </label>
-				<input type = "text"  class = "form-control" name = "name" />
+			<label>First Name </label>
+				<input type = "text"  class = "form-control" name = "fname" />
+	  </div>
+    <div class = "form-group">
+			<label>Last Name </label>
+				<input type = "text"  class = "form-control" name = "lname" />
 	  </div>
     <div class = "form-group">
 			<label> Address </label>
@@ -121,10 +125,10 @@ if(isset($_SESSION['user_data'])){
 			<label>Mobile Number </label>
 				<input type = "text"  class = "form-control" name = "mobile_number" required/>
 	  </div>
-	  <div class = "form-group">
-			<label>Email </label>
-				<input type = "text"  class = "form-control" name = "username" placeholder="@gmail.com" required/>
-	  </div>
+    <div class="form-group">
+        <label>Email </label>
+        <input type="email" class="form-control" name="username" placeholder="example@gmail.com" required/>
+    </div>
 	  <div class = "form-group">
 			<label>Password </label>
 				<input type = "password"  class = "form-control" name = "password"  placeholder="Enter your password" required />
@@ -145,34 +149,41 @@ if(isset($_SESSION['user_data'])){
 			<button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Add Account</button>
 		</div>
   <?php
-  if(isset($_POST['submit'])){
-      $name = mysqli_real_escape_string($conn, $_POST['name']);
-      $username = mysqli_real_escape_string($conn, $_POST['username']);
-      $address = $_POST['address'];
-      $mobile_number = $_POST['mobile_number'];
-      $pass = md5($_POST['password']);
-      $cpass = md5($_POST['cpassword']);
-      $usertype = $_POST['usertype'];
+  if (isset($_POST['submit'])) {
+    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $address = $_POST['address'];
+    $mobile_number = $_POST['mobile_number'];
+    $pass = md5($_POST['password']);
+    $cpass = md5($_POST['cpassword']);
+    $usertype = $_POST['usertype'];
 
-    $select = " SELECT * FROM users WHERE name = '$name'";
-    $result = mysqli_query($conn, $select);
+    // Check if "@" symbol is present in the username (email)
+    if (strpos($username, "@") === false) {
+        $_SESSION['error_message'] = "Invalid email address format!";
+        echo '<script>window.location.href = "add_account.php?error=Invalid email address format!";</script>';
+    } else {
+        $select = "SELECT * FROM users WHERE name = '$name'";
+        $result = mysqli_query($conn, $select);
 
-    if(mysqli_num_rows($result) > 0){
-      $_SESSION['error_message'] = "Username already exists!";
-      echo '<script>window.location.href = "add_account.php?error=Username already exist!";</script>';
-    }else{
+        if (mysqli_num_rows($result) > 0) {
+            $_SESSION['error_message'] = "Username already exists!";
+            echo '<script>window.location.href = "add_account.php?error=Username already exists!";</script>';
+        } else {
+            if ($pass != $cpass) {
+                $_SESSION['error_message'] = "Password not matched!";
+                echo '<script>window.location.href = "add_account.php?error=Password not matched!";</script>';
+            } else {
+                $insert = "INSERT INTO users(fname,lname,aadress,mobile_number,username, password,usertype) VALUES('$fname','$lname','$address','$mobile_number','$username','$pass','$usertype')";
+                mysqli_query($conn, $insert);
+                $_SESSION['success'] = "Add Account Successfully";
+                echo '<script>window.location.href = "RegisteredUserAdmin.php?success=Add Account Successfully";</script>';
+            }
+        }
+    }
+}
 
-    if($pass != $cpass){
-        $_SESSION['error_message'] = "Password not matched!";
-        echo '<script>window.location.href = "add_account.php?error=Password not matched!";</script>';
-      }else{
-         $insert = "INSERT INTO users(name,aadress,mobile_number,username, password,usertype) VALUES('$name','$address','$mobile_number','$username','$pass','$usertype')";
-         mysqli_query($conn, $insert);
-         $_SESSION['success'] = "Add Account Succesfully";
-         echo '<script>window.location.href = "RegisteredUserAdmin.php?success=Add Account Succesfully";</script>';
-      }
-   }
-};
 ?>
 </section>
 </body>

@@ -82,7 +82,7 @@ if(isset($_SESSION['user_data'])){
   <div class="profile_details">
   <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
     <div class="profile_content">
-    <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
+    <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
     </div>
   </div>
   <a href="../logout.php" id="log_out">

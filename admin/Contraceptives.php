@@ -82,7 +82,7 @@ if(isset($_SESSION['user_data'])){
             <div class="profile_details">
             <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
           <div class="profile_content">
-          <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
+          <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
       </div>
     </div>
   <a href="../logout.php" id="log_out">
@@ -93,41 +93,7 @@ if(isset($_SESSION['user_data'])){
   </div>
   <section class="home-section">
   <div class="text">Contraceptives</div>
-	<div class="container-fluid">
-		<div class="panel panel-default">
-			<div class="panel-body">
-        <br>
-        <br>
-        <!--Testing muna-->
-        <?php if (isset($_GET['success'])) { ?>
-					<div class="alert alert-success" role="alert">
-						<?=$_GET['success']?>
-					</div>
-					<?php } ?>
-				
-			    	<table id="table" class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Expiration Date</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-                  </table>
-                </div>
-              </div>
-            </section>
-              <?php require_once '../admin_query/add_query_med.php'?>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br /> <br />
-      </form>
-          </div>
-        </div>
-			 </section>	
+
 
 </body>
 

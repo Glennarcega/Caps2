@@ -84,7 +84,7 @@ if(isset($_SESSION['user_data'])){
           <div class="profile_details">
           <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
         <div class="profile_content">
-        <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
+        <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
         </div>
     </div>
   <a href="../logout.php" id="log_out">
@@ -110,7 +110,6 @@ if(isset($_SESSION['user_data'])){
 							<th>Email</th>
 							<th>Name</th>
 							<th>Role</th>
-							<th>Password</th>
 						</tr>
 					</thead>
 				<tbody>
@@ -120,17 +119,16 @@ if(isset($_SESSION['user_data'])){
       ?>
     <tr>
         <td><?php echo $fetch['username'] ?></td>
-        <td><?php echo $fetch['name'] ?></td>
+        <td><?php echo $fetch['fname'] . ' ' . $fetch['lname']; ?></td>
         <td>
             <?php 
             if ($fetch['usertype'] == 1) {
-                echo 'admin';
+                echo 'Admin';
             } elseif ($fetch['usertype'] == 2) {
                 echo 'BHW';
             }
             ?>
         </td>
-        <td><?php echo md5($fetch['password']) ?></td> 
     </tr>
     <?php
 }

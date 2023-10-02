@@ -90,7 +90,7 @@ if(isset($_SESSION['user_data'])){
           ?>
           <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
         <div class="profile_content">
-        <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>    </div>
+        <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>    </div>
     </div>
     <a href="../logout.php" id="log_out"><i class="bx bx-log-out"></i></a>
        </li>
@@ -124,10 +124,9 @@ if(isset($_SESSION['user_data'])){
           <div class="col-md-5 border-right">
               <div class="p-3 py-5">
                 <div class="row mt-2">
-                  <div class="col-md-6"><label class="labels">Name</label><input type="text" name="name" value = "<?php echo $_SESSION['user_data']['name']; ?>" class="form-control" placeholder="First Name" value=""></div>
-                  <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
+                  <div class="col-md-6"><label class="labels">Name</label><input type="text" name="fname" value = "<?php echo $_SESSION['user_data']['fname']; ?>" class="form-control" placeholder="First Name" value=""></div>
+                  <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value="<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name"></div>
                   <div class="col-md-6"><label class="labels"><br>Email</label><input type="text" name="username" value = "<?php echo $_SESSION['user_data']['username']; ?>" class="form-control" value="" placeholder="Email"></div>
-                  <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
               </div>
                     <div class="row mt-3">
                     <div class="col-md-6"><label class="labels"><br>Mobile Number</label><input type="text" name="mobile_number" value = "<?php echo $_SESSION['user_data']['mobile_number']; ?>" class="form-control" value="" placeholder="Ex.0946"></div>

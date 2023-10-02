@@ -81,5 +81,14 @@
         cursor: pointer;
     }
 </style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if URL contains 'error' parameter and remove it
+    if (window.location.search.includes('error')) {
+        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
+});
+</script>
 </body>
 </html>

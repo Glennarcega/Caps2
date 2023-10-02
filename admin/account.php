@@ -83,7 +83,7 @@ if(isset($_SESSION['user_data'])){
           <div class="profile_details">
           <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
           <div class="profile_content">
-          <div class="name"><?php echo $_SESSION['user_data']['name']; ?></div>
+          <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
         </div>
           </div>
           <a href="../logout.php" id="log_out">
@@ -109,10 +109,9 @@ if(isset($_SESSION['user_data'])){
         <table id = "table" class = "table table-striped">
 					<thead>
 						<tr>
-						<th>Name</th>
-							<th>Username</th>
+					  	<th>Username</th>
+							<th>Name</th>
 							<th>Role</th>
-							<th>Password</th>
               <th><center>Action</center></th>
 						</tr>
 					</thead>
@@ -123,11 +122,10 @@ if(isset($_SESSION['user_data'])){
 						?>
 						<tr>
 						<td><?php echo $fetch['username']?></td>
-							<td><?php echo $fetch['name']?></td>
+            <td><?php echo $fetch['fname'] . ' ' . $fetch['lname']; ?></td>
               <td>
             <?php echo ($fetch['usertype'] == 2) ? 'BHW' : ''; ?>
              </td>
-                <td><?php echo md5($fetch['password'])?></td>
                 <td><center><a class = "btn btn-warning" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a></center></td>
 						</tr>
 						<?php

@@ -126,6 +126,8 @@ if(isset($_SESSION['user_data'])){
                 <div class="col-md-6"><label class="labels">Name</label><label class="form-control"><?php echo $_SESSION['user_data']['fname']; ?></label></div>
                 <div class="col-md-6"><label class="labels">Last Name</label><label class="form-control"><?php echo $_SESSION['user_data']['lname']; ?></label></div>
                 <div class="col-md-6"><label class="labels"><br>Email</label><label class="form-control"><?php echo $_SESSION['user_data']['username']; ?></label></div>
+                <div class="col-md-6"><label class="labels"></label><label class="form-control">  <p> <a href="">Change Password</a></p></label></div>
+
               </div>
               <div class="row mt-3">
                 <div class="col-md-6"><label class="labels"><br>Mobile Number</label><label class="form-control"><?php echo $_SESSION['user_data']['mobile_number']; ?></label></div>

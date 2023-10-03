@@ -19,8 +19,32 @@ if(isset($_SESSION['user_data'])){
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
-  <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+  <script src="vendor/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+  <link rel="stylesheet"  href="vendor/DataTables/jquery.datatables.min.css">	
+  <script src="vendor/DataTables/jquery.dataTables.min.js" type="text/javascript"></script> 
+  <script src="vendor/DataTables/jszip.min.js" type="text/javascript"></script> 
+  <script src="vendor/DataTables/pdfmake.min.js" type="text/javascript"></script> 
+  <script src="vendor/DataTables/vfs_fonts.js" type="text/javascript"></script> 
+  <script src="vendor/DataTables/buttons.html5.min.js" type="text/javascript"></script> 
+  <link rel="stylesheet"  href="vendor/DataTables/buttons.datatables.min.css">    
+  <script src="vendor/DataTables/dataTables.buttons.min.js" type="text/javascript"></script> 
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#request_medicineTable').DataTable({
+                "paging": false,
+                "processing": true,
+                "serverSide": true,
+                'serverMethod': 'post',
+                "ajax": "server.php",
+                dom: 'Bfrtip',
+                buttons: [
+                    {extend: 'copy', attr: {id: 'request_medicineTable'}}, 'csv', 'excel', 'pdf'
+                ]
+            });
+
+        });
+    </script>
 </head>
 <body>
   <div class="sidebar">
@@ -92,47 +116,26 @@ if(isset($_SESSION['user_data'])){
     </ul>
   </div>
   <section class="home-section">
-    <div class="text">Records</div>
-    <div class = "container-fluid">
-		<div class = "panel panel-default">
-			<div class = "panel-body">
-				<div class = "alert alert-info">Records</div>
-				
-				<br />
-				<?php if (isset($_GET['success'])) { ?>
-					<div class="alert alert-success" role="alert">
-						<?=$_GET['success']?>
-					</div>
-					<?php } ?>
-				<br />
-				<table id = "table" class = "table table-bordered">
-					<thead>
-						<tr>
-							<th>Resident Name</th>
-							<th>Date of Birth</th>
-							<th>Age</th>
-							<th>Sex</th>
-							<th>Address</th>
-							<th>Contact Number</th>
-						</tr>
-					</thead>
-					<tbody>
-					<?php
-						$query = $conn->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
-						while($fetch = $query->fetch_array()){
-					?>	
-						<tr>
-							<td><?php echo $fetch['residentName']?></td>
-							<td><?php echo $fetch['dateBirth']?></td>
-							<td><?php echo $fetch['age']?></td>
-							<td><?php echo $fetch['sex']?></td>
-							<td><?php echo $fetch['address']?></td>
-							<td><?php echo $fetch['contactNumber']?></td>
-						</tr>
-					<?php
-						}
-					?>	
-					</tbody>
+  <div class="text">Medicine</div>
+  <div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-body">
+      <div class = "alert alert-info">Medicine Records</div>
+				<table id="table" class="table table-bordered">
+        <table name="medicinesTable" id="request_medicineTable" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                   
+                        <th>Sponsor</th>
+                        <th>Product Name</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Expiration Date</th>
+    
+              </tr>
+
+            </thead>
+      </table>
 				</table>
 			</div>
 		</div>
@@ -142,23 +145,6 @@ if(isset($_SESSION['user_data'])){
 
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
-  <script type = "text/javascript">
-	function confirmationDelete(anchor){
-		var conf = confirm("Are you sure you want to delete this record?");
-		if(conf){
-			window.location = anchor.attr("href");
-		}
-	} 
-</script>
-<script src = "../js/jquery.js"></script>
-<script src = "../js/jquery.dataTables.js"></script>
-<script src = "../js/dataTables.bootstrap.js"></script>	
-<script type = "text/javascript">
-	$(document).ready(function(){
-		$("#table").DataTable();
-	});
-</script>
-
 </html>
 <?php
 }

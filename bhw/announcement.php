@@ -6,6 +6,7 @@ if(isset($_SESSION['user_data'])){
 		header("Location:.././admin/Dashboard.php");
 	}
 
+
 	$data=array();
 	$qr=mysqli_query($conn,"select * from users where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
@@ -15,13 +16,15 @@ if(isset($_SESSION['user_data'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Responsive Sidebar</title>
+  <title>Barangay Health Worker</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+  
   <script src="vendor/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
     <link rel="stylesheet"  href="vendor/DataTables/jquery.datatables.min.css">	
     <script src="vendor/DataTables/jquery.dataTables.min.js" type="text/javascript"></script> 
@@ -33,7 +36,7 @@ if(isset($_SESSION['user_data'])){
     <script src="vendor/DataTables/dataTables.buttons.min.js" type="text/javascript"></script> 
     <script>
     $(document).ready(function () {
-        var table = $('#request_medicine').DataTable({
+        var table = $('#medicinesTable').DataTable({
             "paging": false,
             "processing": true,
             "serverSide": true,
@@ -42,14 +45,13 @@ if(isset($_SESSION['user_data'])){
             "searching": false, // Disable searching
             dom: 'Bfrtip',
             buttons: [
-                {extend: 'copy', attr: {id: 'request_medicine'}}, 'csv', 'excel', 'pdf'
+                {extend: 'copy', attr: {id: 'medicines'}}, 'csv', 'excel', 'pdf'
             ]
         });
     });
 </script>
-  
-</head>
 
+</head>
 <body>
   <div class="sidebar">
     <div class="logo_details">
@@ -65,7 +67,7 @@ if(isset($_SESSION['user_data'])){
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="../logout.php">
+        <a href="#">
           <i class="bx bx-chat"></i>
           <span class="link_name">Anouncements</span>
         </a>
@@ -92,7 +94,14 @@ if(isset($_SESSION['user_data'])){
         </a>
         <span class="tooltip">Medicine</span>
       </li>
-        
+      <li>
+        <a href="contraceptives.php">
+            <i class="bx bx-capsule"></i>
+            <span class="link_name">Contraceptives</span>
+        </a>
+        <span class="tooltip">Contraceptives</span>
+        </li>
+      <li>
       <li>
       <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
           <i class="bx bx-cog"></i>
@@ -101,101 +110,59 @@ if(isset($_SESSION['user_data'])){
         <span class="tooltip">Settings</span>
       </li>
       <li class="profile">
-  <div class="profile_details">
-  <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
-    <div class="profile_content">
-    <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
-    </div>
-  </div>
-  <a href="../logout.php" id="log_out">
-    <i class="bx bx-log-out"></i>
-  </a>
-  </li>
-    </ul>
-  </div>
-  <section class="home-section">
-    <div class="text">Reports</div>
-				<div class="container-fluid">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<div class="alert alert-info">Reports</div>
-      <div>
-        <?php
-            if (isset($_GET['productId'])) {
-              $desiredProductId = $_GET['productId'];
-              
-              // Replace 'medicine' with your actual table name and 'resident_id' with the actual column name
-              $query = $conn->query("SELECT * FROM medicines WHERE productId = '$desiredProductId'");
-              while ($fetch = $query->fetch_assoc()) {
-                  
-                // Display the records within the table rows
-            
-                echo '<h2>' . $fetch['sponsor'] . '</h2>';
-
-            }
-          } else {
-              echo '<tr><td colspan="3">product ID not provided in the URL.</td></tr>';
-          }
-        ?>
+      <div class="profile_details">
+        <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
+         <div class="profile_content">
+         <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
+        </div>
       </div>
-    <br />
-          <table id="table" class="table table-striped">
+      <a href="../logout.php" id="log_out">
+        <i class="bx bx-log-out"></i>
+      </a>
+      </li>
+        </ul>
+      </div>
+      <section class="home-section">
+        <div class="text">Records</div>
+          <div class = "container-fluid">
+            <div class = "panel panel-default">
+              <div class = "panel-body">
+                <div class = "alert alert-info">Records</div>
+                <br />
+                <div class="container">
+        <table name="medicinesTable" id="medicinesTable" class="display" cellspacing="0" width="100%">
             <thead>
-              <tr>
-                <th>Resindent Name</th>
-                <th>Product Name</th>
-                <th>Unit</th>
-                <th>Quantity</th>
-                <th>Given Date</th>
+                <tr>
+                   
+                        <th>Sponsor</th>
+                        <th>Product Name</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Expiration Date</th>
+    
               </tr>
+
             </thead>
           <tbody>
-      <?php  
-          if (isset($_GET['productId'])) {
-              $desiredProductId = $_GET['productId'];
-              
-              // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-              $query = $conn->query("SELECT * FROM request_medicine WHERE productId = '$desiredProductId'");
+                </tr>
+            </thead>
+        </table>
 
-              if ($query->num_rows > 0) {
-                  while ($fetch = $query->fetch_assoc()) {
-                    
-                              
-                      echo '<tr>';
-                      echo '<td>' . $fetch['residentName'] . '</td>';
-                      echo '<td>' . $fetch['productName'] . '</td>';
-                      echo '<td>' . $fetch['unit'] . '</td>';
-                      echo '<td>' . $fetch['quantity_req'] . '</td>';
-                      echo '<td>' . $fetch['givenDate'] . '</td>';
-                      echo '</tr>';
-                   
-                  }
-              } else {
-                  echo '<tr><td colspan="3">No records found!.</td></tr>';
-              }
-          } else {
-              echo '<tr><td colspan="3">Product ID not provided in the URL.</td></tr>';
-          }
-          ?>
+    </div>
+                			
+        	
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
-</section>
+		</div>
+	</div>         
+  </section>
 </body>
+  <!-- Scripts -->
+  <script src="../cssmainmenu/script.js"></script>
 
-<script src="../cssmainmenu/script.js"></script>
-  <script type = "text/javascript">
-	function confirmationDelete(anchor){
-		var conf = confirm("Are you sure you want to delete this record?");
-		if(conf){
-			window.location = anchor.attr("href");
-		}
-	} 
-</script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function() {
     // Check if URL contains 'success' parameter and remove it
     if (window.location.search.includes('success')) {
         var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
@@ -203,7 +170,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-
 </html>
 <?php
 }

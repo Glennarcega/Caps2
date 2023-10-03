@@ -82,7 +82,7 @@ GROUP BY residentrecords.address");
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="#">
+        <a href="announcement.php">
           <i class="bx bx-chat"></i>
           <span class="link_name">Anouncements</span>
         </a>

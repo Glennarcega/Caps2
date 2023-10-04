@@ -26,6 +26,11 @@ if(isset($_SESSION['user_data'])){
  <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 
 </head>
+<style>
+  .cp-div{
+  margin-top: 5px;
+}
+</style>
 <body>
   <div class="sidebar">
     <div class="logo_details">

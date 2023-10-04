@@ -5,7 +5,6 @@ if(isset($_SESSION['user_data'])){
 	if($_SESSION['user_data']['usertype']!=1){
     header("Location:.././bhw/homemedd.php");
 	}
-
 	$data=array();
 	$qr=mysqli_query($conn,"select * from users where usertype='2'");
 	while($row=mysqli_fetch_assoc($qr)){
@@ -80,19 +79,19 @@ if(isset($_SESSION['user_data'])){
         <span class="tooltip">Settings</span>
       </li>
       <li class="profile">
-        <div class="profile_details">
-        <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
-          <div class="profile_content">
-          <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
-          <a href="../logout.php">
-            <span class="link_name">Logout</span>
-            </a>
-          </div>
-        </div>
-        <i class="bx bx-log-out" id="log_out"></i>
-      </li>
-    </ul>
-  </div>
+      <div class="profile_details">
+        <?php
+            $query = $conn->query("SELECT * FROM `users`") or die(mysqli_error());
+            $fetch = $query->fetch_array();
+          ?>
+          <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
+        <div class="profile_content">
+        <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>    </div>
+    </div>
+    <a href="../logout.php" id="log_out"><i class="bx bx-log-out"></i></a>
+       </li>
+      </ul>
+    </div>
   <section class="home-section">
     <div class="text">Account</div>
     <div class = "container-fluid">

@@ -29,6 +29,8 @@ if (isset($_POST['add_rec'])) {
                     $insertQuery = $conn->query("INSERT INTO request_medicine (residentId,residentName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$residentName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate')");
 
                     if ($insertQuery) {
+                        echo '<script>alert("Request Medicine Successful. Click OK ");</script>';
+
                         echo '<script>window.location.href = "resident_med.php?residentId=' . $residentId . '";</script>';
                         exit();
                     } else {

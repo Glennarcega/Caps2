@@ -134,72 +134,75 @@ if(isset($_SESSION['user_data'])){
        </li>
       </ul>
     </div>
-    <section class="home-section"> 
-          <br></br>
-          <div class="container-fluid">
-            <div class="panel panel-default">
-            <div class="panel-body">
-          <div class="text">User Profile</div>
-            <?php if (isset($_GET['success'])) { ?>
-              <div class="alert alert-success" role="alert">
-                  <?=$_GET['success']?>
-          </div>
-          <?php } ?>
-        <div class="container rounded bg-white mt-5 mb-5">
-          <div class="row">
-              <div class="col-md-3 border-right">
-              <div class="row mt-3">
-          <div class="col-md-12">
-          <form method = "POST" enctype="multipart/form-data">
-              <label class="labels"><br>Change Avatar</label>
-              <div class = "well" style = "height:200px; width:265px;">
-                  <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>" height = "160" width = "225"/>
-                  </div>
-          </div>  
-        </div>           
-      </div>
-      <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-            <div class="row mt-2">
-                <div class="col-md-6"><label class="labels">Name</label><label class="form-control"><?php echo $_SESSION['user_data']['fname']; ?></label></div>
-                <div class="col-md-6"><label class="labels">Last Name</label><label class="form-control"><?php echo $_SESSION['user_data']['lname']; ?></label></div>
-                <div class="col-md-6"><label class="labels">Email</label><label class="form-control"><?php echo $_SESSION['user_data']['username']; ?> </label></div>
-                <div class="col-md-6 cp-div"><label class="labels"></label><label class="form-control">  <p> <a href="edit_password.php?id=<?php echo $_SESSION['user_data']['id']; ?>">Change Password</a></p></label></div>
+  <section class="home-section">
+    <div class="text">Account</div>
+    <div class = "container-fluid">
+		<div class = "panel panel-default">
+			<div class = "panel-body">
+				<div class = "alert alert-info">Account / Create Account</div>
+				<div class = "col-md-4">	
+    <div class="form-container">
+    <form action="" method="POST">
+    <?php if (isset($_SESSION['error_message'])) { ?>
+      <div class="alert alert-danger" role="alert">
+        <?php echo $_SESSION['error_message']; ?>
+    </div>
+    <?php unset($_SESSION['error_message']); ?>
+    <?php } ?>
+	   <br></br>
 
-              </div>
-              <div class="row mt-3">
-                <div class="col-md-6"><label class="labels"><br>Mobile Number</label><label class="form-control"><?php echo $_SESSION['user_data']['mobile_number']; ?></label></div>
-                <div class="col-md-12"><label class="labels"><br>Address</label><label class="form-control"><?php echo $_SESSION['user_data']['address']; ?></label></div>
-              </div>
-              <br>
-              <div class="mt-5 text-center">
-              <div class="mt-5 text-center">
-              <a href="edit_profile.php?id=<?php echo $_SESSION['user_data']['id']; ?>" class="btn btn-primary profile-button">Edit Profile</a>
-                </div>
-              </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        </div>
-      </div>
-  </section>
+    <div class="form-group">
+        <label>Email </label>
+        <input type="email" class="form-control" name="username"value="<?php echo $_SESSION['user_data']['username']; ?>" placeholder="example@gmail.com" required/>
+    </div>
+	  <div class = "form-group">
+			<label>Password </label>
+				<input type = "password"  class = "form-control" name = "password"  placeholder="Enter your password" required />
+	  </div>	
+	  <div class = "form-group">
+			<label>Confirm Password </label>
+				<input type = "password"  class = "form-control" name = "cpassword"  placeholder="Confirm your password" required/>
+	  </div>	
+      <?php
+	require_once '../connection/connect.php';
+	if(ISSET($_POST['submit'])){
+		$username = $_POST['username'];
+        $pass = md5($_POST['password']);
+        $cpass = md5($_POST['cpassword']);
+       
+        if ($pass != $cpass) {
+            echo '<script>alert("Password not matched!. Please Click OK to change.");</script>';
+            echo '<script>window.history.pushState({}, "", "edit_password.php?id=' . $_REQUEST['id'] . '");</script>';
+        
+        
+                } else {
+                  
+                    $query = $conn->query("UPDATE `users` SET  `username` = '$username', `password` = '$pass' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+                    echo '<script>alert("Update Password Successfully. Click OK to logout and Login again to see changes.");</script>';
+                      
+                    // Automatically redirect to the logout page
+                    echo '<script>window.location.href = "../index.php";</script>';
+                }
+            }
+		?>
+
+</div>
+ <br></br>
+	  <div class = "form-group">
+			<button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Update</button>
+		</div>
+  
+</section>
 </body>
+<!-- Scripts -->
 <script src="../cssmainmenu/script.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Check if URL contains 'success' parameter and remove it
-    if (window.location.search.includes('success')) {
-        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
-        window.history.replaceState({ path: newUrl }, '', newUrl);
-    }
-});
-</script>
+  <script src = "../js/jquery.js"></script>
+<script src = "../js/bootstrap.js"></script>
+
 </html>
+
 <?php
 }
 else{
 	header("Location:.././index.php?error=UnAuthorized Access");
 }
-           
-  

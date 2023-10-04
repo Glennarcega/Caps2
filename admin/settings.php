@@ -122,11 +122,11 @@ if(isset($_SESSION['user_data'])){
       </div>
       <div class="col-md-5 border-right">
             <div class="p-3 py-5">
-              <div class="row mt-2">
+            <div class="row mt-2">
                 <div class="col-md-6"><label class="labels">Name</label><label class="form-control"><?php echo $_SESSION['user_data']['fname']; ?></label></div>
                 <div class="col-md-6"><label class="labels">Last Name</label><label class="form-control"><?php echo $_SESSION['user_data']['lname']; ?></label></div>
-                <div class="col-md-6"><label class="labels"><br>Email</label><label class="form-control"><?php echo $_SESSION['user_data']['username']; ?></label></div>
-                <div class="col-md-6"><label class="labels"></label><label class="form-control">  <p> <a href="">Change Password</a></p></label></div>
+                <div class="col-md-6"><label class="labels">Email</label><label class="form-control"><?php echo $_SESSION['user_data']['username']; ?> </label></div>
+                <div class="col-md-6 cp-div"><label class="labels"></label><label class="form-control">  <p> <a href="edit_password.php?id=<?php echo $_SESSION['user_data']['id']; ?>">Change Password</a></p></label></div>
 
               </div>
               <div class="row mt-3">

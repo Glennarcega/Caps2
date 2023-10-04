@@ -129,7 +129,7 @@ if(isset($_SESSION['user_data'])){
               <div class = "panel-body">
                 <div class = "alert alert-info">Records</div>
                 <br />
-                <div class="container">
+                
         <table name="medicinesTable" id="medicinesTable" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>
@@ -154,7 +154,7 @@ if(isset($_SESSION['user_data'])){
             </tbody>
           </table>
         </div>
-		</div>
+	
 	</div>         
   </section>
 </body>

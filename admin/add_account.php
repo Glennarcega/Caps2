@@ -24,75 +24,13 @@ if(isset($_SESSION['user_data'])){
  <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 </head>
 <body>
-  <div class="sidebar">
-    <div class="logo_details">
-      <div class="logo_name">Admin</div>
-      <i class="bx bx-menu" id="btn"></i>
-    </div>
-    <ul class="nav-list">
-      <li>
-        <a href="Dashboard.php">
-          <i class="bx bx-grid-alt"></i>
-          <span class="link_name">Dashboard</span>
-        </a>
-        <span class="tooltip">Dashboard</span>
-      </li>
-      <li>
-        <a href="medicinerecords.php">
-          <i class="bx bx-plus-medical"></i>
-          <span class="link_name">Medicine Records</span>
-        </a>
-        <span class="tooltip">Medicine</span>
-      </li>
-      <li>
-        <a href="Contraceptives.php">
-          <i class="bx bx-capsule"></i>
-          <span class="link_name">Contraceptive Records</span>
-        </a>
-        <span class="tooltip">Contraceptives</span>
-      </li>
-      <li>
-        <a href="records.php">
-          <i class="bx bx-folder"></i>
-          <span class="link_name">Resident Records</span>
-        </a>
-        <span class="tooltip">Records</span>
-      </li>
-      <li>
-          <a href="RegisteredUserAdmin.php">
-            <i class="bx bx-user-pin"></i>
-            <span class="link_name">Registered Accounts</span>
-          </a>
-          <span class="tooltip">Registered Accounts</span>
-      </li>
-        <li>
-          <a href="account.php">
-            <i class="bx bx-user-pin"></i>
-            <span class="link_name">Account</span>
-          </a>
-          <span class="tooltip">Account</span>
-        </li>
-        <li>
-        <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
-          <i class="bx bx-cog"></i>
-          <span class="link_name">Settings</span>
-        </a>
-        <span class="tooltip">Settings</span>
-      </li>
-      <li class="profile">
-        <div class="profile_details">
-        <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
-          <div class="profile_content">
-          <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
-           <a href="../logout.php">
-            <span class="link_name">Logout</span>
-            </a>
-          </div>
-        </div>
-        <i class="bx bx-log-out" id="log_out"></i>
-      </li>
-    </ul>
-  </div>
+<?php try {
+    include_once('side_menu.php');
+} catch (Exception $e) {
+    // Handle the error, e.g., log it or display a user-friendly message.
+    echo "Error: " . $e->getMessage();
+}
+ ?>
   <section class="home-section">
     <div class="text">Account</div>
     <div class = "container-fluid">

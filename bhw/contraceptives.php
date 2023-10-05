@@ -5,8 +5,6 @@ if(isset($_SESSION['user_data'])){
 	if($_SESSION['user_data']['usertype']!=2){
 		header("Location:.././admin/Dashboard.php");
 	}
-
-
 	$data=array();
 	$qr=mysqli_query($conn,"select * from users where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
@@ -26,446 +24,226 @@ if(isset($_SESSION['user_data'])){
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 </head>
 <body>
-<?php try {
-    include_once('side_menu.php');
-} catch (Exception $e) {
-    // Handle the error, e.g., log it or display a user-friendly message.
-    echo "Error: " . $e->getMessage();
-}
- ?>
+  <div class="sidebar">
+    <div class="logo_details">
+      <div class="logo_name">Barangay Health Worker</div>
+      <i class="bx bx-menu" id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="homemedd.php">
+          <i class="bx bx-grid-alt"></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-chat"></i>
+          <span class="link_name">Anouncements</span>
+        </a>
+        <span class="tooltip">Anouncements</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-pie-chart-alt-2"></i>
+          <span class="link_name">Analytics</span>
+        </a>
+        <span class="tooltip">Analytics</span>
+      </li>
+      <li>
+        <a href="userRecMed.php">
+          <i class="bx bx-folder"></i>
+          <span class="link_name">Records</span>
+        </a>
+        <span class="tooltip">Records</span>
+      </li>
+      <li>
+        <a href="medicinee.php">
+          <i class="bx bx-cart-alt"></i>
+          <span class="link_name">Medicine</span>
+        </a>
+        <span class="tooltip">Medicine</span>
+      </li>
+      <li>
+        <a href="contraceptives.php">
+            <i class="bx bx-capsule"></i>
+            <span class="link_name">Contraceptives</span>
+        </a>
+        <span class="tooltip">Contraceptives</span>
+        </li>
+      <li>
+        <a href="settings.php">
+          <i class="bx bx-cog"></i>
+          <span class="link_name">Settings</span>
+        </a>
+        <span class="tooltip">Settings</span>
+      </li>
+      <li class="profile">
+  <div class="profile_details">
+  <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>
+    <div class="profile_content">
+    <div class="name"><?php echo $_SESSION['user_data']['fname']; ?></div>
+    </div>
+  </div>
+  <a href="../logout.php" id="log_out">
+    <i class="bx bx-log-out"></i>
+  </a>
+  </li>
+    </ul>
+  </div>
   <section class="home-section"> 
-  <div class="text">Medicine</div>
+  <div class="text">Contraceptives</div>
     <div class="container-fluid">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="alert alert-info">Contraceptives</div>
           <div class="col-md-8 col-md-offset-3">
-            <form id="msform">
-                <!-- progressbar -->
-                <ul id="progressbar" style="color: black">
-                    <li class="active">Client Details</li>
-                    <li>Medical History</li>
-                    <li>Obstetrical History and Risk for Sexually Transmitted Infections</li>
-                </ul>
-                <!-- fieldsets -->
-                <fieldset class= "form-step">
-                    <h1 class="fs-title">Family Planning (FP)</h1>
-                    <h2 class="fs-subtitle">Form 1</h2>
-                    <h3 class="fs-subtitle" style=""><b>Client Name</b></h3>
-                    <h4 class="form-check-label" for="clientlname">Last Name</h4>
-                    <input type="text" name="clientlname" placeholder="e.g. Dela Cruz"/>
-                    <h4 class="form-check-label" for="clientfname">First Name</h4>
-                    <input type="text" name="clientfname" placeholder="e.g. Juan"/>
-                    <h4 class="form-check-label" for="clientmname">Middle Initial</h4>
-                    <input type="text" name="clientmname" placeholder="e.g. A."/>
-                    <h4 class="form-check-label" for="bdateclient">Birthdate</h4>
-                    <input type="date" name="bdateclient" placeholder="Date of Birth"/>
-                    <h4 class="form-check-label" for="edadclient">Age</h4>
-                    <input type="number" name="edadclient" placeholder="Enter your Age"/>
-                        <div class="container.mt-4">
-                    <h4 class="form-check-label" for="educ">Educational Attainment</h4>
-                            <select class="custom-select custom-dropdown">
-                                <option selected>Highest Attainment:</option>
-                                <option value="eugrad">Some Elementary</option>
-                                <option value="egrad">Elementary Graduate</option>
-                                <option value="hsugrad">Some High School</option>
-                                <option value="hsgrad">High School Graduate</option>
-                                <option value="shsugrad">Some Senior High School</option>
-                                <option value="shsgrad">Senior High School Graduate</option>
-                                <option value="scollege">Some College Years</option>
-                                <option value="bachelors">Bachelor's Degree</option>
-                                <option value="masters">Master's Degree</option>
-                                <option value="doctorate">Doctorate</option>
-                                <option value="voc">Vocational/TVET</option>
-                            </select>
-                        </div><!--Dito ako natapos-->
-                        <h4 class="form-check-label" for="clientjob">Occupation</h4>
-                    <input type="text" name="clientjob" placeholder="Enter your job"/>
-                    <div>&nbsp;</div>
-                    <h3 class="fs-subtitle"><b>Address</b></h3>
-                    <input type="number" name="num" placeholder="No."/>
-                    <input type="text" name="street" placeholder="Street"/>
-                    <input type="text" name="brgy" placeholder="Barangay"/>
-                    <input type="text" name="muni" placeholder="Municipality"/>
-                    <input type="text" name="prov" placeholder="Province"/>
-                    <input type="text" name="phone" placeholder="Contact Number"/>
-                    <input type="text" name="cstatus" placeholder="Civil Status"/>
-                    <input type="text" name="religion" placeholder="Religion"/>
-                    <div>&nbsp;</div>
-                    <h3 class="fs-subtitle"><b>Spouse Name</b></h3>
-                    <h4 class="form-check-label" for="spouselname">Last Name</h4>
-                    <input type="text" name="spouselname" placeholder="e.g. Dela Cruz"/>
-                    <h4 class="form-check-label" for="spousefname">First Name</h4>
-                    <input type="text" name="spousefname" placeholder="e.g. Juan"/>
-                    <h4 class="form-check-label" for="spousemname">Middle Initial</h4>
-                    <input type="text" name="spousemname" placeholder="e.g. A."/>
-                    <h4 class="form-check-label" for="bdatespouse">Date of Birth</h4>
-                    <input type="date" name="bdatespouse" placeholder="Date of Birth"/>
-                    <h4 class="form-check-label" for="edadclient">Age</h4>
-                    <input type="number" name="edadspouse" placeholder="Enter your age"/>
-                    <h4 class="form-check-label" for="spousejob">Occupation</h4>
-                    <input type="text" name="spousejob" placeholder="Enter your job"/>
-                    <h4 class="form-check-label" for="numofkids">No. of Living Children</h4>
-                    <input type="number" name="numofkids" placeholder="Enter the number of children"/>
-                    <h4 class="form-check-label" for="plankids">Plan to have more children?</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                            <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="no" value="option2">
-                            <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="income">Monthly Income</h4>
-                        <input type="currency" name="income" placeholder="e.g. PHP 5000"/>
-                        <div>&nbsp;</div>
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
-                    <fieldset class ="form-step">
-                    <h2 class="fs-title">Medical History</h2>
-                    <h3 class="fs-subtitle">Does the client have any of the following?</h3>
-                    <h4 class="form-check-label" for="plankids">Severe headaches / migraine</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="heart">History of stroke / heart attack / hypertension</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="nontrauma">Non-traumatic hematoma / frequent bruising or gum bleeding</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="breast">Current or history of breast cancer / breast mass</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="chestpain">Severe chest pain</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="cough">Cough for more than 14 days</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="jaun">Jaundice</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="bleeding">Unexplained vaginal bleeding</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="discharge">Abnormal vaginal discharge</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-
-                    <h4 class="form-check-label" for="anti">Intake of phenobartibal (anti-seizure) / rifampicin (anti-TB)</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="smoker">Is the client smoker?</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="disability">With disability?</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="ifyes">( If yes, PLEASE specify... )</h4>
-                    <input type="text" name="deaf" placeholder="e.g. Deaf"/>
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button" value="Next"/>
-                </fieldset>
-                <fieldset class ="form-step">
-                    <h2 class="fs-title">Obstetrical History and Risk for Sexually Transmitted Infections</h2>
-                    <h3 class="fs-subtitle">Obstetrical History</h3>
-                    <h4 class="form-check-label" for="numpreg">Number of Pregnancy</h4>
-                    <input type="number" name="g" placeholder="(G) Gravidity"/>
-                    <input type="number" name="p" placeholder="(P) Pre-term"/>
-                    <div>&nbsp;</div>
-                    <div>&nbsp;</div>
-                    <input type="number" name="fterm" placeholder="Full Term"/>
-                    <input type="number" name="pre" placeholder="Premature"/>
-                    <input type="number" name="ab" placeholder="Abortion"/>
-                    <input type="number" name="lchild" placeholder="Living Children"/>
-                    <div>&nbsp;</div>
-                    <div>&nbsp;</div>
-                    <h4 class="form-check-label" for="lastdeliver">Date of last delivery</h4>
-                    <input type="date" name="lastdeliver" placeholder="Date"/>
-                    <h4 class="form-check-label" for="typeofdeliver">Type of last delivery</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="vaginal" value="option1">
-                        <label class="form-check-label" for="vaginal">Vaginal</label>
-                        </div>
-                        <div class="col-md-offset-3 first">
-                        <input class="form-check-input" type="checkbox" id="cesarean" value="option2">
-                        <label class="form-check-label" for="cesarean">Cesarean Section</label>
-                        </div>
-                    </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-12">
-                                <h4 class="form-check-label" for="mensflow">Menstrual Flow</h4>
-                            </div>
-                            <div class="col-md-8 col-sm-12">
-                                <div class="form-check-form-check-inline">
-                                    <div class="forms1">
-                                        <input class="form-check-input" type="checkbox" id="scanty" value="option1">
-                                        <label class="form-check-label" for="scanty">Scanty (1-2 pads a day)</label>
-                                    </div>
-                                    <div class="forms1">
-                                        <input class="form-check-input" type="checkbox" id="moderate" value="option2">
-                                        <label class="form-check-label" for="moderate">Moderate (3-5 pads a day)</label>
-                                    </div>
-                                    <div class="forms1">
-                                        <input class="form-check-input" type="checkbox" id="heavy" value="option2">
-                                        <label class="form-check-label" for="heavy">Heavy (More than 5 pads a day)</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    <!-- <h4 class="form-check-label" for="mensflow">Menstrual Flow</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-offset-5 first">
-                        <input class="form-check-input" type="checkbox" id="scanty" value="option1">
-                        <label class="form-check-label" for="scanty">Scanty (1-2 pads a day)</label>
-                        </div>
-                        <div class="col-md-offset-5 second">
-                        <input class="form-check-input" type="checkbox" id="moderate" value="option2">
-                        <label class="form-check-label" for="moderate">Moderate (3-5 pads a day)</label>
-                        </div>
-                        <div class="col-md-offset-5 third">
-                        <input class="form-check-input" type="checkbox" id="heavy" value="option2">
-                        <label class="form-check-label" for="heavy">Heavy (More thn 5 pads a day)</label>
-                        </div>
-                    </div> -->
-                    
-                    <h4 class="form-check-label" for="lastmens">Date of last menstrual period</h4>
-                    <div class="forms">
-                    <input type="date" name="lastmens" placeholder="Date"/>
-                    </div>
-                    <h4 class="form-check-label" for="prevmens">Previous menstrual period</h4>
-                    <div class="forms">
-                    <input type="date" name="prevmens" placeholder="Date"/>
-                    </div>
-
-                    <!-- <div class="form-check-form-check-inline">
-                    <div class="col-md-offset-5 first">
-                    <input class="form-check-input" type="checkbox" id="dys" value="option1">
-                    <label class="form-check-label" for="dys">Dysmenorrhea</label>
- 
-                    <input class="form-check-input" type="checkbox" id="hm" value="option2">
-                    <label class="form-check-label" for="hm">Hydatidiform Mole (within the last 12 months)</label>
-
-                    <input class="form-check-input" type="checkbox" id="hep" value="option2">
-                    <label class="form-check-label" for="hep">History of Ectopic Pregnancy</label>
-
-                    </div>
-                    </div> -->
-                    <!-- <div class="form-check-label">
-                        <div class="row">
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="dys" value="option1">
-                              <label class="form-check-label" for="dys">Dysmenorrhea</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="hm" value="option2">
-                              <label class="form-check-label" for="hm">Hydatidiform Mole (within the last 12 months)</label>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="hep" value="option3">
-                              <label class="form-check-label" for="hep">History of Ectopic Pregnancy</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div> -->
-                      <div class="row">
-                        <div class="col-md-8 col-sm-12">
-                            <div class="form-check-form-check-inline">
-                                <div class="forms1">
-                                    <input class="form-check-input" type="checkbox" id="dys" value="option1">
-                                    <label class="form-check-label" for="dys">Dysmenorrhea</label>
-                                </div>
-                                <div class="forms1">
-                                    <input class="form-check-input" type="checkbox" id="hm" value="option2">
-                                    <label class="form-check-label" for="hm">Hydatidiform Mole (within the last 12 months)</label>
-                                </div>
-                                <div class="forms1">
-                                    <input class="form-check-input" type="checkbox" id="hep" value="option2">
-                                    <label class="form-check-label" for="hep">History of Ectopic Pregnancy</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>&nbsp;</div>
-                    <div>&nbsp;</div>
-                    
-                    <h3 class="fs-subtitle">Risk for Sexually Transmitted Infections</h3>
-                    <h4 class="form-check-label" for="abno">Abnormal discharge from the genital area</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                        <label class="form-check-label" for="yes">Yes</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="no" value="option2">
-                        <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="ifyes">If "YES", please indicate it from:</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="vag" value="option1">
-                        <label class="form-check-label" for="vag">Vagina</label>
-                        </div>
-                        <div class="col-md-5 first">
-                        <input class="form-check-input" type="checkbox" id="pen" value="option2">
-                        <label class="form-check-label" for="pen">Penis</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="sores">Sores or ulcers in the genital area</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                            <label class="form-check-label" for="yes">Yes</label>
-                            </div>
-                            <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="no" value="option2">
-                            <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="pain">Pain or burning sensation on genital area</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                            <label class="form-check-label" for="yes">Yes</label>
-                            </div>
-                            <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="no" value="option2">
-                            <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="history1">History of treatment for sexually transmitted infections</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                            <label class="form-check-label" for="yes">Yes</label>
-                            </div>
-                            <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="no" value="option2">
-                            <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <h4 class="form-check-label" for="hiv">HIV / AIDS / Pelvic Inflammatory Disease</h4>
-                    <div class="form-check-form-check-inline">
-                        <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="yes" value="option1">
-                            <label class="form-check-label" for="yes">Yes</label>
-                            </div>
-                            <div class="col-md-5 first">
-                            <input class="form-check-input" type="checkbox" id="no" value="option2">
-                            <label class="form-check-label" for="no">No</label>
-                        </div>
-                    </div>
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="submit" name="submit" class="submit action-button" value="Submit"/>
-                </fieldset>
-          </form>
+          <div class="container">
+    <form class="fpform" id="form1">
+      <h1><b>Family Planning Form</b></h1><br>
+      <h4><b>Personal Information</b></h4>
+      <label class="lbl">Last Name</label>
+      <input type="text" id="last_name" placeholder="e.g. Suayan">
+      <label class="lbl">First Name</label>
+      <input type="text" id="first_name" placeholder="e.g. Juan">
+      <label class="lbl">Middle Initial</label>
+      <input type="text" id="middle_initial" placeholder="e.g. S.">
+      <label class="lbl">Birthdate</label>
+      <input type="date" id="birthdate">
+      <label class="lbl">Age</label>
+      <input type="number" id="age" placeholder="Enter your age">
+      <label class="lbl">Sex</label>
+      <select id="sex">
+        <option value="" disabled selected>Sex</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <label class="lbl">Educational Attainment</label>
+      <select id="educational_attainment">
+        <option value="" disabled selected>Educational Attainment</option>
+        <option value="elementary">Elementary</option>
+        <option value="high_school">High School</option>
+        <option value="college">College</option>
+        <option value="graduate_school">Graduate School</option>
+      </select>
+      <input type="button" value="Next >" class="nextbtn" onclick="nextForm()">
+    </form>
+    <form class="fpform hidden" id="form2"><!--Pangalawang Form -->
+      <h1><b>Family Planning Form</b></h1><br>
+      <h4><b>Personal Information</b></h4>
+      <label class ="lbl">House Number</label>
+      <input type="number" id="house_number" placeholder="e.g 123">
+      <label class="lbl">Street</label>
+      <select id="street">
+        <option value="" disabled selected>Street</option>
+        <option value="IlangIlang">Ilang Ilang</option>
+        <option value="Camia">Camia</option>
+        <option value="Rosal">Rosal</option>
+        <option value="Sampaguita">Sampaguita</option>
+        <option value="Malitam Dos">Malitam Dos</option>
+        <option value="Malitam Tres">Malitam Tres</option>
+        <option value="BadjCom">Badjao Community</option>
+      </select>
+      <label class="lbl">Contact Number</label>
+      <input type="number" id="contact_number" placeholder="e.g 0946">
+      <label class="lbl">Civil Status</label>
+      <select id="civil_status">
+        <option value="" disabled selected>Civil Status</option>
+        <option value="single">Single</option>
+        <option value="married">Married</option>
+        <option value="widowed">Widowed</option>
+        <option value="divorced">Divorced</option>
+      </select>
+      <label class="lbl">Select Religion:</label>
+    <select id="religion">
+    <option value="" disabled selected>Religion</option>
+      <option value="Roman Catholicism">Roman Catholicism</option>
+      <option value="Islam">Islam</option>
+      <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
+      <option value="Members Church of God International (MCGI)">Members Church of God International (MCGI)</option>
+      <option value="Protestantism">Protestantism</option>
+      <option value="Buddhism">Buddhism</option>
+      <option value="Hinduism">Hinduism</option>
+      <option value="Indigenous Beliefs">Indigenous Beliefs</option>
+      <option value="Sikhism">Sikhism</option>
+      <option value="Bahá'í Faith">Bahá'í Faith</option>
+      <option value="Judaism">Judaism</option>
+      <option value="Other Minority Religions">Other Minority Religions</option>
+</select>
+    <label class="lbl">Others: please specify</label>
+      <input type="text" id="others" placeholder="please specify your religion">
+      <input type="button" value="< Previous" class="prevbtn" onclick="prevForm()">
+      <input type="button" value="Next >" class="nextbtn" onclick="nextForm()">
+    </form>
+    <form class="fpform hidden" id="form3"><!--Pangatlong Form -->
+      <h1><b>Family Planning Form</b></h1><br>
+      <h4><b>Medical Information </b></h4>
+      <label class="lblcheck">Severe headaches/ Migraine</label>
+        <div class="checkbox-container">
+        <label class="checkcontainer">Yes
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <label class="checkcontainer">No
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+</label><br>
+<label class="lblcheck">Severe Chest Pain</label>
+        <div class="checkbox-container">
+        <label class="checkcontainer">Yes
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <label class="checkcontainer">No
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label><br>
+    <label class="lblcheck">Unexplained Vaginal Bleeding</label>
+        <div class="checkbox-container">
+        <label class="checkcontainer">Yes
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <label class="checkcontainer">No
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label><br>
+    <label class="lblcheck">Abnormal Vaginal Discharge</label>
+        <div class="checkbox-container">
+        <label class="checkcontainer">Yes
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <label class="checkcontainer">No
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label><br>
+    <label class="lblcheck">Menstrual Flow</label>
+    <div class="checkbox-container">
+        <label class="checkcontainer">Scanty(1-2 pads/day)
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <label class="checkcontainer">Moderate(3-5 pads/day)
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+    <label class="checkcontainer">Heavy(5 pads a day)
+      <input type="checkbox">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+    <div class="date-container">
+        <label for="menstruationDate">Last Menstruation:</label>
+        <input type="date" id="menstruationDate" name="menstruationDate">
+    </div>
+      <input type="button" value="< Previous" class="prevbtn" onclick="prevForm()">
+      <input type="button" value="Submit" class="submitbtn" onclick="nextForm()">
+    </form>
+  </div>
     </tbody>
 </table>
             </tbody>
@@ -480,12 +258,6 @@ if(isset($_SESSION['user_data'])){
 
   <script src="../cssmainmenu/script.js"></script>
   <script type = "text/javascript">
-	function confirmationDelete(anchor){
-		var conf = confirm("Are you sure you want to delete this record?");
-		if(conf){
-			window.location = anchor.attr("href");
-		}
-	} 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -495,52 +267,34 @@ if(isset($_SESSION['user_data'])){
 <script src = "../js/jquery.dataTables.js"></script>
 <script src = "../js/dataTables.bootstrap.js"></script>	
 <script type = "text/javascript">
-	$(document).ready(function(){
-		$("#table").DataTable();
-	});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Check if URL contains 'success' parameter and remove it
-    if (window.location.search.includes('success')) {
-        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
-        window.history.replaceState({ path: newUrl }, '', newUrl);
-    }
-});
-//////////
-document.addEventListener("DOMContentLoaded", function() {
-  const formSteps = document.querySelectorAll('.form-step');
-  let currentStep = 0;
+	 let currentFormIndex = 0;
+const forms = document.querySelectorAll('.fpform');
 
-  function showStep(stepIndex) {
-    formSteps.forEach((step, index) => {
-      if (index === stepIndex) {
-        step.style.display = 'block';
-      } else {
-        step.style.display = 'none';
-      }
-    });
+function nextForm() {
+  if (currentFormIndex < forms.length - 1) {
+    forms[currentFormIndex].classList.add('hidden');
+    currentFormIndex++;
+    forms[currentFormIndex].classList.remove('hidden');
   }
+}
 
-  // Initialize the form to show the first step and hide the others
-  showStep(currentStep);
+function prevForm() {
+  if (currentFormIndex > 0) {
+    forms[currentFormIndex].classList.add('hidden');
+    currentFormIndex--;
+    forms[currentFormIndex].classList.remove('hidden');
+  }
+};
 
-  // Handle "Next" button click
-  document.querySelector('.next').addEventListener('click', function() {
-    if (currentStep < formSteps.length - 1) {
-      currentStep++;
-      showStep(currentStep);
-    }
-  });
-
-  // Handle "Previous" button click
-  document.querySelector('.previous').addEventListener('click', function() {
-    if (currentStep > 0) {
-      currentStep--;
-      showStep(currentStep);
-    }
-  });
-});
+function toggleCheckbox(event) {
+            var checkbox = event.target;
+            var customCheckbox = checkbox.parentNode.querySelector(".custom-checkbox");
+            if (checkbox.checked) {
+                customCheckbox.classList.add("checked");
+            } else {
+                customCheckbox.classList.remove("checked");
+            }
+        }
 </script>
 </body>
 </html>

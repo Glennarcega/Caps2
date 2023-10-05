@@ -1,9 +1,7 @@
-
 #menu{
 	list-style-type:none;
 	font-size:18px;
 }
-
 #menu li{
 	display:inline;
 }
@@ -14,250 +12,141 @@
 .sponsor{
 	text-transform: capitalize;
 }
-#msform {
-    text-align: center;
-    position: relative;
-    margin-top: 30px;
-}
+.container {
+	width: 80%;
+	box-shadow: -5px 9px 79px -21px rgba(0,0,0,0.75);
+-webkit-box-shadow: -5px 9px 79px -21px rgba(0,0,0,0.75);
+-moz-box-shadow: -5px 9px 79px -21px rgba(0,0,0,0.75);
+border-radius: 20px;
+transition: opacity 0.5s ease-in-out;
+  }
+ 
+  .hidden {
+	opacity: 0;
+	display: none;
+  }
+  
 
+h1{
+	font-size: 20px;
+	text-align: center;
+  }
+h4{
+	font-size: 15px;
+	text-align: center;
+}/*Contraceptive Form*/
+.fpform{ 
+	transition: opacity 4.0s ease-in-out;
+	padding: 20px;
+  }
+ .lbl{
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-right: 10px;
+ }
 
-#msform fieldset {
-    background: white;
-    border: 0 none;
-    border-radius: 20px;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-    padding: 20px 30px;
-    box-sizing: border-box;
-    width: 80%;
-    margin: 0 10%;
-
-    /*stacking fieldsets above each other*/
-    position: relative;
+  input, select {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 10px;
+  }
+  .italic-placeholder::placeholder {
+	font-style: italic;
+  }
+ .nextbtn{
+	color: black;
+	background-color: aquamarine;
+	width: auto;
+	max-width: 100px;
+	padding: 10px;
+	margin-left: auto;
+	display: block;
+ }
+ .submitbtn{
+	color: black;
+	background-color: aquamarine;
+	width: auto;
+	max-width: 100px;
+	padding: 10px;
+	margin-left: auto;
+	display: block;
+ }
+.prevbtn{
+	color: black;
+	background-color: aquamarine;
+	width: auto;
+	max-width: 100px;
+	padding: 10px;
+	margin-top: 10px; 
+	margin-right: 90px; 
+	display: block;
 }
-
-/*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
-    display: none;
-}
-
-/*inputs*/
-#msform input, #msform textarea {
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 20px;
-}
-
-#msform input:focus, #msform textarea:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #78C1F3;
-    outline-width: 0;
-    -o-transition: All 0.5s ease-in;
-    -webkit-transition: All 0.5s ease-in;
-    -moz-transition: All 0.5s ease-in;
-    transition: All 0.5s ease-in;
-}
-
-/*buttons*/
-#msform .action-button {
-    width: 100px;
-    background: #78C1F3;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 25px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px;
-}
-
-#msform .action-button:hover, #msform .action-button:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #78C1F3;
-}
-
-#msform .action-button-previous {
-    width: 100px;
-    background: #C5C5F1;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 25px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px;
-}
-
-#msform .action-button-previous:hover, #msform .action-button-previous:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
-}
-.fs-title {
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #2C3E50;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-
-.fs-subtitle {
-    font-weight: normal;
-    font-size: 20px;
-    color: #666;
-    margin-bottom: 20px;
-}
-/*progressbar*/
-#progressbar {
-    margin-bottom: 30px;
-    overflow: hidden;
-    /*CSS counters to number the steps*/
-    counter-reset: step;
-}
-
-#progressbar li {
-    list-style-type: none;
-    color: black;
-    text-transform: uppercase;
-    font-size: 15px;
-    width: 33.33%;
-    float: left;
-    position: relative;
-    letter-spacing: 1px;
-}
-.list{
-    list-style-type: none;
-    color: white;
-    text-transform: uppercase;
-    font-size: 9px;
-    width: 33.33%;
-    float: left;
-    position: relative;
-    letter-spacing: 1px;
-}
-
-#progressbar li:before {
-    content: counter(step);
-    counter-increment: step;
-    width: 24px;
-    height: 24px;
-    line-height: 26px;
-    display: block;
-    font-size: 12px;
-    color: #333;
-    background: white;
-    border-radius: 25px;
-    margin: 0 auto 10px auto;
-}
-
-/*progressbar connectors*/
-#progressbar li:after {
-    content: '';
-    width: 100%;
-    height: 2px;
-    background: white;
-    position: absolute;
-    left: -50%;
-    top: 9px;
-    z-index: -1; /*put it behind the numbers*/
-}
-
-#progressbar li:first-child:after {
-    /*connector not needed before the first step*/
-    content: none;
-}
-
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-#progressbar li.active:before, #progressbar li.active:after {
-    background: #9BE8D8;
-    color: white;
-}
-
-
-/* Not relevant to this form */
-.dme_link {
-    margin-top: 30px;
-    text-align: center;
-}
-.dme_link a {
-    background: #FFF;
-    font-weight: bold;
-    color: #ee0979;
-    border: 0 none;
-    border-radius: 25px;
-    cursor: pointer;
-    padding: 5px 25px;
-    font-size: 12px;
-}
-
-.dme_link a:hover, .dme_link a:focus {
-    background: #C5C5F1;
-    text-decoration: none;
-}
-
-.form-check-form-check-inline {
-    display: inline-flex;
-    align-items: center;
-    margin-right: auto;
-    text-align: right;
-}
-.form-check-label {
-    text-align: left;
-    margin-bottom: 1%;
-}
-.custom-dropdown {
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 20px;
-}
-.form-check-form-check-inline {
-    padding: 9px;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    margin-bottom: 10px;
-    margin-right: 0px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 20px;
-}
-.checkbox-container {
-    display: flex;
-    align-items: center;
-}
-.forms {
-    padding: 9px;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    margin-bottom: 10px;
-    /* margin-right: 0px; */
-    width: 100%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 10px;
-
-}
-/* Style the checkboxes to appear on the left side of the labels */
-.forms1 {
-    display: flex;
-    align-items: center;
-}
-
-.forms1 input[type="checkbox"] {
-    margin-right: 10px; /* Add some spacing between the checkbox and label */
-}
-
+/*Checkbox Properties*/
+.checkcontainer {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  }
+  .lblcheck{
+	font-size: 15px;
+  }
+  
+  /*Naghahide ng pinili kapag tinapat ang cursor sa box*/
+  .checkcontainer input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+  }
+  
+  /* Check icon */
+  .checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+  }
+  
+  /* Kulay na nakikita pag dipa nakakapag select */
+  .checkcontainer:hover input ~ .checkmark {
+	background-color: #ccc;
+  }
+  
+  /* background kapag nakapag select na */
+  .checkcontainer input:checked ~ .checkmark {
+	background-color: red;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+  }
+  
+  /* Para lumabas yung check icon */
+  .checkcontainer input:checked ~ .checkmark:after {
+	display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checkcontainer .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+  }

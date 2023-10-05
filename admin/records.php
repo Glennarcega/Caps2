@@ -19,15 +19,34 @@ if(isset($_SESSION['user_data'])){
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
+  <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+  
   <script src="vendor/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
-  <link rel="stylesheet"  href="vendor/DataTables/jquery.datatables.min.css">	
-  <script src="vendor/DataTables/jquery.dataTables.min.js" type="text/javascript"></script> 
-  <script src="vendor/DataTables/jszip.min.js" type="text/javascript"></script> 
-  <script src="vendor/DataTables/pdfmake.min.js" type="text/javascript"></script> 
-  <script src="vendor/DataTables/vfs_fonts.js" type="text/javascript"></script> 
-  <script src="vendor/DataTables/buttons.html5.min.js" type="text/javascript"></script> 
-  <link rel="stylesheet"  href="vendor/DataTables/buttons.datatables.min.css">    
-  <script src="vendor/DataTables/dataTables.buttons.min.js" type="text/javascript"></script> 
+    <link rel="stylesheet"  href="vendor/DataTables/jquery.datatables.min.css">	
+    <script src="vendor/DataTables/jquery.dataTables.min.js" type="text/javascript"></script> 
+    <script src="vendor/DataTables/jszip.min.js" type="text/javascript"></script> 
+    <script src="vendor/DataTables/pdfmake.min.js" type="text/javascript"></script> 
+    <script src="vendor/DataTables/vfs_fonts.js" type="text/javascript"></script> 
+    <script src="vendor/DataTables/buttons.html5.min.js" type="text/javascript"></script> 
+    <link rel="stylesheet"  href="vendor/DataTables/buttons.datatables.min.css">    
+    <script src="vendor/DataTables/dataTables.buttons.min.js" type="text/javascript"></script> 
+    <script>
+    $(document).ready(function () {
+        var table = $('#medicinesTable').DataTable({
+            "paging": false,
+            "processing": true,
+            "serverSide": true,
+            'serverMethod': 'post',
+            "ajax": "server.php",
+            "searching": false, // Disable searching
+            dom: 'Bfrtip',
+            buttons: [
+                {extend: 'copy', attr: {id: 'medicines'}}, 'csv', 'excel', 'pdf'
+            ]
+        });
+    });
+</script>
 
     <script>
         $(document).ready(function () {
@@ -60,8 +79,7 @@ if(isset($_SESSION['user_data'])){
 		<div class="panel panel-default">
 			<div class="panel-body">
       <div class = "alert alert-info">Medicine Records</div>
-				<table id="table" class="table table-bordered">
-        <table name="medicinesTable" id="request_medicineTable" class="display" cellspacing="0" width="100%">
+      <table name="medicinesTable" id="medicinesTable" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>
                    
@@ -74,11 +92,19 @@ if(isset($_SESSION['user_data'])){
               </tr>
 
             </thead>
-      </table>
-				</table>
-			</div>
-		</div>
-	</div>
+          <tbody>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+                			
+        	
+            </tbody>
+          </table>
+        </div>
+	
+	</div>       
   </section>
 </body>
 

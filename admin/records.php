@@ -78,7 +78,7 @@ if(isset($_SESSION['user_data'])){
   <div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-body">
-      <div class = "alert alert-info">Medicine Records</div>
+                <br>
       <table name="medicinesTable" id="medicinesTable" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>

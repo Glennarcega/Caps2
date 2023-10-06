@@ -114,7 +114,7 @@ if(isset($_SESSION['user_data'])){
                 } else {
                   
                     $query = $conn->query("UPDATE `users` SET  `username` = '$username', `password` = '$pass' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
-                    echo '<script>alert("Update Password Successfully. Click OK to logout and Login again to see changes.");</script>';
+                    echo '<script>alert("Update Password Successfully. Click OK to logout.");</script>';
                       
                     // Automatically redirect to the logout page
                     echo '<script>window.location.href = "../index.php";</script>';

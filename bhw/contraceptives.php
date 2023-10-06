@@ -51,7 +51,7 @@ if(isset($_SESSION['user_data'])){
       <label class="lbl">Birthdate</label>
       <input type="date" id="birthdate">
       <label class="lbl">Age</label>
-      <input type="number" id="age" placeholder="Enter your age">
+      <input type="number" id="age" placeholder="Enter your age" maxlength="3">
       <label class="lbl">Sex</label>
       <select id="sex">
         <option value="" disabled selected>Sex</option>
@@ -95,20 +95,13 @@ if(isset($_SESSION['user_data'])){
         <option value="widowed">Widowed</option>
         <option value="divorced">Divorced</option>
       </select>
-      <label class="lbl">Select Religion:</label>
+      <label class="lbl">Religion</label>
     <select id="religion">
-    <option value="" disabled selected>Religion</option>
-      <option value="Roman Catholicism">Roman Catholicism</option>
+    <option value="" disabled selected>Select your Religion</option>
+      <option value="Roman Catholicism">Roman Catholic</option>
       <option value="Islam">Islam</option>
       <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
       <option value="Members Church of God International (MCGI)">Members Church of God International (MCGI)</option>
-      <option value="Protestantism">Protestantism</option>
-      <option value="Buddhism">Buddhism</option>
-      <option value="Hinduism">Hinduism</option>
-      <option value="Indigenous Beliefs">Indigenous Beliefs</option>
-      <option value="Sikhism">Sikhism</option>
-      <option value="Bahá'í Faith">Bahá'í Faith</option>
-      <option value="Judaism">Judaism</option>
       <option value="Other Minority Religions">Other Minority Religions</option>
 </select>
     <label class="lbl">Others: please specify</label>
@@ -119,61 +112,68 @@ if(isset($_SESSION['user_data'])){
     <form class="fpform hidden" id="form3"><!--Pangatlong Form -->
       <h1><b>Family Planning Form</b></h1><br>
       <h4><b>Medical Information </b></h4>
-      <label class="lblcheck">Severe headaches/ Migraine</label>
-        <div class="checkbox-container">
-        <label class="checkcontainer">Yes
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
-    <label class="checkcontainer">No
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
-</label><br>
+      <label class="lblcheck">Severe headaches/Migraine</label>
+<div class="checkbox-container">
+  <label class="checkcontainer">Yes
+    <input type="checkbox" name="headaches">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkcontainer">No
+    <input type="checkbox" name="headaches">
+    <span class="checkmark"></span>
+  </label>
+</div>
+<br>
 <label class="lblcheck">Severe Chest Pain</label>
-        <div class="checkbox-container">
-        <label class="checkcontainer">Yes
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
-    <label class="checkcontainer">No
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label><br>
-    <label class="lblcheck">Unexplained Vaginal Bleeding</label>
-        <div class="checkbox-container">
-        <label class="checkcontainer">Yes
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
-    <label class="checkcontainer">No
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label><br>
-    <label class="lblcheck">Abnormal Vaginal Discharge</label>
-        <div class="checkbox-container">
-        <label class="checkcontainer">Yes
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
-    <label class="checkcontainer">No
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label><br>
-    <label class="lblcheck">Menstrual Flow</label>
-    <div class="checkbox-container">
-        <label class="checkcontainer">Scanty(1-2 pads/day)
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
-    <label class="checkcontainer">Moderate(3-5 pads/day)
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
-    <label class="checkcontainer">Heavy(5 pads a day)
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>
+<div class="checkbox-container">
+  <label class="checkcontainer">Yes
+    <input type="checkbox" name="chestPain">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkcontainer">No
+    <input type="checkbox" name="chestPain">
+    <span class="checkmark"></span>
+  </label>
+</div>
+<br>
+<label class="lblcheck">Unexplained Vaginal Bleeding</label>
+<div class="checkbox-container">
+  <label class="checkcontainer">Yes
+    <input type="checkbox" name="vaginalBleeding">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkcontainer">No
+    <input type="checkbox" name="vaginalBleeding">
+    <span class="checkmark"></span>
+  </label>
+</div>
+<br>
+<label class="lblcheck">Abnormal Vaginal Discharge</label>
+<div class="checkbox-container">
+  <label class="checkcontainer">Yes
+    <input type="checkbox" name="vaginalDischarge">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkcontainer">No
+    <input type="checkbox" name="vaginalDischarge">
+    <span class="checkmark"></span>
+  </label>
+</div>
+<br>
+<label class="lblcheck">Menstrual Flow</label>
+<div class="checkbox-container">
+  <label class="checkcontainer">Scanty (1-2 pads/day)
+    <input type="checkbox" name="menstrualFlow">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkcontainer">Moderate (3-5 pads/day)
+    <input type="checkbox" name="menstrualFlow">
+    <span class="checkmark"></span>
+  </label>
+  <label class="checkcontainer">Heavy (5 pads a day)
+    <input type="checkbox" name="menstrualFlow">
+    <span class="checkmark"></span>
+  </label>
   </div>
     <div class="date-container">
         <label for="menstruationDate">Last Menstruation:</label>
@@ -206,7 +206,8 @@ if(isset($_SESSION['user_data'])){
 <script src = "../js/jquery.dataTables.js"></script>
 <script src = "../js/dataTables.bootstrap.js"></script>	
 <script type = "text/javascript">
-	 let currentFormIndex = 0;
+  /*Button na next at prev*/ 
+	let currentFormIndex = 0;
 const forms = document.querySelectorAll('.fpform');
 
 function nextForm() {
@@ -224,16 +225,26 @@ function prevForm() {
     forms[currentFormIndex].classList.remove('hidden');
   }
 };
+/*Checkboxes*/
 
-function toggleCheckbox(event) {
-            var checkbox = event.target;
-            var customCheckbox = checkbox.parentNode.querySelector(".custom-checkbox");
-            if (checkbox.checked) {
-                customCheckbox.classList.add("checked");
-            } else {
-                customCheckbox.classList.remove("checked");
-            }
-        }
+const checkboxes = document.querySelectorAll("input[type='checkbox']");
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) {
+        uncheckOtherCheckboxes(checkbox);
+      }
+    });
+  });
+
+  function uncheckOtherCheckboxes(checkbox) {
+    const groupName = checkbox.getAttribute("name");
+    const groupCheckboxes = document.querySelectorAll(`input[type='checkbox'][name='${groupName}']`);
+    groupCheckboxes.forEach(cb => {
+      if (cb !== checkbox) {
+        cb.checked = false;
+      }
+    });
+  }
 </script>
 </body>
 </html>

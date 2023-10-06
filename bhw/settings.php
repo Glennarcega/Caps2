@@ -22,47 +22,7 @@ if(isset($_SESSION['user_data'])){
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 </head>
 <style>
-.form-control:focus {
-    box-shadow: none;
-    border-color: #04c487;
-}
 
-/* Simplify button styles */
-.profile-button {
-    background: #04c487;
-    border: none;
-    color: #fff;
-}
-
-/* Change button background on hover and focus */
-.profile-button:hover,
-.profile-button:focus {
-    background: #04c487;
-}
-
-/* Adjust hover effect for back link */
-.back:hover {
-    color: #04c487;
-    cursor: pointer;
-}
-
-/* Increase font size for labels on smaller screens */
-@media (max-width: 768px) {
-    .labels {
-        font-size: 14px;
-    }
-}
-
-/* Adjust hover effect for add-experience button */
-.add-experience:hover {
-    background: #04c487;
-    color: #fff;
-    cursor: pointer;
-    border: solid 1px #04c487;
-}
-.cp-div{
-  margin-top: 5px;
-}
 </style>
 <body>
 <?php try {
@@ -83,13 +43,13 @@ if(isset($_SESSION['user_data'])){
                   <?=$_GET['success']?>
           </div>
           <?php } ?>
-        <div class="container rounded bg-white mt-5 mb-5">
+        <div class="containers rounded bg-white mt-5 mb-5">
           <div class="row">
               <div class="col-md-3 border-right">
               <div class="row mt-3">
           <div class="col-md-12">
           <form method = "POST" enctype="multipart/form-data">
-              <label class="labels"><br>Change Avatar</label>
+              <label class="changeprofile"><br>Change Profile</label>
               <div class = "well" style = "height:200px; width:265px;">
                   <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>" height = "160" width = "225"/>
                   </div>

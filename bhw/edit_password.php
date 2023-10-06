@@ -60,9 +60,7 @@ if(isset($_SESSION['user_data'])){
     cursor: pointer;
     border: solid 1px #04c487;
 }
-.cp-div{
-  margin-top: 5px;
-}
+
 </style>
 <body>
 <?php try {

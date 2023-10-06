@@ -56,13 +56,13 @@ if(isset($_SESSION['user_data'])){
                   <?=$_GET['success']?>
           </div>
           <?php } ?>
-        <div class="container rounded bg-white mt-5 mb-5">
+        <div class="containers rounded bg-white mt-5 mb-5">
           <div class="row">
               <div class="col-md-3 border-right">
               <div class="row mt-3">
           <div class="col-md-12">
           <form method = "POST" enctype="multipart/form-data">
-              <label class="labels"><br>Change Avatar</label>
+              <label class="labels"><br>Change Profile</label>
               <div class = "well" style = "height:200px; width:265px;">
                   <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>" height = "160" width = "225"/>
                   </div>

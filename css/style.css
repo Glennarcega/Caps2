@@ -1,3 +1,46 @@
+/*Settings.php*/
+.form-control:focus {
+    box-shadow: none;
+    border-color: #04c487;
+}
+
+/* Simplify button styles */
+.profile-button {
+    background: #04c487;
+    border: none;
+    color: #fff;
+}
+
+/* Change button background on hover and focus */
+.profile-button:hover,
+.profile-button:focus {
+    background: #04c487;
+}
+
+/* Adjust hover effect for back link */
+.back:hover {
+    color: #04c487;
+    cursor: pointer;
+}
+
+/* Increase font size for labels on smaller screens */
+@media (max-width: 768px) {
+    .labels {
+        font-size: 14px;
+    }
+}
+
+/* Adjust hover effect for add-experience button */
+.add-experience:hover {
+    background: #04c487;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #04c487;
+}
+.cp-div{
+  margin-top: 5px;
+}
+/*-------*/
 #menu{
 	list-style-type:none;
 	font-size:18px;
@@ -12,6 +55,7 @@
 .sponsor{
 	text-transform: capitalize;
 }
+/*Contraceptive Form*/
 .container {
 	width: 80%;
 	box-shadow: -5px 9px 79px -21px rgba(0,0,0,0.75);
@@ -34,7 +78,7 @@ h1{
 h4{
 	font-size: 15px;
 	text-align: center;
-}/*Contraceptive Form*/
+}
 .fpform{ 
 	transition: opacity 4.0s ease-in-out;
 	padding: 20px;
@@ -149,3 +193,4 @@ h4{
 	  -ms-transform: rotate(45deg);
 	  transform: rotate(45deg);
 	}
+/*--------*/

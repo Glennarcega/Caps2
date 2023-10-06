@@ -42,7 +42,7 @@
         <li>
           <a href="account.php">
             <i class="bx bx-user-pin"></i>
-            <span class="link_name">Accout</span>
+            <span class="link_name">Account</span>
           </a>
           <span class="tooltip">Account</span>
         </li>

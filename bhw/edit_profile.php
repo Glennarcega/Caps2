@@ -128,7 +128,11 @@ if(isset($_SESSION['user_data'])){
                               $photo_name = addslashes($_FILES['photo']['name']);
                               $photo_size = getimagesize($_FILES['photo']['tmp_name']);
                               move_uploaded_file($_FILES['photo']['tmp_name'], "../photo/" . $_FILES['photo']['name']);
-                          } 
+                          }  else {
+                            // If no new photo was uploaded, retain the existing photo
+                            $photo = $_SESSION['user_data']['photo'];
+                            $photo_name = $_SESSION['user_data']['photo'];
+                        }
                           $query = $conn->query("UPDATE `users` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `username` = '$username', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
 
                                         // Update session variables with new data
@@ -140,7 +144,7 @@ if(isset($_SESSION['user_data'])){
                                         $_SESSION['user_data']['photo'] = $photo_name;
                           $query = $conn->query("UPDATE `users` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `username` = '$username', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
                           echo '<script>alert("Update Successfully.");</script>';
-                          echo '<script>window.location.href = "settings.php";</script>';
+                          echo '<script>window.location.href = "settings.php?id=' . $_REQUEST['id'] . '";</script>';
                       }
                   }
                   ?>

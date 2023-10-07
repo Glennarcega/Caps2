@@ -50,6 +50,7 @@ if(isset($_SESSION['user_data'])){
               <table id = "table" class = "table table-striped">
                 <thead>
                   <tr>
+                    <!-- Checkbox-->
                     <th>Resident Name</th>
                     <th>Date of Birth</th>
                     <th>Age</th>

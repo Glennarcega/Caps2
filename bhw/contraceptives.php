@@ -43,39 +43,39 @@ if(isset($_SESSION['user_data'])){
       <h1><b>Family Planning Form</b></h1><br>
       <h4><b>Personal Information</b></h4>
       <label class="lbl">Last Name</label>
-      <input type="text" id="last_name" placeholder="e.g. Suayan">
+      <input type="text" class ="textbox" id="last_name" placeholder="e.g. Dela Cruz">
       <label class="lbl">First Name</label>
-      <input type="text" id="first_name" placeholder="e.g. Juan">
+      <input type="text" class ="textbox" id="first_name" placeholder="e.g. Juan">
       <label class="lbl">Middle Initial</label>
-      <input type="text" id="middle_initial" placeholder="e.g. S.">
+      <input type="text" class ="textbox" id="middle_initial" placeholder="e.g. S.">
       <label class="lbl">Birthdate</label>
-      <input type="date" id="birthdate">
+      <input type="date" class ="textbox" id="birthdate">
       <label class="lbl">Age</label>
-      <input type="number" id="age" placeholder="Enter your age" maxlength="3">
-      <label class="lbl">Sex</label>
-      <select id="sex">
-        <option value="" disabled selected>Sex</option>
+      <input type="number" class ="textbox" id="age" placeholder="Enter your age" maxlength="3">
+      <label class="lbl">Gender</label>
+      <select id="sex" class ="textbox" >
+        <option value="" disabled selected>Select Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
         <option value="other">Other</option>
       </select>
       <label class="lbl">Educational Attainment</label>
-      <select id="educational_attainment">
+      <select id="educational_attainment" class ="textbox" >
         <option value="" disabled selected>Educational Attainment</option>
         <option value="elementary">Elementary</option>
         <option value="high_school">High School</option>
         <option value="college">College</option>
         <option value="graduate_school">Graduate School</option>
       </select>
-      <input type="button" value="Next >" class="nextbtn" onclick="nextForm()">
+      <div class="mt-5 text-right"> <button type = "button" name="button" class = "btn btn-primary profile-button" onclick="nextForm()"> Next ></button></div>    
     </form>
     <form class="fpform hidden" id="form2"><!--Pangalawang Form -->
       <h1><b>Family Planning Form</b></h1><br>
       <h4><b>Personal Information</b></h4>
       <label class ="lbl">House Number</label>
-      <input type="number" id="house_number" placeholder="e.g 123">
+      <input type="number" class ="textbox" id="house_number" placeholder="e.g 123">
       <label class="lbl">Street</label>
-      <select id="street">
+      <select id="street" class ="textbox" >
         <option value="" disabled selected>Street</option>
         <option value="IlangIlang">Ilang Ilang</option>
         <option value="Camia">Camia</option>
@@ -86,9 +86,9 @@ if(isset($_SESSION['user_data'])){
         <option value="BadjCom">Badjao Community</option>
       </select>
       <label class="lbl">Contact Number</label>
-      <input type="number" id="contact_number" placeholder="e.g 0946">
+      <input type="number" class ="textbox" id="contact_number" placeholder="e.g 0946">
       <label class="lbl">Civil Status</label>
-      <select id="civil_status">
+      <select id="civil_status" class ="textbox">
         <option value="" disabled selected>Civil Status</option>
         <option value="single">Single</option>
         <option value="married">Married</option>
@@ -96,7 +96,7 @@ if(isset($_SESSION['user_data'])){
         <option value="divorced">Divorced</option>
       </select>
       <label class="lbl">Religion</label>
-    <select id="religion">
+    <select id="religion" class ="textbox">
     <option value="" disabled selected>Select your Religion</option>
       <option value="Roman Catholicism">Roman Catholic</option>
       <option value="Islam">Islam</option>
@@ -105,9 +105,16 @@ if(isset($_SESSION['user_data'])){
       <option value="Other Minority Religions">Other Minority Religions</option>
 </select>
     <label class="lbl">Others: please specify</label>
-      <input type="text" id="others" placeholder="please specify your religion">
-      <input type="button" value="< Previous" class="prevbtn" onclick="prevForm()">
-      <input type="button" value="Next >" class="nextbtn" onclick="nextForm()">
+      <input type="text" class ="textbox" id="others" placeholder="please specify your religion">
+      <div>
+  <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
+    <button type="button" name="button" class="btn btn-primary profile-button" onclick="prevForm()"> &lt; Previous</button>
+  </div>    
+  <div class="mt-5 text-right" style="display: inline-block; float:right;">
+    <button type="button" name="button" class="btn btn-primary profile-button" onclick="nextForm()">Next &gt;</button>
+  </div>    
+</div>
+
     </form>
     <form class="fpform hidden" id="form3"><!--Pangatlong Form -->
       <h1><b>Family Planning Form</b></h1><br>
@@ -165,11 +172,11 @@ if(isset($_SESSION['user_data'])){
   <label class="checkcontainer">Scanty (1-2 pads/day)
     <input type="checkbox" name="menstrualFlow">
     <span class="checkmark"></span>
-  </label>
+  </label><br>
   <label class="checkcontainer">Moderate (3-5 pads/day)
     <input type="checkbox" name="menstrualFlow">
     <span class="checkmark"></span>
-  </label>
+  </label><br>
   <label class="checkcontainer">Heavy (5 pads a day)
     <input type="checkbox" name="menstrualFlow">
     <span class="checkmark"></span>
@@ -177,10 +184,16 @@ if(isset($_SESSION['user_data'])){
   </div>
     <div class="date-container">
         <label for="menstruationDate">Last Menstruation:</label>
-        <input type="date" id="menstruationDate" name="menstruationDate">
+        <input type="date" class ="textbox" id="menstruationDate" name="menstruationDate">
     </div>
-      <input type="button" value="< Previous" class="prevbtn" onclick="prevForm()">
-      <input type="button" value="Submit" class="submitbtn" onclick="nextForm()">
+    <div>
+  <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
+    <button type="button" name="button" class="btn btn-primary profile-button" onclick="prevForm()"> &lt; Previous</button>
+  </div>    
+  <div class="mt-5 text-right" style="display: inline-block; float:right;">
+    <button type="button" name="button" class="btn btn-primary profile-button" onclick="nextForm()">Submit &gt;</button>
+  </div>    
+</div>
     </form>
   </div>
     </tbody>

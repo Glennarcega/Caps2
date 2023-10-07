@@ -83,7 +83,7 @@ if(isset($_SESSION['user_data'])){
                             <div class="form-group" required="required">
                                 <label>Sex</label>
                                 <select class="form-control" required="required" name="sex" id="usertypeSelect">
-                                <option value="" disabled selected>Select Sex</option>
+                                <option value="" disabled selected>Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
@@ -105,7 +105,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required" >
                                 <label>Contact Number</label>
-                                <input type="text" class="form-control" name="contactNumber" placeholder ="Ex. 0946" required />
+                                <input type="number" class="form-control" name="contactNumber" placeholder ="Ex. 0946" required />
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Quantity</label>

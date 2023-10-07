@@ -58,12 +58,15 @@
 /*Contraceptive Form*/
 .container {
 	width: 80%;
-	box-shadow: -5px 9px 79px -21px rgba(0,0,0,0.75);
--webkit-box-shadow: -5px 9px 79px -21px rgba(0,0,0,0.75);
--moz-box-shadow: -5px 9px 79px -21px rgba(0,0,0,0.75);
+	box-shadow: -1px 0px 5px 5px rgba(130,124,124,0.77);
+-webkit-box-shadow: -1px 0px 5px 5px rgba(130,124,124,0.77);
+-moz-box-shadow: -1px 0px 5px 5px rgba(130,124,124,0.77);
 border-radius: 20px;
 transition: opacity 0.5s ease-in-out;
 margin: 0;
+  }
+  .textbox{
+	border-color: rgb(47, 40, 40);
   }
  
   .hidden {
@@ -100,7 +103,7 @@ h4{
   }
  .nextbtn{
 	color: black;
-	background-color: aquamarine;
+	background-color: #04c487;
 	width: auto;
 	max-width: 100px;
 	padding: 10px;
@@ -109,7 +112,7 @@ h4{
  }
  .submitbtn{
 	color: black;
-	background-color: aquamarine;
+	background-color: #04c487;
 	width: auto;
 	max-width: 100px;
 	padding: 10px;

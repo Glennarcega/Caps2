@@ -90,15 +90,15 @@ if(isset($_SESSION['user_data'])){
               <div class = "well" style = "height:200px; width:265px;">
                   <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>" height = "160" width = "225"/>
                   </div>
-                  <input type="file" name="photo" id="photo" class="form-control" value="../photo/<?php echo $_SESSION['user_data']['photo']?>">
+                  <input type="file" name="photo" id="photo" class="form-control" accept="image/png, image/jpeg" value="../photo/<?php echo $_SESSION['user_data']['photo']?>">
           </div>  
         </div>           
       </div>
           <div class="col-md-5 border-right">
               <div class="p-3 py-5">
                 <div class="row mt-2">
-                  <div class="col-md-6"><label class="labels">Name</label><input type="text" name="fname" value = "<?php echo $_SESSION['user_data']['fname']; ?>" class="form-control" placeholder="First Name" required></div>
-                  <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value = "<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name" required></div>
+                  <div class="col-md-6"><label class="labels">Name</label><input type="text" name="fname" value = "<?php echo $_SESSION['user_data']['fname']; ?>" class="form-control" placeholder="First Name" required readonly></div>
+                  <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value = "<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name" required readonly></div>
                   <div class="col-md-6"><label class="labels"><br>Email</label><input type="text" name="username" value = "<?php echo $_SESSION['user_data']['username']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required></div>
               </div>
                     <div class="row mt-3">
@@ -128,11 +128,7 @@ if(isset($_SESSION['user_data'])){
                               $photo_name = addslashes($_FILES['photo']['name']);
                               $photo_size = getimagesize($_FILES['photo']['tmp_name']);
                               move_uploaded_file($_FILES['photo']['tmp_name'], "../photo/" . $_FILES['photo']['name']);
-                          }  else {
-                            // If no new photo was uploaded, retain the existing photo
-                            $photo = $_SESSION['user_data']['photo'];
-                            $photo_name = $_SESSION['user_data']['photo'];
-                        }
+                          } 
                           $query = $conn->query("UPDATE `users` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `username` = '$username', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
 
                                         // Update session variables with new data
@@ -144,7 +140,7 @@ if(isset($_SESSION['user_data'])){
                                         $_SESSION['user_data']['photo'] = $photo_name;
                           $query = $conn->query("UPDATE `users` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `username` = '$username', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
                           echo '<script>alert("Update Successfully.");</script>';
-                          echo '<script>window.location.href = "settings.php?id=' . $_REQUEST['id'] . '";</script>';
+                          echo '<script>window.location.href = "settings.php";</script>';
                       }
                   }
                   ?>
@@ -167,6 +163,19 @@ document.addEventListener("DOMContentLoaded", function() {
         window.history.replaceState({ path: newUrl }, '', newUrl);
     }
 });
+function validateFileType(){
+        var fileName = document.getElementById("photo").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+            //TO DO
+        }else{
+            alert("Only jpg/jpeg and png files are allowed!");
+        }   
+    }
+</script>
+<script type="text/javascript">
+    
 </script>
 </html>
 <?php

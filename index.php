@@ -23,13 +23,13 @@
             </div>
         <?php } ?>
 
-        <input type="text" required placeholder="Username"
+        <input type="text"  placeholder="Username"
                class="form-control"
                name="username"
                id="username">
 
         <div class="password-container">
-            <input type="password" required placeholder="Password"
+            <input type="password"  placeholder="Password"
                    name="password"
                    class="form-control"
                    id="password"
@@ -38,8 +38,13 @@
             <span class="password-toggle" id="passwordToggle" onclick="togglePassword()">
                 &#x1F441; <!-- Unicode for eye icon -->
             </span>
+            
         </div>
         <input type="submit" class="btn btn-primary mt-0" value="Login">
+        <br>
+        <br>
+        <a href="forgot_password.php">Forgot Password?</a>
+
     </form>
 </div>
 

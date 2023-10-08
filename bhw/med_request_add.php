@@ -132,7 +132,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Given Date</label>
-                                <input type="date" class="form-control" name="givenDate" required/>
+                                <input type="date" class="form-control" name="givenDate" id="givenDate" required/>
                             </div>
                             <div class="form-group">
                                 <button name="add_rec" class="btn btn-warning form-control"><i
@@ -155,6 +155,22 @@ if(isset($_SESSION['user_data'])){
     if (window.location.search.includes('success')) {
         var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
         window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
+});
+/*This is for the given date not to select previous dates*/
+ // Get the current date in YYYY-MM-DD format
+ var currentDate = new Date().toISOString().split('T')[0];
+
+// Set the minimum date attribute of the input element to the current date
+document.getElementById('givenDate').setAttribute('min', currentDate);
+
+// Add an event listener to the input element to prevent selecting past dates
+document.getElementById('givenDate').addEventListener('input', function() {
+    var selectedDate = this.value;
+    if (selectedDate < currentDate) {
+        this.setCustomValidity('Please select a date on or after the current date.');
+    } else {
+        this.setCustomValidity('');
     }
 });
 </script>

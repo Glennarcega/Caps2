@@ -49,7 +49,7 @@ if(isset($_SESSION['user_data'])){
       <label class="lbl">Middle Initial</label>
       <input type="text" class ="textbox" id="middle_initial" placeholder="e.g. S.">
       <label class="lbl">Birthdate</label>
-      <input type="date" class ="textbox" id="birthdate">
+      <input type="date" class ="textbox" id="dateOfBirth">
       <label class="lbl">Age</label>
       <input type="number" class ="textbox" id="age" placeholder="Enter your age" maxlength="3">
       <label class="lbl">Gender</label>
@@ -258,6 +258,41 @@ const checkboxes = document.querySelectorAll("input[type='checkbox']");
       }
     });
   }
+  /*Date of Birth and Age*/
+  /*This is for the date(not to select future dates) and age computation*/
+  // Get references to the date of birth and age input fields
+  var dateOfBirthInput = document.getElementById("dateOfBirth");
+    var ageInput = document.getElementById("age");
+
+    // Add an event listener to the date of birth input field
+    dateOfBirthInput.addEventListener("change", function () {
+        // Get the selected date of birth
+        var selectedDate = new Date(dateOfBirthInput.value);
+        
+        // Calculate the age
+        var today = new Date();
+        var age = today.getFullYear() - selectedDate.getFullYear();
+        
+        // Check if the birthday has occurred this year
+        if (
+            today.getMonth() < selectedDate.getMonth() ||
+            (today.getMonth() === selectedDate.getMonth() && today.getDate() < selectedDate.getDate())
+        ) {
+            age--;
+        }
+        
+        // Update the age input field with the calculated age
+        ageInput.value = age;
+        
+        // Restrict the selection of future dates
+        var maxDate = new Date(today);
+        maxDate.setFullYear(today.getFullYear() - 1); // Set the maximum date to one year ago
+        dateOfBirthInput.max = maxDate.toISOString().split("T")[0];
+    });
+
+    // Set the initial maximum date for the dateOfBirthInput
+    var today = new Date();
+    dateOfBirthInput.max = today.toISOString().split("T")[0];
 </script>
 </body>
 </html>

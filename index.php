@@ -8,9 +8,12 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="csslog/style.css">
 </head>
-<body>
+<body class =bodyy>
 <div class="form-container">
-    <form class="mx-auto" action="check-login.php" method="post" style="background-color: #FFFACD">
+    <form class="mx-auto"
+          action="check-login.php"
+          method="post"
+          style="background-color: rgba(255, 250, 205, 0.8)">
         <img src="img/ourlogo.png" alt="Logo" class="logo">
         <h6 class="text-center p-1">Medicine Management System for Barangay Malitam</h6>
         <h2 class="text-center p-1">LOGIN</h2>
@@ -26,7 +29,7 @@
         <?php } ?>
 
         <input type="text" placeholder="Enter Email" class="form-control" name="email" id="email">
-
+s
         <div class="password-container">
             <input type="password" placeholder="Password" name="password" class="form-control" id="password"
                    oninput="togglePasswordButton()" autocomplete="off">
@@ -64,6 +67,15 @@
             passwordToggle.innerHTML = "&#x1F441;"; // Unicode for eye icon
         }
     }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if URL contains 'error' parameter and remove it
+    if (window.location.search.includes('error')) {
+        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
+});
 </script>
 
 <style>

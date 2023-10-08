@@ -10,21 +10,18 @@
 }
 
 form{
-    
     border-radius: 20px;
-    margin-top:30px ;
+    margin-top: 30px;
     width: 400px;
-    background-color: #FFFACD;
-    box-shadow: 0 5px 10px rgba(0,0,0,.1);
     padding: 50px;
     text-align: center;
     min-height: 500px;
-    
 }
-body{
-    background-color: #04c487!important;
-
-
+.bodyy{
+    background-image: url("../img/opening.jpg");
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .form-control{
@@ -54,7 +51,7 @@ body{
     width: 100%;
     border: none;
     border-radius: 50px;
-    background: linear-gradient(90deg, rgb(0, 59, 23) 0%, rgb(14, 154, 58) 35%, rgb(0, 255, 38) 100%);
+    background: #04c487;
     
 }
 

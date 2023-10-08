@@ -69,7 +69,7 @@ if(isset($_SESSION['user_data'])){
 						</div>
 						<div class = "form-group">
 							<label>Expiration Date </label>
-								<input type = "date"  class = "form-control" name = "expDate" value = "<?php echo $fetch['expDate']?>" required/>
+							<input type="date" class="form-control" name="expDate" value="<?php echo $fetch['expDate']?>" min="<?php echo date('Y-m-d');?>" required/>
 						</div>
 						<div class = "form-group">
 							<label>Status</label>

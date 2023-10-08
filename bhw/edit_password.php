@@ -60,7 +60,17 @@ if(isset($_SESSION['user_data'])){
     cursor: pointer;
     border: solid 1px #04c487;
 }
-
+@media screen and (max-width: 600px) {
+            .password-input-container {
+                position: relative;
+            }
+            .password-toggle {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
 </style>
 <body>
 <?php try {
@@ -91,13 +101,23 @@ if(isset($_SESSION['user_data'])){
         <label>Email </label>
         <input type="email" class="form-control" name="email"value="<?php echo $_SESSION['user_data']['email']; ?>" placeholder="example@gmail.com" required/>
     </div>
-	  <div class = "form-group">
-			<label>Password </label>
-				<input type = "password"  class = "form-control" id="password" name = "password"  placeholder="Enter your password" required />
-	  </div>	
+    <div class="form-group">
+        <label>Password</label>
+        <div class="password-input-container">
+            <input type="password" placeholder="Enter your password" name="password" class="form-control" id="password" oninput="togglePasswordButton()" autocomplete="off" required style="padding-right: 30px;" />
+            <span class="password-toggle" id="passwordToggle" onclick="togglePassword()" style="position: absolute; right: 25px; top: 47%; transform: translateY(-50%);">
+                &#x1F441; <!-- Unicode for eye icon -->
+            </span>
+        </div>
+    </div>	
 	  <div class = "form-group">
 			<label>Confirm Password </label>
-				<input type = "password"  class = "form-control" name = "cpassword"  placeholder="Confirm your password" required/>
+            <div class="password-input-container">
+            <input type="password" placeholder="Confirm your password" name="cpassword" class="form-control" id="cpassword" oninput="togglePasswordButton('cpasswordToggle')" autocomplete="off" required style="padding-right: 30px;" />
+            <span class="password-toggle" id="cpasswordToggle" onclick="togglePassword('cpasswordToggle')" style="position: absolute; right: 25px; top: 65%; transform: translateY(-50%);">
+                &#x1F441; <!-- Unicode for eye icon -->
+            </span>
+        </div>
 	  </div>	
 
 </div>
@@ -130,6 +150,31 @@ if(isset($_SESSION['user_data'])){
 </section>
 </body>
 <!-- Scripts -->
+<script>
+   function togglePassword(targetId) {
+            var passwordInput = document.getElementById(targetId);
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                document.getElementById(targetId).innerHTML = '&#x1F440;'; // Unicode for crossed eye icon
+            } else {
+                passwordInput.type = 'password';
+                document.getElementById(targetId).innerHTML = '&#x1F441;'; // Unicode for eye icon
+            }
+        }
+
+        function togglePasswordButton(targetId) {
+            var passwordInput = document.getElementById(targetId);
+            var passwordToggle = document.getElementById(targetId);
+            var password = passwordInput.value;
+
+            if (password === '') {
+                passwordToggle.style.display = 'none';
+            } else {
+                passwordToggle.style.display = 'block';
+            }
+        }
+</script>
 <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>
 <script src = "../js/bootstrap.js"></script>

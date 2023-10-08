@@ -7,7 +7,7 @@ if(isset($_SESSION['user_data'])){
     }
 
     $data = array();
-    $qr = mysqli_query($conn, "select * from users where usertype='1'");
+    $qr = mysqli_query($mysqli, "select * from user where usertype='1'");
     while($row = mysqli_fetch_assoc($qr)){
         array_push($data, $row);
     }
@@ -18,7 +18,7 @@ if(isset($_SESSION['user_data'])){
 
     if (!empty($selectedResidentId)) {
         // Fetch the resident's name based on the selected resident ID
-        $residentQuery = mysqli_query($conn, "SELECT resident_name FROM users WHERE user_id = '$selectedResidentId'");
+        $residentQuery = mysqli_query($mysqli, "SELECT resident_name FROM user WHERE user_id = '$selectedResidentId'");
         if ($residentQuery && $residentRow = mysqli_fetch_assoc($residentQuery)) {
             $residentName = $residentRow['resident_name'];
         }
@@ -65,7 +65,7 @@ if(isset($_SESSION['user_data'])){
             $desiredResidentId = $_GET['residentId'];
             
             // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-            $query = $conn->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
+            $query = $mysqli->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
             while ($fetch = $query->fetch_assoc()) {
                 
             // Display the records within the table rows
@@ -80,7 +80,7 @@ if(isset($_SESSION['user_data'])){
                         
             <?php
                  $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
-                 $query = $conn->query("SELECT * FROM `medicines` WHERE productName = '$productName'") or die(mysqli_error());
+                 $query = $mysqli->query("SELECT * FROM `medicines` WHERE productName = '$productName'") or die(mysqli_error());
                  $fetch = $query->fetch_array();
             ?>
                  <form method="POST" enctype="multipart/form-data">

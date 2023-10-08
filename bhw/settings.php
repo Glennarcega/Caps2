@@ -6,7 +6,7 @@ if(isset($_SESSION['user_data'])){
 		header("Location:.././admin/Dashboard.php");
 	}
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='1'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -61,7 +61,7 @@ if(isset($_SESSION['user_data'])){
             <div class="row mt-2">
                 <div class="col-md-6"><label class="labels">Name</label><label class="form-control"><?php echo $_SESSION['user_data']['fname']; ?></label></div>
                 <div class="col-md-6"><label class="labels">Last Name</label><label class="form-control"><?php echo $_SESSION['user_data']['lname']; ?></label></div>
-                <div class="col-md-6"><label class="labels">Email</label><label class="form-control"><?php echo $_SESSION['user_data']['username']; ?> </label></div>
+                <div class="col-md-6"><label class="labels">Email</label><label class="form-control"><?php echo $_SESSION['user_data']['email']; ?> </label></div>
                 <div class="col-md-6 cp-div"><label class="labels"></label><label class="form-control">  <p> <a href="edit_password.php?id=<?php echo $_SESSION['user_data']['id']; ?>">Change Password</a></p></label></div>
 
               </div>

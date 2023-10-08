@@ -6,7 +6,7 @@ if(isset($_SESSION['user_data'])){
     header("Location:.././bhw/homemedd.php");
 	}
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='2'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='2'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -33,7 +33,7 @@ if(isset($_SESSION['user_data'])){
    
    
         <?php
-            $query = $conn->query("SELECT * FROM `users`") or die(mysqli_error());
+            $query = $mysqli->query("SELECT * FROM `user`") or die(mysqli_error());
             $fetch = $query->fetch_array();
           ?>
          
@@ -56,7 +56,7 @@ if(isset($_SESSION['user_data'])){
 
     <div class="form-group">
         <label>Email </label>
-        <input type="email" class="form-control" name="username"value="<?php echo $_SESSION['user_data']['username']; ?>" placeholder="example@gmail.com" required/>
+        <input type="email" class="form-control" name="email"value="<?php echo $_SESSION['user_data']['email']; ?>" placeholder="example@gmail.com" required/>
     </div>
 	  <div class = "form-group">
 			<label>Password </label>
@@ -69,7 +69,7 @@ if(isset($_SESSION['user_data'])){
       <?php
 	require_once '../connection/connect.php';
 	if(ISSET($_POST['submit'])){
-		$username = $_POST['username'];
+		$email = $_POST['email'];
         $pass = md5($_POST['password']);
         $cpass = md5($_POST['cpassword']);
        
@@ -80,7 +80,7 @@ if(isset($_SESSION['user_data'])){
         
                 } else {
                   
-                    $query = $conn->query("UPDATE `users` SET  `username` = '$username', `password` = '$pass' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+                    $query = $mysqli->query("UPDATE `user` SET  `email` = '$email', `password` = '$pass' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
                     echo '<script>alert("Update Password Successfully. Click OK to logout and Login again to see changes.");</script>';
                       
                     // Automatically redirect to the logout page

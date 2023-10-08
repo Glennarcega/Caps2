@@ -7,7 +7,7 @@ if(isset($_SESSION['user_data'])){
 	}
 
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='1'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -60,7 +60,7 @@ if(isset($_SESSION['user_data'])){
 					</thead>
 				<tbody>
 					<?php
-						$query = $conn->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
+						$query = $mysqli->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
 						while($fetch = $query->fetch_array()){
 					?>	
 						<tr>

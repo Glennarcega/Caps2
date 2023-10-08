@@ -9,7 +9,7 @@ if(isset($_SESSION['user_data'])){
 	}
 
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='1'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -97,9 +97,9 @@ if(isset($_SESSION['user_data'])){
                 $total = $_POST['total'];
                 $expDate = $_POST['expDate'];
                 $status = $_POST['status'];
-                $conn->query("INSERT INTO `medicines` (sponsor,productName,unit,batch,total,expDate,status) VALUES('$sponsor','$productName','$unit','$batch', '$total','$expDate','$status')") or die(mysqli_error());
+                $mysqli->query("INSERT INTO `medicines` (sponsor,productName,unit,batch,total,expDate,status) VALUES('$sponsor','$productName','$unit','$batch', '$total','$expDate','$status')") or die(mysqli_error());
 
-                if($conn){
+                if($mysqli){
                     echo '<script>window.location.href = "./medicinee.php?success=Add Request Successfully";</script>';
                   }
                 else{

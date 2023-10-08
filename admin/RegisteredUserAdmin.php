@@ -9,7 +9,7 @@ if(isset($_SESSION['user_data'])){
 	}
 
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='2'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='2'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -53,11 +53,11 @@ if(isset($_SESSION['user_data'])){
 					</thead>
 				<tbody>
 				<?php  
-  $query = $conn->query("SELECT * FROM users WHERE usertype = 1 OR usertype = 2;") or die(mysqli_error($conn));
+  $query = $mysqli->query("SELECT * FROM user WHERE usertype = 1 OR usertype = 2;") or die(mysqli_error($mysqli));
   while ($fetch = $query->fetch_array()) {
       ?>
     <tr>
-        <td><?php echo $fetch['username'] ?></td>
+        <td><?php echo $fetch['email'] ?></td>
         <td><?php echo $fetch['fname'] . ' ' . $fetch['lname']; ?></td>
         <td>
             <?php 

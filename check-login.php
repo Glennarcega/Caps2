@@ -3,12 +3,12 @@ session_start();
 include "./connection/connect.php";
 
 
-if(isset($_REQUEST['username']) && isset($_REQUEST['password'])){
+if(isset($_REQUEST['email']) && isset($_REQUEST['password'])){
 
 	//mysqli real escape prevent from sql injection which filter the user input
-	$username=mysqli_real_escape_string($conn,$_REQUEST['username']);
-	$password=mysqli_real_escape_string($conn,$_REQUEST['password']);
-	$qr=mysqli_query($conn,"select * from users where username='".$username."' and password='".md5($password)."'");
+	$email=mysqli_real_escape_string($mysqli,$_REQUEST['email']);
+	$password=mysqli_real_escape_string($mysqli,$_REQUEST['password']);
+	$qr=mysqli_query($mysqli,"select * from user where email='".$email."' and password='".md5($password)."'");
 	if(mysqli_num_rows($qr)>0){
 		$data=mysqli_fetch_assoc($qr);
 		$_SESSION['user_data']=$data;

@@ -7,7 +7,7 @@ if(isset($_SESSION['user_data'])){
 	}
 
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='1'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -70,7 +70,7 @@ if(isset($_SESSION['user_data'])){
               $desiredProductId = $_GET['productId'];
               
               // Replace 'medicine' with your actual table name and 'resident_id' with the actual column name
-              $query = $conn->query("SELECT * FROM medicines WHERE productId = '$desiredProductId'");
+              $query = $mysqli->query("SELECT * FROM medicines WHERE productId = '$desiredProductId'");
               while ($fetch = $query->fetch_assoc()) {
                   
                 // Display the records within the table rows
@@ -100,7 +100,7 @@ if(isset($_SESSION['user_data'])){
               $desiredProductId = $_GET['productId'];
               
               // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-              $query = $conn->query("SELECT * FROM request_medicine WHERE productId = '$desiredProductId'");
+              $query = $mysqli->query("SELECT * FROM request_medicine WHERE productId = '$desiredProductId'");
 
               if ($query->num_rows > 0) {
                   while ($fetch = $query->fetch_assoc()) {

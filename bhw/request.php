@@ -7,7 +7,7 @@ if(isset($_SESSION['user_data'])){
 	}
 
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='1'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -43,7 +43,7 @@ if(isset($_SESSION['user_data'])){
                     <div class="col-md-4">
                         <?php
                         $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
-                        $query = $conn->query("SELECT * FROM `medicines` WHERE productName = '$productName'") or die(mysqli_error());
+                        $query = $mysqli->query("SELECT * FROM `medicines` WHERE productName = '$productName'") or die(mysqli_error());
                         $fetch = $query->fetch_array();
                         ?>
 

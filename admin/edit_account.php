@@ -7,7 +7,7 @@ if(isset($_SESSION['user_data'])){
 	}
 
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='2'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='2'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -38,7 +38,7 @@ if(isset($_SESSION['user_data'])){
 			<div class = "panel-body">
 				<div class = "alert alert-info">Account / Change Account</div>
 				<?php
-					$query = $conn->query("SELECT * FROM `users` WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+					$query = $mysqli->query("SELECT * FROM `user` WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
 					$fetch = $query->fetch_array();
 				?>
 				<br />
@@ -62,7 +62,7 @@ if(isset($_SESSION['user_data'])){
             </div>
 						<div class = "form-group">
 							<label>Email </label>
-							<input type = "text" class = "form-control" value = "<?php echo $fetch['username']?>" name = "username" />
+							<input type = "text" class = "form-control" value = "<?php echo $fetch['email']?>" name = "email" />
 						</div>
 						<div class = "form-group">
 							<label>Role</label>

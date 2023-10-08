@@ -6,7 +6,7 @@ if(isset($_SESSION['user_data'])){
 		header("Location:.././admin/Dashboard.php");
 	}
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='1'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='1'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -89,20 +89,26 @@ if(isset($_SESSION['user_data'])){
 
     <div class="form-group">
         <label>Email </label>
-        <input type="email" class="form-control" name="username"value="<?php echo $_SESSION['user_data']['username']; ?>" placeholder="example@gmail.com" required/>
+        <input type="email" class="form-control" name="email"value="<?php echo $_SESSION['user_data']['email']; ?>" placeholder="example@gmail.com" required/>
     </div>
 	  <div class = "form-group">
 			<label>Password </label>
-				<input type = "password"  class = "form-control" name = "password"  placeholder="Enter your password" required />
+				<input type = "password"  class = "form-control" id="password" name = "password"  placeholder="Enter your password" required />
 	  </div>	
 	  <div class = "form-group">
 			<label>Confirm Password </label>
 				<input type = "password"  class = "form-control" name = "cpassword"  placeholder="Confirm your password" required/>
 	  </div>	
-      <?php
+
+</div>
+ <br></br>
+	  <div class = "form-group">
+			<button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Update</button>
+		</div>
+        <?php
 	require_once '../connection/connect.php';
 	if(ISSET($_POST['submit'])){
-		$username = $_POST['username'];
+		$email = $_POST['email'];
         $pass = md5($_POST['password']);
         $cpass = md5($_POST['cpassword']);
        
@@ -113,21 +119,14 @@ if(isset($_SESSION['user_data'])){
         
                 } else {
                   
-                    $query = $conn->query("UPDATE `users` SET  `username` = '$username', `password` = '$pass' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
-                    echo '<script>alert("Update Password Successfully. Click OK to logout.");</script>';
+                    $query = $mysqli->query("UPDATE `user` SET  `email` = '$email', `password` = '$pass' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+                    echo '<script>alert("Update Password Successfully. Click OK to logout and Login again to see changes.");</script>';
                       
                     // Automatically redirect to the logout page
                     echo '<script>window.location.href = "../index.php";</script>';
                 }
             }
 		?>
-
-</div>
- <br></br>
-	  <div class = "form-group">
-			<button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Update</button>
-		</div>
-  
 </section>
 </body>
 <!-- Scripts -->

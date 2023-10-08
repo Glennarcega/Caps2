@@ -7,7 +7,7 @@ if(isset($_SESSION['user_data'])){
 	}
 
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='2'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='2'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -47,7 +47,7 @@ if(isset($_SESSION['user_data'])){
     <?php unset($_SESSION['error_message']); ?>
     <?php } ?>
 	   <br></br>
-	   <div class = "form-group">
+     <div class = "form-group">
 			<label>First Name </label>
 				<input type = "text"  class = "form-control" name = "fname" required/>
 	  </div>
@@ -65,7 +65,7 @@ if(isset($_SESSION['user_data'])){
 	  </div>
     <div class="form-group">
         <label>Email </label>
-        <input type="email" class="form-control" name="username" placeholder="example@gmail.com" required/>
+        <input type="email" class="form-control" name="email" placeholder="example@gmail.com" required/>
     </div>
 	  <div class = "form-group">
 			<label>Password </label>
@@ -88,33 +88,33 @@ if(isset($_SESSION['user_data'])){
 		</div>
   <?php
   if (isset($_POST['submit'])) {
-    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
-    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $fname = mysqli_real_escape_string($mysqli, $_POST['fname']);
+    $lname = mysqli_real_escape_string($mysqli, $_POST['lname']);
+    $email = mysqli_real_escape_string($mysqli, $_POST['email']);
     $address = $_POST['address'];
     $mobile_number = $_POST['mobile_number'];
     $pass = md5($_POST['password']);
     $cpass = md5($_POST['cpassword']);
     $usertype = $_POST['usertype'];
 
-    // Check if "@" symbol is present in the username (email)
-    if (strpos($username, "@") === false) {
+    // Check if "@" symbol is present in the email (email)
+    if (strpos($email, "@") === false) {
         $_SESSION['error_message'] = "Invalid email address format!";
         echo '<script>window.location.href = "add_account.php?error=Invalid email address format!";</script>';
     } else {
-        $select = "SELECT * FROM users WHERE username = '$username'";
-        $result = mysqli_query($conn, $select);
+        $select = "SELECT * FROM user WHERE email = '$email'";
+        $result = mysqli_query($mysqli, $select);
 
         if (mysqli_num_rows($result) > 0) {
-            $_SESSION['error_message'] = "Username already exists!";
-            echo '<script>window.location.href = "add_account.php?error=Username already exists!";</script>';
+            $_SESSION['error_message'] = "email already exists!";
+            echo '<script>window.location.href = "add_account.php?error=email already exists!";</script>';
         } else {
             if ($pass != $cpass) {
                 $_SESSION['error_message'] = "Password not matched!";
                 echo '<script>window.location.href = "add_account.php?error=Password not matched!";</script>';
             } else {
-                $insert = "INSERT INTO users(fname,lname,address,mobile_number,username, password,usertype) VALUES('$fname','$lname','$address','$mobile_number','$username','$pass','$usertype')";
-                mysqli_query($conn, $insert);
+                $insert = "INSERT INTO user(fname,lname,address,mobile_number,email, password,usertype) VALUES('$fname','$lname','$address','$mobile_number','$email','$pass','$usertype')";
+                mysqli_query($mysqli, $insert);
                 $_SESSION['success'] = "Add Account Successfully";
                 echo '<script>window.location.href = "RegisteredUserAdmin.php?success=Add Account Successfully";</script>';
             }

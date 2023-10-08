@@ -12,7 +12,7 @@ if (isset($_POST['add_rec'])) {
     $givenDate = $_POST['givenDate'];
 
     // Fetch the data from the 'medicines' table
-    $fetchQuery = $conn->query("SELECT total FROM medicines WHERE productId = '$productId'");
+    $fetchQuery = $mysqli->query("SELECT total FROM medicines WHERE productId = '$productId'");
 
     if ($fetchQuery) {
         $fetch = $fetchQuery->fetch_assoc();
@@ -23,10 +23,10 @@ if (isset($_POST['add_rec'])) {
             if ($availableQuantity >= $quantity_req) {
                 // Sufficient quantity available, update and insert
                 $quantity = $availableQuantity - $quantity_req;
-                $updateQuery = $conn->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
+                $updateQuery = $mysqli->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
 
                 if ($updateQuery) {
-                    $insertQuery = $conn->query("INSERT INTO request_medicine (residentId,residentName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$residentName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate')");
+                    $insertQuery = $mysqli->query("INSERT INTO request_medicine (residentId,residentName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$residentName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate')");
 
                     if ($insertQuery) {
                         echo '<script>alert("Request Medicine Successful. Click OK ");</script>';
@@ -34,7 +34,7 @@ if (isset($_POST['add_rec'])) {
                         echo '<script>window.location.href = "resident_med.php?residentId=' . $residentId . '";</script>';
                         exit();
                     } else {
-                        echo "Error: " . mysqli_error($conn);
+                        echo "Error: " . mysqli_error($mysqli);
                     }
                 } else {
                     echo "Error: Failed to update medicine quantity.";

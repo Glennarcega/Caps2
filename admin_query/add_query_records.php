@@ -13,7 +13,7 @@ if (isset($_POST['add_rec'])) {
     $givenDate = $_POST['givenDate'];
 
     // Fetch the data from the 'medicines' table
-    $fetchQuery = $conn->query("SELECT total FROM medicines WHERE productId = '$productId'");
+    $fetchQuery = $mysqli->query("SELECT total FROM medicines WHERE productId = '$productId'");
     $fetch = $fetchQuery->fetch_assoc();
 
     if ($fetchQuery && $fetch) {
@@ -22,17 +22,17 @@ if (isset($_POST['add_rec'])) {
         if ($availableQuantity >= $quantity_req) {
             // Sufficient quantity available, update and insert
             $quantity = $availableQuantity - $quantity_req;
-            $conn->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
-            $query = $conn->query("INSERT INTO residentrecords (productId, residentName, dateBirth, age, sex, address, contactNumber) VALUES ('$productId', '$residentName', '$dateBirth', '$age', '$sex', '$address', '$contactNumber')");
+            $mysqli->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
+            $query = $mysqli->query("INSERT INTO residentrecords (productId, residentName, dateBirth, age, sex, address, contactNumber) VALUES ('$productId', '$residentName', '$dateBirth', '$age', '$sex', '$address', '$contactNumber')");
 
             if ($query) {
-                $residentId = mysqli_insert_id($conn);
-                $query = $conn->query("INSERT INTO request_medicine (residentId, residentName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$residentName','$productId','$productName','$unit', '$quantity_req', '$givenDate')");
+                $residentId = mysqli_insert_id($mysqli);
+                $query = $mysqli->query("INSERT INTO request_medicine (residentId, residentName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$residentName','$productId','$productName','$unit', '$quantity_req', '$givenDate')");
 
                 echo '<script>window.location.href = "./userRecMed.php?success=Add Request Successfully";</script>';
                 exit(); // Add this line to stop further script execution
             } else {
-                echo "Error: " . mysqli_error($conn);
+                echo "Error: " . mysqli_error($mysqli);
             }
         } else {
             // Insufficient quantity, show an error message

@@ -10,10 +10,7 @@
 </head>
 <body>
 <div class="form-container">
-    <form class="mx-auto"
-          action="check-login.php"
-          method="post"
-          style="background-color: #FFFACD">
+    <form class="mx-auto" action="check-login.php" method="post" style="background-color: #FFFACD">
         <img src="img/ourlogo.png" alt="Logo" class="logo">
         <h6 class="text-center p-1">Medicine Management System for Barangay Malitam</h6>
         <h2 class="text-center p-1">LOGIN</h2>
@@ -22,29 +19,25 @@
                 <?= $_GET['error'] ?>
             </div>
         <?php } ?>
+        <?php if (isset($_GET['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+                <?= $_GET['success'] ?>
+            </div>
+        <?php } ?>
 
-        <input type="text"  placeholder="Username"
-               class="form-control"
-               name="username"
-               id="username">
+        <input type="text" placeholder="Enter Email" class="form-control" name="email" id="email">
 
         <div class="password-container">
-            <input type="password"  placeholder="Password"
-                   name="password"
-                   class="form-control"
-                   id="password"
-                   oninput="togglePasswordButton()"
-                   autocomplete="off">
+            <input type="password" placeholder="Password" name="password" class="form-control" id="password"
+                   oninput="togglePasswordButton()" autocomplete="off">
             <span class="password-toggle" id="passwordToggle" onclick="togglePassword()">
                 &#x1F441; <!-- Unicode for eye icon -->
             </span>
-            
         </div>
         <input type="submit" class="btn btn-primary mt-0" value="Login">
         <br>
         <br>
-        <a href="forgot_password.php">Forgot Password?</a>
-
+        <a href="forgot-password.php">Forgot Password?</a>
     </form>
 </div>
 
@@ -86,14 +79,5 @@
         cursor: pointer;
     }
 </style>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Check if URL contains 'error' parameter and remove it
-    if (window.location.search.includes('error')) {
-        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
-        window.history.replaceState({ path: newUrl }, '', newUrl);
-    }
-});
-</script>
 </body>
 </html>

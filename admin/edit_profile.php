@@ -8,7 +8,7 @@ if(isset($_SESSION['user_data'])){
 	}
 
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='2'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='2'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -102,7 +102,7 @@ if(isset($_SESSION['user_data'])){
                 <div class="row mt-2">
                   <div class="col-md-6"><label class="labels">Name</label><input type="text" name="fname" value = "<?php echo $_SESSION['user_data']['fname']; ?>" class="form-control" placeholder="First Name" required></div>
                   <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value = "<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name" required></div>
-                  <div class="col-md-6"><label class="labels"><br>Email</label><input type="text" name="username" value = "<?php echo $_SESSION['user_data']['username']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required></div>
+                  <div class="col-md-6"><label class="labels"><br>Email</label><input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required></div>
               </div>
                     <div class="row mt-3">
                     <div class="col-md-6"><label class="labels"><br>Mobile Number</label><input type="text" name="mobile_number" value = "<?php echo $_SESSION['user_data']['mobile_number']; ?>" class="form-control" placeholder="Ex.0946" required></div>
@@ -118,10 +118,10 @@ if(isset($_SESSION['user_data'])){
                       $lname = $_POST['lname'];
                       $address = $_POST['address'];
                       $mobile_number = $_POST['mobile_number'];
-                      $username = $_POST['username'];
+                      $email = $_POST['email'];
                   
-                      // Check if the username (presumably an email address) contains the "@" symbol
-                      if (strpos($username, "@") === false) {
+                      // Check if the email (presumably an email address) contains the "@" symbol
+                      if (strpos($email, "@") === false) {
                           $_SESSION['error_message'] = "Invalid email address format!";
                           echo '<script>window.location.href = "edit_profile.php?id=' . $_SESSION['user_data']['id'] . '&error=Invalid email address format!";</script>';
                         } else {
@@ -132,16 +132,16 @@ if(isset($_SESSION['user_data'])){
                               $photo_size = getimagesize($_FILES['photo']['tmp_name']);
                               move_uploaded_file($_FILES['photo']['tmp_name'], "../photo/" . $_FILES['photo']['name']);
                           } 
-                          $query = $conn->query("UPDATE `users` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `username` = '$username', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+                          $query = $mysqli->query("UPDATE `user` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `email` = '$email', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
 
                                         // Update session variables with new data
                                         $_SESSION['user_data']['fname'] = $fname;
                                         $_SESSION['user_data']['lname'] = $lname;
                                         $_SESSION['user_data']['address'] = $address;
                                         $_SESSION['user_data']['mobile_number'] = $mobile_number;
-                                        $_SESSION['user_data']['username'] = $username;
+                                        $_SESSION['user_data']['email'] = $email;
                                         $_SESSION['user_data']['photo'] = $photo_name;
-                          $query = $conn->query("UPDATE `users` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `username` = '$username', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+                          $query = $mysqli->query("UPDATE `user` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `email` = '$email', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
                           echo '<script>alert("Update Successfully.");</script>';
                           echo '<script>window.location.href = "settings.php";</script>';
                       }

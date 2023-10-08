@@ -8,7 +8,7 @@ if(isset($_SESSION['user_data'])){
 	}
 
 	$data=array();
-	$qr=mysqli_query($conn,"select * from users where usertype='2'");
+	$qr=mysqli_query($mysqli,"select * from user where usertype='2'");
 	while($row=mysqli_fetch_assoc($qr)){
 		array_push($data,$row);
 	}
@@ -41,7 +41,7 @@ if(isset($_SESSION['user_data'])){
  ?>
 
         <?php
-            $query = $conn->query("SELECT * FROM `users`") or die(mysqli_error());
+            $query = $mysqli->query("SELECT * FROM `user`") or die(mysqli_error());
             $fetch = $query->fetch_array();
           ?>
      
@@ -74,7 +74,7 @@ if(isset($_SESSION['user_data'])){
             <div class="row mt-2">
                 <div class="col-md-6"><label class="labels">Name</label><label class="form-control"><?php echo $_SESSION['user_data']['fname']; ?></label></div>
                 <div class="col-md-6"><label class="labels">Last Name</label><label class="form-control"><?php echo $_SESSION['user_data']['lname']; ?></label></div>
-                <div class="col-md-6"><label class="labels">Email</label><label class="form-control"><?php echo $_SESSION['user_data']['username']; ?> </label></div>
+                <div class="col-md-6"><label class="labels">Email</label><label class="form-control"><?php echo $_SESSION['user_data']['email']; ?> </label></div>
                 <div class="col-md-6 cp-div"><label class="labels"></label><label class="form-control">  <p> <a href="edit_password.php?id=<?php echo $_SESSION['user_data']['id']; ?>">Change Password</a></p></label></div>
 
               </div>

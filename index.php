@@ -29,7 +29,7 @@
         <?php } ?>
 
         <input type="text" placeholder="Enter Email" class="form-control" name="email" id="email">
-s
+
         <div class="password-container">
             <input type="password" placeholder="Password" name="password" class="form-control" id="password"
                    oninput="togglePasswordButton()" autocomplete="off">

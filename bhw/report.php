@@ -22,6 +22,7 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+
   <script src="vendor/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
     <link rel="stylesheet"  href="vendor/DataTables/jquery.datatables.min.css">	
     <script src="vendor/DataTables/jquery.dataTables.min.js" type="text/javascript"></script> 
@@ -33,16 +34,12 @@ if(isset($_SESSION['user_data'])){
     <script src="vendor/DataTables/dataTables.buttons.min.js" type="text/javascript"></script> 
     <script>
     $(document).ready(function () {
-        var table = $('#request_medicine').DataTable({
-            "paging": false,
-            "processing": true,
-            "serverSide": true,
-            'serverMethod': 'post',
-            "ajax": "server.php",
+        var table = $('#table').DataTable({
+        
             "searching": false, // Disable searching
             dom: 'Bfrtip',
             buttons: [
-                {extend: 'copy', attr: {id: 'request_medicine'}}, 'csv', 'excel', 'pdf'
+                {extend: 'copy', attr: {id: 'medicines'}}, 'csv', 'excel', 'pdf'
             ]
         });
     });
@@ -148,7 +145,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-
+<script>
+  
+  </script>
 </html>
 <?php
 }

@@ -57,13 +57,14 @@ if(isset($_SESSION['user_data'])){
                   <?=$_GET['success']?>
           </div>
           <?php } ?>
+          <br>
         <div class="containers rounded bg-white mt-5 mb-5">
           <div class="row">
               <div class="col-md-3 border-right">
               <div class="row mt-3">
           <div class="col-md-12">
           <form method = "POST" enctype="multipart/form-data">
-          <label class="text-centered">Profile Picture<br></label>
+          <label class="">Profile Picture<br></label>
               <div class = "well" style = "height:200px; width:265px;">
                   <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>" height = "160" width = "225"/>
                   </div>
@@ -88,6 +89,7 @@ if(isset($_SESSION['user_data'])){
               <div class="mt-5 text-center">
               <a href="edit_profile.php?id=<?php echo $_SESSION['user_data']['id']; ?>" class="btn btn-primary profile-button">Edit Profile</a>
                 </div>
+            </form>
               </div>
                 </div>
               </div>
@@ -114,4 +116,3 @@ else{
 	header("Location:.././index.php?error=UnAuthorized Access");
 }
            
-  

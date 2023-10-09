@@ -38,7 +38,7 @@ if(isset($_SESSION['user_data'])){
             <div class="panel panel-default">
             <div class="panel-body">
             <h3> <div class = "alert alert-info">User Profile</div></h3>
-          <div class="text">User Profile</div>
+          
             <?php if (isset($_GET['success'])) { ?>
               <div class="alert alert-success" role="alert">
                   <?=$_GET['success']?>

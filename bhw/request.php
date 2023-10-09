@@ -34,11 +34,11 @@ if(isset($_SESSION['user_data'])){
  ?>
 
     <section class="home-section">
-      <div class="text">Request</div>
+      <br>
         <div class="container-fluid">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div class="alert alert-info">Request Form</div>
+                    <h3><div class="alert alert-info">Request Form</div></h3>
                     <br />
                     <div class="col-md-4">
                         <?php

@@ -74,10 +74,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section">
-  <div class="text">Medicine</div>
+  <br>
   <div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-body">
+           <h3> <div class = "alert alert-info">Medicine</div></h3>
                 <br>
       <table name="medicinesTable" id="medicinesTable" class="display" cellspacing="0" width="100%">
             <thead>

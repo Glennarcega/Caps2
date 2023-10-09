@@ -33,16 +33,17 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section">
-    <div class="text">RegisteredAdmin/User</div>
+   <br>
 	<div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-body">
-      <div class = "alert alert-info">RegisteredAdmin/User</div>
+      <h3><div class = "alert alert-info">RegisteredAdmin/User</div></h3>
       <?php if (isset($_GET['success'])) { ?>
             <div class="alert alert-success" role="alert">
               <?=$_GET['success']?>
             </div>
             <?php } ?>
+
       <table id = "table" class = "table table-striped">
 					<thead>
 						<tr>

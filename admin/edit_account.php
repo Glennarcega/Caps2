@@ -32,11 +32,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section">
-    <div class="text">Account</div>
+    <br>
     <div class = "container-fluid">
 		<div class = "panel panel-default">
 			<div class = "panel-body">
-				<div class = "alert alert-info">Account / Change Account</div>
+				<h3><div class = "alert alert-info">Account / Change Account</div></h3>
 				<?php
 					$query = $mysqli->query("SELECT * FROM `user` WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
 					$fetch = $query->fetch_array();

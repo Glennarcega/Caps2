@@ -32,11 +32,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section">
-    <div class="text">Account</div>
+    <br>
     <div class = "container-fluid">
 		<div class = "panel panel-default">
 			<div class = "panel-body">
-				<div class = "alert alert-info">Account / Create Account</div>
+				<h3><div class = "alert alert-info">Account / Create Account</div></h3>
 				<div class = "col-md-4">	
     <div class="form-container">
     <form action="" method="POST">

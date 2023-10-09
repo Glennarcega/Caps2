@@ -32,11 +32,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section">
-    <div class="text">Account</div>
+    <br>
     <div class = "container-fluid">
 		<div class = "panel panel-default">
 			<div class = "panel-body">
-
+			<h3><div class = "alert alert-info">Account</div></h3>
 				<a class = "btn btn-success" href = "add_account.php"><i class = "glyphicon glyphicon-plus"></i> Create New Account</a>
 				<br />
 				<br />

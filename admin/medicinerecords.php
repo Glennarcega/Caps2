@@ -31,11 +31,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section">
-  <div class="text">Medicine</div>
+  <br>
   <div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-body">
-      <div class = "alert alert-info">Medicine Records</div>
+     <h3> <div class = "alert alert-info">Medicine Records</div></h3>
 				<table id="table" class="table table-bordered">
 					<thead>
 						<tr>

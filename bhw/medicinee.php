@@ -30,10 +30,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section"> 
-  <div class="text">Medicine</div>
+  <br>
     <div class="container-fluid">
       <div class="panel panel-default">
         <div class="panel-body">
+        <h3><div class = "alert alert-info">Medicine</div></h3>
           <a class="btn btn-success" href="add_med.php?"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>
           <br />
           <br />

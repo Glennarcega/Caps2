@@ -59,11 +59,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section">
-    <div class="text">Reports</div>
+    <br>
 				<div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<div class="alert alert-info">Reports</div>
+				<h3><div class="alert alert-info">Reports</div></h3>
       <div>
         <?php
             if (isset($_GET['productId'])) {

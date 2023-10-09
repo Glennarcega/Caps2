@@ -44,7 +44,7 @@ if(isset($_SESSION['user_data'])){
             </div>
             <?php } ?>
   
-              <table id="table" class="table table-bordered">
+              <table id="table" class = "table table-striped">
                   <thead>
                       <tr>
                           <th>Sponsor</th>

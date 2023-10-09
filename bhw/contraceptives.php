@@ -32,11 +32,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section"> 
-  <div class="text">Contraceptives</div>
+  <br>
     <div class="container-fluid">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="alert alert-info">Contraceptives</div>
+          <h3><div class="alert alert-info">Contraceptives</div></h3> 
           <div class="col-md-8 col-md-offset-3">
           <div class="container">
     <form class="fpform" id="form1">

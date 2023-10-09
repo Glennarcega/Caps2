@@ -31,11 +31,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section"> 
-  <div class="text">Medicine</div>
+ <br>
   <div class = "container-fluid">
 		<div class = "panel panel-default">
 			<div class = "panel-body">
-				<div class = "alert alert-info">Edit</div>
+				<h3><div class = "alert alert-info">Edit</div></h3>
 				<br />
 				<div class = "col-md-4">
 					<?php
@@ -43,7 +43,7 @@ if(isset($_SESSION['user_data'])){
 						$fetch = $query->fetch_array();
 					?>
 					<form method = "POST" enctype = "multipart/form-data">
-          <div class = "form-group">
+       				   <div class = "form-group">
 							<label>Sponsor </label>
 							<input type = "text"  class = "form-control" name = sponsor value = "<?php echo $fetch['sponsor']?>" />
 						</div>

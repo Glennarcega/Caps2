@@ -60,6 +60,9 @@ if(isset($_SESSION['user_data'])){
     cursor: pointer;
     border: solid 1px #04c487;
 }
+.emaillbl, .mobilenumlbl, .addresslbl{
+    margin-top: -20px;
+}
 </style>
 <body>
 <?php try {
@@ -100,11 +103,11 @@ if(isset($_SESSION['user_data'])){
                 <div class="row mt-2">
                   <div class="col-md-6"><label class="labels">Name</label><input type="text" name="fname" value = "<?php echo $_SESSION['user_data']['fname']; ?>" class="form-control" placeholder="First Name" required readonly></div>
                   <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value = "<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name" required readonly></div>
-                  <div class="col-md-6"><label class="labels"><br>Email</label><input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required></div>
+                  <div class="col-md-6"><label class="labels emaillbl"><br>Email</label><input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required></div>
               </div>
                     <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels"><br>Mobile Number</label><input type="text" name="mobile_number" value = "<?php echo $_SESSION['user_data']['mobile_number']; ?>" class="form-control" placeholder="Ex.0946" required></div>
-                    <div class="col-md-12"><label class="labels"><br>Address</label><input type="text" name="address" value = "<?php echo $_SESSION['user_data']['address']; ?>" class="form-control" placeholder="Address" required></div>
+                    <div class="col-md-6"><label class="labels mobilenumlbl"><br>Mobile Number</label><input type="text" name="mobile_number" value = "<?php echo $_SESSION['user_data']['mobile_number']; ?>" class="form-control" placeholder="Ex.0946" required></div>
+                    <div class="col-md-12"><label class="labels addresslbl"><br>Address</label><input type="text" name="address" value = "<?php echo $_SESSION['user_data']['address']; ?>" class="form-control" placeholder="Address" required></div>
               </div>
                 <br>
                     <div class="mt-5 text-center"> <button type = "submit" name="submit" class = "btn btn-primary profile-button"> Save Profile</button></div>

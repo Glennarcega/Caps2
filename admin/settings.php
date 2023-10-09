@@ -30,6 +30,9 @@ if(isset($_SESSION['user_data'])){
   .cp-div{
   margin-top: 5px;
 }
+.mobilenumlbl, .addresslbl{
+    margin-top: -15px;
+}
 </style>
 <body> 
   <?php try {
@@ -81,8 +84,8 @@ if(isset($_SESSION['user_data'])){
 
               </div>
               <div class="row mt-3">
-                <div class="col-md-6"><label class="labels"><br>Mobile Number</label><label class="form-control"><?php echo $_SESSION['user_data']['mobile_number']; ?></label></div>
-                <div class="col-md-12"><label class="labels"><br>Address</label><label class="form-control"><?php echo $_SESSION['user_data']['address']; ?></label></div>
+                <div class="col-md-6"><label class="labels mobilenumlbl"><br>Mobile Number</label><label class="form-control"><?php echo $_SESSION['user_data']['mobile_number']; ?></label></div>
+                <div class="col-md-12"><label class="labels addresslbl"><br>Address</label><label class="form-control"><?php echo $_SESSION['user_data']['address']; ?></label></div>
               </div>
               <br>
               <div class="mt-5 text-center">

@@ -22,7 +22,9 @@ if(isset($_SESSION['user_data'])){
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 </head>
 <style>
-
+.mobilenumlbl, .addresslbl{
+    margin-top: -15px;
+}
 </style>
 <body>
 <?php try {
@@ -66,8 +68,8 @@ if(isset($_SESSION['user_data'])){
                 <div class="col-md-6 cp-div"><label class="labels"></label><label class="form-control">  <p> <a href="edit_password.php?id=<?php echo $_SESSION['user_data']['id']; ?>">Change Password</a></p></label></div>
               </div>
               <div class="row mt-3">
-                <div class="col-md-6"><label class="labels"><br>Mobile Number</label><label class="form-control"><?php echo $_SESSION['user_data']['mobile_number']; ?></label></div>
-                <div class="col-md-12"><label class="labels"><br>Address</label><label class="form-control"><?php echo $_SESSION['user_data']['address']; ?></label></div>
+                <div class="col-md-6"><label class="labels mobilenumlbl"><br>Mobile Number</label><label class="form-control"><?php echo $_SESSION['user_data']['mobile_number']; ?></label></div>
+                <div class="col-md-12"><label class="labels addresslbl"><br>Address</label><label class="form-control"><?php echo $_SESSION['user_data']['address']; ?></label></div>
               </div>
               <br>
               <div class="mt-5 text-center">

@@ -31,7 +31,6 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
    
-   
         <?php
             $query = $mysqli->query("SELECT * FROM `user`") or die(mysqli_error());
             $fetch = $query->fetch_array();
@@ -67,7 +66,6 @@ if(isset($_SESSION['user_data'])){
 				<input type = "password"  class = "form-control" name = "cpassword"  placeholder="Confirm your password" required/>
 	  </div>	
       <?php
-	require_once '../connection/connect.php';
 	if(ISSET($_POST['submit'])){
 		$email = $_POST['email'];
         $pass = md5($_POST['password']);
@@ -81,10 +79,10 @@ if(isset($_SESSION['user_data'])){
                 } else {
                   
                     $query = $mysqli->query("UPDATE `user` SET  `email` = '$email', `password` = '$pass' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
-                    echo '<script>alert("Update Password Successfully. Click OK to logout and Login again to see changes.");</script>';
+                    echo '<script>alert("Update Password Successfully. Click OK.");</script>';
                       
                     // Automatically redirect to the logout page
-                    echo '<script>window.location.href = "../index.php";</script>';
+                    echo '<script>window.location.href = "settings.php";</script>';
                 }
             }
 		?>

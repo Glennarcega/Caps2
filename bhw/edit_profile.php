@@ -110,40 +110,44 @@ if(isset($_SESSION['user_data'])){
               </div>
             </form>
             <?php
-                  if (isset($_POST['submit'])) {
-                      $fname = $_POST['fname'];
-                      $lname = $_POST['lname'];
-                      $address = $_POST['address'];
-                      $mobile_number = $_POST['mobile_number'];
-                      $email = $_POST['email'];
-                  
-                      // Check if the email (presumably an email address) contains the "@" symbol
-                      if (strpos($email, "@") === false) {
-                          $_SESSION['error_message'] = "Invalid email address format!";
-                          echo '<script>window.location.href = "edit_profile.php?id=' . $_SESSION['user_data']['id'] . '&error=Invalid email address format!";</script>';
-                        } else {
-                          // Check if a new photo was uploaded
-                          if (!empty($_FILES['photo']['tmp_name'])) {
-                              $photo = addslashes(file_get_contents($_FILES['photo']['tmp_name']));
-                              $photo_name = addslashes($_FILES['photo']['name']);
-                              $photo_size = getimagesize($_FILES['photo']['tmp_name']);
-                              move_uploaded_file($_FILES['photo']['tmp_name'], "../photo/" . $_FILES['photo']['name']);
-                          } 
-                          $query = $mysqli->query("UPDATE `user` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `email` = '$email', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+                if (isset($_POST['submit'])) {
+                    $fname = $_POST['fname'];
+                    $lname = $_POST['lname'];
+                    $address = $_POST['address'];
+                    $mobile_number = $_POST['mobile_number'];
+                    $email = $_POST['email'];
 
-                                        // Update session variables with new data
-                                        $_SESSION['user_data']['fname'] = $fname;
-                                        $_SESSION['user_data']['lname'] = $lname;
-                                        $_SESSION['user_data']['address'] = $address;
-                                        $_SESSION['user_data']['mobile_number'] = $mobile_number;
-                                        $_SESSION['user_data']['email'] = $email;
-                                        $_SESSION['user_data']['photo'] = $photo_name;
-                          $query = $mysqli->query("UPDATE `user` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `email` = '$email', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
-                          echo '<script>alert("Update Successfully.");</script>';
-                          echo '<script>window.location.href = "settings.php";</script>';
-                      }
-                  }
-                  ?>
+                    // Check if the email (presumably an email address) contains the "@" symbol
+                    if (strpos($email, "@") === false) {
+                        $_SESSION['error_message'] = "Invalid email address format!";
+                        echo '<script>window.location.href = "edit_profile.php?id=' . $_SESSION['user_data']['id'] . '&error=Invalid email address format!";</script>';
+                    } else {
+                        $photo_name = $_SESSION['user_data']['photo']; // Keep the current photo if not updated
+
+                        // Check if a new photo was uploaded
+                        if (!empty($_FILES['photo']['tmp_name'])) {
+                            $photo = addslashes(file_get_contents($_FILES['photo']['tmp_name']));
+                            $photo_name = addslashes($_FILES['photo']['name']);
+                            $photo_size = getimagesize($_FILES['photo']['tmp_name']);
+                            move_uploaded_file($_FILES['photo']['tmp_name'], "../photo/" . $_FILES['photo']['name']);
+                        }
+
+                        $query = $mysqli->query("UPDATE `user` SET `fname` = '$fname', `lname` ='$lname', `address` = '$address', `mobile_number` = '$mobile_number', `email` = '$email', `photo` = '$photo_name' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+
+                        // Update session variables with new data
+                        $_SESSION['user_data']['fname'] = $fname;
+                        $_SESSION['user_data']['lname'] = $lname;
+                        $_SESSION['user_data']['address'] = $address;
+                        $_SESSION['user_data']['mobile_number'] = $mobile_number;
+                        $_SESSION['user_data']['email'] = $email;
+                        $_SESSION['user_data']['photo'] = $photo_name;
+
+                        echo '<script>alert("Update Successfully.");</script>';
+                        echo '<script>window.location.href = "settings.php";</script>';
+                    }
+                }
+                ?>
+
                 </div>
                 </div>
               </div>

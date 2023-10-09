@@ -9,13 +9,14 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="csslog/style.css">
 </head>
-<body>
+<body class =bodyy>
 <div class="form-container">
     <form class="mx-auto" method="post" action="send-password-reset.php"
           style="background-color: #FFFACD">
         <img src="img/ourlogo.png" alt="Logo" class="logo">
         <h6 class="text-center p-1">Medicine Management System for Barangay Malitam</h6>
-        <h2 class="text-center p-1">Forgot Password</h2>
+        <br>
+        <h3 class="text-center p-1">Forgot Password</h3>
         <input type="email" required placeholder="Enter Email address"
                class="form-control"
                name="email" id="email">

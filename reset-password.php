@@ -40,7 +40,7 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
           crossorigin="anonymous">
     <link rel="stylesheet" href="csslog/style.css">
 </head>
-<body>
+<body class =bodyy>
 <div class="form-container">
     <form method="post" class="mx-auto" method="post" action="process-reset-password.php"
           style="background-color: #FFFACD">

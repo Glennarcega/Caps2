@@ -36,7 +36,7 @@ if(isset($_SESSION['user_data'])){
 		<div class="panel panel-default">
 			<div class="panel-body">
      <h3> <div class = "alert alert-info">Medicine Records</div></h3>
-				<table id="table" class="table table-bordered">
+				<table id="table" class = "table table-striped">
 					<thead>
 						<tr>
 							<th>Product Name</th>

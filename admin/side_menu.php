@@ -48,10 +48,10 @@
         </li>
         <li>
          <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
-          <i class="bx bx-cog"></i>
-          <span class="link_name">Settings</span>
+          <i class="bx bx-user"></i>
+          <span class="link_name">My Profile</span>
         </a>
-        <span class="tooltip">Settings</span>
+        <span class="tooltip">My Profile</span>
       </li>
       <li class="profile">
           <div class="profile_details">

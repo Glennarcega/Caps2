@@ -19,13 +19,7 @@
         </a>
         <span class="tooltip">Anouncements</span>
       </li>
-      <li>
-        <a href="#">
-          <i class="bx bx-pie-chart-alt-2"></i>
-          <span class="link_name">Analytics</span>
-        </a>
-        <span class="tooltip">Analytics</span>
-      </li>
+    
       <li>
         <a href="userRecMed.php">
           <i class="bx bx-folder"></i>

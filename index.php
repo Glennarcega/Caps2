@@ -7,6 +7,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
     <link rel="stylesheet" href="csslog/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class =bodyy>
 <div class="form-container">
@@ -28,15 +29,16 @@
             </div>
         <?php } ?>
 
-        <input type="text" placeholder="Enter Email" class="form-control" name="email" id="email">
+        <input type="text" placeholder="Email" class="form-control" name="email" id="email">
 
+        <div class="form-group">
         <div class="password-container">
-            <input type="password" placeholder="Password" name="password" class="form-control" id="password"
-                   oninput="togglePasswordButton()" autocomplete="off">
-            <span class="password-toggle" id="passwordToggle" onclick="togglePassword()">
-                &#x1F441; <!-- Unicode for eye icon -->
-            </span>
+            <input type="password" placeholder="Password" name="password" class="form-control" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required style="padding-right: 40px;" />
+            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
+                <i class="fas fa-eye-slash"></i>
+            </button>
         </div>
+    </div>
         <input type="submit" class="btn btn-primary mt-0" value="Login">
         <br>
         <br>
@@ -45,28 +47,29 @@
 </div>
 
 <script>
-    function togglePasswordButton() {
-        var passwordField = document.getElementById("password");
-        var passwordToggle = document.getElementById("passwordToggle");
+   function togglePasswordButton(buttonId) {
+            var passwordInput = document.getElementById(buttonId.replace('Toggle', ''));
+            var showPasswordBtn = document.getElementById(buttonId);
 
-        if (passwordField.value === "") {
-            passwordToggle.style.display = "none";
-        } else {
-            passwordToggle.style.display = "inline-block";
+            if (passwordInput.value.length > 0) {
+                showPasswordBtn.style.display = "block";
+            } else {
+                showPasswordBtn.style.display = "none";
+            }
         }
-    }
 
-    function togglePassword() {
-        var passwordField = document.getElementById("password");
-        var passwordToggle = document.getElementById("passwordToggle");
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            passwordToggle.innerHTML = "&#x1F440;"; // Unicode for crossed eye icon
-        } else {
-            passwordField.type = "password";
-            passwordToggle.innerHTML = "&#x1F441;"; // Unicode for eye icon
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = document.getElementById(inputId);
+            var showPasswordBtn = document.getElementById(inputId + "Toggle");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
+            } else {
+                passwordInput.type = "password";
+                showPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            }
         }
-    }
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -80,16 +83,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <style>
     .password-container {
-        position: relative;
-    }
+            position: relative;
+        }
 
-    .password-toggle {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
+        .toggle-password-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .toggle-password-btn {
+                right: 5px; /* Adjust the button's position for smaller screens */
+            }
+        }
 </style>
 </body>
 </html>

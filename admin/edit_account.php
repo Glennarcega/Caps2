@@ -72,11 +72,6 @@ if(isset($_SESSION['user_data'])){
                 <option value="1">Admin</option>
                </select>
 						</div>
-				
-						<div class = "form-group">
-							<label>Password </label>
-							<input type = "password" class = "form-control" value = "<?php echo $fetch['password']?>" name = "password" />
-						</div>
 						<br />
 						<div class = "form-group">
 							<button name = "edit_account" class = "btn btn-warning form-control"><i class = "bx bx-save"></i>  Save Changes</button>

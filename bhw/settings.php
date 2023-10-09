@@ -64,7 +64,6 @@ if(isset($_SESSION['user_data'])){
                 <div class="col-md-6"><label class="labels">Last Name</label><label class="form-control"><?php echo $_SESSION['user_data']['lname']; ?></label></div>
                 <div class="col-md-6"><label class="labels">Email</label><label class="form-control"><?php echo $_SESSION['user_data']['email']; ?> </label></div>
                 <div class="col-md-6 cp-div"><label class="labels"></label><label class="form-control">  <p> <a href="edit_password.php?id=<?php echo $_SESSION['user_data']['id']; ?>">Change Password</a></p></label></div>
-
               </div>
               <div class="row mt-3">
                 <div class="col-md-6"><label class="labels"><br>Mobile Number</label><label class="form-control"><?php echo $_SESSION['user_data']['mobile_number']; ?></label></div>

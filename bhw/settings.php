@@ -33,10 +33,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
     <section class="home-section"> 
-          <br></br>
+          <br>
           <div class="container-fluid">
             <div class="panel panel-default">
             <div class="panel-body">
+            <h3> <div class = "alert alert-info">User Profile</div></h3>
           <div class="text">User Profile</div>
             <?php if (isset($_GET['success'])) { ?>
               <div class="alert alert-success" role="alert">
@@ -49,7 +50,7 @@ if(isset($_SESSION['user_data'])){
               <div class="row mt-3">
           <div class="col-md-12">
           <form method = "POST" enctype="multipart/form-data">
-              <label class="changeprofile"><br>Change Profile</label>
+            <label class="text-centered">Profile Picture<br></label>
               <div class = "well" style = "height:200px; width:265px;">
                   <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>" height = "160" width = "225"/>
                   </div>

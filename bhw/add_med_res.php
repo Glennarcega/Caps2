@@ -69,21 +69,29 @@ if(isset($_SESSION['user_data'])){
               <td><?php echo $fetch['total'] ?></td>
               <td><?php echo $fetch['expDate'] ?></td>
               <td><?php echo $status ?></td>
-              <td>
-                  <center>
+              <td
+
+                        <center>
                       <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
                           <button class="btn btn-warning" disabled>Request</button>
                       <?php else: ?>
-                        <?php
-                        if (isset($_GET['residentId'])) {
-                          $residentId = $_GET['residentId'];
-                          echo '<a class="btn btn-warning" href="med_request_add.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>'; 
-                        } else {
-                          echo '<p>Resident ID not provided.</p>';
-                      }
-                      ?>
+                          <?php
+                          if (isset($_GET['residentId'])) {
+                              $residentId = $_GET['residentId'];
+                              
+                              // Add the condition here to check if the unit is equal to 'insert'
+                              if ($fetch['unit'] == 'Insert') {
+                                  echo '<a class="btn btn-warning" href="contraceptives_form.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
+                              } else {
+                                  echo '<a class="btn btn-warning" href="med_request_add.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
+                              }
+                          } else {
+                              echo '<p>Resident ID not provided.</p>';
+                          }
+                          ?>
                       <?php endif; ?>
                   </center>
+
               </td>
           </tr>
           <?php } ?>

@@ -51,11 +51,18 @@ if(isset($_SESSION['user_data'])){
 							<label>Product Name </label>
 							<input type = "text"  class = "form-control" name = "productName" value = "<?php echo $fetch['productName']?>" required/>
 						</div>
-            <div class = "form-group">
+						<div class = "form-group">
 							<label>Unit </label>
-							<input type = "text"  class = "form-control" name = "unit" value = "<?php echo $fetch['unit']?>" required/>
+							<select class = "form-control" required = required name = "unit">
+         			       <option value="" disabled selected>Unit</option>
+								<option value="Boxes">Boxes</option>
+								<option value="Bottles">Bottles</option>
+								<option value="Pcs">Pcs</option>
+								<option value="Tablet">Tablet</option>
+								<option value="Insert">Insert</option>
+							</select>
 						</div>
-          <div class = "form-group">
+        				  <div class = "form-group">
 							<label>Batch </label>
 							<input type = "text"  class = "form-control" name = "batch" value = "<?php echo $fetch['batch']?>" required/>
 						</div>

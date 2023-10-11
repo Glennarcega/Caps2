@@ -57,9 +57,16 @@ if(isset($_SESSION['user_data'])){
 							<label>Product Name </label>
 							<input type = "text"  class = "form-control" id="prodname" name = "productName" required/>
 						</div>
-            			<div class = "form-group">
+						<div class = "form-group">
 							<label>Unit </label>
-							<input type = "text"  class = "form-control" name = "unit" placeholder ="" required/>
+							<select class = "form-control" required = required name = "unit">
+         			       <option value="" disabled selected>Unit</option>
+								<option value="Boxes">Boxes</option>
+								<option value="Bottles">Bottles</option>
+								<option value="Pcs">Pcs</option>
+								<option value="Tablet">Tablet</option>
+								<option value="Insert">Insert</option>
+							</select>
 						</div>
           			  <div class = "form-group">
 							<label>Batch </label>

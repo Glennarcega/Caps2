@@ -76,11 +76,13 @@ if(isset($_SESSION['user_data'])){
                           <td><?php echo $fetch['expDate'] ?></td>
                           <td><?php echo $status ?></td>
                         <td>
-                          <center>
+                              <center>
                               <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
-                                <button class="btn btn-warning" disabled>Request</button>
+                                  <button class="btn btn-warning" disabled>Request</button>
+                              <?php elseif ($fetch['unit'] == 'Insert'): ?>
+                                  <a class="btn btn-warning" href="contraceptives_form.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
                               <?php else: ?>
-                                <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+                                  <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
                               <?php endif; ?>
                           </center>
                       </td>

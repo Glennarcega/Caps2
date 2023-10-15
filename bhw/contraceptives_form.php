@@ -42,16 +42,22 @@ if(isset($_SESSION['user_data'])){
     <form class="fpform" id="form1">
       <h1><b>Family Planning Form</b></h1><br>
       <h4><b>Personal Information</b></h4>
+
+      <?php
+         $query = $mysqli->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
+         $fetch = $query->fetch_array();
+      ?>
+
       <label class="lbl">Last Name</label>
-      <input type="text" class ="textbox" id="last_name" placeholder="e.g. Dela Cruz">
+      <input type="text" class ="textbox" id="lastName" name="lastName" value="<?php echo $fetch['lastName']; ?>"  placeholder="e.g. Dela Cruz">
       <label class="lbl">First Name</label>
-      <input type="text" class ="textbox" id="first_name" placeholder="e.g. Juan">
+      <input type="text" class ="textbox" id="firstName" id="firstName" value="<?php echo $fetch['firstName']; ?>" placeholder="e.g. Juan">
       <label class="lbl">Middle Initial</label>
-      <input type="text" class ="textbox" id="middle_initial" placeholder="e.g. S.">
+      <input type="text" class ="textbox" id="middleName" id="middleName" value="<?php echo $fetch['middleName']; ?>" placeholder="e.g. S.">
       <label class="lbl">Birthdate</label>
-      <input type="date" class ="textbox" id="dateOfBirth">
+      <input type="date" class ="textbox"  id="dateOfBirth">
       <label class="lbl">Age</label>
-      <input type="number" class ="textbox" id="age" placeholder="Enter your age" maxlength="3">
+      <input type="number" class ="textbox" id="age" placeholder="Enter Your Age"  maxlength="3">
       <label class="lbl">Gender</label>
       <select id="sex" class ="textbox" >
         <option value="" disabled selected>Select Gender</option>
@@ -59,6 +65,8 @@ if(isset($_SESSION['user_data'])){
         <option value="female">Female</option>
         <option value="other">Other</option>
       </select>
+      <label class="lbl">Contact Number</label>
+      <input type="number" class ="textbox" id="contact_number" placeholder="e.g 0946">
       <label class="lbl">Educational Attainment</label>
       <select id="educational_attainment" class ="textbox" >
         <option value="" disabled selected>Educational Attainment</option>
@@ -67,11 +75,8 @@ if(isset($_SESSION['user_data'])){
         <option value="college">College</option>
         <option value="graduate_school">Graduate School</option>
       </select>
-      <div class="mt-5 text-right"> <button type = "button" name="button" class = "btn btn-primary profile-button" onclick="nextForm()"> Next ></button></div>    
-    </form>
-    <form class="fpform hidden" id="form2"><!--Pangalawang Form -->
-      <h1><b>Family Planning Form</b></h1><br>
-      <h4><b>Personal Information</b></h4>
+      <label class="lbl">Ocuupation</label>
+      <input type="text" class ="textbox" id="occupation" name="occupation">
       <label class ="lbl">House Number</label>
       <input type="number" class ="textbox" id="house_number" placeholder="e.g 123">
       <label class="lbl">Street</label>
@@ -85,8 +90,7 @@ if(isset($_SESSION['user_data'])){
         <option value="Malitam Tres">Malitam Tres</option>
         <option value="BadjCom">Badjao Community</option>
       </select>
-      <label class="lbl">Contact Number</label>
-      <input type="number" class ="textbox" id="contact_number" placeholder="e.g 0946">
+  
       <label class="lbl">Civil Status</label>
       <select id="civil_status" class ="textbox">
         <option value="" disabled selected>Civil Status</option>
@@ -96,16 +100,25 @@ if(isset($_SESSION['user_data'])){
         <option value="divorced">Divorced</option>
       </select>
       <label class="lbl">Religion</label>
-    <select id="religion" class ="textbox">
-    <option value="" disabled selected>Select your Religion</option>
-      <option value="Roman Catholicism">Roman Catholic</option>
-      <option value="Islam">Islam</option>
-      <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
-      <option value="Members Church of God International (MCGI)">Members Church of God International (MCGI)</option>
-      <option value="Other Minority Religions">Other Minority Religions</option>
-</select>
-    <label class="lbl">Others: please specify</label>
-      <input type="text" class ="textbox" id="others" placeholder="please specify your religion">
+      <input type="text" class ="textbox" id="religion">
+      <div class="mt-5 text-right"> <button type = "button" name="button" class = "btn btn-primary profile-button" onclick="nextForm()"> Next ></button></div>    
+    </form>
+
+    <form class="fpform hidden" id="form2"><!--Pangalawang Form -->
+      <h1><b>Family Planning Form</b></h1><br>
+      <h4><b>Spouse Information</b></h4>
+      <label class="lbl">Last Name</label>
+      <input type="text" class ="textbox" id="lastName" name="lastName"   placeholder="e.g. Dela Cruz">
+      <label class="lbl">First Name</label>
+      <input type="text" class ="textbox" id="firstName" id="firstName"  placeholder="e.g. Juan">
+      <label class="lbl">Middle Initial</label>
+      <input type="text" class ="textbox" id="middleName" id="middleName"  placeholder="e.g. S.">
+      <label class="lbl">Birthdate</label>
+      <input type="date" class ="textbox"  id="dateOfBirth">
+      <label class="lbl">Age</label>
+      <input type="number" class ="textbox" id="age" placeholder="Enter Your Age"  maxlength="3">
+      <label class="lbl">Ocuupation</label>
+      <input type="text" class ="textbox" id="occupation" name="occupation">
       <div>
   <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
     <button type="button" name="button" class="btn btn-primary profile-button" onclick="prevForm()"> &lt; Previous</button>
@@ -118,75 +131,106 @@ if(isset($_SESSION['user_data'])){
     </form>
     <form class="fpform hidden" id="form3"><!--Pangatlong Form -->
       <h1><b>Family Planning Form</b></h1><br>
-      <h4><b>Medical Information </b></h4>
-      <label class="lblcheck">Severe headaches/Migraine</label>
-<div class="checkbox-container">
-  <label class="checkcontainer">Yes
-    <input type="checkbox" name="headaches">
-    <span class="checkmark"></span>
-  </label>
-  <label class="checkcontainer">No
-    <input type="checkbox" name="headaches">
-    <span class="checkmark"></span>
-  </label>
+      <h4><b>Type of Client </b></h4>
+      
+      <label class="lblcheck"></label>
+          <div class="checkbox-container">
+            <label class="checkcontainer">New Acceptor
+              <input type="checkbox" name="menstrualFlow">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">Current User
+              <input type="checkbox" name="menstrualFlow">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">Dropout / Restart
+              <input type="checkbox" name="menstrualFlow">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">Changing Method
+              <input type="checkbox" name="menstrualFlow">
+              <span class="checkmark"></span>
+            </label><br>
+            <div>
+            <label class="lbl">Reason</label>
+            <br>
+            <label class="checkcontainer">Medical Condition
+              <input type="checkbox" name="menstrualFlow">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">Others
+              <input type="checkbox" name="menstrualFlow">
+              <span class="checkmark"></span>
+            </label>
+</div>
+<div>
+            <label class="lbl">Method for currently use (for changing Method)</label>
+            <br>
+            <label class="checkcontainer">COC
+              <input type="checkbox" name="coc">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">Iud
+              <input type="checkbox" name="iud">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">POP
+              <input type="checkbox" name="pop">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">BOM/CMM
+              <input type="checkbox" name="bom/cmm">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">Injectable
+              <input type="checkbox" name="injectible">
+              <span class="checkmark"></span>
+            </label>
+             <label class="checkcontainer">BBT
+              <input type="checkbox" name="bbt">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">Implant
+              <input type="checkbox" name="implant">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">STM
+              <input type="checkbox" name="stm">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">LAM
+              <input type="checkbox" name="lam">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">Others
+              <input type="checkbox" name="stm">
+              <span class="checkmark"></span>
+            </label>
+</div>
+<input type="text" class ="textbox" id="others" id="others" placeholder="others">
+
 </div>
 <br>
-<label class="lblcheck">Severe Chest Pain</label>
+<label class="lblcheck">Reason For Fp</label>
 <div class="checkbox-container">
-  <label class="checkcontainer">Yes
-    <input type="checkbox" name="chestPain">
-    <span class="checkmark"></span>
-  </label>
-  <label class="checkcontainer">No
-    <input type="checkbox" name="chestPain">
-    <span class="checkmark"></span>
-  </label>
-</div>
-<br>
-<label class="lblcheck">Unexplained Vaginal Bleeding</label>
-<div class="checkbox-container">
-  <label class="checkcontainer">Yes
-    <input type="checkbox" name="vaginalBleeding">
-    <span class="checkmark"></span>
-  </label>
-  <label class="checkcontainer">No
-    <input type="checkbox" name="vaginalBleeding">
-    <span class="checkmark"></span>
-  </label>
-</div>
-<br>
-<label class="lblcheck">Abnormal Vaginal Discharge</label>
-<div class="checkbox-container">
-  <label class="checkcontainer">Yes
-    <input type="checkbox" name="vaginalDischarge">
-    <span class="checkmark"></span>
-  </label>
-  <label class="checkcontainer">No
-    <input type="checkbox" name="vaginalDischarge">
-    <span class="checkmark"></span>
-  </label>
-</div>
-<br>
-<label class="lblcheck">Menstrual Flow</label>
-<div class="checkbox-container">
-  <label class="checkcontainer">Scanty (1-2 pads/day)
-    <input type="checkbox" name="menstrualFlow">
+  <label class="checkcontainer">Spacing
+    <input type="checkbox" name="spacing">
     <span class="checkmark"></span>
   </label><br>
-  <label class="checkcontainer">Moderate (3-5 pads/day)
-    <input type="checkbox" name="menstrualFlow">
+  <label class="checkcontainer">Limiting
+    <input type="checkbox" name="limiting">
     <span class="checkmark"></span>
   </label><br>
-  <label class="checkcontainer">Heavy (5 pads a day)
-    <input type="checkbox" name="menstrualFlow">
+  <label class="checkcontainer">Others
+    <input type="checkbox" name="others">
     <span class="checkmark"></span>
+    <input type="text" class ="textbox" name="others">
   </label>
-  </div>
-    <div class="date-container">
-        <label for="menstruationDate">Last Menstruation:</label>
-        <input type="date" class ="textbox" id="menstruationDate" name="menstruationDate">
-    </div>
-    <div>
+  <input type="text" class ="textbox" id="others" id="others" placeholder="others">
+
+</div>
+<br>
+    
   <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
     <button type="button" name="button" class="btn btn-primary profile-button" onclick="prevForm()"> &lt; Previous</button>
   </div>    

@@ -102,9 +102,8 @@ if(isset($_SESSION['user_data'])){
               if ($query->num_rows > 0) {
                   while ($fetch = $query->fetch_assoc()) {
                     
-                              
                       echo '<tr>';
-                      echo '<td>' . $fetch['residentName'] . '</td>';
+                      echo '<td>' . $fetch['lastName'] . ' ' . $fetch['firstName'] . ' ' . $fetch['middleName'] . '</td>';
                       echo '<td>' . $fetch['productName'] . '</td>';
                       echo '<td>' . $fetch['unit'] . '</td>';
                       echo '<td>' . $fetch['quantity_req'] . '</td>';

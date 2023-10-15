@@ -69,8 +69,16 @@ if(isset($_SESSION['user_data'])){
                                     value="<?php echo $fetch['total']; ?>" readonly />
                             </div>
                             <div class="form-group" required="required">
-                                <label>Resident Name</label>
-                                <input type="text" class="form-control" name="residentName" id ="residentName" placeholder="LN,FN,MI." required  />
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your last Name" required  />
+                            </div>
+                            <div class="form-group" required="required">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="firstName" id ="firstName" placeholder="Enter your First Name" required  />
+                            </div>
+                            <div class="form-group" >
+                                <label>Middle Name</label>
+                                <input type="text" class="form-control" name="middleName" id ="middleName" placeholder="Optional"/>
                             </div>
                             <div class="form-group" required="required">
                                 <label>Date of Birth</label>
@@ -105,12 +113,12 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required" >
                                 <label>Contact Number</label>
-                                <input type="number" class="form-control" name="contactNumber" placeholder ="Ex. 0946" required />
+                                <input type="number" class="form-control" name="contactNumber" placeholder="Enter your Contact Number"  required />
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Quantity</label>
                                 <input type="number"  min="0" max="999999999" class="form-control"
-                                    name="quantity_req"  placeholder ="" required />
+                                    name="quantity_req"  placeholder ="Enter Quantity Request" required />
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Given Date</label>

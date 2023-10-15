@@ -4,7 +4,9 @@ if (isset($_POST['add_rec'])) {
     // Include your database connection code here (e.g., $conn = new mysqli(...);)
 
     $residentId = isset($_GET['residentId']) ? $_GET['residentId'] : '';
-    $residentName = $_POST['residentName'];
+    $lastName = $_POST['lastName'];
+    $firstName = $_POST['firstName'];
+    $middleName = $_POST['middleName'];
     $productId = $_POST['productId'];
     $productName = $_POST['productName'];
     $unit = $_POST['unit'];
@@ -26,7 +28,7 @@ if (isset($_POST['add_rec'])) {
                 $updateQuery = $mysqli->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
 
                 if ($updateQuery) {
-                    $insertQuery = $mysqli->query("INSERT INTO request_medicine (residentId,residentName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$residentName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate')");
+                    $insertQuery = $mysqli->query("INSERT INTO request_medicine (residentId,lastName,firstName,middleName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$lastName','$firstName','$middleName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate')");
 
                     if ($insertQuery) {
                         echo '<script>alert("Request Medicine Successful. Click OK ");</script>';

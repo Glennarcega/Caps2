@@ -67,7 +67,7 @@ if(isset($_SESSION['user_data'])){
                 while($fetch = $query->fetch_array()){
               ?>	
 					  	<tr>	
-                <td><?php echo $fetch['residentName']?></td>
+                <td><?php echo $fetch['lastName'] . ' ' . $fetch['firstName'] . ' ' . $fetch['middleName']; ?></td>
                 <td><?php echo $fetch['dateBirth']?></td>
                 <td><?php echo $fetch['age']?></td>
                 <td><?php echo $fetch['sex']?></td>

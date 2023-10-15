@@ -1,7 +1,9 @@
 <?php
 if (isset($_POST['add_rec'])) {
     $productId = $_POST['productId'];
-    $residentName = $_POST['residentName'];
+    $lastName = $_POST['lastName'];
+    $firstName = $_POST['firstName'];
+    $middleName = $_POST['middleName'];
     $dateBirth = $_POST['dateBirth'];
     $age = $_POST['age'];
     $sex = $_POST['sex'];
@@ -23,11 +25,11 @@ if (isset($_POST['add_rec'])) {
             // Sufficient quantity available, update and insert
             $quantity = $availableQuantity - $quantity_req;
             $mysqli->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
-            $query = $mysqli->query("INSERT INTO residentrecords (productId, residentName, dateBirth, age, sex, address, contactNumber) VALUES ('$productId', '$residentName', '$dateBirth', '$age', '$sex', '$address', '$contactNumber')");
+            $query = $mysqli->query("INSERT INTO residentrecords (productId, lastName, firstName,middleName, dateBirth, age, sex, address, contactNumber) VALUES ('$productId', '$lastName','$firstName','$middleName', '$dateBirth', '$age', '$sex', '$address', '$contactNumber')");
 
             if ($query) {
                 $residentId = mysqli_insert_id($mysqli);
-                $query = $mysqli->query("INSERT INTO request_medicine (residentId, residentName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$residentName','$productId','$productName','$unit', '$quantity_req', '$givenDate')");
+                $query = $mysqli->query("INSERT INTO request_medicine (residentId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$lastName','$firstName','$middleName','$productId','$productName','$unit', '$quantity_req', '$givenDate')");
 
                 echo '<script>window.location.href = "./userRecMed.php?success=Add Request Successfully";</script>';
                 exit(); // Add this line to stop further script execution

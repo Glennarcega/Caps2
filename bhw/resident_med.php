@@ -51,7 +51,8 @@ if(isset($_SESSION['user_data'])){
                       while ($fetch = $query->fetch_assoc()) {
                           
                         // Display the records within the table rows    
-                        echo '<h2>' . $fetch['residentName'] . '</h2>';
+                        echo '<h2>' .  $fetch['lastName'] . ' ' . $fetch['firstName'] . ' ' . $fetch['middleName']. '</h2>';
+
                     }
                   } else {
                     echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';

@@ -71,7 +71,9 @@ if(isset($_SESSION['user_data'])){
             // Display the records within the table rows
             
             // Assuming $fetch['residentName'] contains the desired name
-            $residentName = isset($fetch['residentName']) ? $fetch['residentName'] : '';
+            $lastName = isset($fetch['lastName']) ? $fetch['lastName'] : '';
+            $firstName = isset($fetch['firstName']) ? $fetch['firstName'] : '';
+            $middleName = isset($fetch['middleName']) ? $fetch['middleName'] : '';
         }
         } else {
             echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
@@ -100,9 +102,19 @@ if(isset($_SESSION['user_data'])){
                         </div>
                             
                             <div class="form-group">
-                                <label>Resident Name</label>
-                                <input type="text" class="form-control" name="residentName" 
-                                value="<?php echo $residentName; ?> "readonly />
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="lastName" 
+                                value="<?php echo $lastName; ?> "readonly />
+                            </div>
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="firstName" 
+                                value="<?php echo $firstName; ?> "readonly />
+                            </div>
+                            <div class="form-group">
+                                <label>Middle Name</label>
+                                <input type="text" class="form-control" name="middleName" 
+                                value="<?php echo $middleName; ?> "readonly />
                             </div>
                             <div class="form-group">
                                 <label>Product ID</label>

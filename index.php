@@ -9,6 +9,49 @@
     <link rel="stylesheet" href="csslog/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
+<style>
+    .password-container {
+        position: relative;
+    }
+
+    .toggle-password-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 480px) {
+        .toggle-password-btn {
+            right: 5px; /* Adjust the button's position for smaller screens */
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        /* Additional CSS for low-resolution tablets and iPads */
+        /* You can add styles specific to this screen size here */
+    }
+
+    @media screen and (max-width: 1024px) {
+        /* Additional CSS for tablets (portrait mode) */
+        /* You can add styles specific to this screen size here */
+    }
+
+    @media screen and (max-width: 1280px) {
+        /* Additional CSS for desktops */
+        /* You can add styles specific to this screen size here */
+    }
+
+    @media screen and (min-width: 1281px) {
+        /* Additional CSS for larger screens */
+        /* You can add styles specific to this screen size here */
+    }
+
+</style>
 <body class =bodyy>
 <div class="form-container">
     <form class="mx-auto"
@@ -29,7 +72,7 @@
             </div>
         <?php } ?>
 
-        <input type="text" placeholder="Email" class="form-control" name="email" id="email">
+        <input type="text" placeholder="Email" class="form-control" name="email" id="email" required>
 
         <div class="form-group">
         <div class="password-container">

@@ -39,96 +39,150 @@ if(isset($_SESSION['user_data'])){
           <h3><div class="alert alert-info">Contraceptives</div></h3> 
           <div class="col-md-8 col-md-offset-3">
           <div class="container">
-    <form class="fpform" id="form1">
-      <h1><b>Family Planning Form</b></h1><br>
-      <h4><b>Personal Information</b></h4>
-
-      <?php
-         $query = $mysqli->query("SELECT * FROM `residentrecords`") or die(mysqli_error());
+          <?php
+        $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
+         $query = $mysqli->query("SELECT * FROM medicines WHERE productName = '$productName'") or die(mysqli_error());
          $fetch = $query->fetch_array();
-      ?>
+         ?>
 
-      <label class="lbl">Last Name</label>
-      <input type="text" class ="textbox" id="lastName" name="lastName" value="<?php echo $fetch['lastName']; ?>"  placeholder="e.g. Dela Cruz">
-      <label class="lbl">First Name</label>
-      <input type="text" class ="textbox" id="firstName" id="firstName" value="<?php echo $fetch['firstName']; ?>" placeholder="e.g. Juan">
-      <label class="lbl">Middle Initial</label>
-      <input type="text" class ="textbox" id="middleName" id="middleName" value="<?php echo $fetch['middleName']; ?>" placeholder="e.g. S.">
-      <label class="lbl">Birthdate</label>
-      <input type="date" class ="textbox"  id="dateOfBirth">
-      <label class="lbl">Age</label>
-      <input type="number" class ="textbox" id="age" placeholder="Enter Your Age"  maxlength="3">
-      <label class="lbl">Gender</label>
-      <select id="sex" class ="textbox" >
-        <option value="" disabled selected>Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-      <label class="lbl">Contact Number</label>
-      <input type="number" class ="textbox" id="contact_number" placeholder="e.g 0946">
-      <label class="lbl">Educational Attainment</label>
-      <select id="educational_attainment" class ="textbox" >
-        <option value="" disabled selected>Educational Attainment</option>
-        <option value="elementary">Elementary</option>
-        <option value="high_school">High School</option>
-        <option value="college">College</option>
-        <option value="graduate_school">Graduate School</option>
-      </select>
-      <label class="lbl">Ocuupation</label>
-      <input type="text" class ="textbox" id="occupation" name="occupation">
-      <label class ="lbl">House Number</label>
-      <input type="number" class ="textbox" id="house_number" placeholder="e.g 123">
-      <label class="lbl">Street</label>
-      <select id="street" class ="textbox" >
-        <option value="" disabled selected>Street</option>
-        <option value="IlangIlang">Ilang Ilang</option>
-        <option value="Camia">Camia</option>
-        <option value="Rosal">Rosal</option>
-        <option value="Sampaguita">Sampaguita</option>
-        <option value="Malitam Dos">Malitam Dos</option>
-        <option value="Malitam Tres">Malitam Tres</option>
-        <option value="BadjCom">Badjao Community</option>
-      </select>
-  
-      <label class="lbl">Civil Status</label>
-      <select id="civil_status" class ="textbox">
-        <option value="" disabled selected>Civil Status</option>
-        <option value="single">Single</option>
-        <option value="married">Married</option>
-        <option value="widowed">Widowed</option>
-        <option value="divorced">Divorced</option>
-      </select>
-      <label class="lbl">Religion</label>
-      <input type="text" class ="textbox" id="religion">
-      <div class="mt-5 text-right"> <button type = "button" name="button" class = "btn btn-primary profile-button" onclick="nextForm()"> Next ></button></div>    
+                      <form class="fpform" id="form1">
+                      <h1><b>Family Planning Form</b></h1><br>
+                        <h4><b>Family Planning Method Request</b></h4>
+
+                        <div class="form-group">
+                              <label>Product ID</label>
+                              <input type="text" class="form-control" name="productId"
+                                  value="<?php echo $fetch['productId']; ?>" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" class="form-control" name="productName"
+                              value="<?php echo $fetch['productName']; ?>" readonly />
+                          </div>
+                        <div class="form-group">
+                              <label>Unit</label>
+                                <input type="text" class="form-control" name="unit"
+                                  value="<?php echo $fetch['unit']; ?>" readonly />
+                          </div>
+                          <div class="form-group">
+                            <label>Product Quantity</label>
+                                <input type="text" class="form-control" name="total"
+                                  value="<?php echo $fetch['total']; ?>" readonly />
+                          </div>
+
+                              <br>
+                            <h4><b>Personal Information</b></h4>
+                            <div class="form-group" required="required">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your last Name" required  />
+                            </div>
+                            <div class="form-group" required="required">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="firstName" id ="firstName" placeholder="Enter your First Name" required  />
+                            </div>
+                            <div class="form-group" >
+                                <label>Middle Name</label>
+                                <input type="text" class="form-control" name="middleName" id ="middleName" placeholder="Optional"/>
+                            </div>
+                            <div class="form-group" required="required">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" name="dateBirth" id="dateOfBirth" required/>
+                            </div>
+                            <div class="form-group" required="required">
+                                <label>Age</label>
+                                <input type="text" class="form-control" name="age" id ="age" required readonly/>
+                            </div>
+                            <div class="form-group" required="required">
+                                <label>Gender</label>
+                                <select class="form-control" required="required" name="sex" id="usertypeSelect">
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            </div>
+                            <div class="form-group" required="required" >
+                                <label>Contact Number</label>
+                                <input type="number" class="form-control" name="contactNumber" placeholder="Enter your Contact Number"  required />
+                            </div>
+      
+                            <div class="form-group" required="required">
+                                <label>Educational Attainment</label>
+                                <select class="form-control" required="required" name="educAttainment" id="usertypeSelect">
+                                <option value="" disabled selected>Select Educational Attainment</option>
+                                <option value="elementary">Elementary</option>
+                                <option value="high_school">High School</option>
+                                <option value="college">College</option>
+                                <option value="graduate_school">Graduate School</option>
+                              </select>
+                              <div class="form-group" >
+                                <label>Occupation</label>
+                                <input type="text" class="form-control" name="occupation" id ="occupation" placeholder="Optional"/>
+                            </div>
+                            <div class="form-group" >
+                                <label>House no.</label>
+                                <input type="text" class="form-control" name="housenumber" id ="housenumber" placeholder="Optional"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Street</label>
+                                <select class="form-control" required="required" name="street" required>
+                                    <option value="" disabled selected>Select Sitio</option>
+                                    <option value="IlangIlang">Ilang-Ilang</option>
+                                    <option value="Orchids">Orchids</option>
+                                    <option value="Sampaguita">Sampaguita</option>
+                                    <option value="Camia">Camia</option>
+                                    <option value="Rosal">Rosal</option>
+                                    <option value="MalitamDos">Malitam Dos</option>
+                                    <option value="MalitamTres">Malitam Tres</option>
+                                    <option value="BadjCom">Badjao Community</option>
+                                </select>
+                            </div>
+                            <label>Civil Status</label>
+                                <select class="form-control" required="required" name="civilstatus" required>
+                                  <option value="" disabled selected>Civil Status</option>
+                                  <option value="single">Single</option>
+                                  <option value="married">Married</option>
+                                  <option value="widowed">Widowed</option>
+                                  <option value="divorced">Divorced</option>
+                                </select>
+                            <div class="form-group" >
+                                <label>Religion</label>
+                                <input type="text" class="form-control" name="religionr" id ="religion" placeholder="Optional"/>
+                            </div>  
+          <div class="mt-5 text-right"> <button type = "button" name="button" class = "btn btn-primary profile-button" onclick="nextForm('')"> Next ></button></div>    
     </form>
 
-    <form class="fpform hidden" id="form2"><!--Pangalawang Form -->
-      <h1><b>Family Planning Form</b></h1><br>
-      <h4><b>Spouse Information</b></h4>
-      <label class="lbl">Last Name</label>
-      <input type="text" class ="textbox" id="lastName" name="lastName"   placeholder="e.g. Dela Cruz">
-      <label class="lbl">First Name</label>
-      <input type="text" class ="textbox" id="firstName" id="firstName"  placeholder="e.g. Juan">
-      <label class="lbl">Middle Initial</label>
-      <input type="text" class ="textbox" id="middleName" id="middleName"  placeholder="e.g. S.">
-      <label class="lbl">Birthdate</label>
-      <input type="date" class ="textbox"  id="dateOfBirth">
-      <label class="lbl">Age</label>
-      <input type="number" class ="textbox" id="age" placeholder="Enter Your Age"  maxlength="3">
-      <label class="lbl">Ocuupation</label>
-      <input type="text" class ="textbox" id="occupation" name="occupation">
-      <div>
-  <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
-    <button type="button" name="button" class="btn btn-primary profile-button" onclick="prevForm()"> &lt; Previous</button>
-  </div>    
-  <div class="mt-5 text-right" style="display: inline-block; float:right;">
-    <button type="button" name="button" class="btn btn-primary profile-button" onclick="nextForm()">Next &gt;</button>
-  </div>    
-</div>
+                     <form class="fpform hidden" id="form2"><!--Pangalawang Form -->
+                            <h4><b>Spouse Information</b></h4>
+                            <div class="form-group" required="required">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your last Name" required  />
+                            </div>
+                            <div class="form-group" required="required">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="firstName" id ="firstName" placeholder="Enter your First Name" required  />
+                            </div>
+                            <div class="form-group" >
+                                <label>Middle Name</label>
+                                <input type="text" class="form-control" name="middleName" id ="middleName" placeholder="Optional"/>
+                            </div>
+                            <div class="form-group" required="required">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" name="dateBirth" id="dateOfBirth" required/>
+                            </div>
+                            <div class="form-group" required="required">
+                                <label>Age</label>
+                                <input type="text" class="form-control" name="agespouse" id ="agespouse" required readonly/>
+                            </div>
+                          <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
+                            <button type="button" name="button" class="btn btn-primary profile-button" onclick="prevForm()"> &lt; Previous</button>
+                          </div>    
+                          <div class="mt-5 text-right" style="display: inline-block; float:right;">
+                            <button type="button" name="button" class="btn btn-primary profile-button" onclick="nextForm()">Next &gt;</button>
+                          </div>    
+                        </div>
+            </form>
 
-    </form>
     <form class="fpform hidden" id="form3"><!--Pangatlong Form -->
       <h1><b>Family Planning Form</b></h1><br>
       <h4><b>Type of Client </b></h4>
@@ -264,24 +318,29 @@ if(isset($_SESSION['user_data'])){
 <script src = "../js/dataTables.bootstrap.js"></script>	
 <script type = "text/javascript">
   /*Button na next at prev*/ 
-	let currentFormIndex = 0;
-const forms = document.querySelectorAll('.fpform');
-
-function nextForm() {
-  if (currentFormIndex < forms.length - 1) {
-    forms[currentFormIndex].classList.add('hidden');
-    currentFormIndex++;
-    forms[currentFormIndex].classList.remove('hidden');
+  
+  function nextForm() {
+    var currentStep = document.querySelector('.fpform:not(.hidden)');
+    if (currentStep) {
+      var nextStep = currentStep.nextElementSibling;
+      if (nextStep) {
+        currentStep.classList.add('hidden');
+        nextStep.classList.remove('hidden');
+      }
+    }
   }
-}
 
-function prevForm() {
-  if (currentFormIndex > 0) {
-    forms[currentFormIndex].classList.add('hidden');
-    currentFormIndex--;
-    forms[currentFormIndex].classList.remove('hidden');
+  /* Button to move to the previous form step */
+  function prevForm() {
+    var currentStep = document.querySelector('.fpform:not(.hidden)');
+    if (currentStep) {
+      var prevStep = currentStep.previousElementSibling;
+      if (prevStep) {
+        currentStep.classList.add('hidden');
+        prevStep.classList.remove('hidden');
+      }
+    }
   }
-};
 /*Checkboxes*/
 
 const checkboxes = document.querySelectorAll("input[type='checkbox']");

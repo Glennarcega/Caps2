@@ -84,7 +84,8 @@ if(isset($_SESSION['user_data'])){
             <thead>
                 <tr>
                    
-                        <th>Sponsor</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
                         <th>Product Name</th>
                         <th>Unit</th>
                         <th>Quantity</th>

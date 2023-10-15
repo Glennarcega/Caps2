@@ -29,11 +29,13 @@ $primaryKey = 'req_med_Id';
 // parameter represents the DataTables column identifier. In this case simple
 // indexes
 $columns = array(
-    array( 'db' => 'residentName', 'dt' => 0),
-    array( 'db' => 'productName', 'dt' => 1 ),
-    array( 'db' => 'unit',  'dt' => 2 ),
-    array( 'db' => 'quantity_req', 'dt' => 3),
-    array( 'db' => 'givenDate', 'dt' => 4),
+    array( 'db' => 'lastName', 'dt' => 0),
+    array( 'db' => 'firstName', 'dt' => 1),
+    array( 'db' => 'productName', 'dt' => 2 ),
+    array( 'db' => 'unit',  'dt' => 3 ),
+    array( 'db' => 'quantity_req', 'dt' => 4),
+    array( 'db' => 'givenDate', 'dt' => 5),
+
 );
 
  

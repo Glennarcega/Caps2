@@ -152,7 +152,7 @@ if(isset($_SESSION['user_data'])){
           <div class="mt-5 text-right"> <button type = "button" name="button" class = "btn btn-primary profile-button" onclick="nextForm('')"> Next ></button></div>    
     </form>
 
-                     <form class="fpform hidden" id="form2"><!--Pangalawang Form -->
+                     <form class="fpform hidden" id="form3"><!--Pangalawang Form -->
                             <h4><b>Spouse Information</b></h4>
                             <div class="form-group" required="required">
                                 <label>Last Name</label>
@@ -183,10 +183,69 @@ if(isset($_SESSION['user_data'])){
                         </div>
             </form>
 
-    <form class="fpform hidden" id="form3"><!--Pangatlong Form -->
+    <form class="fpform hidden" id="form4"><!--Pangatlong Form -->
       <h1><b>Family Planning Form</b></h1><br>
-      <h4><b>Type of Client </b></h4>
       
+      <label>Type of Client</label>
+<select class="form-control" required name="civilstatus" id="clientType">
+  <option value="" disabled selected>Type of Client</option>
+  <option value="currentUser">Current User</option>
+  <option value="dropoutRestart">Dropout / Restart</option>
+  <option value="changingMethod">Changing Method</option>
+  <option value="others">Others</option>
+</select>
+
+<div id="changingMethodSection" style="display: none;">
+  <label>Changing Method</label>
+  <select class="form-control" required name="changingMethod">
+    <option value="" disabled selected>Changing Method</option>
+    <option value="COC">COC</option>
+    <option value="IUD">IUD</option>
+    <option value="POP">POP</option>
+    <option value="BOM/CMM">BOM/CMM</option>
+    <option value="Injectable">Injectable</option>
+    <option value="BBT">BBT</option>
+    <option value="Implant">Implant</option>
+    <option value="STM">STM</option>
+    <option value="LAM">LAM</option>
+    <option value="others">Others</option>
+  </select>
+</div>
+<div id="othersSection" style="display: none;">
+  <label>Others</label>
+  <input type="text" class="textbox" name="others" id="others" placeholder="Others">
+</div>
+
+<script>
+  const clientTypeSelect = document.getElementById("clientType");
+  const changingMethodSection = document.getElementById("changingMethodSection");
+  const othersSection = document.getElementById("othersSection");
+  const changingMethodSelect = document.querySelector('#changingMethodSection select[name="changingMethod"]');
+
+  clientTypeSelect.addEventListener("change", function () {
+    if (clientTypeSelect.value === "changingMethod") {
+      changingMethodSection.style.display = "block";
+      othersSection.style.display = "none";
+    } else if (clientTypeSelect.value === "others") {
+      changingMethodSection.style.display = "none";
+      othersSection.style.display = "block";
+    } else {
+      changingMethodSection.style.display = "none";
+      othersSection.style.display = "none";
+      changingMethodSelect.value = ""; // Reset the "Changing Method" dropdown when it's not selected.
+    }
+  });
+
+  changingMethodSelect.addEventListener("change", function () {
+    if (changingMethodSelect.value === "others") {
+      othersSection.style.display = "block";
+    } else {
+      othersSection.style.display = "none";
+    }
+  });
+</script>
+
+
       <label class="lblcheck"></label>
           <div class="checkbox-container">
             <label class="checkcontainer">New Acceptor

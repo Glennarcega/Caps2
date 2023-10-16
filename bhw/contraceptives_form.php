@@ -23,22 +23,6 @@ if(isset($_SESSION['user_data'])){
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 </head>
-<style>
-     input[type="checkbox"] {
-        float: left;
-        margin-left: 0px;
-    }
-
-     .labelConsent {
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 10px; /* Adjust the margin as needed */
-    }
-
-    .consentCheckbox {
-        margin-bottom: 10px; /* Adjust the margin as needed */
-    }
-</style>
 <body>
 <?php try {
     include_once('side_menu.php');
@@ -85,87 +69,8 @@ if(isset($_SESSION['user_data'])){
                                 <input type="text" class="form-control" name="total"
                                   value="<?php echo $fetch['total']; ?>" readonly />
                           </div>
-                          <label class="consentCheckbox">
-    <input type="checkbox" id="consentCheckbox" name="consentCheckbox" required onclick="toggleClientType()">
-    <p class="labelConsent">By clicking this, I acknowledge that I have read and understood the terms and conditions related to the use of my personal information, and I agree to comply with them.</p>
-  </label>
 
-  <div id="clientInfo" style="display: none;">
-    <div id="clientType">
-      <label>Type of Client</label>
-      <select class="form-control" required name="civilstatus">
-        <option value="" disabled selected>Type of Client</option>
-        <option value="currentUser">Current User</option>
-        <option value="dropoutRestart">Dropout / Restart</option>
-        <option value="changingMethod">Changing Method</option>
-        <option value="others">Others</option>
-      </select>
-    </div>
-
-  <div id="changingMethodSection" style="display: none;">
-    <label>Changing Method</label>
-    <select class="form-control" required name="changingMethod">
-      <option value="" disabled selected>Changing Method</option>
-      <option value="COC">COC</option>
-      <option value="IUD">IUD</option>
-      <option value="POP">POP</option>
-      <option value="BOM/CMM">BOM/CMM</option>
-      <option value="Injectable">Injectable</option>
-      <option value="BBT">BBT</option>
-      <option value="Implant">Implant</option>
-      <option value="STM">STM</option>
-      <option value="LAM">LAM</option>
-      <option value="others">Others</option>
-    </select>
-  </div>
-  <div class="methodForCurrentlyUse">
-            <label class="lbl">Method for currently use (for changing Method)</label>
-            <br>
-            <label class="checkcontainer">COC
-              <input type="checkbox" name="coc">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">Iud
-              <input type="checkbox" name="iud">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">POP
-              <input type="checkbox" name="pop">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">BOM/CMM
-              <input type="checkbox" name="bom/cmm">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">Injectable
-              <input type="checkbox" name="injectible">
-              <span class="checkmark"></span>
-            </label>
-             <label class="checkcontainer">BBT
-              <input type="checkbox" name="bbt">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">Implant
-              <input type="checkbox" name="implant">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">STM
-              <input type="checkbox" name="stm">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">LAM
-              <input type="checkbox" name="lam">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">Others
-              <input type="checkbox" name="stm">
-              <span class="checkmark"></span>
-            </label>
-</div>
-  <div id="othersSection" style="display: none;">
-    <label>Others</label>
-    <input type="text" class="textbox" name="others" id="others" placeholder="Others">
-  </div>
+                              <br>
                             <h4><b>Personal Information</b></h4>
                             <div class="form-group" required="required">
                                 <label>Last Name</label>
@@ -244,10 +149,10 @@ if(isset($_SESSION['user_data'])){
                                 <label>Religion</label>
                                 <input type="text" class="form-control" name="religionr" id ="religion" placeholder="Optional"/>
                             </div>  
-          <div class="mt-5 text-right">   <button type="button" name="button" class="btn btn-primary profile-button" onclick="nextForm()">Next &gt;</button>
-</form>
+          <div class="mt-5 text-right"> <button type = "button" name="button" class = "btn btn-primary profile-button" onclick="nextForm('')"> Next ></button></div>    
+    </form>
 
-                     <form class="fpform hidden" id="form3"><!--Pangalawang Form -->
+                     <form class="fpform hidden" id="form2"><!--Pangalawang Form -->
                             <h4><b>Spouse Information</b></h4>
                             <div class="form-group" required="required">
                                 <label>Last Name</label>
@@ -278,36 +183,10 @@ if(isset($_SESSION['user_data'])){
                         </div>
             </form>
 
-    <form class="fpform hidden" id="form4"><!--Pangatlong Form -->
+    <form class="fpform hidden" id="form3"><!--Pangatlong Form -->
       <h1><b>Family Planning Form</b></h1><br>
-<script>
-  const clientTypeSelect = document.getElementById("clientType");
-  const changingMethodSection = document.getElementById("changingMethodSection");
-  const othersSection = document.getElementById("othersSection");
-  const changingMethodSelect = document.querySelector('#changingMethodSection select[name="changingMethod"]');
-
-  clientTypeSelect.addEventListener("change", function () {
-    if (clientTypeSelect.value === "changingMethod") {
-      changingMethodSection.style.display = "block";
-      othersSection.style.display = "none";
-    } else if (clientTypeSelect.value === "others") {
-      changingMethodSection.style.display = "none";
-      othersSection.style.display = "block";
-    } else {
-      changingMethodSection.style.display = "none";
-      othersSection.style.display = "none";
-      changingMethodSelect.value = ""; // Reset the "Changing Method" dropdown when it's not selected.
-    }
-  });
-
-  changingMethodSelect.addEventListener("change", function () {
-    if (changingMethodSelect.value === "others") {
-      othersSection.style.display = "block";
-    } else {
-      othersSection.style.display = "none";
-    }
-  });
-</script>
+      <h4><b>Type of Client </b></h4>
+      
       <label class="lblcheck"></label>
           <div class="checkbox-container">
             <label class="checkcontainer">New Acceptor
@@ -338,7 +217,50 @@ if(isset($_SESSION['user_data'])){
               <span class="checkmark"></span>
             </label>
 </div>
-
+<div>
+            <label class="lbl">Method for currently use (for changing Method)</label>
+            <br>
+            <label class="checkcontainer">COC
+              <input type="checkbox" name="coc">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">Iud
+              <input type="checkbox" name="iud">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">POP
+              <input type="checkbox" name="pop">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">BOM/CMM
+              <input type="checkbox" name="bom/cmm">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">Injectable
+              <input type="checkbox" name="injectible">
+              <span class="checkmark"></span>
+            </label>
+             <label class="checkcontainer">BBT
+              <input type="checkbox" name="bbt">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">Implant
+              <input type="checkbox" name="implant">
+              <span class="checkmark"></span>
+            </label><br>
+            <label class="checkcontainer">STM
+              <input type="checkbox" name="stm">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">LAM
+              <input type="checkbox" name="lam">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">Others
+              <input type="checkbox" name="stm">
+              <span class="checkmark"></span>
+            </label>
+</div>
 <input type="text" class ="textbox" id="others" id="others" placeholder="others">
 
 </div>
@@ -364,7 +286,7 @@ if(isset($_SESSION['user_data'])){
 <br>
     
   <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
-    <button type="button" name="button" class="btn btn-primary profile-button"  onclick="prevForm('form3', 'form2')"> < Previous</button>
+    <button type="button" name="button" class="btn btn-primary profile-button" onclick="prevForm()"> &lt; Previous</button>
   </div>    
   <div class="mt-5 text-right" style="display: inline-block; float:right;">
     <button type="button" name="button" class="btn btn-primary profile-button" onclick="nextForm()">Submit &gt;</button>
@@ -400,26 +322,24 @@ if(isset($_SESSION['user_data'])){
   function nextForm() {
     var currentStep = document.querySelector('.fpform:not(.hidden)');
     if (currentStep) {
-      var nextStep = currentStep.nextElementSibling;
-      if (nextStep) {
-        currentStep.classList.add('hidden');
-        nextStep.classList.remove('hidden');
-      }
+        var nextStep = currentStep.nextElementSibling;
+        if (nextStep) {
+            currentStep.classList.add('hidden');
+            nextStep.classList.remove('hidden');
+        }
     }
-  }
+}
 
-  /* Button to move to the previous form step */
-  function prevForm() {
+function prevForm() {
     var currentStep = document.querySelector('.fpform:not(.hidden)');
     if (currentStep) {
-      var prevStep = currentStep.previousElementSibling;
-      if (prevStep) {
-        currentStep.classList.add('hidden');
-        prevStep.classList.remove('hidden');
-      }
+        var prevStep = currentStep.previousElementSibling;
+        if (prevStep) {
+            currentStep.classList.add('hidden');
+            prevStep.classList.remove('hidden');
+        }
     }
-  }
-
+}
 /*Checkboxes*/
 
 const checkboxes = document.querySelectorAll("input[type='checkbox']");
@@ -475,18 +395,6 @@ const checkboxes = document.querySelectorAll("input[type='checkbox']");
     // Set the initial maximum date for the dateOfBirthInput
     var today = new Date();
     dateOfBirthInput.max = today.toISOString().split("T")[0];
-
-    // ---------------- //Checkbox consentform
-    function toggleClientType() {
-      var consentCheckbox = document.getElementById("consentCheckbox");
-      var clientInfo = document.getElementById("clientInfo");
-
-      if (consentCheckbox.checked) {
-        clientInfo.style.display = "block";
-      } else {
-        clientInfo.style.display = "none";
-      }
-    }
 </script>
 </body>
 </html>

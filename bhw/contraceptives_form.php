@@ -31,46 +31,97 @@ if(isset($_SESSION['user_data'])){
     echo "Error: " . $e->getMessage();
 }
  ?>
-  <section class="home-section"> 
-  <br>
-    <div class="container-fluid">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h3><div class="alert alert-info">Contraceptives</div></h3> 
-          <div class="col-md-8 col-md-offset-3">
-          <div class="container">
-          <?php
-        $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
-         $query = $mysqli->query("SELECT * FROM medicines WHERE productName = '$productName'") or die(mysqli_error());
-         $fetch = $query->fetch_array();
-         ?>
-
-                      <form class="fpform" id="form1">
-                      <h1><b>Family Planning Form</b></h1><br>
-                        <h4><b>Family Planning Method Request</b></h4>
-
-                        <div class="form-group">
-                              <label>Product ID</label>
-                              <input type="text" class="form-control" name="productId"
-                                  value="<?php echo $fetch['productId']; ?>" readonly />
-                        </div>
-                        <div class="form-group">
-                            <label>Product Name</label>
-                            <input type="text" class="form-control" name="productName"
-                              value="<?php echo $fetch['productName']; ?>" readonly />
-                          </div>
-                        <div class="form-group">
-                              <label>Unit</label>
+ 
+ <section class="home-section">
+      <br>
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><div class="alert alert-info">Family Planning Form</div></h3>
+                    <br />
+                    <div class="col-md-4">
+                        <?php
+                        $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
+                        $query = $mysqli->query("SELECT * FROM `medicines` WHERE productName = '$productName'") or die(mysqli_error());
+                        $fetch = $query->fetch_array();
+                        ?>
+                       
+            <form method="POST" action="../admin_query/add_query_contraceptives.php" enctype="multipart/form-data">
+                       <div id="Container1">
+                            <div class="form-group">
+                                <label>Product ID</label>
+                                <input type="text" class="form-control" name="productId"
+                                    value="<?php echo $fetch['productId']; ?>" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label>Product Name</label>
+                                <input type="text" class="form-control" name="productName"
+                                    value="<?php echo $fetch['productName']; ?>" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label>Unit</label>
                                 <input type="text" class="form-control" name="unit"
-                                  value="<?php echo $fetch['unit']; ?>" readonly />
-                          </div>
-                          <div class="form-group">
-                            <label>Product Quantity</label>
+                                    value="<?php echo $fetch['unit']; ?>" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label>Product Quantity</label>
                                 <input type="text" class="form-control" name="total"
-                                  value="<?php echo $fetch['total']; ?>" readonly />
-                          </div>
+                                    value="<?php echo $fetch['total']; ?>" readonly />
+                            </div>
+                          
+                            <div class="form-group" required="required" required>
+                                <label>Quantity</label>
+                                <input type="number"  min="0" max="999999999" class="form-control"
+                                    name="quantity_req"  placeholder ="Enter Quantity Request" required />
+                            </div>
+                            <div class="form-group" required="required" required>
+                                <label>Given Date</label>
+                                <input type="date" class="form-control" name="givenDate" id="givenDate" required />
+                            </div>
+                            <div class="form-group" required="required" required>                     
+                                <label>Type of Client</label>
+                            <select class="form-control" required name="clienType" id="clientType">
+                            <option value="" disabled selected>Type of Client</option>
+                            <option value="currentUser">Current User</option>
+                            <option value="dropoutRestart">Dropout / Restart</option>
+                            <option value="changingMethod">Changing Method</option>
+                            <option value="others">Others</option>
+                            </select>
+                            </div>
 
-                              <br>
+                            <div class="form-group" required="required" required>
+                            <div id="changingMethodSection" style="display: none;">
+                            <label>Method Currently used (for Changing Method)</label>
+                            <select class="form-control" required name="changingMethod">
+                                <option value="" disabled selected>Changing Method</option>
+                                <option value="COC">COC</option>
+                                <option value="IUD">IUD</option>
+                                <option value="POP">POP</option>
+                                <option value="BOM/CMM">BOM/CMM</option>
+                                <option value="Injectable">Injectable</option>
+                                <option value="BBT">BBT</option>
+                                <option value="Implant">Implant</option>
+                                <option value="STM">STM</option>
+                                <option value="LAM">LAM</option>
+                                <option value="others">Others</option>
+                            </select>
+                            <div class="form-group">
+                                <label>Reason</label>
+                                <input type="comvobox" class="form-control" name="reason"/>
+                            </div>
+                            </div>
+
+                            <div id="othersSection" style="display: none;">
+                            <label>Others</label>
+                            <input type="text" class="form-control" name="others" id="others" placeholder="others" required  />
+                            </div>
+                            <div class="mt-5 text-right" style="display: inline-block; float: right;">
+                              <button type="button" name="button" class="btn btn-primary profile-button" onclick="showSecondForm()"></i> Next ></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Container2" style="display: none;">
+                        <!-- Your second form contents here -->
                             <h4><b>Personal Information</b></h4>
                             <div class="form-group" required="required">
                                 <label>Last Name</label>
@@ -90,7 +141,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Age</label>
-                                <input type="text" class="form-control" name="age" id ="age" required readonly/>
+                                <input type="text" class="form-control" name="age" id ="age" />
                             </div>
                             <div class="form-group" required="required">
                                 <label>Gender</label>
@@ -107,7 +158,7 @@ if(isset($_SESSION['user_data'])){
       
                             <div class="form-group" required="required">
                                 <label>Educational Attainment</label>
-                                <select class="form-control" required="required" name="educAttainment" id="usertypeSelect">
+                                <select class="form-control" required="required" name="educationalAttainment" id="usertypeSelect">
                                 <option value="" disabled selected>Select Educational Attainment</option>
                                 <option value="elementary">Elementary</option>
                                 <option value="high_school">High School</option>
@@ -120,7 +171,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" >
                                 <label>House no.</label>
-                                <input type="text" class="form-control" name="housenumber" id ="housenumber" placeholder="Optional"/>
+                                <input type="text" class="form-control" name="houseNumber" id ="houseNumber" placeholder="Optional"/>
                             </div>
 
                             <div class="form-group">
@@ -137,266 +188,174 @@ if(isset($_SESSION['user_data'])){
                                     <option value="BadjCom">Badjao Community</option>
                                 </select>
                             </div>
+                            <div class="form-group">
                             <label>Civil Status</label>
-                                <select class="form-control" required="required" name="civilstatus" required>
+                                <select class="form-control" required="required" name="civilStatus" required>
                                   <option value="" disabled selected>Civil Status</option>
                                   <option value="single">Single</option>
                                   <option value="married">Married</option>
                                   <option value="widowed">Widowed</option>
                                   <option value="divorced">Divorced</option>
                                 </select>
+                            </div>
                             <div class="form-group" >
                                 <label>Religion</label>
-                                <input type="text" class="form-control" name="religionr" id ="religion" placeholder="Optional"/>
+                                <input type="text" class="form-control" name="religion" id ="religion" placeholder="Optional"/>
                             </div>  
-          <div class="mt-5 text-right"> <button type = "button" name="button" class = "btn btn-primary profile-button" onclick="nextForm('')"> Next ></button></div>    
-    </form>
-
-                     <form class="fpform hidden" id="form2"><!--Pangalawang Form -->
-                            <h4><b>Spouse Information</b></h4>
+                           
+                          <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
+                            <button type="button" name="button" class="btn btn-primary profile-button" onclick="showFirstForm()"> &lt; Previous</button>
+                          </div>    
+                          <div class="mt-5 text-right" style="display: inline-block; float: right;">
+                            <button type="button" name="button" class="btn btn-primary profile-button" onclick="showThirdForm()"></i> Next ></button>
+                          </div>    
+                      </div>
+                  </div>
+            <div id="Container3" style="display: none;">
+                        <!-- Your second form contents here -->
+                        <h4><b>Spouse Information</b></h4>
                             <div class="form-group" required="required">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your last Name" required  />
+                                <input type="text" class="form-control" name="lastNamespouse" id="lastNamespouse" placeholder="Enter your last Name" required  />
                             </div>
                             <div class="form-group" required="required">
                                 <label>First Name</label>
-                                <input type="text" class="form-control" name="firstName" id ="firstName" placeholder="Enter your First Name" required  />
+                                <input type="text" class="form-control" name="firstNamespouse" id ="firstNamespouse" placeholder="Enter your First Name" required  />
                             </div>
                             <div class="form-group" >
                                 <label>Middle Name</label>
-                                <input type="text" class="form-control" name="middleName" id ="middleName" placeholder="Optional"/>
+                                <input type="text" class="form-control" name="middleNamespouse" id ="middleNamespouse" placeholder="Optional"/>
                             </div>
                             <div class="form-group" required="required">
                                 <label>Date of Birth</label>
-                                <input type="date" class="form-control" name="dateBirth" id="dateOfBirth" required/>
+                                <input type="date" class="form-control" name="dateBirthspouse" id="dateOfBirthspouse" required/>
                             </div>
                             <div class="form-group" required="required">
                                 <label>Age</label>
-                                <input type="text" class="form-control" name="agespouse" id ="agespouse" required readonly/>
+                                <input type="text" class="form-control" name="ageSpouse" id ="ageSpouse" />
                             </div>
-                          <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
-                            <button type="button" name="button" class="btn btn-primary profile-button" onclick="prevForm()"> &lt; Previous</button>
+                            <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
+                            <button type="button" name="button" class="btn btn-primary profile-button" onclick="showSeconddForm()"> &lt; Previous</button>
                           </div>    
-                          <div class="mt-5 text-right" style="display: inline-block; float:right;">
-                            <button type="button" name="button" class="btn btn-primary profile-button" onclick="nextForm()">Next &gt;</button>
-                          </div>    
-                        </div>
-            </form>
-
-    <form class="fpform hidden" id="form3"><!--Pangatlong Form -->
-      <h1><b>Family Planning Form</b></h1><br>
-      <h4><b>Type of Client </b></h4>
-      
-      <label class="lblcheck"></label>
-          <div class="checkbox-container">
-            <label class="checkcontainer">New Acceptor
-              <input type="checkbox" name="menstrualFlow">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">Current User
-              <input type="checkbox" name="menstrualFlow">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">Dropout / Restart
-              <input type="checkbox" name="menstrualFlow">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">Changing Method
-              <input type="checkbox" name="menstrualFlow">
-              <span class="checkmark"></span>
-            </label><br>
-            <div>
-            <label class="lbl">Reason</label>
-            <br>
-            <label class="checkcontainer">Medical Condition
-              <input type="checkbox" name="menstrualFlow">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">Others
-              <input type="checkbox" name="menstrualFlow">
-              <span class="checkmark"></span>
-            </label>
-</div>
-<div>
-            <label class="lbl">Method for currently use (for changing Method)</label>
-            <br>
-            <label class="checkcontainer">COC
-              <input type="checkbox" name="coc">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">Iud
-              <input type="checkbox" name="iud">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">POP
-              <input type="checkbox" name="pop">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">BOM/CMM
-              <input type="checkbox" name="bom/cmm">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">Injectable
-              <input type="checkbox" name="injectible">
-              <span class="checkmark"></span>
-            </label>
-             <label class="checkcontainer">BBT
-              <input type="checkbox" name="bbt">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">Implant
-              <input type="checkbox" name="implant">
-              <span class="checkmark"></span>
-            </label><br>
-            <label class="checkcontainer">STM
-              <input type="checkbox" name="stm">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">LAM
-              <input type="checkbox" name="lam">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">Others
-              <input type="checkbox" name="stm">
-              <span class="checkmark"></span>
-            </label>
-</div>
-<input type="text" class ="textbox" id="others" id="others" placeholder="others">
-
-</div>
-<br>
-<label class="lblcheck">Reason For Fp</label>
-<div class="checkbox-container">
-  <label class="checkcontainer">Spacing
-    <input type="checkbox" name="spacing">
-    <span class="checkmark"></span>
-  </label><br>
-  <label class="checkcontainer">Limiting
-    <input type="checkbox" name="limiting">
-    <span class="checkmark"></span>
-  </label><br>
-  <label class="checkcontainer">Others
-    <input type="checkbox" name="others">
-    <span class="checkmark"></span>
-    <input type="text" class ="textbox" name="others">
-  </label>
-  <input type="text" class ="textbox" id="others" id="others" placeholder="others">
-
-</div>
-<br>
-    
-  <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
-    <button type="button" name="button" class="btn btn-primary profile-button" onclick="prevForm()"> &lt; Previous</button>
-  </div>    
-  <div class="mt-5 text-right" style="display: inline-block; float:right;">
-    <button type="button" name="button" class="btn btn-primary profile-button" onclick="nextForm()">Submit &gt;</button>
-  </div>    
-</div>
-    </form>
-  </div>
-    </tbody>
-</table>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+                          
+                      </div>
+                      <div class="mt-5 text-right" style="display: inline-block; float: right;">
+                            <button name="add_rec" class="btn btn-primary profile-button"> Submit</button>
+                          </div>
+           <?php require_once '../admin_query/add_query_contraceptives.php'?>
+        </form>
 
 
-  </section>
-  
+                                     <!-- script for type of client -->
+                                     <script>
+                                const clientTypeSelect = document.getElementById("clientType");
+                                const changingMethodSection = document.getElementById("changingMethodSection");
+                                const othersSection = document.getElementById("othersSection");
+                                const changingMethodSelect = document.querySelector('#changingMethodSection select[name="changingMethod"]');
 
-  <script src="../cssmainmenu/script.js"></script>
-  <script type = "text/javascript">
+                                clientTypeSelect.addEventListener("change", function () {
+                                    if (clientTypeSelect.value === "changingMethod") {
+                                    changingMethodSection.style.display = "block";
+                                    othersSection.style.display = "none";
+                                    } else if (clientTypeSelect.value === "others") {
+                                    changingMethodSection.style.display = "none";
+                                    othersSection.style.display = "block";
+                                    } else {
+                                    changingMethodSection.style.display = "none";
+                                    othersSection.style.display = "none";
+                                    changingMethodSelect.value = ""; // Reset the "Changing Method" dropdown when it's not selected.
+                                    }
+                                });
+
+                                changingMethodSelect.addEventListener("change", function () {
+                                    if (changingMethodSelect.value === "others") {
+                                    othersSection.style.display = "block";
+                                    } else {
+                                    othersSection.style.display = "none";
+                                    }
+                                });
+                                </script>
+ <!-- Script for form -->
+            <script>
+function showSecondForm() {
+    document.getElementById("Container1").style.display = "none";
+    document.getElementById("Container2").style.display = "block";
+}
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="../js.js"></script>
-<script src = "../js/jquery.js"></script>
-<script src = "../js/jquery.dataTables.js"></script>
-<script src = "../js/dataTables.bootstrap.js"></script>	
-<script type = "text/javascript">
-  /*Button na next at prev*/ 
-  
-  function nextForm() {
-    var currentStep = document.querySelector('.fpform:not(.hidden)');
-    if (currentStep) {
-        var nextStep = currentStep.nextElementSibling;
-        if (nextStep) {
-            currentStep.classList.add('hidden');
-            nextStep.classList.remove('hidden');
-        }
-    }
+<script>
+function showFirstForm() {
+    document.getElementById("Container1").style.display = "block";
+    document.getElementById("Container2").style.display = "none";
 }
-
-function prevForm() {
-    var currentStep = document.querySelector('.fpform:not(.hidden)');
-    if (currentStep) {
-        var prevStep = currentStep.previousElementSibling;
-        if (prevStep) {
-            currentStep.classList.add('hidden');
-            prevStep.classList.remove('hidden');
-        }
-    }
+</script>
+<script>
+function showThirdForm() {
+    document.getElementById("Container2").style.display = "none";
+    document.getElementById("Container3").style.display = "block";
 }
-/*Checkboxes*/
-
-const checkboxes = document.querySelectorAll("input[type='checkbox']");
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener("change", () => {
-      if (checkbox.checked) {
-        uncheckOtherCheckboxes(checkbox);
-      }
+</script>
+<script>
+function showSeconddForm() {
+    document.getElementById("Container2").style.display = "block";
+    document.getElementById("Container3").style.display = "none";
+}
+</script>
+    </form>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+    <script>
+        document.getElementById("residentName").addEventListener("input", function () {
+        var input = this.value;
+        if (input.length > 0) {
+            this.value = input.charAt(0).toUpperCase() + input.slice(1);
+        }
     });
-  });
-
-  function uncheckOtherCheckboxes(checkbox) {
-    const groupName = checkbox.getAttribute("name");
-    const groupCheckboxes = document.querySelectorAll(`input[type='checkbox'][name='${groupName}']`);
-    groupCheckboxes.forEach(cb => {
-      if (cb !== checkbox) {
-        cb.checked = false;
-      }
-    });
-  }
-  /*Date of Birth and Age*/
-  /*This is for the date(not to select future dates) and age computation*/
-  // Get references to the date of birth and age input fields
-  var dateOfBirthInput = document.getElementById("dateOfBirth");
+    /*Date of Birth and Age(for automatic calculation)*/
+    // Get references to the date of birth and age input fields
+    var dateOfBirthInput = document.getElementById("dateOfBirth");
     var ageInput = document.getElementById("age");
+
+    // Restrict the selection of future dates
+    dateOfBirthInput.max = new Date().toISOString().split("T")[0];
 
     // Add an event listener to the date of birth input field
     dateOfBirthInput.addEventListener("change", function () {
-        // Get the selected date of birth
-        var selectedDate = new Date(dateOfBirthInput.value);
-        
-        // Calculate the age
-        var today = new Date();
-        var age = today.getFullYear() - selectedDate.getFullYear();
-        
-        // Check if the birthday has occurred this year
-        if (
-            today.getMonth() < selectedDate.getMonth() ||
-            (today.getMonth() === selectedDate.getMonth() && today.getDate() < selectedDate.getDate())
-        ) {
-            age--;
-        }
-        
-        // Update the age input field with the calculated age
-        ageInput.value = age;
-        
-        // Restrict the selection of future dates
-        var maxDate = new Date(today);
-        maxDate.setFullYear(today.getFullYear() - 1); // Set the maximum date to one year ago
-        dateOfBirthInput.max = maxDate.toISOString().split("T")[0];
-    });
+    // Get the selected date of birth
+    var selectedDate = new Date(dateOfBirthInput.value);
 
-    // Set the initial maximum date for the dateOfBirthInput
+    // Calculate the age
     var today = new Date();
-    dateOfBirthInput.max = today.toISOString().split("T")[0];
-</script>
-</body>
+    var age = today.getFullYear() - selectedDate.getFullYear();
+
+    // Check if the birthday has occurred this year
+    if (
+        today.getMonth() < selectedDate.getMonth() ||
+        (today.getMonth() === selectedDate.getMonth() && today.getDate() < selectedDate.getDate())
+    ) {
+        age--;
+    }
+
+    // Update the age input field with the calculated age
+    ageInput.value = age;
+});
+    /*------------*/
+    /*This is for the Given Date not to be select previous years.months,days*/
+     // Get the given date input element
+     var givenDateInput = document.getElementById("givenDate");
+
+    // Calculate today's date
+        var today = new Date();
+        today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to zero
+
+    // Set the maximum date for the input field to today
+    givenDateInput.max = today.toISOString().split("T")[0];
+    </script>
+   <script src="../cssmainmenu/script.js"></script>
 </html>
 <?php
 }

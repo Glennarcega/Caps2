@@ -25,7 +25,57 @@ if(isset($_SESSION['user_data'])){
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-container input[type="submit"] {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    padding: 15px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+  </style>
 </head>
 <body>
   
@@ -36,18 +86,30 @@ if(isset($_SESSION['user_data'])){
     echo "Error: " . $e->getMessage();
 }
  ?>
-      <section class="home-section">
-        <br>
-          <div class = "container-fluid">
-            <div class = "panel panel-default">
-              <div class = "panel-body">
-                <h3><div class = "alert alert-info">Sms Announcement</div></h3>
-                <br />
-                
-        </div>
-       </div>
-	  </div>         
-  </section>
+      <div class="form-container">
+      <h1>Send a Message with Semaphore</h1>
+      <form id="messageForm">
+        <label for="api_key">API Key:</label>
+        <input type="text" name="api_key" required /><br /><br />
+
+        <label for="number">Recipient's Number:</label>
+        <input type="text" name="number" required /><br /><br />
+
+        <label for="message">Message:</label>
+        <textarea name="message" rows="4" required></textarea><br /><br />
+
+        <label for="sendername">Sender Name:</label>
+        <input type="text" name="sendername" required /><br /><br />
+
+        <input
+          type="submit"
+          value="Send Message"
+          onclick="sendMessage(event)"
+        />
+      </form>
+    </div>
+
+  
 </body>
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>

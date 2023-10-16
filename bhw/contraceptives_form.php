@@ -237,11 +237,11 @@ if(isset($_SESSION['user_data'])){
                             <div class="mt-5 text-left" style="display: inline-block; margin-right: 10px;">
                             <button type="button" name="button" class="btn btn-primary profile-button" onclick="showSeconddForm()"> &lt; Previous</button>
                           </div>    
-                          
-                      </div>
-                      <div class="mt-5 text-right" style="display: inline-block; float: right;">
+                          <div class="mt-5 text-right" style="display: inline-block; float: right;">
                             <button name="add_rec" class="btn btn-primary profile-button"> Submit</button>
                           </div>
+                      </div>
+            
            <?php require_once '../admin_query/add_query_contraceptives.php'?>
         </form>
 

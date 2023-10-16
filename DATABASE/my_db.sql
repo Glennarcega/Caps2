@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 06:20 AM
+-- Generation Time: Oct 16, 2023 at 02:22 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -20,6 +20,45 @@ SET time_zone = "+00:00";
 --
 -- Database: `my_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contraceptives`
+--
+
+CREATE TABLE `contraceptives` (
+  `id` int(100) NOT NULL,
+  `residentId` varchar(100) NOT NULL,
+  `clientType` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `firstName` varchar(100) NOT NULL,
+  `middleName` varchar(100) NOT NULL,
+  `productId` varchar(100) NOT NULL,
+  `productName` varchar(100) NOT NULL,
+  `unit` varchar(100) NOT NULL,
+  `quantity_req` int(200) NOT NULL,
+  `changingMethod` varchar(100) NOT NULL,
+  `reason` varchar(200) NOT NULL,
+  `others` varchar(200) NOT NULL,
+  `givenDate` date NOT NULL,
+  `dateBirth` date NOT NULL,
+  `age` varchar(10) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `contactNumber` varchar(12) NOT NULL,
+  `educationalAttainment` varchar(200) NOT NULL,
+  `occupation` varchar(200) NOT NULL,
+  `houseNumber` varchar(100) NOT NULL,
+  `street` varchar(200) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `civilStatus` varchar(100) NOT NULL,
+  `religion` varchar(100) NOT NULL,
+  `lastNamespouse` varchar(100) NOT NULL,
+  `firstNamespouse` varchar(100) NOT NULL,
+  `middleNamespouse` int(100) NOT NULL,
+  `dateBirthspouse` date NOT NULL,
+  `ageSpouse` varchar(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -47,7 +86,7 @@ INSERT INTO `medicines` (`productId`, `productName`, `sponsor`, `unit`, `batch`,
 (55, 'condom', 'shell', 'boxes', 'batch 2', 1, 0, '2003-12-12', 'available'),
 (56, 'lazartan', 'glenn', 'boxes', 'batch 1', 1, 0, '2030-12-12', 'available'),
 (59, 'iud', 'Kirt', 'Insert', 'Batch 1', 0, 98, '2029-10-24', 'available'),
-(60, 'Flumucil', 'Laura', 'Pcs', 'Batch 1', 0, 978, '2023-10-11', 'available');
+(60, 'Flumucil', 'Laura', 'Pcs', 'Batch 1', 0, 977, '2023-10-11', 'available');
 
 -- --------------------------------------------------------
 
@@ -77,7 +116,8 @@ INSERT INTO `request_medicine` (`req_med_Id`, `residentId`, `lastName`, `firstNa
 (87, '275', 'arcega', 'glaiza', '', '60', 'Flumucil', 'Pcs', 1, '2023-10-15'),
 (88, '274', 'arcega ', 'glenn emersom ', 'plata ', '60', 'Flumucil', 'Pcs', 7, '2023-10-15'),
 (89, '276', 'wfdw', 'wdfwf', '', '60', 'Flumucil', 'Pcs', 1, '1221-12-12'),
-(90, '275', 'arcega ', 'glaiza ', ' ', '60', 'Flumucil', 'Pcs', 1, '2023-12-12');
+(90, '275', 'arcega ', 'glaiza ', ' ', '60', 'Flumucil', 'Pcs', 1, '2023-12-12'),
+(91, '277', 'arcega', 'glenn', '', '60', 'Flumucil', 'Pcs', 1, '2023-10-16');
 
 -- --------------------------------------------------------
 
@@ -94,6 +134,10 @@ CREATE TABLE `residentrecords` (
   `dateBirth` date NOT NULL,
   `age` int(10) NOT NULL,
   `sex` varchar(10) NOT NULL,
+  `civilStatus` varchar(20) NOT NULL,
+  `occupation` varchar(100) NOT NULL,
+  `religion` varchar(100) NOT NULL,
+  `houseNumber` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL,
   `contactNumber` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -102,10 +146,11 @@ CREATE TABLE `residentrecords` (
 -- Dumping data for table `residentrecords`
 --
 
-INSERT INTO `residentrecords` (`residentId`, `productId`, `lastName`, `firstName`, `middleName`, `dateBirth`, `age`, `sex`, `address`, `contactNumber`) VALUES
-(274, 60, 'arcega', 'glenn emersom', 'plata', '2023-10-15', 0, 'Male', 'MalitamDos', '0930182938'),
-(275, 60, 'arcega', 'glaiza', '', '2023-10-02', 0, 'Male', 'Sampaguita', '09952846057'),
-(276, 60, 'wfdw', 'wdfwf', '', '1221-12-12', 0, 'Male', 'BadjCom', '09138219783');
+INSERT INTO `residentrecords` (`residentId`, `productId`, `lastName`, `firstName`, `middleName`, `dateBirth`, `age`, `sex`, `civilStatus`, `occupation`, `religion`, `houseNumber`, `address`, `contactNumber`) VALUES
+(274, 60, 'arcega', 'glenn emersom', 'plata', '2023-10-15', 0, 'Male', '', '', '', '', 'MalitamDos', '0930182938'),
+(275, 60, 'arcega', 'glaiza', '', '2023-10-02', 0, 'Male', '', '', '', '', 'Sampaguita', '09952846057'),
+(276, 60, 'wfdw', 'wdfwf', '', '1221-12-12', 0, 'Male', '', '', '', '', 'BadjCom', '09138219783'),
+(277, 60, 'arcega', 'glenn', '', '0012-12-12', 0, 'Male', '', '', '', '', 'IlangIlang', '0934829');
 
 -- --------------------------------------------------------
 
@@ -133,7 +178,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `password`, `fname`, `lname`, `usertype`, `address`, `mobile_number`, `photo`, `reset_token_hash`, `reset_token_expires_at`) VALUES
 (1, 'glennarcega177@gmail.com', 'fdb606791dfaec7dea946b0ff93b9b58', '', '', 1, '', '', '', '', '0000-00-00 00:00:00.000000'),
-(86, 'bhw@gmail.com', '6adcff9bb6c324d349dfd67c82e1e832', 'bhw', 'bhw', 2, 'bhw', '10938712', '', '', '0000-00-00 00:00:00.000000');
+(86, 'bhw@gmail.com', '6adcff9bb6c324d349dfd67c82e1e832', 'bhw', 'bhw', 2, 'bhw', '10938712', 'group.png', '', '0000-00-00 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -157,6 +202,12 @@ INSERT INTO `usertypes` (`id`, `usertypes`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `contraceptives`
+--
+ALTER TABLE `contraceptives`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `medicines`
@@ -194,6 +245,12 @@ ALTER TABLE `usertypes`
 --
 
 --
+-- AUTO_INCREMENT for table `contraceptives`
+--
+ALTER TABLE `contraceptives`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `medicines`
 --
 ALTER TABLE `medicines`
@@ -203,13 +260,13 @@ ALTER TABLE `medicines`
 -- AUTO_INCREMENT for table `request_medicine`
 --
 ALTER TABLE `request_medicine`
-  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `residentrecords`
 --
 ALTER TABLE `residentrecords`
-  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=277;
+  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
 
 --
 -- AUTO_INCREMENT for table `user`

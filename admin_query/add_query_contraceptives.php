@@ -52,7 +52,7 @@ if (isset($_POST['add_rec'])) {
                 $query = $mysqli->query("INSERT INTO contraceptives (residentId, lastName, firstName, middleName,dateBirth, age, sex,houseNumber, address, contactNumber, productId, productName,changingMethod,reason,others, unit, quantity_req, givenDate,civilStatus,occupation,educationalAttainment,religion,lastNamespouse,firstNamespouse,middleNamespouse,dateBirthspouse,ageSpouse)
               VALUES('$residentId','$lastName','$firstName','$middleName','$dateBirth','$age','$sex','$houseNumber','$address','$contactNumber','$productId','$productName','$changingMethod','$reason','$others','$unit', '$quantity_req','$givenDate','$civilStatus,'$occupation','$educationalAttainment','$religion','$lastNamespouse','$firstNamespouse','$middleNamespouse','$dateBirthspouse','$ageSpouse'')");
               
-              echo '<script>window.location.href = "./contraceptives.php?success=Add Request Successfully";</script>';
+              echo '<script>window.location.href = "./contraceptives_form.php?success=Add Request Successfully";</script>';
                 exit(); // Add this line to stop further script execution
             } else {
                 echo "Error: " . mysqli_error($mysqli);

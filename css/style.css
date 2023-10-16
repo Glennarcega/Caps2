@@ -197,4 +197,27 @@ h4{
 	  -ms-transform: rotate(45deg);
 	  transform: rotate(45deg);
 	}
-/*--------*/
+
+    body {
+		font-family: Arial, sans-serif;
+	  }
+  
+	  .container {
+		max-width: 600px;
+		margin: 20px auto;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	  }
+  
+	  .form-group {
+		margin-bottom: 20px;
+	  }
+  
+	  .checkbox-text {
+		display: inline-block;
+		margin-bottom: 10px;
+	  }
+	  
+
+	

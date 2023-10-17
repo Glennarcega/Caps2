@@ -78,6 +78,22 @@ if(isset($_SESSION['user_data'])){
             max-width: 100%;
         }
     }
+    @media (max-width: 1115px){
+        .main{
+            left: 60px;
+            width: calc(100% - 50px);
+    }
+    }
+    @media (max-width: 880px){
+        .cards{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 500px){
+        .cards{
+            grid-template-columns: 1fr;
+        }
+    }
 
     /* Responsive styles for screens smaller than 576px */
     @media (max-width: 576px) {
@@ -90,10 +106,48 @@ if(isset($_SESSION['user_data'])){
     }
 
     /* You can continue to add more media queries for other screen sizes as needed */
-
+    /*Main*/
+.main{
+	position: absolute;
+	top: 150px;
+	width: calc(100% - 260px);
+	left: 160px;
+    min-height: calc(10vh - 20px);
+}	
+.cards{
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    
+}
+.cards .card{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #b3d7ff;
+    border-radius: 15px;
+    box-shadow: 0 7px 25px 0 rgba(0,0,0, 0.5);
+}
+.number{
+    font-size: 35px;
+    font-weight:500;
+    color: #04c487;
+}
+.card-name{
+    color: black;
+    font-weight: 400;
+}
+.icon-box i{
+    font-size: 45px;
+    color: #04c487;
+}
 </style>
 
 </head>
+
 <body>
 <?php try {
     include_once('side_menu.php');
@@ -131,8 +185,49 @@ if(isset($_SESSION['user_data'])){
                     $total_quantity[] = $data['total_quantity'];
                 }
                 ?>
-
-              <div class="chart-container" style="width: 100%; max-width: 500px;">
+            <div class="main">
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">1217</div>
+                            <div class="card-name">Registered Accounts</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="bx bx-user-plus"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">1217</div>
+                            <div class="card-name">Medicines</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="bx bx-plus-medical"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">1217</div>
+                            <div class="card-name">Blank</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="dito icon"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">1217</div>
+                            <div class="card-name">Blank</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="dito icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="charts"></div>
+            </div>
+                <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>
+              <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
                   <canvas id="myChart" width="1000" height="500"></canvas>
               </div>
 
@@ -147,7 +242,7 @@ if(isset($_SESSION['user_data'])){
                     const data = {
                         labels: labels,
                         datasets: [{
-                            label: 'medicine',
+                            label: 'Medicines',
                             data: <?php echo json_encode($total) ?>,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
@@ -195,7 +290,7 @@ if(isset($_SESSION['user_data'])){
                     const data2 = {
                         labels: labels2,
                         datasets: [{
-                            label: 'address',
+                            label: 'Address',
                             data: <?php echo json_encode($total_quantity) ?>,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',

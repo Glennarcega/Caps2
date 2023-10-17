@@ -91,7 +91,6 @@ if(isset($_SESSION['user_data'])){
     /* You can continue to add more media queries for other screen sizes as needed */
 
 </style>
-
 </head>
 <body>
 <?php
@@ -131,8 +130,8 @@ try {
                     $total_quantity[] = $data['total_quantity'];
                 }
                 ?>
-
-              <div class="chart-container" style="width: 100%; max-width: 500px;">
+                <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>
+              <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
                   <canvas id="myChart" width="1000" height="500"></canvas>
               </div>
 

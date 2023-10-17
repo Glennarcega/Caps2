@@ -184,7 +184,7 @@ if(isset($_SESSION['user_data'])){
     /*------------*/
     /*This is for the Given Date not to be select previous years.months,days*/
      // Get the given date input element
-     var givenDateInput = document.getElementById("givenDate");
+     var givenDateInput = document.getElementById("givenDate"); //error sa f2
 
     // Calculate today's date
         var today = new Date();

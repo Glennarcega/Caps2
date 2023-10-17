@@ -1,17 +1,12 @@
 window.onload = function(){
     const sidebar = document.querySelector(".sidebar");
     const closeBtn = document.querySelector("#btn");
-    const searchBtn = document.querySelector(".bx-search")
 
     closeBtn.addEventListener("click",function(){
         sidebar.classList.toggle("open")
         menuBtnChange()
     })
 
-    searchBtn.addEventListener("click",function(){
-        sidebar.classList.toggle("open")
-        menuBtnChange()
-    })
 
     function menuBtnChange(){
         if(sidebar.classList.contains("open")){
@@ -26,13 +21,7 @@ var addmedform = document.getElementById('myModal');
 var btn = document.querySelector('.btn-success');
 var closeBtn = document.getElementsByClassName('close')[0];
 
-btn.addEventListener('click', function () {
-  addmedform.style.display = 'block';
-});
 
-closeBtn.addEventListener('click', function () {
-  modal.style.display = 'none';
-});
 
 window.addEventListener('click', function (event) {
   if (event.target == addmedform) {
@@ -55,8 +44,7 @@ function openModal() {
     button.addEventListener("click", openModal);
   });
   
-  // Attach click event to modal close button (X)
-  document.querySelector(".close").addEventListener("click", closeModal);
+  
   
   // Close modal if user clicks outside of it
   window.onclick = function (event) {

@@ -21,6 +21,9 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+
+
+
 </head>
 <body>
 <?php try {

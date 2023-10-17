@@ -20,6 +20,7 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <style>
 .form-control:focus {
@@ -60,6 +61,26 @@ if(isset($_SESSION['user_data'])){
     cursor: pointer;
     border: solid 1px #04c487;
 }
+.password-input-container { /*Password button*/ 
+            position: relative;
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Para di maibo ang button sa pass (to make it responsive) */
+        @media screen and (max-width: 768px) {
+            .toggle-password-btn {
+                right: 5px; /* Adjust the button's position for smaller screens */
+            }
+        }
 @media screen and (max-width: 600px) {
             .password-input-container {
                 position: relative;
@@ -104,19 +125,19 @@ if(isset($_SESSION['user_data'])){
     <div class="form-group">
         <label>Password</label>
         <div class="password-input-container">
-            <input type="password" placeholder="Enter your password" name="password" class="form-control" id="password" oninput="togglePasswordButton()" autocomplete="off" required style="padding-right: 30px;" />
-            <span class="password-toggle" id="passwordToggle" onclick="togglePassword()" style="position: absolute; right: 25px; top: 47%; transform: translateY(-50%);">
-                &#x1F441; <!-- Unicode for eye icon -->
-            </span>
+            <input type="password" placeholder="Enter your password" name="password" class="form-control" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required style="padding-right: 40px;" />
+            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
+                <i class="fas fa-eye-slash"></i>
+            </button>
         </div>
     </div>	
 	  <div class = "form-group">
 			<label>Confirm Password </label>
             <div class="password-input-container">
-            <input type="password" placeholder="Confirm your password" name="cpassword" class="form-control" id="cpassword" oninput="togglePasswordButton('cpasswordToggle')" autocomplete="off" required style="padding-right: 30px;" />
-            <span class="password-toggle" id="cpasswordToggle" onclick="togglePassword('cpasswordToggle')" style="position: absolute; right: 25px; top: 65%; transform: translateY(-50%);">
-                &#x1F441; <!-- Unicode for eye icon -->
-            </span>
+            <input type="password" placeholder="Confirm your password" name="cpassword" class="form-control" id="cpassword" oninput="togglePasswordButton('cpasswordToggle')" autocomplete="off" required style="padding-right: 40px;" />
+            <button type="button" id="cpasswordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('cpassword')">
+                <i class="fas fa-eye-slash"></i>
+            </button>
         </div>
 	  </div>	
 
@@ -151,27 +172,27 @@ if(isset($_SESSION['user_data'])){
 </body>
 <!-- Scripts -->
 <script>
-   function togglePassword(targetId) {
-            var passwordInput = document.getElementById(targetId);
+    function togglePasswordButton(buttonId) {
+            var passwordInput = document.getElementById(buttonId.replace('Toggle', ''));
+            var showPasswordBtn = document.getElementById(buttonId);
 
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                document.getElementById(targetId).innerHTML = '&#x1F440;'; // Unicode for crossed eye icon
+            if (passwordInput.value.length > 0) {
+                showPasswordBtn.style.display = "block";
             } else {
-                passwordInput.type = 'password';
-                document.getElementById(targetId).innerHTML = '&#x1F441;'; // Unicode for eye icon
+                showPasswordBtn.style.display = "none";
             }
         }
 
-        function togglePasswordButton(targetId) {
-            var passwordInput = document.getElementById(targetId);
-            var passwordToggle = document.getElementById(targetId);
-            var password = passwordInput.value;
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = document.getElementById(inputId);
+            var showPasswordBtn = document.getElementById(inputId + "Toggle");
 
-            if (password === '') {
-                passwordToggle.style.display = 'none';
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
             } else {
-                passwordToggle.style.display = 'block';
+                passwordInput.type = "password";
+                showPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
             }
         }
 </script>

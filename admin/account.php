@@ -65,7 +65,7 @@ if(isset($_SESSION['user_data'])){
               <td>
             <?php echo ($fetch['usertype'] == 2) ? 'BHW' : ''; ?>
              </td>
-                <td><center><a class = "btn btn-warning" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a></center></td>
+                <td><center><a class = "btn btn-primary profile-button" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a></center></td>
 						</tr>
 						<?php
 							}

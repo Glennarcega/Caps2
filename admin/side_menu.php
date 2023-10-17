@@ -34,21 +34,21 @@
       </li>
       <li>
           <a href="RegisteredUserAdmin.php">
-            <i class="bx bx-user-pin"></i>
+            <i class="bx bxs-user-detail"></i>
             <span class="link_name">Registered Accounts</span>
           </a>
           <span class="tooltip">Registered Accounts</span>
       </li>
         <li>
           <a href="account.php">
-            <i class="bx bx-user-pin"></i>
-            <span class="link_name">Account</span>
+            <i class="bx bx-group"></i>
+            <span class="link_name">Accounts</span>
           </a>
-          <span class="tooltip">Account</span>
+          <span class="tooltip">Accounts</span>
         </li>
         <li>
          <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
-          <i class="bx bx-user"></i>
+          <i class="bx bx-user-circle"></i>
           <span class="link_name">My Profile</span>
         </a>
         <span class="tooltip">My Profile</span>

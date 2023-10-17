@@ -73,7 +73,7 @@ if(isset($_SESSION['user_data'])){
                 <td><?php echo $fetch['sex']?></td>
                 <td><?php echo $fetch['address']?></td>
                 <td><?php echo $fetch['contactNumber']?></td>
-						  	<td><center><a class="btn btn-warning" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
+						  	<td><center><a class="btn btn-primary profile-button" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
               </tr>			
             <?php
               }

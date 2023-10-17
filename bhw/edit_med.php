@@ -89,7 +89,7 @@ if(isset($_SESSION['user_data'])){
 
 						<br />
 						<div class = "form-group">
-							<button name = "edit_med" class = "btn btn-warning form-control"><i class = "bx bx-save"></i> Save Changes</button>
+							<button name = "edit_med" class = "btn btn-primary profile-button form-control"><i class = "bx bx-save"></i> Save Changes</button>
 						</div>
 					</form>
 					<?php require_once '../admin_query/edit_query_med.php'?>

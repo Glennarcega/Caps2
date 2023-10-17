@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_POST['add_rec'])) {
     $productId = $_POST['productId'];
     $lastName = $_POST['lastName'];
@@ -14,6 +15,11 @@ if (isset($_POST['add_rec'])) {
     $quantity_req = $_POST['quantity_req'];
     $givenDate = $_POST['givenDate'];
 
+    
+    // Check if quantity_req is greater than zero
+    if ($quantity_req <= 0) {
+        echo '<script>alert("Quantity requested must be greater than zero.");</script>';
+    } else {
     // Fetch the data from the 'medicines' table
     $fetchQuery = $mysqli->query("SELECT total FROM medicines WHERE productId = '$productId'");
     $fetch = $fetchQuery->fetch_assoc();
@@ -43,5 +49,6 @@ if (isset($_POST['add_rec'])) {
     } else {
         echo "Error: Failed to fetch medicine data.";
     }
+}
 }
 ?>

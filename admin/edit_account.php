@@ -64,14 +64,15 @@ if(isset($_SESSION['user_data'])){
 							<label>Email </label>
 							<input type = "text" class = "form-control" value = "<?php echo $fetch['email']?>" name = "email" />
 						</div>
-						<div class = "form-group">
-							<label>Role</label>
+						<div class="form-group">
+							<label for="usertypeSelect">Role</label>
 							<select class="form-control" required="required" name="usertype" id="usertypeSelect">
-                <option value="" disabled selected>Select User Type</option>
-                <option value="2">BHW</option>
-                <option value="1">Admin</option>
-               </select>
+								<option value="" disabled selected>Select User Type</option>
+								<option value="2" <?php if ($fetch['usertype'] === '2') echo 'selected'; ?>>BHW</option>
+								<option value="1" <?php if ($fetch['usertype'] === '1') echo 'selected'; ?>>Admin</option>
+							</select>
 						</div>
+					
 						<br />
 						<div class = "form-group">
 							<button name = "edit_account" class = "btn btn-warning form-control"><i class = "bx bx-save"></i>  Save Changes</button>

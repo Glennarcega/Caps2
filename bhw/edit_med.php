@@ -51,15 +51,15 @@ if(isset($_SESSION['user_data'])){
 							<label>Product Name </label>
 							<input type = "text"  class = "form-control" name = "productName" value = "<?php echo $fetch['productName']?>" required/>
 						</div>
-						<div class = "form-group">
-							<label>Unit </label>
-							<select class = "form-control" required = required name = "unit">
-         			       <option value="" disabled selected>Unit</option>
-								<option value="Boxes">Boxes</option>
-								<option value="Bottles">Bottles</option>
-								<option value="Pcs">Pcs</option>
-								<option value="Tablet">Tablet</option>
-								<option value="Insert">Insert</option>
+						<div class="form-group">
+							<label for="unit">Unit</label>
+							<select class="form-control" required="required" name="unit" id="unit">
+								<option value="" disabled selected>Select Unit</option>
+								<option value="Boxes" <?php if ($fetch['unit'] === 'Boxes') echo 'selected'; ?>>Boxes</option>
+								<option value="Bottles" <?php if ($fetch['unit'] === 'Bottles') echo 'selected'; ?>>Bottles</option>
+								<option value="Pcs" <?php if ($fetch['unit'] === 'Pcs') echo 'selected'; ?>>Pcs</option>
+								<option value="Tablet" <?php if ($fetch['unit'] === 'Tablet') echo 'selected'; ?>>Tablet</option>
+								<option value="Insert" <?php if ($fetch['unit'] === 'Insert') echo 'selected'; ?>>Insert</option>
 							</select>
 						</div>
         				  <div class = "form-group">
@@ -78,15 +78,15 @@ if(isset($_SESSION['user_data'])){
 							<label>Expiration Date </label>
 							<input type="date" class="form-control" name="expDate" value="<?php echo $fetch['expDate']?>" min="<?php echo date('Y-m-d');?>" required/>
 						</div>
-						<div class = "form-group">
-							<label>Status</label>
-							<select class = "form-control" required = required name = "status">
-                <option value="" disabled selected>Status</option>
-								<option value="available">Available</option>
-								<option value="unavailable">Unavailable</option>
-							</select>
-						</div>
-						
+						<div class="form-group">
+						<label for="status">Status</label>
+						<select class="form-control" required="required" name="status" id="status">
+							<option value="" disabled selected>Select Status</option>
+							<option value="available" <?php if ($fetch['status'] === 'available') echo 'selected'; ?>>Available</option>
+							<option value="unavailable" <?php if ($fetch['status'] === 'unavailable') echo 'selected'; ?>>Unavailable</option>
+						</select>
+					</div>
+
 						<br />
 						<div class = "form-group">
 							<button name = "edit_med" class = "btn btn-warning form-control"><i class = "bx bx-save"></i> Save Changes</button>

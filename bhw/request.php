@@ -70,7 +70,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your last Name" required  />
+                                <input type="text" class="form-control" name="lastName" id="lastName"  placeholder="Enter your last Name" required  />
                             </div>
                             <div class="form-group" required="required">
                                 <label>First Name</label>
@@ -118,7 +118,17 @@ if(isset($_SESSION['user_data'])){
                             <div class="form-group" required="required" required>
                                 <label>Quantity</label>
                                 <input type="number"  min="0" max="999999999" class="form-control"
-                                    name="quantity_req"  placeholder ="Enter Quantity Request" required />
+                                    name="quantity_req" id="quantityInput" placeholder ="Enter Quantity Request" required />
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", function () {
+                                            const quantityInput = document.getElementById("quantityInput");
+                                            quantityInput.addEventListener("input", function () {
+                                                if (quantityInput.value === "0") {
+                                                    alert("You entered zero. Please make sure to enter a quantity greater than zero.");
+                                                }
+                                            });
+                                        });
+                                    </script>
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Given Date</label>
@@ -184,6 +194,8 @@ if(isset($_SESSION['user_data'])){
     givenDateInput.max = today.toISOString().split("T")[0];
     </script>
    <script src="../cssmainmenu/script.js"></script>
+
+  
 </html>
 <?php
 }

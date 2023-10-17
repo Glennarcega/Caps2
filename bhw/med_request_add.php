@@ -147,7 +147,7 @@ if(isset($_SESSION['user_data'])){
                                 <input type="date" class="form-control" name="givenDate" id="givenDate" required/>
                             </div>
                             <div class="form-group">
-                                <button name="add_rec" class="btn btn-warning form-control"><i
+                                <button name="add_rec" class="btn btn-primary profile-button form-control"><i
                                         class="bx bx-pencil"></i> Request</button>
                             </div>
                             <?php require_once '../admin_query/add_query_records2.php'?>

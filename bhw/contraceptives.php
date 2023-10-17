@@ -37,27 +37,15 @@ if(isset($_SESSION['user_data'])){
       <div class="panel panel-default">
         <div class="panel-body">
           <h3><div class="alert alert-info">Contraceptives</div></h3> 
-          <div class="col-md-8 col-md-offset-3">
-        
-    </tbody>
-</table>
-            </tbody>
-          </table>
+         
+             
         </div>
       </div>
     </div>
-
-
   </section>
   
 
   <script src="../cssmainmenu/script.js"></script>
-  <script type = "text/javascript">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="../js.js"></script>
 <script src = "../js/jquery.js"></script>
 <script src = "../js/jquery.dataTables.js"></script>
 <script src = "../js/dataTables.bootstrap.js"></script>	

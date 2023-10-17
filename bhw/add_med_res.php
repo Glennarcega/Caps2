@@ -83,9 +83,9 @@ if(isset($_SESSION['user_data'])){
                         if (isset($_GET['residentId'])) {
                             $residentId = $_GET['residentId'];
                             if ($fetch['unit'] == 'Insert') {
-                                echo '<a class="btn btn-warning" href="contraceptives_form.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
+                                echo '<a class="btn btn-primary profile-button" href="contraceptives_form.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
                             } else {
-                                echo '<a class="btn btn-warning" href="med_request_add.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
+                                echo '<a class="btn btn-primary profile-button" href="med_request_add.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
                             }
                         } else {
                             echo '<p>Resident ID not provided.</p>';

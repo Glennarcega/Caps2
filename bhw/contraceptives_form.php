@@ -141,7 +141,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Age</label>
-                                <input type="text" class="form-control" name="age" id ="age" />
+                                <input type="text" class="form-control" name="age" id ="age" required readonly/>
                             </div>
                             <div class="form-group" required="required">
                                 <label>Gender</label>
@@ -315,8 +315,8 @@ function showSeconddForm() {
             this.value = input.charAt(0).toUpperCase() + input.slice(1);
         }
     });
-    /*Date of Birth and Age(for automatic calculation)*/
-    // Get references to the date of birth and age input fields
+    </script>
+    <script>//Date of Birth and Age Function(automatic calculation)
     var dateOfBirthInput = document.getElementById("dateOfBirth");
     var ageInput = document.getElementById("age");
 
@@ -342,7 +342,7 @@ function showSeconddForm() {
 
     // Update the age input field with the calculated age
     ageInput.value = age;
-});
+    });
     /*------------*/
     /*This is for the Given Date not to be select previous years.months,days*/
      // Get the given date input element

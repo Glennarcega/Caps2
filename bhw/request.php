@@ -86,7 +86,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Age</label>
-                                <input type="text" class="form-control" name="age" id="age" required readonly/>
+                                <input type="text" class="form-control" name="age" id ="age" required readonly/>
                             </div>
                             <div class="form-group" required="required">
                                 <label>Gender</label>
@@ -153,28 +153,47 @@ if(isset($_SESSION['user_data'])){
             this.value = input.charAt(0).toUpperCase() + input.slice(1);
         }
     });
-    /*Date of Birth and Age(for automatic calculation)*/
-    const dateOfBirthInput = document.getElementById('dateOfBirth');
-    const ageInput = document.getElementById('age');
-    
-    // Add an event listener to the dateOfBirth input
-    dateOfBirthInput.addEventListener('input', function () {
-        const selectedDate = new Date(dateOfBirthInput.value);
-        const today = new Date();
-        const age = today.getFullYear() - selectedDate.getFullYear();
-        
-        if (selectedDate > today) {
-            dateOfBirthInput.setCustomValidity("Please select a date in the past.");
-            dateOfBirthInput.reportValidity();
-        } else {
-            dateOfBirthInput.setCustomValidity("");
-            ageInput.value = age;
-        }
+    </script>
+    <script>//Date of Birth and Age Function(automatic calculation)
+    var dateOfBirthInput = document.getElementById("dateOfBirth");
+    var ageInput = document.getElementById("age");
+
+    // Restrict the selection of future dates
+    dateOfBirthInput.max = new Date().toISOString().split("T")[0];
+
+    // Add an event listener to the date of birth input field
+    dateOfBirthInput.addEventListener("change", function () {
+    // Get the selected date of birth
+    var selectedDate = new Date(dateOfBirthInput.value);
+
+    // Calculate the age
+    var today = new Date();
+    var age = today.getFullYear() - selectedDate.getFullYear();
+
+    // Check if the birthday has occurred this year
+    if (
+        today.getMonth() < selectedDate.getMonth() ||
+        (today.getMonth() === selectedDate.getMonth() && today.getDate() < selectedDate.getDate())
+    ) {
+        age--;
+    }
+
+    // Update the age input field with the calculated age
+    ageInput.value = age;
     });
+    /*------------*/
+    /*This is for the Given Date not to be select previous years.months,days*/
+     // Get the given date input element
+     var givenDateInput = document.getElementById("givenDate");
+
+    // Calculate today's date
+        var today = new Date();
+        today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to zero
+
+    // Set the maximum date for the input field to today
+    givenDateInput.max = today.toISOString().split("T")[0];
     </script>
    <script src="../cssmainmenu/script.js"></script>
-
-  
 </html>
 <?php
 }

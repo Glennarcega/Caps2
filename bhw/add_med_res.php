@@ -44,60 +44,61 @@ if(isset($_SESSION['user_data'])){
             </div>
             <?php } ?>
   
-              <table id="table" class = "table table-striped">
-                  <thead>
-                      <tr>
-                          <th>Sponsor</th>
-                          <th>Product Name</th>
-                          <th>Unit</th>
-                          <th>Quantity</th>
-                          <th>Expiration Date</th>
-                          <th>Status</th>
-                          <th>Request</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-              <?php
-                $query = $mysqli->query("SELECT * FROM medicines") or die(mysqli_error());
-                while ($fetch = $query->fetch_array()) {
-                    $status = ($fetch['total'] == 0) ? 'unavailable' : $fetch['status']; // Check if quantity is zero
-              ?>
-            <tr>
-              <td><?php echo $fetch['sponsor'] ?></td>
-              <td><?php echo $fetch['productName'] ?></td>
-              <td><?php echo $fetch['unit'] ?></td>
-              <td><?php echo $fetch['total'] ?></td>
-              <td><?php echo $fetch['expDate'] ?></td>
-              <td><?php echo $status ?></td>
-              <td
+            <table id="table" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Sponsor</th>
+            <th>Product Name</th>
+            <th>Unit</th>
+            <th>Quantity</th>
+            <th>Expiration Date</th>
+            <th>Status</th>
+            <th>Request</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $query = $mysqli->query("SELECT * FROM medicines") or die(mysqli_error());
+        while ($fetch = $query->fetch_array()) {
+            $status = ($fetch['total'] == 0) ? 'unavailable' : $fetch['status']; // Check if quantity is zero
 
-                        <center>
-                      <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
-                          <button class="btn btn-warning" disabled>Request</button>
-                      <?php else: ?>
-                          <?php
-                          if (isset($_GET['residentId'])) {
-                              $residentId = $_GET['residentId'];
-                              
-                              // Add the condition here to check if the unit is equal to 'insert'
-                              if ($fetch['unit'] == 'Insert') {
-                                  echo '<a class="btn btn-warning" href="contraceptives_form.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
-                              } else {
-                                  echo '<a class="btn btn-warning" href="med_request_add.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
-                              }
-                          } else {
-                              echo '<p>Resident ID not provided.</p>';
-                          }
-                          ?>
-                      <?php endif; ?>
-                  </center>
+            // Add a condition to skip rows where 'unit' is equal to 'Insert'
+            if ($fetch['unit'] == 'Insert') {
+                continue;
+            }
+        ?>
+        <tr>
+            <td><?php echo $fetch['sponsor'] ?></td>
+            <td><?php echo $fetch['productName'] ?></td>
+            <td><?php echo $fetch['unit'] ?></td>
+            <td><?php echo $fetch['total'] ?></td>
+            <td><?php echo $fetch['expDate'] ?></td>
+            <td><?php echo $status ?></td>
+            <td>
+                <center>
+                    <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
+                        <button class="btn btn-warning" disabled>Request</button>
+                    <?php else: ?>
+                        <?php
+                        if (isset($_GET['residentId'])) {
+                            $residentId = $_GET['residentId'];
+                            if ($fetch['unit'] == 'Insert') {
+                                echo '<a class="btn btn-warning" href="contraceptives_form.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
+                            } else {
+                                echo '<a class="btn btn-warning" href="med_request_add.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
+                            }
+                        } else {
+                            echo '<p>Resident ID not provided.</p>';
+                        }
+                        ?>
+                    <?php endif; ?>
+                </center>
+            </td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
 
-              </td>
-          </tr>
-          <?php } ?>
-
-                </tbody>
-              </table>
             </tbody>
           </table>
         </div>

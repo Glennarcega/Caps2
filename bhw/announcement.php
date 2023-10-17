@@ -25,6 +25,9 @@ if(isset($_SESSION['user_data'])){
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -91,9 +94,18 @@ body {
       <form id="messageForm">
         <label for="api_key">API Key:</label>
         <input type="text" name="api_key" required /><br /><br />
-
+<div>
         <label for="number">Recipient's Number:</label>
         <input type="text" name="number" required /><br /><br />
+        <select name="countries" id="countries" multiple>
+    <option value="1">Afghanistan</option>
+    <option value="2">Australia</option>
+    <option value="3">Germany</option>
+    <option value="4">Canada</option>
+    <option value="5">Russia</option>
+</select>
+</div>
+
 
         <label for="message">Message:</label>
         <textarea name="message" rows="4" required></textarea><br /><br />
@@ -122,6 +134,18 @@ body {
         window.history.replaceState({ path: newUrl }, '', newUrl);
     }
 });
+</script>
+
+<script>
+
+	new MultiSelectTag('countries', {
+    rounded: true,    // default true
+    shadow: true,      // default false
+    placeholder: 'Search',  // default Search...
+    onChange: function(values) {
+        console.log(values)
+    }
+})
 </script>
 </html>
 <?php

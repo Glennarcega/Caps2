@@ -87,23 +87,23 @@ if(isset($_SESSION['user_data'])){
                         <td>
                               <center>
                               <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
-                                  <button class="btn btn-warning" disabled>Request</button>
+                                  <button class="btn btn-primary" disabled>Request</button>
                               <?php elseif ($fetch['unit'] == 'Insert'): ?>
-                                  <a class="btn btn-warning" href="contraceptives_form.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+                                  <a class="btn btn-primary profile-button" href="contraceptives_form.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
                               <?php else: ?>
-                                  <a class="btn btn-warning" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+                                  <a class="btn btn-primary profile-button" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
                               <?php endif; ?>
                           </center>
                       </td>
                       <td>
                           <center>
-                              <a class="btn btn-warning" href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a>
+                              <a class="btn btn-primary profile-button" href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a>
                               <a class="btn btn-danger" onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>">Delete</a>
                           </center>
                       </td>
                       <td>
                           <center>
-                              <a class="btn btn-warning" href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a>
+                              <a class="btn btn-primary profile-button" href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a>
                           </center>
                       </td>
                     </tr>

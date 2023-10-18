@@ -37,7 +37,48 @@ if(isset($_SESSION['user_data'])){
       <div class="panel panel-default">
         <div class="panel-body">
           <h3><div class="alert alert-info">Contraceptives</div></h3> 
-         
+          <br />
+              <?php if (isset($_GET['success'])) { ?>
+                <div class="alert alert-success" role="alert">
+                  <?=$_GET['success']?>
+                </div>
+                <?php } ?>
+             
+              <table id = "table" class = "table table-striped">
+                <thead>
+                  <tr>
+                    <!-- Checkbox-->
+                    <th>Resident Name</th>
+                    <th>Date of Birth</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
+                    <th><center>Action</center></th>
+                  </tr>
+                </thead>
+              <tbody>
+              <?php
+                $query = $mysqli->query("SELECT * FROM `familyplanning`") or die(mysqli_error());
+                while($fetch = $query->fetch_array()){
+              ?>	
+					  	<tr>	
+                <td><?php echo $fetch['lastName'] . ' ' . $fetch['firstName'] . ' ' . $fetch['middleName']; ?></td>
+                <td><?php echo $fetch['dateBirth']?></td>
+                <td><?php echo $fetch['age']?></td>
+                <td><?php echo $fetch['sex']?></td>
+                <td><?php echo $fetch['address']?></td>
+                <td><?php echo $fetch['contactNumber']?></td>
+						  	<td><center><a class="btn btn-primary profile-button" href="individual_records_FP.php?familyPlanningId=<?php echo $fetch['familyPlanningId'] ?>"> Update</a>
+              </tr>			
+            <?php
+              }
+            ?>	
+            </tbody>
+          </table>
+        </div>
+		</div>
+	
              
         </div>
       </div>
@@ -50,6 +91,19 @@ if(isset($_SESSION['user_data'])){
 <script src = "../js/jquery.dataTables.js"></script>
 <script src = "../js/dataTables.bootstrap.js"></script>	
 <script type = "text/javascript">
+	$(document).ready(function(){
+		$("#table").DataTable();
+	});
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Check if URL contains 'success' parameter and remove it
+    if (window.location.search.includes('success')) {
+        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
+});
+</script>
  
 </body>
 </html>

@@ -11,7 +11,7 @@
 		$status = $_POST['status'];
 		
 		 // Check if quantity1 is zero and status is "available"
-		 if ($quantity1 == 0 && $status == 'available') {
+		 if ($total == 0 && $status == 'available') {
 			// You can handle this case here, like displaying an error message or not updating the database.
 
 			echo '<script>alert("Status cannot be set to available when quantity is zero.");</script>';

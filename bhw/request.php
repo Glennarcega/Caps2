@@ -113,7 +113,8 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required" >
                                 <label>Contact Number</label>
-                                <input type="number" class="form-control" name="contactNumber" placeholder="Enter your Contact Number"  required />
+                                <input type="number" class="form-control" name="contactNumber" id="contactNumber" placeholder="Enter your Contact Number"  required />
+                                <small id="contactNumberError" class="form-text text-danger"></small>
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Quantity</label>
@@ -181,18 +182,37 @@ if(isset($_SESSION['user_data'])){
     // Update the age input field with the calculated age
     ageInput.value = age;
     });
-    /*------------*/
-    /*This is for the Given Date not to be select previous years.months,days*/
-     // Get the given date input element
-     var givenDateInput = document.getElementById("givenDate"); //error sa f2
-
-    // Calculate today's date
-        var today = new Date();
-        today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to zero
-
-    // Set the maximum date for the input field to today
-    givenDateInput.max = today.toISOString().split("T")[0];
     </script>
+    <script>
+    var currentDate = new Date().toISOString().split('T')[0];
+
+// Set the minimum date attribute of the input element to the current date
+document.getElementById('givenDate').setAttribute('min', currentDate);
+
+// Add an event listener to the input element to prevent selecting past dates
+document.getElementById('givenDate').addEventListener('input', function() {
+    var selectedDate = this.value;
+    if (selectedDate < currentDate) {
+        this.setCustomValidity('Please select a date on or after the current date.');
+    } else {
+        this.setCustomValidity('');
+    }
+});
+    </script>
+<script>//ContactNumber can only input 11 numbers
+    document.querySelector('#contactNumber').addEventListener('input', function () {
+        const input = this.value.toString(); // Convert the input to a string
+        const contactNumberError = document.querySelector('#contactNumberError');
+        
+        if (input.length !== 11 || isNaN(input)) {
+            contactNumberError.textContent = 'Contact number must be exactly 11 digits.';
+            this.setCustomValidity('Contact number must be exactly 11 digits.');
+        } else {
+            contactNumberError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+</script>
    <script src="../cssmainmenu/script.js"></script>
 </html>
 <?php

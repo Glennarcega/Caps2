@@ -27,7 +27,8 @@ if(isset($_SESSION['user_data'])){
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-    /* Default styles for larger screens */
+   /* Default styles for larger screens */
+    /* Common styles for larger screens */
     .container-fluid {
         padding: 20px;
     }
@@ -37,59 +38,118 @@ if(isset($_SESSION['user_data'])){
 
     /* Responsive styles for screens smaller than 1400px */
     @media (max-width: 1400px) {
-        .container-fluid {
-            padding: 15px;
-        }
-        .panel-body {
-            padding: 15px;
-        }
+    .container-fluid {
+        padding: 15px;
     }
+    .panel-body {
+        padding: 15px;
+    }
+}
 
-    /* Responsive styles for screens smaller than 1200px */
-    @media (max-width: 1200px) {
-        .container-fluid {
-            padding: 10px;
-        }
-        .panel-body {
-            padding: 10px;
-        }
+<!-- Responsive styles for screens smaller than 1200px -->
+@media (max-width: 1200px) {
+    .container-fluid {
+        padding: 10px;
     }
+    .panel-body {
+        padding: 10px;
+    }
+}
 
-    /* Responsive styles for screens smaller than 992px */
-    @media (max-width: 992px) {
-        .container-fluid {
-            padding: 8px;
-        }
-        .panel-body {
-            padding: 8px;
-        }
+<!-- Responsive styles for screens smaller than 992px -->
+@media (max-width: 992px) {
+    .container-fluid {
+        padding: 8px;
     }
+    .panel-body {
+        padding: 8px;
+    }
+}
 
-    /* Responsive styles for screens smaller than 768px */
-    @media (max-width: 768px) {
-        .container-fluid {
-            padding: 5px;
-        }
-        .panel-body {
-            padding: 5px;
-        }
-        .container {
-            max-width: 100%;
-        }
+<!-- Responsive styles for screens smaller than 768px -->
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 5px;
     }
+    .panel-body {
+        padding: 5px;
+    }
+    .container {
+        max-width: 100%;
+    }
+}
 
-    /* Responsive styles for screens smaller than 576px */
-    @media (max-width: 576px) {
-        .container-fluid {
-            padding: 3px;
-        }
-        .panel-body {
-            padding: 3px;
-        }
+@media (max-width: 1115px) {
+    .main {
+        left: 60px;
+        width: calc(100% - 50px);
     }
+}
+
+@media (max-width: 880px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+<!-- Responsive styles for screens smaller than 576px -->
+@media (max-width: 576px) {
+    .container-fluid {
+        padding: 3px;
+    }
+    .panel-body {
+        padding: 3px;
+    }
+}
 
     /* You can continue to add more media queries for other screen sizes as needed */
+    .main {
+        position: absolute;
+        top: 150px;
+        width: calc(100% - 260px);
+        left: 160px;
+        min-height: calc(10vh - 20px);
+    }
 
+    .cards {
+        width: 100%;
+        padding: 15px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+
+    .cards .card {
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #b3d7ff;
+        border-radius: 15px;
+        box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .number {
+        font-size: 28px;
+        font-weight: 500;
+        color: #04c487;
+    }
+
+    .card-name {
+        color: black;
+        font-weight: 400;
+    }
+
+    .icon-box i {
+        font-size: 45px;
+        color: #04c487;
+    }
 </style>
 </head>
 <body>
@@ -130,7 +190,48 @@ try {
                     $total_quantity[] = $data['total_quantity'];
                 }
                 ?>
-                <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>
+            <div class="main">
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">1217</div>
+                            <div class="card-name">Registered Accounts</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="bx bx-user-plus"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">1217</div>
+                            <div class="card-name">Medicines</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="bx bx-plus-medical"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">1217</div>
+                            <div class="card-name">Blank</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="dito icon"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">1217</div>
+                            <div class="card-name">Blank</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="dito icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="charts"></div>
+            </div>
+                <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br> <br> <br> <br>
               <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
                   <canvas id="myChart" width="1000" height="500"></canvas>
               </div>
@@ -138,7 +239,7 @@ try {
               <div class="chart-container" style="width: 100%; max-width: 500px;">
                   <canvas id="myChart1" width="1000" height="500"></canvas>
               </div>
-
+               
 
                 <script>
                     // === include 'setup' then 'config' above ===

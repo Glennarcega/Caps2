@@ -44,15 +44,71 @@ if(isset($_SESSION['user_data'])){
       <div class="panel panel-default">
         <div class="panel-body">
         <h3><div class = "alert alert-info">SMS Announcement</div></h3>
-          <a class="btn btn-success" href="add_med.php?"> Send SMS</a>
-          <br />
-          <br />
+          <a class="btn btn-success"  action="send_message"> Send SMS</a>
+      
+ 
+    <div class="form-container">
+      <h1>Send a Message with Semaphore</h1>
+      <form id="messageForm">
+        <label for="api_key">API Key:</label>
+        <input type="text" name="api_key" required /><br /><br />
+
+        <label for="number">Recipient's Number:</label>
+        <textarea class="selected-values" type="text" name="number" required ></textarea><br /><br />
+
+        <label for="message">Message:</label>
+        <textarea  name="message" rows="4" required></textarea><br /><br />
+
+        <label for="sendername">Sender Name:</label>
+        <input type="text" name="sendername" required /><br /><br />
+
+        <input
+          type="submit"
+          value="Send Message"
+          onclick="sendMessage(event)"
+        />
+      </form>
+    </div>
+
+    <script>
+      function sendMessage(event) {
+        event.preventDefault() // Prevent the default form submission
+
+        // Get form data
+        const formData = new FormData(document.getElementById("messageForm"))
+
+        // Create a new XMLHttpRequest object
+        const xhr = new XMLHttpRequest()
+        xhr.open("POST", "send_message.php", true)
+        xhr.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        )
+
+        // Handle the request
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              // Display the API response to the user
+              alert(xhr.responseText)
+            } else {
+              // Display an error message if the request fails
+              alert("Failed to send the message.")
+            }
+          }
+        }
+
+        // Send the form data
+        xhr.send(new URLSearchParams(formData).toString())
+      }
+    </script>
       
           <?php if (isset($_GET['success'])) { ?>
             <div class="alert alert-success" role="alert">
               <?=$_GET['success']?>
             </div>
           <?php } ?>
+
   
                         <table id="table" class="table table-striped">
                   <thead>
@@ -68,15 +124,52 @@ if(isset($_SESSION['user_data'])){
                       while ($fetch = $query->fetch_array()) {
                       ?>
                           <tr>
-                              <td><input type="checkbox" name="selected_records[]" value="<?php echo $fetch['residentId']; ?>"></td>
-                              <td><?php echo $fetch['lastName'] . ' ' . $fetch['firstName'] . ' ' . $fetch['middleName']; ?></td>
-                              <td><?php echo $fetch['contactNumber'] ?></td>
+                          <td><input type="checkbox" class="checkbox" name="selected_records[]" value="<?php echo $fetch['residentId']; ?>"
+                     data-contact-number="<?php echo $fetch['contactNumber']; ?>">     </td>                         
+                     <td><?php echo $fetch['lastName'] . ' ' . $fetch['firstName'] . ' ' . $fetch['middleName']; ?>
+                              <td><?php echo $fetch['contactNumber'] ?>
                           </tr>
                       <?php
                       }
                       ?>
                   </tbody>
               </table>
+
+
+              <script>
+const selectAllCheckbox = document.getElementById('select-all');
+const selectedValues = document.querySelector('.selected-values');
+let listArray = [];
+
+const checkboxes = document.querySelectorAll('.checkbox');
+
+selectAllCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+        listArray = Array.from(checkboxes).map((checkbox) => {
+            checkbox.checked = true;
+            return checkbox.getAttribute('data-contact-number');
+        });
+    } else {
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+        listArray = [];
+    }
+    selectedValues.textContent = listArray.join(', ');
+});
+
+checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', function () {
+        if (this.checked === true) {
+            listArray.push(this.getAttribute('data-contact-number'));
+        } else {
+            listArray = listArray.filter((e) => e !== this.getAttribute('data-contact-number'));
+        }
+        selectedValues.textContent = listArray.join(', ');
+    });
+});
+</script> 
+
 
             </tbody>
           </table> 

@@ -8,9 +8,6 @@ if (isset($_POST['add_rec'])) {
     $dateBirth = $_POST['dateBirth'];
     $age = $_POST['age'];
     $sex = $_POST['sex'];
-    $civilStatus = $_POST['civilStatus'];
-    $occupation = $_POST['occupation'];
-    $houseNumber = $_POST['houseNumber'];
     $address = $_POST['address'];
     $contactNumber = $_POST['contactNumber'];
     $productName = $_POST['productName'];
@@ -39,13 +36,13 @@ if (isset($_POST['add_rec'])) {
             // Sufficient quantity available, update and insert
             $quantity = $availableQuantity - $quantity_req;
             $mysqli->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
-            $query = $mysqli->query("INSERT INTO familyPlanning (productId, lastName, firstName,middleName, dateBirth, age, sex, houseNumber, address, contactNumber,civilStatus,occupation) VALUES ('$productId', '$lastName','$firstName','$middleName', '$dateBirth', '$age', '$sex', '$houseNumber','$address', '$contactNumber', '$civilStatus', '$occupation')");
+            $query = $mysqli->query("INSERT INTO residentrecords (productId, lastName, firstName,middleName, dateBirth, age, sex, address, contactNumber) VALUES ('$productId', '$lastName','$firstName','$middleName', '$dateBirth', '$age', '$sex', '$address', '$contactNumber')");
 
             if ($query) {
-                $residentId = mysqli_insert_id($mysqli);
-                $query = $mysqli->query("INSERT INTO contraceptive (residentId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate,clientType,changingMethod,reason) VALUES ('$residentId','$lastName','$firstName','$middleName','$productId','$productName','$unit', '$quantity_req', '$givenDate', '$clientType','$changingMethod','$reason')");
+                $familyplanningId = mysqli_insert_id($mysqli);
+                $query = $mysqli->query("INSERT INTO contraceptivemethod_request (familyplanningId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate,clientType,changingMethod,reason) VALUES ('$familyplanningId','$lastName','$firstName','$middleName','$productId','$productName','$unit', '$quantity_req', '$givenDate', '$clientType','$changingMethod','$reason')");
 
-                echo '<script>window.location.href = "./contraceptives.php?success=Add Request Successfully";</script>';
+                echo '<script>window.location.href = "./userRecMed.php?success=Add Request Successfully";</script>';
                 exit(); // Add this line to stop further script execution
             } else {
                 echo "Error: " . mysqli_error($mysqli);

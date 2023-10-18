@@ -104,14 +104,7 @@ if(isset($_SESSION['user_data'])){
                                   <option value="divorced">Divorced</option>
                                 </select>
                             </div>
-                            <div class="form-group" >
-                                <label>Occupation</label>
-                                <input type="text" class="form-control" name="occupation" id ="occupation" placeholder="Optional"/>
-                            </div>
-                            <div class="form-group" >
-                                <label>House no.</label>
-                                <input type="text" class="form-control" name="houseNumber" id ="houseNumber" placeholder="Optional"/>
-                            </div>
+                           
                             <div class="form-group">
                                 <label>Sitio</label>
                                 <select class="form-control" required="required" name="address" required>
@@ -153,10 +146,10 @@ if(isset($_SESSION['user_data'])){
                                 <label>Type of Client</label>
                                 <select class="form-control" required="required" name="clientType" required>
                                     <option value="" disabled selected>Type of Client</option>
-                                    <option value="currentUser">New User</option>
-                                    <option value="currentUser">Current User</option>
-                                    <option value="dropoutRestart">Dropout / Restart</option>
-                                    <option value="changingMethod">Changing Method</option>
+                                    <option value="New User">New User</option>
+                                    <option value="Current User">Current User</option>
+                                    <option value="Dropout & Restart">Dropout / Restart</option>
+                                    <option value="Changing Method">Changing Method</option>
                                 </select>
                             </div>
                             <div class="form-group" id="changingMethodSection" >
@@ -198,23 +191,26 @@ if(isset($_SESSION['user_data'])){
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    // Initially hide the changingMethodSection
-    $("#changingMethodSection").hide();
-    
-    // Listen for changes in the clientType dropdown
-    $("select[name='clientType']").change(function() {
-        if ($(this).val() === "changingMethod") {
-            // If the selected value is "changingMethod," show the changingMethodSection
-            $("#changingMethodSection").show();
-        } else {
-            // If a different value is selected, hide the changingMethodSection
+    <script>
+        $(document).ready(function() {
+            // Initially hide the "Method Currently used" section
             $("#changingMethodSection").hide();
-        }
-    });
-});
-</script>
+
+            // Attach change event handler to the clientType select element
+            $("select[name='clientType']").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "New User") {
+                    // If "New User" is selected, hide the "Method Currently used" section
+                    $("#changingMethodSection").hide();
+                } else {
+                    // For other options, show the "Method Currently used" section
+                    $("#changingMethodSection").show();
+                }
+            });
+        });
+    </script>
+
+
 
     <script>
         document.getElementById("residentName").addEventListener("input", function () {

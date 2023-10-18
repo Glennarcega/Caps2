@@ -69,6 +69,7 @@ if(isset($_SESSION['user_data'])){
                         echo '<p>Resident ID not provided.</p>';
                     }
                   ?>
+                  
                   <br /><br />
               
                   <?php if (isset($_GET['success'])) { ?>

@@ -59,7 +59,7 @@ if(isset($_SESSION['user_data'])){
                 </thead>
               <tbody>
               <?php
-                $query = $mysqli->query("SELECT * FROM `familyplanning`") or die(mysqli_error());
+                $query = $mysqli->query("SELECT * FROM `familyplanning_records`") or die(mysqli_error());
                 while($fetch = $query->fetch_array()){
               ?>	
 					  	<tr>	

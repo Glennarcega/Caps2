@@ -44,11 +44,11 @@ if(isset($_SESSION['user_data'])){
 				<h3><div class="alert alert-info">Family Planning Records</div></h3>
         <div>
                   <?php
-                if (isset($_GET['familyPlanningId'])) {
-                      $desiredfamilyPlanningId = $_GET['familyPlanningId'];
+                if (isset($_GET['residentId'])) {
+                      $desiredresidentId = $_GET['residentId'];
                       
                       // Replace 'familyPlanning' with your actual table name and 'resident_id' with the actual column name
-                      $query = $mysqli->query("SELECT * FROM familyPlanning WHERE familyPlanningId = '$desiredfamilyPlanningId'");
+                      $query = $mysqli->query("SELECT * FROM residentrecords WHERE residentId = '$desiredresidentId'");
                       while ($fetch = $query->fetch_assoc()) {
                           
                         // Display the records within the table rows    
@@ -62,9 +62,9 @@ if(isset($_SESSION['user_data'])){
               </div>
               <br />
                 <?php
-                    if (isset($_GET['familyPlanningId'])) {
-                        $familyPlanningId = $_GET['familyPlanningId'];
-                        echo '<a class="btn btn-success" href="add_med_res.php?familyPlanningId=' . $familyPlanningId . '"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>';
+                    if (isset($_GET['residentId'])) {
+                        $residentId = $_GET['residentId'];
+                        echo '<a class="btn btn-success" href="add_contraceptive.php?residentId=' . $residentId . '"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>';
                     } else {
                         echo '<p>Resident ID not provided.</p>';
                     }
@@ -90,11 +90,11 @@ if(isset($_SESSION['user_data'])){
                     </thead>
                 <tbody>
               <?php  
-              if (isset($_GET['familyPlanningId'])) {
-                  $desiredResidentId = $_GET['familyPlanningId'];
+              if (isset($_GET['residentId'])) {
+                  $desiredResidentId = $_GET['residentId'];
                   
                   // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-                  $query = $mysqli->query("SELECT * FROM contraceptive WHERE familyPlanningId = '$desiredfamilyPlanningId'");
+                  $query = $mysqli->query("SELECT * FROM contraceptivemethod_request WHERE familyPlanningId = '$desiredresidentId'");
 
                   if ($query->num_rows > 0) {
                       while ($fetch = $query->fetch_assoc()) {

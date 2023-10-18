@@ -50,11 +50,11 @@ if(isset($_SESSION['user_data'])){
                    
                     <div class="col-md-4">
                     <?php
-      if (isset($_GET['residentId'])) {
-            $desiredResidentId = $_GET['residentId'];
+      if (isset($_GET['familyPlanningId'])) {
+            $desiredfamilyPlanningId = $_GET['familyPlanningId'];
             
-            // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-            $query = $mysqli->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
+            // Replace 'familyPlanning records' with your actual table name and 'familyPlanningId' with the actual column name
+            $query = $mysqli->query("SELECT * FROM contraceptivemethod_request WHERE familyPlanningId = '$desiredfamilyPlanningId'");
             while ($fetch = $query->fetch_assoc()) {
                 
             // Display the records within the table rows
@@ -65,7 +65,7 @@ if(isset($_SESSION['user_data'])){
             $middleName = isset($fetch['middleName']) ? $fetch['middleName'] : '';
         }
         } else {
-            echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
+            echo '<tr><td colspan="3">familyPlanningId not provided in the URL.</td></tr>';
         }
       ?>
                         
@@ -77,15 +77,15 @@ if(isset($_SESSION['user_data'])){
                  <form method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                          <?php
-                            if (isset($_GET['residentId'])) {
-                                 // Retrieve the 'residentId' value from the URL
-                                $residentId = $_GET['residentId'];                                    
-                                // Now, you have the 'residentId' value in the $residentId variable
+                            if (isset($_GET['familyPlanningId'])) {
+                                 // Retrieve the 'familyPlanningId' value from the URL
+                                $familyPlanningId = $_GET['familyPlanningId'];                                    
+                                // Now, you have the 'familyPlanningId' value in the $familyPlanningId variable
                                 // You can use it for database operations or any other purpose
-                                echo "Resident ID: " . $residentId;
+                                echo "familyPlanningId: " . $familyPlanningId;
                             } else {
-                              // Handle the case where 'residentId' is not provided in the URL
-                                echo "Resident ID not found in the URL.";
+                              // Handle the case where 'familyPlanningId' is not provided in the URL
+                                echo "familyPlanningId not found in the URL.";
                              }
                            ?>
                         </div>
@@ -139,7 +139,7 @@ if(isset($_SESSION['user_data'])){
                                 <button name="add_rec" class="btn btn-primary profile-button form-control"><i
                                         class="bx bx-pencil"></i> Request</button>
                             </div>
-                            <?php require_once '../admin_query/add_query_records2.php'?>
+                            <?php require_once '../admin_query/add_query_records2 gagawanpa.php'?>
 						</form>
                     </div>
                 </div>

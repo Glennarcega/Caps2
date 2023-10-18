@@ -25,132 +25,52 @@ if(isset($_SESSION['user_data'])){
 
     <!-- graph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <style>
-   /* Default styles for larger screens */
-    /* Common styles for larger screens */
-    .container-fluid {
-        padding: 20px;
-    }
-    .panel-body {
-        padding: 20px;
-    }
-
-    /* Responsive styles for screens smaller than 1400px */
-    @media (max-width: 1400px) {
-    .container-fluid {
-        padding: 15px;
-    }
-    .panel-body {
-        padding: 15px;
-    }
+<style>
+    
+<style>
+* {
+  box-sizing: border-box;
 }
 
-<!-- Responsive styles for screens smaller than 1200px -->
-@media (max-width: 1200px) {
-    .container-fluid {
-        padding: 10px;
-    }
-    .panel-body {
-        padding: 10px;
-    }
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-<!-- Responsive styles for screens smaller than 992px -->
-@media (max-width: 992px) {
-    .container-fluid {
-        padding: 8px;
-    }
-    .panel-body {
-        padding: 8px;
-    }
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
 }
 
-<!-- Responsive styles for screens smaller than 768px -->
-@media (max-width: 768px) {
-    .container-fluid {
-        padding: 5px;
-    }
-    .panel-body {
-        padding: 5px;
-    }
-    .container {
-        max-width: 100%;
-    }
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-@media (max-width: 1115px) {
-    .main {
-        left: 60px;
-        width: calc(100% - 50px);
-    }
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
 }
 
-@media (max-width: 880px) {
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
 }
-
-@media (max-width: 500px) {
-    .cards {
-        grid-template-columns: 1fr;
-    }
-}
-
-<!-- Responsive styles for screens smaller than 576px -->
-@media (max-width: 576px) {
-    .container-fluid {
-        padding: 3px;
-    }
-    .panel-body {
-        padding: 3px;
-    }
-}
-
-    /* You can continue to add more media queries for other screen sizes as needed */
-    .main {
-        position: absolute;
-        top: 150px;
-        width: calc(100% - 260px);
-        left: 160px;
-        min-height: calc(10vh - 20px);
-    }
-
-    .cards {
-        width: 100%;
-        padding: 15px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 20px;
-    }
-
-    .cards .card {
-        padding: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: #b3d7ff;
-        border-radius: 15px;
-        box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.5);
-    }
-
-    .number {
-        font-size: 28px;
-        font-weight: 500;
-        color: #04c487;
-    }
-
-    .card-name {
-        color: black;
-        font-weight: 400;
-    }
-
-    .icon-box i {
-        font-size: 45px;
-        color: #04c487;
-    }
 </style>
+    </style>
 </head>
 <body>
 <?php
@@ -190,48 +110,40 @@ try {
                     $total_quantity[] = $data['total_quantity'];
                 }
                 ?>
-            <div class="main">
-                <div class="cards">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Registered Accounts</div>
-                        </div>
-                        <div class="icon-box">
-                            <i class="bx bx-user-plus"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Medicines</div>
-                        </div>
-                        <div class="icon-box">
-                            <i class="bx bx-plus-medical"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Blank</div>
-                        </div>
-                        <div class="icon-box">
-                            <i class="dito icon"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Blank</div>
-                        </div>
-                        <div class="icon-box">
-                            <i class="dito icon"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="charts"></div>
-            </div>
-                <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br> <br> <br> <br>
+           <div class="row">
+  <div class="column">
+    <div class="card">
+      <h3>Card 1</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <h3>Card 2</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <h3>Card 3</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <h3>Card 4</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+</div>
+
               <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
                   <canvas id="myChart" width="1000" height="500"></canvas>
               </div>

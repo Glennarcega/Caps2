@@ -64,8 +64,9 @@ if(isset($_SESSION['user_data'])){
                         <th>Expiration Date</th>
                         <th>Status</th>
                         <th>Request</th>
+                        <th>Edit</th>
+                        <th>View</th>
                         <th><center>Action</center></th>
-                        <th>Report</th>
                     </tr>
                 </thead>
               <tbody>
@@ -97,12 +98,16 @@ if(isset($_SESSION['user_data'])){
                       <td>
                           <center>
                               <a class="btn btn-primary profile-button" href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a>
-                              <a class="btn btn-danger" onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>">Delete</a>
                           </center>
                       </td>
                       <td>
                           <center>
                               <a class="btn btn-primary profile-button" href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a>
+                          </center>
+                      </td>
+                      <td>
+                          <center>
+                          <a class="btn btn-danger" onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>">Delete</a>
                           </center>
                       </td>
                     </tr>

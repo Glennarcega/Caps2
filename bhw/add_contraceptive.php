@@ -86,7 +86,7 @@ if(isset($_SESSION['user_data'])){
                         if (isset($_GET['residentId'])) {
                             $residentId = $_GET['residentId'];
                             if ($fetch['unit'] == 'Insert') {
-                                echo '<a class="btn btn-primary profile-button" href="contraceptives_form.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
+                                echo '<a class="btn btn-primary profile-button" href="contraceptives_request_update.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
                             } else {
                                 echo '<a class="btn btn-primary profile-button" href="contraceptives_request_update.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
                             }

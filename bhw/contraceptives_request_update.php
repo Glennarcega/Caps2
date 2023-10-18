@@ -50,11 +50,11 @@ if(isset($_SESSION['user_data'])){
                    
                     <div class="col-md-4">
                     <?php
-      if (isset($_GET['familyPlanningId'])) {
-            $desiredfamilyPlanningId = $_GET['familyPlanningId'];
+      if (isset($_GET['residentId'])) {
+            $desiredResidentId = $_GET['residentId'];
             
-            // Replace 'familyPlanning records' with your actual table name and 'familyPlanningId' with the actual column name
-            $query = $mysqli->query("SELECT * FROM contraceptivemethod_request WHERE familyPlanningId = '$desiredfamilyPlanningId'");
+            // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
+            $query = $mysqli->query("SELECT * FROM residentrecords WHERE residentId = '$desiredResidentId'");
             while ($fetch = $query->fetch_assoc()) {
                 
             // Display the records within the table rows
@@ -65,7 +65,7 @@ if(isset($_SESSION['user_data'])){
             $middleName = isset($fetch['middleName']) ? $fetch['middleName'] : '';
         }
         } else {
-            echo '<tr><td colspan="3">familyPlanningId not provided in the URL.</td></tr>';
+            echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
         }
       ?>
                         
@@ -77,20 +77,19 @@ if(isset($_SESSION['user_data'])){
                  <form method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                          <?php
-                            if (isset($_GET['familyPlanningId'])) {
-                                 // Retrieve the 'familyPlanningId' value from the URL
-                                $familyPlanningId = $_GET['familyPlanningId'];                                    
-                                // Now, you have the 'familyPlanningId' value in the $familyPlanningId variable
+                            if (isset($_GET['residentId'])) {
+                                 // Retrieve the 'residentId' value from the URL
+                                $residentId = $_GET['residentId'];                                    
+                                // Now, you have the 'residentId' value in the $residentId variable
                                 // You can use it for database operations or any other purpose
-                                echo "familyPlanningId: " . $familyPlanningId;
+                                echo "Resident ID: " . $residentId;
                             } else {
-                              // Handle the case where 'familyPlanningId' is not provided in the URL
-                                echo "familyPlanningId not found in the URL.";
+                              // Handle the case where 'residentId' is not provided in the URL
+                                echo "Resident ID not found in the URL.";
                              }
                            ?>
                         </div>
-                            
-                            <div class="form-group">
+                        <div class="form-group">
                                 <label>Last Name</label>
                                 <input type="text" class="form-control" name="lastName" 
                                 value="<?php echo $lastName; ?> "readonly />
@@ -105,6 +104,7 @@ if(isset($_SESSION['user_data'])){
                                 <input type="text" class="form-control" name="middleName" 
                                 value="<?php echo $middleName; ?> "readonly />
                             </div>
+                        
                             <div class="form-group">
                                 <label>Product ID</label>
                                 <input type="text" class="form-control" name="productId"
@@ -125,21 +125,54 @@ if(isset($_SESSION['user_data'])){
                                 <input type="text" class="form-control" name="total"
                                     value="<?php echo $fetch['total']; ?>" readonly />
                             </div>
-                            
+           
                             <div class="form-group" required="required" required>
                                 <label>Quantity Request</label>
                                 <input type="number" value=0 min="0" max="999999999" class="form-control"
                                     name="quantity_req" />
                             </div>
+                            
                             <div class="form-group" required="required" required>
                                 <label>Given Date</label>
                                 <input type="date" class="form-control" name="givenDate" id="givenDate" required/>
                             </div>
+                            <div class="form-group" >                     
+                                <label>Type of Client</label>
+                                <select class="form-control" required="required" name="clientType" required>
+                                    <option value="" disabled selected>Type of Client</option>
+                                    <option value="Current User">Current User</option>
+                                    <option value="Dropout & Restart">Dropout / Restart</option>
+                                    <option value="Changing Method">Changing Method</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="changingMethodSection" >
+                            <label>Method Currently used (for Changing Method)</label>
+                            <select class="form-control" name="changingMethod"> 
+                                <option value="" disabled selected>Changing Method</option>
+                                <option value="COC">COC</option>
+                                <option value="IUD">IUD</option>
+                                <option value="POP">POP</option>
+                                <option value="BOM/CMM">BOM/CMM</option>
+                                <option value="Injectable">Injectable</option>
+                                <option value="BBT">BBT</option>
+                                <option value="Implant">Implant</option>
+                                <option value="STM">STM</option>
+                                <option value="LAM">LAM</option>
+                                <option value="others">Others</option>
+                            </select>
+                            <div>
+                            <div class="form-group">
+                                <label>Reason</label>
+                                <input type="comvobox" class="form-control" name="reason"/>
+                            </div>
+                        
+                        </div>
+                        </div>
                             <div class="form-group">
                                 <button name="add_rec" class="btn btn-primary profile-button form-control"><i
                                         class="bx bx-pencil"></i> Request</button>
                             </div>
-                            <?php require_once '../admin_query/add_query_records2 gagawanpa.php'?>
+                            <?php require_once '../admin_query/add_query_records_contraceptive.php'?>
 						</form>
                     </div>
                 </div>
@@ -148,7 +181,25 @@ if(isset($_SESSION['user_data'])){
     </section>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initially hide the "Method Currently used" section
+            $("#changingMethodSection").hide();
 
+            // Attach change event handler to the clientType select element
+            $("select[name='clientType']").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "New User") {
+                    // If "New User" is selected, hide the "Method Currently used" section
+                    $("#changingMethodSection").hide();
+                } else {
+                    // For other options, show the "Method Currently used" section
+                    $("#changingMethodSection").show();
+                }
+            });
+        });
+    </script>
  <script src="../cssmainmenu/script.js"></script>
  <script>
   document.addEventListener("DOMContentLoaded", function() {

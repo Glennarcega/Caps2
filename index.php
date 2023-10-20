@@ -121,10 +121,10 @@
             </div>
         <?php } ?>
         
-    <div class="form-field d-flex align-items-center">
+    <div class="form-field d-flex align-items-center"  action="check-login.php" method="post">
         <div class="input-icon">
             <span class="far fa-user"></span>
-            <input type="text" name="userName" id="userName" placeholder="Username" required />
+            <input type="text" name="email" id="email" placeholder="Username" required />
         </div>
     </div>
     <div class="form-field d-flex align-items-center">
@@ -171,6 +171,15 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Check if URL contains 'error' parameter and remove it
     if (window.location.search.includes('error')) {
+        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if URL contains 'error' parameter and remove it
+    if (window.location.search.includes('success')) {
         var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
         window.history.replaceState({ path: newUrl }, '', newUrl);
     }

@@ -23,13 +23,62 @@
         border: none;
         cursor: pointer;
     }
+    .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    border-radius: 20px;
+}
 
-    /* Responsive adjustments */
-    @media screen and (max-width: 480px) {
-        .toggle-password-btn {
-            right: 5px; /* Adjust the button's position for smaller screens */
-        }
-    }
+.form-field {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.form-field input {
+    flex: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    margin-left:30px;
+}
+
+.input-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon span {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.toggle-password {
+    cursor: pointer;
+    transition: color 0.3s;
+    margin-left: -30px; /* I-adjust ang margin para ilagay ang icon sa kanan ng password field */
+}
+
+.toggle-password.active {
+    color: #555; /* Baguhin ang kulay ng mata icon kapag ito ay active (password visible) */
+}
 
     @media screen and (max-width: 767px) {
         /* Additional CSS for low-resolution tablets and iPads */
@@ -52,7 +101,7 @@
     }
 
 </style>
-<body class =bodyy>
+<body class ="bodyy">
 <div class="form-container">
     <form class="mx-auto"
           action="check-login.php"
@@ -71,26 +120,30 @@
                 <?= $_GET['success'] ?>
             </div>
         <?php } ?>
-
-        <input type="text" placeholder="Email" class="form-control" name="email" id="email" required>
-
-        <div class="form-group">
-        <div class="password-container">
-            <input type="password" placeholder="Password" name="password" class="form-control" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required style="padding-right: 40px;" />
-            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
-                <i class="fas fa-eye-slash"></i>
-            </button>
+        
+    <div class="form-field d-flex align-items-center">
+        <div class="input-icon">
+            <span class="far fa-user"></span>
+            <input type="text" name="userName" id="userName" placeholder="Username" required />
         </div>
     </div>
+    <div class="form-field d-flex align-items-center">
+        <div class="input-icon">
+            <span class="fas fa-key"></span>
+            <input type="password" name="password" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required placeholder="Password"/>
+            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
+            <i class="fas fa-eye-slash toggle-password"></i>
+    </div>
+        </div>
         <input type="submit" class="btn btn-primary mt-0" value="Login">
         <br>
         <br>
-        <a href="forgot-password.php">Forgot Password?</a>
+        <a href="forgot-password.php" style="text-decoration: none;">Forgot Password?</a>
     </form>
 </div>
 
 <script>
-   function togglePasswordButton(buttonId) {
+     function togglePasswordButton(buttonId) {
             var passwordInput = document.getElementById(buttonId.replace('Toggle', ''));
             var showPasswordBtn = document.getElementById(buttonId);
 
@@ -123,28 +176,5 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-
-<style>
-    .password-container {
-            position: relative;
-        }
-
-        .toggle-password-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            .toggle-password-btn {
-                right: 5px; /* Adjust the button's position for smaller screens */
-            }
-        }
-</style>
 </body>
 </html>

@@ -22,7 +22,8 @@ if(isset($_SESSION['user_data'])){
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
     <link rel="stylesheet" type="text css" href="../css/style.css" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- graph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -69,8 +70,14 @@ body {
   text-align: center;
   background-color: #f1f1f1;
 }
+.card:hover{
+    background: #84e184; 
+}
+.icon-box i {
+        font-size: 50px;
+        color: #04c487;
+    }
 </style>
-    </style>
 </head>
 <body>
 <?php
@@ -111,38 +118,42 @@ try {
                 }
                 ?>
            <div class="row">
-  <div class="column">
-    <div class="card">
-      <h3>Card 1</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
+                <div class="column">
+                    <div class="card">
+                    <h3>Registered Accounts</h3>
+                    <div class="icon-box">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    </div>
+                </div>
 
-  <div class="column">
-    <div class="card">
-      <h3>Card 2</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-  
-  <div class="column">
-    <div class="card">
-      <h3>Card 3</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-  
-  <div class="column">
-    <div class="card">
-      <h3>Card 4</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-</div>
+                <div class="column">
+                    <div class="card">
+                    <h3>Medicines</h3>
+                    <div class="icon-box">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="card">
+                    <h3>Blank</h3>
+                    <div class="icon-box">
+                        <i class="bx bx-plus"></i>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="card">
+                    <h3>Blank</h3>
+                    <div class="icon-box">
+                        <i class="bx bx-plus"></i>
+                    </div>
+                    </div>
+                </div>
+                </div>
 
               <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
                   <canvas id="myChart" width="1000" height="500"></canvas>
@@ -159,7 +170,7 @@ try {
                     const data = {
                         labels: labels,
                         datasets: [{
-                            label: 'medicine',
+                            label: 'Medicine',
                             data: <?php echo json_encode($total) ?>,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
@@ -207,7 +218,7 @@ try {
                     const data2 = {
                         labels: labels2,
                         datasets: [{
-                            label: 'address',
+                            label: 'Address',
                             data: <?php echo json_encode($total_quantity) ?>,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',

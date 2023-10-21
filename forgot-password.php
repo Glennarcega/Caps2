@@ -13,17 +13,37 @@
 <style>
     
 .form-field input {
-    flex: 1;
     width: 100%;
+    display: block;
     border: none;
-    border-radius: 20px;
     outline: none;
-    background: #fff;
     font-size: 1.2rem;
     color: #666;
     padding: 10px 15px 10px 10px;
-    margin-left: 25px;
+    border-radius: 20px;
 }
+
+.form-fieldd {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.form-field input {
+    flex: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    margin-left:30px;
+}
+
 .input-icon {
     position: relative;
     display: flex;
@@ -36,10 +56,14 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.2rem;
-    color: #555;
+}
+#emailError {
+    color: red;
+    display: none;
+    margin-top: -20px;
 }
 </style>
-<body class =bodyy>
+<body class ="bodyy">
 <div class="form-container">
 <div class="form-field d-flex align-items-center" method="post">
     <form class="mx-auto" method="post" action="send-password-reset.php"
@@ -48,12 +72,14 @@
         <h6 class="text-center p-1">Medicine Management System for Barangay Malitam</h6>
         <br>
         <h3 class="text-center p-1">Forgot Password</h3>
-        <div>
-        <div class="input-icon">
-            <span class="far fa-user"></span>
-            <input type="email" name="email" id="email" placeholder="Enter Email Address" />
-        </div>  
-        <div class="password-container">            
+    <div class="form-fieldd d-flex align-items-center" method="post">
+    <div class="input-icon">
+    <span class="far fa-user"></span>
+    <input type="email" name="email" id="email" placeholder="Email" style="font-size:15px; height: 50px; width:255px;"/>
+    </div>
+    </div>
+    <small id="emailError" class="form-text text-danger">Email must be 6-28 characters.</small>
+    <div class="password-container">            
         </div>
         <br>
         <button class="btn btn-primary mt-0">Send</button>
@@ -62,6 +88,25 @@
         </form>
     </form>
 </div>
-   
+<script>
+    document.querySelector('#email').addEventListener('input', function () {
+        const input = this.value;
+        const emailError = document.querySelector('#emailError');
+        
+        if (input.length > 27) {
+            this.value = input.slice(0, 27); // Truncate the input to 24 characters
+        }
+
+        if (input.length < 6 || input.length > 27) {
+            emailError.textContent = 'Email must be 6-24 characters.';
+            emailError.style.display = 'block'; // Ensure the error message is displayed
+            this.setCustomValidity('Email must be 6-24 characters.');
+        } else {
+            emailError.textContent = '';
+            emailError.style.display = 'none'; // Hide the error message
+            this.setCustomValidity('');
+        }
+    });
+</script>
 </body>
 </html>

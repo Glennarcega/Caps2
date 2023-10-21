@@ -81,8 +81,8 @@
 }
 #emailError {
     color: red;
-    margin-top: 10px; /* Adjust the margin as needed */
     display: none;
+    margin-top: -20px;
 }
 
     @media screen and (max-width: 767px) {
@@ -129,18 +129,19 @@
     <div class="form-field d-flex align-items-center"  action="check-login.php" method="post">
     <div class="input-icon">
     <span class="far fa-user"></span>
-    <input type="email" name="email" id="email" placeholder="Email" />
+    <input type="email" name="email" id="email" placeholder="Email" style="font-size:15px; height: 50px; width:255px;"/>
+    </div>
     </div>
     <small id="emailError" class="form-text text-danger">Email must be 6-28 characters.</small>
-    </div>
     <div class="form-field d-flex align-items-center">
         <div class="input-icon">
             <span class="fas fa-key"></span>
-            <input type="password" name="password" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required placeholder="Password"/>
+            <input type="password" name="password" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required placeholder="Password" style="font-size:15px; height: 50px; width:255px;"/>
             <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
             <i class="fas fa-eye-slash toggle-password"></i>
-    </div>
+            </button>
         </div>
+    </div>
         <input type="submit" class="btn btn-primary mt-0" value="Login">
         <br>
         <br>
@@ -153,10 +154,14 @@
         const input = this.value;
         const emailError = document.querySelector('#emailError');
         
-        if (input.length < 6 || input.length > 28) {
-            emailError.textContent = 'Email must be 6-28 characters.';
+        if (input.length > 27) {
+            this.value = input.slice(0, 27); // Truncate the input to 24 characters
+        }
+
+        if (input.length < 6 || input.length > 27) {
+            emailError.textContent = 'Email must be 6-24 characters.';
             emailError.style.display = 'block'; // Ensure the error message is displayed
-            this.setCustomValidity('Email must be 6-28 characters.');
+            this.setCustomValidity('Email must be 6-24 characters.');
         } else {
             emailError.textContent = '';
             emailError.style.display = 'none'; // Hide the error message
@@ -164,6 +169,7 @@
         }
     });
 </script>
+
 <script>
      function togglePasswordButton(buttonId) {
             var passwordInput = document.getElementById(buttonId.replace('Toggle', ''));

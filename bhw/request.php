@@ -110,7 +110,7 @@ if(isset($_SESSION['user_data'])){
                                     <option value="MalitamTres">Malitam Tres</option>
                                     <option value="BadjCom">Badjao Community</option>
                                 </select>
-                            </div>
+                            </div>s
                             <div class="form-group" required="required" >
                                 <label>Contact Number</label>
                                 <input type="number" class="form-control" name="contactNumber" id="contactNumber" placeholder="Enter your Contact Number"  required />

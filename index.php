@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <style>
-    .password-container {
+.password-container {
         position: relative;
     }
 
-    .toggle-password-btn {
+.toggle-password-btn {
         position: absolute;
         right: 10px;
         top: 50%;
@@ -23,7 +23,7 @@
         border: none;
         cursor: pointer;
     }
-    .form-field input {
+.form-field input {
     width: 100%;
     display: block;
     border: none;
@@ -79,6 +79,11 @@
 .toggle-password.active {
     color: #555; /* Baguhin ang kulay ng mata icon kapag ito ay active (password visible) */
 }
+#emailError {
+    color: red;
+    margin-top: 10px; /* Adjust the margin as needed */
+    display: none;
+}
 
     @media screen and (max-width: 767px) {
         /* Additional CSS for low-resolution tablets and iPads */
@@ -122,10 +127,11 @@
         <?php } ?>
         
     <div class="form-field d-flex align-items-center"  action="check-login.php" method="post">
-        <div class="input-icon">
-            <span class="far fa-user"></span>
-            <input type="text" name="email" id="email" placeholder="Username" required />
-        </div>
+    <div class="input-icon">
+    <span class="far fa-user"></span>
+    <input type="email" name="email" id="email" placeholder="Email" />
+    </div>
+    <small id="emailError" class="form-text text-danger">Email must be 6-28 characters.</small>
     </div>
     <div class="form-field d-flex align-items-center">
         <div class="input-icon">
@@ -142,6 +148,22 @@
     </form>
 </div>
 
+<script>
+    document.querySelector('#email').addEventListener('input', function () {
+        const input = this.value;
+        const emailError = document.querySelector('#emailError');
+        
+        if (input.length < 6 || input.length > 28) {
+            emailError.textContent = 'Email must be 6-28 characters.';
+            emailError.style.display = 'block'; // Ensure the error message is displayed
+            this.setCustomValidity('Email must be 6-28 characters.');
+        } else {
+            emailError.textContent = '';
+            emailError.style.display = 'none'; // Hide the error message
+            this.setCustomValidity('');
+        }
+    });
+</script>
 <script>
      function togglePasswordButton(buttonId) {
             var passwordInput = document.getElementById(buttonId.replace('Toggle', ''));

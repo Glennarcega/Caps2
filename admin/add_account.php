@@ -84,11 +84,13 @@ if(isset($_SESSION['user_data'])){
 	  </div>
     <div class = "form-group">
 			<label>Mobile Number </label>
-				<input type = "text"  class = "form-control" name = "mobile_number" required/>
+				<input type = "text"  class = "form-control" name = "mobile_number" id = "mobileNumber"required/>
+                <small id="contactNumberError" class="form-text text-danger"></small>
 	  </div>
     <div class="form-group">
         <label>Email </label>
-        <input type="email" class="form-control" name="email" placeholder="example@gmail.com" required/>
+        <input type="email" class="form-control" name="email" id="email" placeholder="example@gmail.com" required/>
+        <small id="emailError" class="form-text text-danger"></small>
     </div>
     <div class="form-group">
         <label>Password</label>
@@ -109,9 +111,9 @@ if(isset($_SESSION['user_data'])){
             </button>
         </div>
     </div>	
-    <label>Usertype</label>
+    <label>User Type</label>
 <select class="form-control" required="required" name="usertype" id="usertypeSelect">
-    <option value="" disabled selected>Select Usertype</option>
+    <option value="" disabled selected>Select User Type</option>
     <option value="2">BHW</option>
     <option value="1">Admin</option>
 </select>
@@ -185,6 +187,33 @@ if(isset($_SESSION['user_data'])){
             }
         }
 </script>
+<script>
+    document.querySelector('#mobileNumber').addEventListener('input', function () { //mobile number
+        const input = this.value.toString();
+        const contactNumberError = document.querySelector('#contactNumberError');
+        
+        if (input.length !== 11 || isNaN(input)) {
+            contactNumberError.textContent = '*Mobile number must be exactly 11 digits.';
+            this.setCustomValidity('*Mobile number must be exactly 11 digits.');
+        } else {
+            contactNumberError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+    document.querySelector('#email').addEventListener('input', function () { //email
+        const input = this.value;
+        const emailError = document.querySelector('#emailError');
+        
+        if (input.length < 6 || input.length > 28) {
+            emailError.textContent = '*Email must be 6-28 characters.';
+            this.setCustomValidity('*Email must be 6-28 characters.');
+        } else {
+            emailError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+</script>
+
 <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>
 <script src = "../js/bootstrap.js"></script>

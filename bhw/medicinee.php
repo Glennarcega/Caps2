@@ -25,9 +25,58 @@ if(isset($_SESSION['user_data'])){
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<style>/* Style for the dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
-<!-- Latest compiled and minified JavaScript -->
+/* Style for the dropdown button */
+.dropbtn {
+    background: transparent;
+    color: #3498db;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
 
+/* Style for the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: -100%; /* Adjust the left position to -100% to make it appear to the left */
+}
+
+/* Style for the links within the dropdown content */
+.dropdown-content a {
+    display: block;
+    padding: 8px 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Add a hover effect on links */
+.dropdown-content a:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Show the dropdown content when the dropdown button is hovered */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Style for icons */
+.dropdown-content i {
+    margin-right: 10px;
+}
+
+
+    </style>
 </head>
 <body>
 <?php try {
@@ -63,10 +112,8 @@ if(isset($_SESSION['user_data'])){
                         <th>Quantity</th>
                         <th>Expiration Date</th>
                         <th>Status</th>
-                        <th>Request</th>
-                        <th>Edit</th>
-                        <th>View</th>
-                        <th><center>Action</center></th>
+                        <th style="text-align: center;">Request</th>
+                        <th style="text-align: center;">Action</th>
                     </tr>
                 </thead>
               <tbody>
@@ -84,8 +131,8 @@ if(isset($_SESSION['user_data'])){
                           <td><?php echo $fetch['total'] ?></td>
                           <td><?php echo $fetch['expDate'] ?></td>
                           <td><?php echo $status ?></td>
-                        <td>
-                              <center>
+                        <td style="text-align: center;">
+                        
                               <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
                                   <button class="btn btn-primary" disabled>Request</button>
                               <?php elseif ($fetch['unit'] == 'Insert'): ?>
@@ -93,22 +140,18 @@ if(isset($_SESSION['user_data'])){
                               <?php else: ?>
                                   <a class="btn btn-primary profile-button" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
                               <?php endif; ?>
-                          </center>
+                          
                       </td>
-                      <td>
-                          <center>
-                              <a class="btn btn-primary profile-button" href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a>
-                          </center>
-                      </td>
-                      <td>
-                          <center>
-                              <a class="btn btn-primary profile-button" href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a>
-                          </center>
-                      </td>
-                      <td>
-                          <center>
-                          <a class="btn btn-danger" onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>">Delete</a>
-                          </center>
+                     
+                  
+                      <td  style="text-align: center;">
+                          <div class="dropdown">
+                        <button class="dropbtn">...</button>
+                        <div class="dropdown-content">
+                        <a href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a><br>
+                        <a  href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a><br>
+                        <a  onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>">Delete</a>
+                        </div>
                       </td>
                     </tr>
                   <?php

@@ -58,8 +58,8 @@ if(isset($_SESSION['user_data'])){
                     <th>Sex</th>
                     <th>Address</th>
                     <th>Contact Number</th>
-                    <th><center>Action</center></th>
-                    <th><center>FP</center></th>
+                    <th style="text-align: center;">Medicine</th>
+                    <th style="text-align: center;">Family Planning</th>
                   </tr>
                 </thead>
               <tbody>
@@ -74,8 +74,8 @@ if(isset($_SESSION['user_data'])){
                 <td><?php echo $fetch['sex']?></td>
                 <td><?php echo $fetch['address']?></td>
                 <td><?php echo $fetch['contactNumber']?></td>
-						  	<td><center><a class="btn btn-primary profile-button" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
-                <td><center><a class="btn btn-primary profile-button" href="individual_records_FP.php?residentId=<?php echo $fetch['residentId'] ?>"> FP</a>
+                <th style="text-align: center;"><a class="btn btn-primary profile-button" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
+                <th style="text-align: center;"><a class="btn btn-primary profile-button" href="individual_records_FP.php?residentId=<?php echo $fetch['residentId'] ?>"> Update</a>
 
               </tr>			
             <?php

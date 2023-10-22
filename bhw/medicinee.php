@@ -25,6 +25,7 @@ if(isset($_SESSION['user_data'])){
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
 <style>/* Style for the dropdown container */
 .dropdown {
     position: relative;

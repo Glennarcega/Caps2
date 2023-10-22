@@ -34,14 +34,7 @@
         </a>
         <span class="tooltip">Medicine</span>
       </li>
-      <li>
-        <a href="contraceptives.php">
-            <i class="bx bx-capsule"></i>
-            <span class="link_name">Contraceptives</span>
-        </a>
-        <span class="tooltip">Contraceptives</span>
-        </li>
-      <li>
+     
       <li>
       <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
           <i class="bx bx-user"></i>

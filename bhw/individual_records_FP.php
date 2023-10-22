@@ -80,12 +80,12 @@ if(isset($_SESSION['user_data'])){
                   <table id="table" class="table table-striped">
                     <thead>
                       <tr>
-                      <th>Client Type</th>
-                      <th>Method Currently Used</th>
-                        <th>Method Changing</th>
-                        <th>Unit</th>
-                        <th>Quantity</th>
-                        <th>Given Date</th>
+                        <th style="text-align: center;">Client Type</th>
+                        <th style="text-align: center;">Method Currently Used</th>
+                        <th style="text-align: center;">Method Changing</th>
+                        <th style="text-align: center;">Unit</th>
+                        <th style="text-align: center;">Quantity</th>
+                        <th style="text-align: center;">Given Date</th>
                       </tr>
                     </thead>
                 <tbody>
@@ -101,12 +101,12 @@ if(isset($_SESSION['user_data'])){
                       
                           // Display the records within the table rows
                           echo '<tr>';
-                          echo '<td>' . $fetch['clientType'] . '</td>';
-                          echo '<td>' . $fetch['changingMethod'] . '</td>';
-                          echo '<td>' . $fetch['productName'] . '</td>';
-                          echo '<td>' . $fetch['unit'] . '</td>';
-                          echo '<td>' . $fetch['quantity_req'] . '</td>';
-                          echo '<td>' . $fetch['givenDate'] . '</td>';
+                          echo '<td style="text-align: center;">' . $fetch['clientType'] . '</td>';
+                          echo '<td style="text-align: center;">' . $fetch['changingMethod'] . '</td>';
+                          echo '<td style="text-align: center;">'. $fetch['productName'] . '</td>';
+                          echo '<td style="text-align: center;">' . $fetch['unit'] . '</td>';
+                          echo '<td style="text-align: center;">' . $fetch['quantity_req'] . '</td>';
+                          echo '<td style="text-align: center;">' . $fetch['givenDate'] . '</td>';
                           echo '</tr>';
                       }
                   } else {

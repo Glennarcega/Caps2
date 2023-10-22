@@ -41,7 +41,7 @@ if(isset($_SESSION['user_data'])){
 				<div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<h3><div class="alert alert-info">Records</div></h3>
+				<h3><div class="alert alert-info">Medicine Records</div></h3>
         <div>
                   <?php
                 if (isset($_GET['residentId'])) {

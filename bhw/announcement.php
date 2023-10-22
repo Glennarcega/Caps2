@@ -44,14 +44,13 @@ if(isset($_SESSION['user_data'])){
       <div class="panel panel-default">
         <div class="panel-body">
         <h3><div class = "alert alert-info">SMS Announcement</div></h3>
-          <a class="btn btn-success"  action="send_message"> Send SMS</a>
+          <a class="btn btn-success"  type="submit"
+          value="Send Message"
+          onclick="sendMessage(event)"> Send SMS</a>
       
  
     <div class="form-container">
-      <h1>Send a Message with Semaphore</h1>
       <form id="messageForm">
-        <label for="api_key">API Key:</label>
-        <input type="text" name="api_key" required /><br /><br />
 
         <label for="number">Recipient's Number:</label>
         <textarea class="selected-values" type="text" name="number" required ></textarea><br /><br />
@@ -59,14 +58,6 @@ if(isset($_SESSION['user_data'])){
         <label for="message">Message:</label>
         <textarea  name="message" rows="4" required></textarea><br /><br />
 
-        <label for="sendername">Sender Name:</label>
-        <input type="text" name="sendername" required /><br /><br />
-
-        <input
-          type="submit"
-          value="Send Message"
-          onclick="sendMessage(event)"
-        />
       </form>
     </div>
 

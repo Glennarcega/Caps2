@@ -20,131 +20,67 @@ if(isset($_SESSION['user_data'])){
   <title>Responsive Sidebar</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-  <link rel="stylesheet" type="text css" href="../css/style.css" />
-  
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+    <link rel="stylesheet" type="text css" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- graph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
     <style>
-    /* Default styles for larger screens */
-    .container-fluid {
-        padding: 20px;
-    }
-    .panel-body {
-        padding: 20px;
-    }
-
-    /* Responsive styles for screens smaller than 1400px */
-    @media (max-width: 1400px) {
-        .container-fluid {
-            padding: 15px;
-        }
-        .panel-body {
-            padding: 15px;
-        }
-    }
-
-    /* Responsive styles for screens smaller than 1200px */
-    @media (max-width: 1200px) {
-        .container-fluid {
-            padding: 10px;
-        }
-        .panel-body {
-            padding: 10px;
-        }
-    }
-
-    /* Responsive styles for screens smaller than 992px */
-    @media (max-width: 992px) {
-        .container-fluid {
-            padding: 8px;
-        }
-        .panel-body {
-            padding: 8px;
-        }
-    }
-
-    /* Responsive styles for screens smaller than 768px */
-    @media (max-width: 768px) {
-        .container-fluid {
-            padding: 5px;
-        }
-        .panel-body {
-            padding: 5px;
-        }
-        .container {
-            max-width: 100%;
-        }
-    }
-    @media (max-width: 1115px){
-        .main{
-            left: 60px;
-            width: calc(100% - 50px);
-    }
-    }
-    @media (max-width: 880px){
-        .cards{
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-    @media (max-width: 500px){
-        .cards{
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* Responsive styles for screens smaller than 576px */
-    @media (max-width: 576px) {
-        .container-fluid {
-            padding: 3px;
-        }
-        .panel-body {
-            padding: 3px;
-        }
-    }
-
-    /* You can continue to add more media queries for other screen sizes as needed */
-    /*Main*/
-.main{
-	position: absolute;
-	top: 150px;
-	width: calc(100% - 260px);
-	left: 160px;
-    min-height: calc(10vh - 20px);
-}	
-.cards{
-    width: 100%;
-    padding: 35px 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
     
-}
-.cards .card{
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #b3d7ff;
-    border-radius: 15px;
-    box-shadow: 0 7px 25px 0 rgba(0,0,0, 0.5);
-}
-.number{
-    font-size: 35px;
-    font-weight:500;
-    color: #04c487;
-}
-.card-name{
-    color: black;
-    font-weight: 400;
-}
-.icon-box i{
-    font-size: 45px;
-    color: #04c487;
-}
-</style>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    /* Float four columns side by side */
+    .column {
+      float: left;
+      width: 25%;
+      padding: 0 10px;
+    }
+    
+    /* Remove extra left and right margins, due to padding */
+    .row {margin: 0 -5px;}
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+    
+    /* Style the counter cards */
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      text-align: center;
+      background-color: #f1f1f1;
+    }
+    .card:hover{
+        background: #84e184; 
+    }
+    .icon-box i {
+            font-size: 50px;
+            color: #04c487;
+        }
+    </style>
 
 </head>
 
@@ -185,48 +121,44 @@ if(isset($_SESSION['user_data'])){
                     $total_quantity[] = $data['total_quantity'];
                 }
                 ?>
-            <div class="main">
-                <div class="cards">
+           <div class="row">
+                <div class="column">
                     <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Registered Accounts</div>
-                        </div>
-                        <div class="icon-box">
-                            <i class="bx bx-user-plus"></i>
-                        </div>
+                    <h3>Registered Accounts</h3>
+                    <div class="icon-box">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Medicines</div>
-                        </div>
-                        <div class="icon-box">
-                            <i class="bx bx-plus-medical"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Blank</div>
-                        </div>
-                        <div class="icon-box">
-                            <i class="dito icon"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Blank</div>
-                        </div>
-                        <div class="icon-box">
-                            <i class="dito icon"></i>
-                        </div>
                     </div>
                 </div>
-                <div class="charts"></div>
-            </div>
-                <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>   <br>
+
+                <div class="column">
+                    <div class="card">
+                    <h3>Medicines</h3>
+                    <div class="icon-box">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="card">
+                    <h3>Blank</h3>
+                    <div class="icon-box">
+                        <i class="bx bx-plus"></i>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="card">
+                    <h3>Blank</h3>
+                    <div class="icon-box">
+                        <i class="bx bx-plus"></i>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
               <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
                   <canvas id="myChart" width="1000" height="500"></canvas>
               </div>
@@ -234,55 +166,55 @@ if(isset($_SESSION['user_data'])){
               <div class="chart-container" style="width: 100%; max-width: 500px;">
                   <canvas id="myChart1" width="1000" height="500"></canvas>
               </div>
+               
+              <script>
+    // === include 'setup' then 'config' above ===
+    const labels = <?php echo json_encode($productName) ?>;
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Medicine',
+            data: <?php echo json_encode($total) ?>,
+            backgroundColor: [
+                'rgba(75, 0, 0, 0.2)',      // Dark Red
+                'rgba(153, 102, 0, 0.2)',  // Dark Orange
+                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
+                'rgba(0, 51, 51, 0.2)',   // Dark Teal
+                'rgba(0, 34, 51, 0.2)',   // Dark Blue
+                'rgba(51, 0, 51, 0.2)',   // Dark Purple
+                'rgba(51, 51, 51, 0.2)'   // Dark Gray
+            ],
+            borderColor: [
+                'rgb(75, 0, 0)',        // Dark Red
+                'rgb(153, 102, 0)',    // Dark Orange
+                'rgb(102, 75, 0)',     // Dark Yellow
+                'rgb(0, 51, 51)',      // Dark Teal
+                'rgb(0, 34, 51)',      // Dark Blue
+                'rgb(51, 0, 51)',      // Dark Purple
+                'rgb(51, 51, 51)'      // Dark Gray
+            ],
+            borderWidth: 1
+        }]
+    };
 
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
 
-                <script>
-                    // === include 'setup' then 'config' above ===
-                    const labels = <?php echo json_encode($productName) ?>;
-                    const data = {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Medicines',
-                            data: <?php echo json_encode($total) ?>,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 205, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(201, 203, 207, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgb(255, 99, 132)',
-                                'rgb(255, 159, 64)',
-                                'rgb(255, 205, 86)',
-                                'rgb(75, 192, 192)',
-                                'rgb(54, 162, 235)',
-                                'rgb(153, 102, 255)',
-                                'rgb(201, 203, 207)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    };
+    var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
 
-                    const config = {
-                        type: 'bar',
-                        data: data,
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        },
-                    };
-
-                    var myChart = new Chart(
-                        document.getElementById('myChart'),
-                        config
-                    );
-                </script>
 
                 <script>
                     // === include 'setup' then 'config' above ===
@@ -293,23 +225,23 @@ if(isset($_SESSION['user_data'])){
                             label: 'Address',
                             data: <?php echo json_encode($total_quantity) ?>,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 205, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(201, 203, 207, 0.2'
-                            ],
-                            borderColor: [
-                                'rgb(255, 99, 132)',
-                                'rgb(255, 159, 64)',
-                                'rgb(255, 205, 86)',
-                                'rgb(75, 192, 192)',
-                                'rgb(54, 162, 235)',
-                                'rgb(153, 102, 255)',
-                                'rgb(201, 203, 207)'
-                            ],
+                'rgba(75, 0, 0, 0.2)',      // Dark Red
+                'rgba(153, 102, 0, 0.2)',  // Dark Orange
+                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
+                'rgba(0, 51, 51, 0.2)',   // Dark Teal
+                'rgba(0, 34, 51, 0.2)',   // Dark Blue
+                'rgba(51, 0, 51, 0.2)',   // Dark Purple
+                'rgba(51, 51, 51, 0.2)'   // Dark Gray
+            ],
+            borderColor: [
+                'rgb(75, 0, 0)',        // Dark Red
+                'rgb(153, 102, 0)',    // Dark Orange
+                'rgb(102, 75, 0)',     // Dark Yellow
+                'rgb(0, 51, 51)',      // Dark Teal
+                'rgb(0, 34, 51)',      // Dark Blue
+                'rgb(51, 0, 51)',      // Dark Purple
+                'rgb(51, 51, 51)'      // Dark Gray
+            ],
                             borderWidth: 1
                         }]
                     };

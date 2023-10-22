@@ -163,54 +163,54 @@ try {
                   <canvas id="myChart1" width="1000" height="500"></canvas>
               </div>
                
+              <script>
+    // === include 'setup' then 'config' above ===
+    const labels = <?php echo json_encode($productName) ?>;
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Medicine',
+            data: <?php echo json_encode($total) ?>,
+            backgroundColor: [
+                'rgba(75, 0, 0, 0.2)',      // Dark Red
+                'rgba(153, 102, 0, 0.2)',  // Dark Orange
+                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
+                'rgba(0, 51, 51, 0.2)',   // Dark Teal
+                'rgba(0, 34, 51, 0.2)',   // Dark Blue
+                'rgba(51, 0, 51, 0.2)',   // Dark Purple
+                'rgba(51, 51, 51, 0.2)'   // Dark Gray
+            ],
+            borderColor: [
+                'rgb(75, 0, 0)',        // Dark Red
+                'rgb(153, 102, 0)',    // Dark Orange
+                'rgb(102, 75, 0)',     // Dark Yellow
+                'rgb(0, 51, 51)',      // Dark Teal
+                'rgb(0, 34, 51)',      // Dark Blue
+                'rgb(51, 0, 51)',      // Dark Purple
+                'rgb(51, 51, 51)'      // Dark Gray
+            ],
+            borderWidth: 1
+        }]
+    };
 
-                <script>
-                    // === include 'setup' then 'config' above ===
-                    const labels = <?php echo json_encode($productName) ?>;
-                    const data = {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Medicine',
-                            data: <?php echo json_encode($total) ?>,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 205, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(201, 203, 207, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgb(255, 99, 132)',
-                                'rgb(255, 159, 64)',
-                                'rgb(255, 205, 86)',
-                                'rgb(75, 192, 192)',
-                                'rgb(54, 162, 235)',
-                                'rgb(153, 102, 255)',
-                                'rgb(201, 203, 207)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    };
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    };
 
-                    const config = {
-                        type: 'bar',
-                        data: data,
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        },
-                    };
+    var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
 
-                    var myChart = new Chart(
-                        document.getElementById('myChart'),
-                        config
-                    );
-                </script>
 
                 <script>
                     // === include 'setup' then 'config' above ===
@@ -221,23 +221,23 @@ try {
                             label: 'Address',
                             data: <?php echo json_encode($total_quantity) ?>,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 205, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(201, 203, 207, 0.2'
-                            ],
-                            borderColor: [
-                                'rgb(255, 99, 132)',
-                                'rgb(255, 159, 64)',
-                                'rgb(255, 205, 86)',
-                                'rgb(75, 192, 192)',
-                                'rgb(54, 162, 235)',
-                                'rgb(153, 102, 255)',
-                                'rgb(201, 203, 207)'
-                            ],
+                'rgba(75, 0, 0, 0.2)',      // Dark Red
+                'rgba(153, 102, 0, 0.2)',  // Dark Orange
+                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
+                'rgba(0, 51, 51, 0.2)',   // Dark Teal
+                'rgba(0, 34, 51, 0.2)',   // Dark Blue
+                'rgba(51, 0, 51, 0.2)',   // Dark Purple
+                'rgba(51, 51, 51, 0.2)'   // Dark Gray
+            ],
+            borderColor: [
+                'rgb(75, 0, 0)',        // Dark Red
+                'rgb(153, 102, 0)',    // Dark Orange
+                'rgb(102, 75, 0)',     // Dark Yellow
+                'rgb(0, 51, 51)',      // Dark Teal
+                'rgb(0, 34, 51)',      // Dark Blue
+                'rgb(51, 0, 51)',      // Dark Purple
+                'rgb(51, 51, 51)'      // Dark Gray
+            ],
                             borderWidth: 1
                         }]
                     };

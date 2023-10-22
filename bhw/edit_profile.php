@@ -20,6 +20,10 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+  
+<!--theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
 </head>
 <style>
 .form-control:focus {
@@ -110,7 +114,8 @@ if(isset($_SESSION['user_data'])){
                     <div class="col-md-12"><label class="labels addresslbl"><br>Address</label><input type="text" name="address" value = "<?php echo $_SESSION['user_data']['address']; ?>" class="form-control" placeholder="Address" required></div>
               </div>
                 <br>
-                    <div class="mt-5 text-center"> <button type = "submit" name="submit" class = "btn btn-primary profile-button"> Save Profile</button></div>
+                    <div class="mt-5 text-center">
+                   <button type = "submit" name="submit" class = "btn btn-primary profile-button"> Save Profile</button></div>
               </div>
             </form>
             <?php

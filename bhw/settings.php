@@ -20,6 +20,10 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+  
+<!--theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
 </head>
 <style>
 .mobilenumlbl, .addresslbl{
@@ -73,7 +77,6 @@ if(isset($_SESSION['user_data'])){
                 <div class="col-md-12"><label class="labels addresslbl"><br>Address</label><label class="form-control"><?php echo $_SESSION['user_data']['address']; ?></label></div>
               </div>
               <br>
-              <div class="mt-5 text-center">
               <div class="mt-5 text-center">
               <a href="edit_profile.php?id=<?php echo $_SESSION['user_data']['id']; ?>" class="btn btn-primary profile-button">Edit Profile</a>
                 </div>

@@ -22,6 +22,8 @@ if(isset($_SESSION['user_data'])){
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
   
+<!--theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
   <script src="vendor/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
     <link rel="stylesheet"  href="vendor/DataTables/jquery.datatables.min.css">	
     <script src="vendor/DataTables/jquery.dataTables.min.js" type="text/javascript"></script> 
@@ -112,6 +114,7 @@ if(isset($_SESSION['user_data'])){
 
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
+  
 </html>
 <?php
 }

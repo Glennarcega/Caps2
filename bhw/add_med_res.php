@@ -21,6 +21,10 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+  
+<!--theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
 
 
 
@@ -33,12 +37,13 @@ if(isset($_SESSION['user_data'])){
     echo "Error: " . $e->getMessage();
 }
  ?>
+
   <section class="home-section"> 
-  <div class="text">Medicine</div>
+    <br>
     <div class="container-fluid">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="alert alert-info">Medicine</div>
+        <h3> <div class="alert alert-info">Medicine</div></h3>
            <br /> <br />
       
           <?php if (isset($_GET['success'])) { ?>

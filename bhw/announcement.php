@@ -207,17 +207,6 @@ checkboxes.forEach((checkbox) => {
 });
 </script>
 
-<script>
-
-	new MultiSelectTag('countries', {
-    rounded: true,    // default true
-    shadow: true,      // default false
-    placeholder: 'Search',  // default Search...
-    onChange: function(values) {
-        console.log(values)
-    }
-})
-</script>
 </html>
 <?php
 }

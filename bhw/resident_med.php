@@ -135,7 +135,7 @@ if(isset($_SESSION['user_data'])){
 	} 
 </script>
 <script src = "../js/jquery.js"></script>
-<script src = "../js/jquery.dataTables.js"></script>
+
 <script src = "../js/dataTables.bootstrap.js"></script>	
 <script type = "text/javascript">
 	$(document).ready(function(){

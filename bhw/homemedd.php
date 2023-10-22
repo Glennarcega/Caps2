@@ -154,15 +154,15 @@ try {
                     </div>
                 </div>
                 </div>
-
+                <br>
+                <div>
               <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
                   <canvas id="myChart" width="1000" height="500"></canvas>
               </div>
-
               <div class="chart-container" style="width: 100%; max-width: 500px;">
                   <canvas id="myChart1" width="1000" height="500"></canvas>
               </div>
-               
+            </div>
               <script>
     // === include 'setup' then 'config' above ===
     const labels = <?php echo json_encode($productName) ?>;

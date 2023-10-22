@@ -13,6 +13,13 @@
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
+      <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
+          <i class="bx bx-user"></i>
+          <span class="link_name">My Profile</span>
+        </a>
+        <span class="tooltip">My Profile</span>
+      </li>
+      <li>
         <a href="announcement.php">
           <i class="bx bx-chat"></i>
           <span class="link_name">Anouncements</span>
@@ -33,14 +40,6 @@
           <span class="link_name">Medicine</span>
         </a>
         <span class="tooltip">Medicine</span>
-      </li>
-     
-      <li>
-      <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
-          <i class="bx bx-user"></i>
-          <span class="link_name">My Profile</span>
-        </a>
-        <span class="tooltip">My Profile</span>
       </li>
       <li class="profile">
       <div class="profile_details">

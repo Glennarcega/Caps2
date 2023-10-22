@@ -12,6 +12,27 @@
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
+         <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
+          <i class="bx bx-user-circle"></i>
+          <span class="link_name">My Profile</span>
+        </a>
+        <span class="tooltip">My Profile</span>
+      </li>
+      <li>
+          <a href="account.php">
+            <i class="bx bx-group"></i>
+            <span class="link_name">Accounts</span>
+          </a>
+          <span class="tooltip">Accounts</span>
+        </li>
+       <li>
+          <a href="RegisteredUserAdmin.php">
+            <i class="bx bxs-user-detail"></i>
+            <span class="link_name">Registered Accounts</span>
+          </a>
+          <span class="tooltip">Registered Accounts</span>
+      </li>
+      <li>
         <a href="medicinerecords.php">
           <i class="bx bx-plus-medical"></i>
           <span class="link_name">Medicine Records</span>
@@ -32,27 +53,7 @@
         </a>
         <span class="tooltip">Records</span>
       </li>
-      <li>
-          <a href="RegisteredUserAdmin.php">
-            <i class="bx bxs-user-detail"></i>
-            <span class="link_name">Registered Accounts</span>
-          </a>
-          <span class="tooltip">Registered Accounts</span>
-      </li>
-        <li>
-          <a href="account.php">
-            <i class="bx bx-group"></i>
-            <span class="link_name">Accounts</span>
-          </a>
-          <span class="tooltip">Accounts</span>
-        </li>
-        <li>
-         <a href="settings.php?id=<?php echo $_SESSION['user_data']['id']; ?>">
-          <i class="bx bx-user-circle"></i>
-          <span class="link_name">My Profile</span>
-        </a>
-        <span class="tooltip">My Profile</span>
-      </li>
+     
       <li class="profile">
           <div class="profile_details">
           <img src = "../photo/<?php echo $_SESSION['user_data']['photo']?>"/>

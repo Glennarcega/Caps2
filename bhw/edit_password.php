@@ -14,7 +14,7 @@ if(isset($_SESSION['user_data'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Sidebar</title>
+  <title>Edit Account</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -65,7 +65,7 @@ if(isset($_SESSION['user_data'])){
             position: relative;
         }
 
-        .toggle-password-btn {
+.toggle-password-btn {
             position: absolute;
             right: 10px;
             top: 50%;
@@ -76,7 +76,7 @@ if(isset($_SESSION['user_data'])){
         }
 
         /* Para di maibo ang button sa pass (to make it responsive) */
-        @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
             .toggle-password-btn {
                 right: 5px; /* Adjust the button's position for smaller screens */
             }
@@ -124,23 +124,23 @@ if(isset($_SESSION['user_data'])){
     </div>
     <div class="form-group">
         <label>Password</label>
-        <div class="password-input-container">
-            <input type="password" placeholder="Enter your password" name="password" class="form-control" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required style="padding-right: 40px;" />
-            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
-                <i class="fas fa-eye-slash"></i>
-            </button>
-        </div>
-    </div>	
+    <div class="password-input-container">
+        <input type="password" placeholder="Enter your password" name="password" class="form-control" id="password" oninput="validatePassword()" autocomplete="off" required style="padding-right: 40px;" />
+        <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
+            <i class="fas fa-eye-slash"></i>
+        </button>
+    </div>
+    <div id="password-validation-msg" style="color: red;"></div>
+</div>	
 	  <div class = "form-group">
 			<label>Confirm Password </label>
             <div class="password-input-container">
-            <input type="password" placeholder="Confirm your password" name="cpassword" class="form-control" id="cpassword" oninput="togglePasswordButton('cpasswordToggle')" autocomplete="off" required style="padding-right: 40px;" />
+            <input type="password" placeholder="Type your password again" name="cpassword" class="form-control" id="cpassword" oninput="togglePasswordButton('cpasswordToggle')" autocomplete="off" required style="padding-right: 40px;" />
             <button type="button" id="cpasswordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('cpassword')">
                 <i class="fas fa-eye-slash"></i>
             </button>
         </div>
 	  </div>	
-
 </div>
  <br></br>
 	  <div class = "form-group">
@@ -154,7 +154,7 @@ if(isset($_SESSION['user_data'])){
         $cpass = md5($_POST['cpassword']);
        
         if ($pass != $cpass) {
-            echo '<script>alert("Password not matched!. Please Click OK to change.");</script>';
+            echo '<script>alert("Password not matched!");</script>';
             echo '<script>window.history.pushState({}, "", "edit_password.php?id=' . $_REQUEST['id'] . '");</script>';
         
         
@@ -196,6 +196,25 @@ if(isset($_SESSION['user_data'])){
             }
         }
 </script>
+<script>
+function validatePassword() {
+    const passwordInput = document.getElementById("password");
+    const password = passwordInput.value;
+    const passwordValidationMsg = document.getElementById("password-validation-msg");
+
+    // Define a regular expression pattern for allowed characters.
+    const allowedCharacters = /^[a-zA-Z0-9!@#]+$/;
+
+    if (password.length < 8) {
+        passwordValidationMsg.textContent = "Password must be at least 8 characters long.";
+    } else if (!allowedCharacters.test(password)) {
+        passwordValidationMsg.textContent = "Password contains disallowed characters. Only letters, numbers, !, @, and # are allowed.";
+    } else {
+        passwordValidationMsg.textContent = ""; // Clear any previous validation message.
+    }
+}
+</script>
+
 <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>
 <script src = "../js/bootstrap.js"></script>

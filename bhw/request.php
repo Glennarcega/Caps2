@@ -70,7 +70,7 @@ if(isset($_SESSION['user_data'])){
                             </div>
                             <div class="form-group" required="required">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" name="lastName" id="lastName"  placeholder="Enter your last Name" required  />
+                                <input type="text" class="form-control" name="lastName" id="lastName"  placeholder="Enter your Last Name" required  />
                             </div>
                             <div class="form-group" required="required">
                                 <label>First Name</label>
@@ -110,7 +110,7 @@ if(isset($_SESSION['user_data'])){
                                     <option value="MalitamTres">Malitam Tres</option>
                                     <option value="BadjCom">Badjao Community</option>
                                 </select>
-                            </div>s
+                            </div>
                             <div class="form-group" required="required" >
                                 <label>Contact Number</label>
                                 <input type="number" class="form-control" name="contactNumber" id="contactNumber" placeholder="Enter your Contact Number"  required />

@@ -80,15 +80,16 @@ if(isset($_SESSION['user_data'])){
         <label>Email </label>
         <input type="email" class="form-control" name="email"value="<?php echo $_SESSION['user_data']['email']; ?>" placeholder="example@gmail.com" required/>
     </div>
-	  <div class="form-group">
+    <div class="form-group">
         <label>Password</label>
-        <div class="password-input-container">
-            <input type="password" placeholder="Enter your password" name="password" class="form-control" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required style="padding-right: 40px;" />
-            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
-                <i class="fas fa-eye-slash"></i>
-            </button>
-        </div>
+    <div class="password-input-container">
+        <input type="password" placeholder="Enter your password" name="password" class="form-control" id="password" oninput="validatePassword()" autocomplete="off" required style="padding-right: 40px;" />
+        <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
+            <i class="fas fa-eye-slash"></i>
+        </button>
     </div>
+    <div id="password-validation-msg" style="color: red;"></div>
+</div>	
 
     <div class="form-group">
         <label>Confirm Password</label>
@@ -154,6 +155,24 @@ if(isset($_SESSION['user_data'])){
                 showPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
             }
         }
+</script>
+<script>//Change password function(for 8 characters and restriction of symbols)
+function validatePassword() {
+    const passwordInput = document.getElementById("password");
+    const password = passwordInput.value;
+    const passwordValidationMsg = document.getElementById("password-validation-msg");
+
+    // Define a regular expression pattern for allowed characters.
+    const allowedCharacters = /^[a-zA-Z0-9!@#]+$/;
+
+    if (password.length < 8) {
+        passwordValidationMsg.textContent = "Password must be at least 8 characters long.";
+    } else if (!allowedCharacters.test(password)) {
+        passwordValidationMsg.textContent = "Password contains disallowed characters. Only letters, numbers, !, @, and # are allowed.";
+    } else {
+        passwordValidationMsg.textContent = ""; // Clear any previous validation message.
+    }
+}
 </script>
 <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>

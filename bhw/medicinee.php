@@ -20,6 +20,8 @@ if(isset($_SESSION['user_data'])){
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -145,9 +147,9 @@ if(isset($_SESSION['user_data'])){
                       </td>
                      
                   
-                      <td  style="text-align: center;">
+                      <td style="text-align: center;">
                           <div class="dropdown">
-                        <button class="dropbtn">...</button>
+                        <button class="dropbtn"><i class="fa-solid fa-ellipsis"></i></button>
                         <div class="dropdown-content">
                         <a href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a><br>
                         <a  href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a><br>

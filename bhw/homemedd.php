@@ -77,10 +77,13 @@ body {
 .card:hover{
     background: #84e184; 
 }
-.icon-box i {
+.icon-box{
         font-size: 50px;
         color: #04c487;
-    }
+}
+.icon-box:hover{
+    color: #fff;
+}
 </style>
 </head>
 <body>

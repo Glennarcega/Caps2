@@ -163,7 +163,7 @@ try {
                     <div class="card">
                     <h4>Resident Records</h4>
                     <div class="icon-box">
-                        <i class="bx bx-plus"></i>
+                        <i class="fa-solid fa-clipboard-user"></i>
                     </div>
                     <?php
                     // Include the database connection
@@ -190,7 +190,7 @@ try {
                     <div class="card">
                     <h4>Contraceptive Records</h4>
                     <div class="icon-box">
-                        <i class="bx bx-plus"></i>
+                        <i class="fa-solid fa-syringe"></i>
                     </div>
                     <?php
                     // Include the database connection

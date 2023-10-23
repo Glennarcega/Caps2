@@ -155,50 +155,6 @@ if(isset($_SESSION['user_data'])){
         }
     });
     </script>
-    <script>//Date of Birth and Age Function(automatic calculation)
-    var dateOfBirthInput = document.getElementById("dateOfBirth");
-    var ageInput = document.getElementById("age");
-
-    // Restrict the selection of future dates
-    dateOfBirthInput.max = new Date().toISOString().split("T")[0];
-
-    // Add an event listener to the date of birth input field
-    dateOfBirthInput.addEventListener("change", function () {
-    // Get the selected date of birth
-    var selectedDate = new Date(dateOfBirthInput.value);
-
-    // Calculate the age
-    var today = new Date();
-    var age = today.getFullYear() - selectedDate.getFullYear();
-
-    // Check if the birthday has occurred this year
-    if (
-        today.getMonth() < selectedDate.getMonth() ||
-        (today.getMonth() === selectedDate.getMonth() && today.getDate() < selectedDate.getDate())
-    ) {
-        age--;
-    }
-
-    // Update the age input field with the calculated age
-    ageInput.value = age;
-    });
-    </script>
-    <script>
-    var currentDate = new Date().toISOString().split('T')[0];
-
-// Set the minimum date attribute of the input element to the current date
-document.getElementById('givenDate').setAttribute('min', currentDate);
-
-// Add an event listener to the input element to prevent selecting past dates
-document.getElementById('givenDate').addEventListener('input', function() {
-    var selectedDate = this.value;
-    if (selectedDate < currentDate) {
-        this.setCustomValidity('Please select a date on or after the current date.');
-    } else {
-        this.setCustomValidity('');
-    }
-});
-    </script>
 <script>//ContactNumber can only input 11 numbers
     document.querySelector('#contactNumber').addEventListener('input', function () {
         const input = this.value.toString(); // Convert the input to a string

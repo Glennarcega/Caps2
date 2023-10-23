@@ -17,10 +17,6 @@ if (isset($_POST['add_rec'])) {
     $reason = $_POST['reason'];
 
 
-    // Check if quantity_req is greater than zero
-    if ($quantity_req <= 0) {
-        echo '<script>alert("Quantity requested must be greater than zero.");</script>';
-    } else {
     // Fetch the data from the 'medicines' table
     $fetchQuery = $mysqli->query("SELECT total FROM medicines WHERE productId = '$productId'");
 
@@ -61,5 +57,5 @@ if (isset($_POST['add_rec'])) {
         echo "Error: Failed to fetch medicine data.";
     }
 }
-}
+
 ?>

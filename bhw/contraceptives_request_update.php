@@ -129,11 +129,12 @@ if(isset($_SESSION['user_data'])){
                                     value="<?php echo $fetch['total']; ?>" readonly />
                             </div>
            
-                            <div class="form-group" required="required" required>
-                                <label>Quantity Request</label>
-                                <input type="number" value=0 min="0" max="999999999" class="form-control"
-                                    name="quantity_req" />
-                            </div>
+                            <div class="form-group" required="required" style="display: none;">
+                            <label>Quantity</label>
+                            <input type="number"  value='1' class="form-control"
+                                name="quantity_req" id="quantityInput" placeholder="Enter Quantity Request" required />
+                        </div>
+
                             
                             <div class="form-group" required="required" required>
                                 <label>Given Date</label>
@@ -161,7 +162,7 @@ if(isset($_SESSION['user_data'])){
                                 <option value="Implant">Implant</option>
                                 <option value="STM">STM</option>
                                 <option value="LAM">LAM</option>
-                                <option value="others">Others</option>
+                               
                             </select>
                             <div>
                             <div class="form-group">

@@ -86,12 +86,12 @@ if(isset($_SESSION['user_data'])){
                                 <label>Age</label>
                                 <input type="text" class="form-control" name="age" id ="age" required readonly/>
                             </div>
-                            <div class="form-group" required="required">
+                            <div class="form-group" required="required" style="display: none;" >
                                 <label>Gender</label>
                                 <select class="form-control" required="required" name="sex" id="usertypeSelect">
                                 <option value="" disabled selected>Select Gender</option>
                                 <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="Female" selected>Female</option>
                             </select>
                             </div>
                             <div class="form-group">
@@ -124,21 +124,12 @@ if(isset($_SESSION['user_data'])){
                             <input type="number" class="form-control" name="contactNumber" id="contactNumber" placeholder="Enter your Contact Number" required />
                             <small id="contactNumberError" class="form-text text-danger"></small>
                             </div>
-                            <div class="form-group" required="required" required>
+                            <div class="form-group" required="required" style="display: none;">
                                 <label>Quantity</label>
-                                <input type="number"  min="0" max="999999999" class="form-control"
-                                    name="quantity_req" id="quantityInput" placeholder ="Enter Quantity Request" required />
-                                    <script>
-                                        document.addEventListener("DOMContentLoaded", function () {
-                                            const quantityInput = document.getElementById("quantityInput");
-                                            quantityInput.addEventListener("input", function () {
-                                                if (quantityInput.value === "0") {
-                                                    alert("You entered zero. Please make sure to enter a quantity greater than zero.");
-                                                }
-                                            });
-                                        });
-                                    </script>
+                                <input type="number" value='1' class="form-control"
+                                    name="quantity_req" id="quantityInput" placeholder="Enter Quantity Request" required />
                             </div>
+
                             <div class="form-group" required="required" required>
                                 <label>Given Date</label>
                                 <input type="date" class="form-control" name="givenDate" id="givenDate" required />

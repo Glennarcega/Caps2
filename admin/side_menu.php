@@ -62,7 +62,7 @@
         </div>
           </div>
           <a href="../logout.php" id="log_out">
-          <i class="bx bx-log-out"></i>
+          <i class="bx bx-log-out" style="display: block; margin: 0 auto;"></i>
       </a>
       </li>
     </ul>

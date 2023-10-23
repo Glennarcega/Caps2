@@ -5,10 +5,10 @@ $message = $_POST['message'];
 
 $ch = curl_init();
 $parameters = array(
-    'apikey' => $api_key,
+    'apikey' => '5f3203ca03a4fe850fc47253a91eea8f',
     'number' => $number,
-    'message' => "SEMAPHORE",
-    'sendername' => $sendername
+    'message' => $message,
+    'sendername' => 'SEMAPHORE'
 );
 curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
 curl_setopt($ch, CURLOPT_POST, 1);

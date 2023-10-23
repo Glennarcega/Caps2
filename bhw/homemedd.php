@@ -160,61 +160,118 @@ try {
                 </div>
                 <br>
                 <div>
-              <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
+
+                <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
                   <canvas id="myChart" width="1000" height="500"></canvas>
-              </div>
+                </div>
+           
+                <script>
+                    // === include 'setup' then 'config' above ===
+                    const labels = <?php echo json_encode($productName) ?>;
+                    const data = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Medicine',
+                            data: <?php echo json_encode($total) ?>,
+                            backgroundColor: [
+                                'rgba(75, 0, 0, 0.2)',      // Dark Red
+                                'rgba(153, 102, 0, 0.2)',  // Dark Orange
+                                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
+                                'rgba(0, 51, 51, 0.2)',   // Dark Teal
+                                'rgba(0, 34, 51, 0.2)',   // Dark Blue
+                                'rgba(51, 0, 51, 0.2)',   // Dark Purple
+                                'rgba(51, 51, 51, 0.2)'   // Dark Gray
+                            ],
+                            borderColor: [
+                                'rgb(75, 0, 0)',        // Dark Red
+                                'rgb(153, 102, 0)',    // Dark Orange
+                                'rgb(102, 75, 0)',     // Dark Yellow
+                                'rgb(0, 51, 51)',      // Dark Teal
+                                'rgb(0, 34, 51)',      // Dark Blue
+                                'rgb(51, 0, 51)',      // Dark Purple
+                                'rgb(51, 51, 51)'      // Dark Gray
+                            ],
+                            borderWidth: 1
+                        }]
+                    };
+
+                    const config = {
+                        type: 'bar',
+                        data: data,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        },
+                    };
+
+                    var myChart = new Chart(
+                        document.getElementById('myChart'),
+                        config
+                    );
+                </script>
+
               <div class="chart-container" style="width: 100%; max-width: 500px;">
                   <canvas id="myChart1" width="1000" height="500"></canvas>
               </div>
-            </div>
-              <script>
-    // === include 'setup' then 'config' above ===
-    const labels = <?php echo json_encode($productName) ?>;
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: 'Medicine',
-            data: <?php echo json_encode($total) ?>,
-            backgroundColor: [
-                'rgba(75, 0, 0, 0.2)',      // Dark Red
-                'rgba(153, 102, 0, 0.2)',  // Dark Orange
-                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
-                'rgba(0, 51, 51, 0.2)',   // Dark Teal
-                'rgba(0, 34, 51, 0.2)',   // Dark Blue
-                'rgba(51, 0, 51, 0.2)',   // Dark Purple
-                'rgba(51, 51, 51, 0.2)'   // Dark Gray
-            ],
-            borderColor: [
-                'rgb(75, 0, 0)',        // Dark Red
-                'rgb(153, 102, 0)',    // Dark Orange
-                'rgb(102, 75, 0)',     // Dark Yellow
-                'rgb(0, 51, 51)',      // Dark Teal
-                'rgb(0, 34, 51)',      // Dark Blue
-                'rgb(51, 0, 51)',      // Dark Purple
-                'rgb(51, 51, 51)'      // Dark Gray
-            ],
-            borderWidth: 1
-        }]
-    };
+              <br>
+              <form method="post" action="">
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" name="start_date">
+                <label for="end_date">End Date:</label>
+                <input type="date" id="end_date" name="end_date">
+                <input type="submit" name="filter" value="Apply Filter" style="display: inline-block; padding: 5px; background-color: #3498db; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+            </form>
+            <?php
+                include "../connection/connect.php";
 
-    const config = {
-        type: 'bar',
-        data: data,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+                // Initialize data arrays
+                $address = array();
+                $total_quantity = array();
+
+                if (isset($_POST['filter'])) {
+                    $start_date = $_POST['start_date'];
+                    $end_date = $_POST['end_date'];
+
+                    // Use prepared statements to filter data based on date range
+                    $query = $mysqli->prepare("SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
+                        FROM residentrecords
+                        LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
+                        WHERE request_medicine.givenDate BETWEEN ? AND ?
+                        GROUP BY residentrecords.address");
+                    $query->bind_param("ss", $start_date, $end_date);
+                    $query->execute();
+
+                    // Fetch and populate the filtered data
+                    $result = $query->get_result();
+                    while ($data = $result->fetch_assoc()) {
+                        $address[] = $data['address'];
+                        $total_quantity[] = $data['total_quantity'];
+                    }
+
+                    // Close the prepared statement
+                    $query->close();
+                } else {
+                    // Default query if no filter applied
+                    $default_query = $mysqli->query("SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
+                        FROM residentrecords
+                        LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
+                        GROUP BY residentrecords.address");
+
+                    // Fetch and populate the data
+                    while ($data = $default_query->fetch_assoc()) {
+                        $address[] = $data['address'];
+                        $total_quantity[] = $data['total_quantity'];
+                    }
                 }
-            }
-        },
-    };
-
-    var myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
-</script>
-
+                // Check if no records are found
+                if (empty($address)) {
+                    echo "No records found.";
+                }
+                ?>
+            </div>
 
                 <script>
                     // === include 'setup' then 'config' above ===

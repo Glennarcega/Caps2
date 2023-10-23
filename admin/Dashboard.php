@@ -214,8 +214,8 @@ body {
                 <br>
                 <div>
 
-                <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
-                  <canvas id="myChart" width="1000" height="500"></canvas>
+                <div class="chart-container" style="width: 100%; max-width: 600px; float:right;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+                    <canvas id="myChart" width="1000" height="500"></canvas>
                 </div>
                 <?php
                 include "../connection/connect.php";
@@ -274,7 +274,7 @@ body {
                     );
                 </script>
 
-              <div class="chart-container" style="width: 100%; max-width: 500px;">
+                <div class="chart-container" style="width: 100%; max-width: 600px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
                   <canvas id="myChart1" width="1000" height="500"></canvas>
               </div>
               <br>

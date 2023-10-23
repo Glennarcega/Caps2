@@ -107,9 +107,9 @@ try {
            <div class="row">
                 <div class="column">
                     <div class="card">
-                    <h4>Registered Accounts</h4>
+                    <h3>Registered Accounts</h3>
                     <div class="icon-box">
-                        <i class="fas fa-users"></i>
+                      <i class="fas fa-users"></i>
                     </div>
                     <?php
                     // Include the database connection
@@ -134,7 +134,7 @@ try {
 
                 <div class="column">
                     <div class="card">
-                    <h4>Medicines</h4>
+                    <h3>Medicines</h3>
                     <div class="icon-box">
                         <i class="fas fa-pills"></i>
                     </div>
@@ -161,7 +161,7 @@ try {
                 
                 <div class="column">
                     <div class="card">
-                    <h4>Resident Records</h4>
+                    <h3>Resident Records</h3>
                     <div class="icon-box">
                         <i class="fa-solid fa-clipboard-user"></i>
                     </div>
@@ -188,7 +188,7 @@ try {
                 
                 <div class="column">
                     <div class="card">
-                    <h4>Contraceptive Records</h4>
+                    <h3>Family Planning</h3>
                     <div class="icon-box">
                         <i class="fa-solid fa-syringe"></i>
                     </div>
@@ -213,12 +213,12 @@ try {
                     </div>
                 </div>
                 </div>
-                <br>
+                <br></br>
                 <div>
-
-                <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
-                  <canvas id="myChart" width="1000" height="500"></canvas>
+                <div class="chart-container" style="width: 100%; max-width: 600px; float:right;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+                    <canvas id="myChart" width="1000" height="500"></canvas>
                 </div>
+
                 <?php
                 include "../connection/connect.php";
                 $query = $mysqli->query("SELECT * from medicines ");
@@ -276,7 +276,7 @@ try {
                     );
                 </script>
 
-              <div class="chart-container" style="width: 100%; max-width: 500px;">
+              <div class="chart-container" style="width: 100%; max-width: 600px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
                   <canvas id="myChart1" width="1000" height="500"></canvas>
               </div>
               <br>
@@ -397,7 +397,6 @@ try {
                 </script>
                
             </div>
-            
         </div>
     </div>
 </section>

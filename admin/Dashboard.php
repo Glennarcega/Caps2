@@ -30,57 +30,60 @@ if(isset($_SESSION['user_data'])){
 
 
     <style>
-    
-    <style>
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    
-    /* Float four columns side by side */
-    .column {
-      float: left;
-      width: 25%;
-      padding: 0 10px;
-    }
-    
-    /* Remove extra left and right margins, due to padding */
-    .row {margin: 0 -5px;}
-    
-    /* Clear floats after the columns */
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-    
-    /* Responsive columns */
-    @media screen and (max-width: 600px) {
-      .column {
-        width: 100%;
-        display: block;
-        margin-bottom: 20px;
-      }
-    }
-    
-    /* Style the counter cards */
-    .card {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      padding: 16px;
-      text-align: center;
-      background-color: #f1f1f1;
-    }
-    .card:hover{
-        background: #84e184; 
-    }
-    .icon-box i {
-            font-size: 50px;
-            color: #04c487;
-        }
-    </style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+
+}
+.card:hover{
+    background: #04c487; 
+    color:  #f1f1f1;
+}
+.icon-box{
+        font-size: 50px;
+        color: #04c487;
+}
+.icon-box:hover{
+    color: #fff;
+}
+</style>
 
 </head>
 
@@ -100,45 +103,120 @@ if(isset($_SESSION['user_data'])){
             <div class="panel-body">
                 <h3><div class="alert alert-info">Dashboard</div></h3>
            <div class="row">
-                <div class="column">
+           <div class="column">
                     <div class="card">
-                    <h3>Registered Accounts</h3>
+                    <h4>Registered Accounts</h4>
                     <div class="icon-box">
                         <i class="fas fa-users"></i>
                     </div>
+                    <?php
+                    // Include the database connection
+                    include "../connection/connect.php";
+
+                    // SQL query to count medicines
+                    $sql = "SELECT COUNT(*) as user_count FROM user";
+                    $result = $mysqli->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $userCount = $row["user_count"];
+                    } else {
+                        $userCount = 0;
+                    }
+
+                    // Output the result
+                    echo "<h5>Registered Account: " . $userCount . "</h5>";
+                   ?>
                     </div>
                 </div>
 
                 <div class="column">
                     <div class="card">
-                    <h3>Medicines</h3>
+                    <h4>Medicines</h4>
                     <div class="icon-box">
                         <i class="fas fa-pills"></i>
                     </div>
+                    <?php
+                    // Include the database connection
+                    include "../connection/connect.php";
+
+                    // SQL query to count medicines
+                    $sql = "SELECT COUNT(*) as medicine_count FROM medicines";
+                    $result = $mysqli->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $medicineCount = $row["medicine_count"];
+                    } else {
+                        $medicineCount = 0;
+                    }
+
+                    // Output the result
+                    echo "<h5>Number of Medicines: " . $medicineCount . "</h5>";
+                   ?>
                     </div>
                 </div>
                 
                 <div class="column">
                     <div class="card">
-                    <h3>Blank</h3>
+                    <h4>Resident Records</h4>
                     <div class="icon-box">
                         <i class="bx bx-plus"></i>
                     </div>
+                    <?php
+                    // Include the database connection
+                    include "../connection/connect.php";
+
+                    // SQL query to count medicines
+                    $sql = "SELECT COUNT(*) as residentrecords_count FROM residentrecords";
+                    $result = $mysqli->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $residentrecordsCount = $row["residentrecords_count"];
+                    } else {
+                        $residentrecordsCount = 0;
+                    }
+
+                    // Output the result
+                    echo "<h5>Number of Residents: " . $residentrecordsCount . "</h5>";
+                   ?>
                     </div>
                 </div>
                 
                 <div class="column">
                     <div class="card">
-                    <h3>Blank</h3>
+                    <h4>Contraceptive Records</h4>
                     <div class="icon-box">
                         <i class="bx bx-plus"></i>
                     </div>
+                    <?php
+                    // Include the database connection
+                    include "../connection/connect.php";
+
+                    // SQL query to count medicines
+                    $sql = "SELECT COUNT(*) as contraceptivemethod_count FROM contraceptivemethod_request";
+                    $result = $mysqli->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $contraceptivemethodCount = $row["contraceptivemethod_count"];
+                    } else {
+                        $contraceptivemethodCount = 0;
+                    }
+
+                    // Output the result
+                    echo "<h5>Number of Contraceptive : " . $contraceptivemethodCount . "</h5>";
+                   ?>
                     </div>
                 </div>
                 </div>
                 <br>
+                <div>
 
-                 <!-- medicine graph -->
+                <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
+                  <canvas id="myChart" width="1000" height="500"></canvas>
+                </div>
                 <?php
                 include "../connection/connect.php";
                 $query = $mysqli->query("SELECT * from medicines ");
@@ -148,10 +226,6 @@ if(isset($_SESSION['user_data'])){
                     $total[] = $data['total'];
                 }
                 ?>
-                <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
-                  <canvas id="myChart" width="1000" height="500"></canvas>
-                </div>
-           
                 <script>
                     // === include 'setup' then 'config' above ===
                     const labels = <?php echo json_encode($productName) ?>;
@@ -199,10 +273,20 @@ if(isset($_SESSION['user_data'])){
                         config
                     );
                 </script>
-             <!-- end  -->
 
-              <!-- total request in every sitio -->
-                <?php
+              <div class="chart-container" style="width: 100%; max-width: 500px;">
+                  <canvas id="myChart1" width="1000" height="500"></canvas>
+              </div>
+              <br>
+              <form method="post" action="">
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" name="start_date">
+                <label for="end_date">End Date:</label>
+                <input type="date" id="end_date" name="end_date">
+                <input type="submit" name="filter" value="Apply Filter" style="display: inline-block; padding: 5px; background-color: #3498db; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+            </form>
+            
+            <?php
                 include "../connection/connect.php";
                 $query = $mysqli->query("SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
                 FROM residentrecords LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
@@ -213,17 +297,6 @@ if(isset($_SESSION['user_data'])){
                     $total_quantity[] = $data['total_quantity'];
                 }
                 ?>
-              <div class="chart-container" style="width: 100%; max-width: 500px;">
-                  <canvas id="myChart1" width="1000" height="500"></canvas>
-              </div>
-                <br>
-                <form method="post" action="">
-                    <label for="start_date">Start Date:</label>
-                    <input type="date" id="start_date" name="start_date">
-                    <label for="end_date">End Date:</label>
-                    <input type="date" id="end_date" name="end_date">
-                    <input type="submit" name="filter" value="Apply Filter" style="display: inline-block; padding: 5px; background-color: #3498db; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
-                </form>
             <?php
                 include "../connection/connect.php";
 
@@ -272,6 +345,7 @@ if(isset($_SESSION['user_data'])){
                 }
                 ?>
             </div>
+
                 <script>
                     // === include 'setup' then 'config' above ===
                     const labels2 = <?php echo json_encode($address) ?>;
@@ -281,23 +355,23 @@ if(isset($_SESSION['user_data'])){
                             label: 'Address',
                             data: <?php echo json_encode($total_quantity) ?>,
                             backgroundColor: [
-                            'rgba(75, 0, 0, 0.2)',      // Dark Red
-                            'rgba(153, 102, 0, 0.2)',  // Dark Orange
-                            'rgba(102, 75, 0, 0.2)',  // Dark Yellow
-                            'rgba(0, 51, 51, 0.2)',   // Dark Teal
-                            'rgba(0, 34, 51, 0.2)',   // Dark Blue
-                            'rgba(51, 0, 51, 0.2)',   // Dark Purple
-                            'rgba(51, 51, 51, 0.2)'   // Dark Gray
-                        ],
-                        borderColor: [
-                            'rgb(75, 0, 0)',        // Dark Red
-                            'rgb(153, 102, 0)',    // Dark Orange
-                            'rgb(102, 75, 0)',     // Dark Yellow
-                            'rgb(0, 51, 51)',      // Dark Teal
-                            'rgb(0, 34, 51)',      // Dark Blue
-                            'rgb(51, 0, 51)',      // Dark Purple
-                            'rgb(51, 51, 51)'      // Dark Gray
-                        ],
+                'rgba(75, 0, 0, 0.2)',      // Dark Red
+                'rgba(153, 102, 0, 0.2)',  // Dark Orange
+                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
+                'rgba(0, 51, 51, 0.2)',   // Dark Teal
+                'rgba(0, 34, 51, 0.2)',   // Dark Blue
+                'rgba(51, 0, 51, 0.2)',   // Dark Purple
+                'rgba(51, 51, 51, 0.2)'   // Dark Gray
+            ],
+            borderColor: [
+                'rgb(75, 0, 0)',        // Dark Red
+                'rgb(153, 102, 0)',    // Dark Orange
+                'rgb(102, 75, 0)',     // Dark Yellow
+                'rgb(0, 51, 51)',      // Dark Teal
+                'rgb(0, 34, 51)',      // Dark Blue
+                'rgb(51, 0, 51)',      // Dark Purple
+                'rgb(51, 51, 51)'      // Dark Gray
+            ],
                             borderWidth: 1
                         }]
                     };

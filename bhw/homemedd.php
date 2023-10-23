@@ -73,9 +73,11 @@ body {
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;
+
 }
 .card:hover{
-    background: #84e184; 
+    background: #04c487; 
+    color:  #f1f1f1;
 }
 .icon-box{
         font-size: 50px;
@@ -102,62 +104,112 @@ try {
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3><div class="alert alert-info">Dashboard</div></h3>
-
-                <?php
-                include "../connection/connect.php";
-                $query = $mysqli->query("SELECT * from medicines ");
-
-                foreach ($query as $data) {
-                    $productName[] = $data['productName'];
-                    $total[] = $data['total'];
-                }
-                ?>
-
-                <?php
-                include "../connection/connect.php";
-                $query = $mysqli->query("SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
-                FROM residentrecords LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
-                GROUP BY residentrecords.address");
-
-                foreach ($query as $data) {
-                    $address[] = $data['address'];
-                    $total_quantity[] = $data['total_quantity'];
-                }
-                ?>
            <div class="row">
                 <div class="column">
                     <div class="card">
-                    <h3>Registered Accounts</h3>
+                    <h4>Registered Accounts</h4>
                     <div class="icon-box">
                         <i class="fas fa-users"></i>
                     </div>
+                    <?php
+                    // Include the database connection
+                    include "../connection/connect.php";
+
+                    // SQL query to count medicines
+                    $sql = "SELECT COUNT(*) as user_count FROM user";
+                    $result = $mysqli->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $userCount = $row["user_count"];
+                    } else {
+                        $userCount = 0;
+                    }
+
+                    // Output the result
+                    echo "<h5>Registered Account: " . $userCount . "</h5>";
+                   ?>
                     </div>
                 </div>
 
                 <div class="column">
                     <div class="card">
-                    <h3>Medicines</h3>
+                    <h4>Medicines</h4>
                     <div class="icon-box">
                         <i class="fas fa-pills"></i>
                     </div>
+                    <?php
+                    // Include the database connection
+                    include "../connection/connect.php";
+
+                    // SQL query to count medicines
+                    $sql = "SELECT COUNT(*) as medicine_count FROM medicines";
+                    $result = $mysqli->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $medicineCount = $row["medicine_count"];
+                    } else {
+                        $medicineCount = 0;
+                    }
+
+                    // Output the result
+                    echo "<h5>Number of Medicines: " . $medicineCount . "</h5>";
+                   ?>
                     </div>
                 </div>
                 
                 <div class="column">
                     <div class="card">
-                    <h3>Blank</h3>
+                    <h4>Resident Records</h4>
                     <div class="icon-box">
                         <i class="bx bx-plus"></i>
                     </div>
+                    <?php
+                    // Include the database connection
+                    include "../connection/connect.php";
+
+                    // SQL query to count medicines
+                    $sql = "SELECT COUNT(*) as residentrecords_count FROM residentrecords";
+                    $result = $mysqli->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $residentrecordsCount = $row["residentrecords_count"];
+                    } else {
+                        $residentrecordsCount = 0;
+                    }
+
+                    // Output the result
+                    echo "<h5>Number of Residents: " . $residentrecordsCount . "</h5>";
+                   ?>
                     </div>
                 </div>
                 
                 <div class="column">
                     <div class="card">
-                    <h3>Blank</h3>
+                    <h4>Contraceptive Records</h4>
                     <div class="icon-box">
                         <i class="bx bx-plus"></i>
                     </div>
+                    <?php
+                    // Include the database connection
+                    include "../connection/connect.php";
+
+                    // SQL query to count medicines
+                    $sql = "SELECT COUNT(*) as contraceptivemethod_count FROM contraceptivemethod_request";
+                    $result = $mysqli->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $contraceptivemethodCount = $row["contraceptivemethod_count"];
+                    } else {
+                        $contraceptivemethodCount = 0;
+                    }
+
+                    // Output the result
+                    echo "<h5>Number of Contraceptive : " . $contraceptivemethodCount . "</h5>";
+                   ?>
                     </div>
                 </div>
                 </div>
@@ -167,7 +219,15 @@ try {
                 <div class="chart-container" style="width: 100%; max-width: 500px; float:right;">
                   <canvas id="myChart" width="1000" height="500"></canvas>
                 </div>
-           
+                <?php
+                include "../connection/connect.php";
+                $query = $mysqli->query("SELECT * from medicines ");
+
+                foreach ($query as $data) {
+                    $productName[] = $data['productName'];
+                    $total[] = $data['total'];
+                }
+                ?>
                 <script>
                     // === include 'setup' then 'config' above ===
                     const labels = <?php echo json_encode($productName) ?>;
@@ -227,6 +287,18 @@ try {
                 <input type="date" id="end_date" name="end_date">
                 <input type="submit" name="filter" value="Apply Filter" style="display: inline-block; padding: 5px; background-color: #3498db; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
             </form>
+            
+            <?php
+                include "../connection/connect.php";
+                $query = $mysqli->query("SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
+                FROM residentrecords LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
+                GROUP BY residentrecords.address");
+
+                foreach ($query as $data) {
+                    $address[] = $data['address'];
+                    $total_quantity[] = $data['total_quantity'];
+                }
+                ?>
             <?php
                 include "../connection/connect.php";
 
@@ -323,7 +395,9 @@ try {
                         config2
                     );
                 </script>
+               
             </div>
+            
         </div>
     </div>
 </section>

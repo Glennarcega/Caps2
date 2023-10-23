@@ -98,7 +98,7 @@ if(isset($_SESSION['user_data'])){
                   $desiredResidentId = $_GET['residentId'];
                   
                   // Replace 'residentrecords' with your actual table name and 'resident_id' with the actual column name
-                  $query = $mysqli->query("SELECT * FROM contraceptivemethod_request WHERE residentId = '$desiredresidentId'");
+                  $query = $mysqli->query("SELECT * FROM contraceptivemethod_request WHERE residentId = '$desiredresidentId' ORDER BY givenDate DESC");
 
                   if ($query->num_rows > 0) {
                       while ($fetch = $query->fetch_assoc()) {

@@ -121,8 +121,8 @@ if(isset($_SESSION['user_data'])){
                 </thead>
               <tbody>
                     <?php
-                      $query = $mysqli->query("SELECT * FROM medicines") or die(mysqli_error());
-                      while ($fetch = $query->fetch_array()) {
+                          $query = $mysqli->query("SELECT * FROM medicines") or die(mysqli_error());
+                          while ($fetch = $query->fetch_array()) {
                           $status = ($fetch['total'] == 0) ? 'unavailable' : $fetch['status']; // Check if quantity is zero
 
                       ?>

@@ -408,7 +408,9 @@ try {
                     <label for="end_date">End Date:</label>
                     <input type="date" id="end_date" name="end_date">
                     <input type="submit" name="filter1" value="Apply Filter" style="display: inline-block; padding: 5px; background-color: #3498db; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
-                 </form>
+                    </form>
+            <br>
+              </div>
                     <?php
                 include "../connection/connect.php";
 
@@ -508,8 +510,6 @@ try {
             config3
         );
     </script>
-
-
 
 </div>
         </div>

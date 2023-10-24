@@ -8,6 +8,7 @@ if (isset($_POST['add_rec'])) {
     $dateBirth = $_POST['dateBirth'];
     $age = $_POST['age'];
     $sex = $_POST['sex'];
+    $civilStatus = $_POST['civilStatus'];
     $address = $_POST['address'];
     $contactNumber = $_POST['contactNumber'];
     $productName = $_POST['productName'];
@@ -31,7 +32,7 @@ if (isset($_POST['add_rec'])) {
             // Sufficient quantity available, update and insert
             $quantity = $availableQuantity - $quantity_req;
             $mysqli->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
-            $query = $mysqli->query("INSERT INTO residentrecords (productId, lastName, firstName,middleName, dateBirth, age, sex, address, contactNumber) VALUES ('$productId', '$lastName','$firstName','$middleName', '$dateBirth', '$age', '$sex', '$address', '$contactNumber')");
+            $query = $mysqli->query("INSERT INTO residentrecords (productId, lastName, firstName,middleName, dateBirth, age, sex, civilStatus, address, contactNumber) VALUES ('$productId', '$lastName','$firstName','$middleName', '$dateBirth', '$age', '$sex','$civilStatus', '$address', '$contactNumber')");
 
             if ($query) {
                 $residentId = mysqli_insert_id($mysqli);

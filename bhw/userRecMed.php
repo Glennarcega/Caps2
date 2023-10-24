@@ -27,6 +27,61 @@ if(isset($_SESSION['user_data'])){
 
   <!--  theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>/* Style for the dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style for the dropdown button */
+.dropbtn {
+    background: transparent;
+    color: #3498db;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Style for the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: -100%; /* Adjust the left position to -100% to make it appear to the left */
+}
+
+/* Style for the links within the dropdown content */
+.dropdown-content a {
+    display: block;
+    padding: 8px 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Add a hover effect on links */
+.dropdown-content a:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Show the dropdown content when the dropdown button is hovered */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Style for icons */
+.dropdown-content i {
+    margin-right: 10px;
+}
+
+
+    </style>
+
 </head>
 <body>
 <?php try {
@@ -61,6 +116,7 @@ if(isset($_SESSION['user_data'])){
                     <th>Contact Number</th>
                     <th style="text-align: center;">Medicine</th>
                     <th style="text-align: center;">Family Planning</th>
+                    <th style="text-align: center;">Action</th>
                   </tr>
                 </thead>
               <tbody>
@@ -77,7 +133,14 @@ if(isset($_SESSION['user_data'])){
                 <td><?php echo $fetch['contactNumber']?></td>
                 <th style="text-align: center;"><a class="btn btn-primary profile-button" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
                 <th style="text-align: center;"><a class="btn btn-primary profile-button" href="individual_records_FP.php?residentId=<?php echo $fetch['residentId'] ?>"> Update</a>
-
+                <td style="text-align: center;">
+                          <div class="dropdown">
+                        <button class="dropbtn"><i class="fa-solid fa-ellipsis"></i></button>
+                        <div class="dropdown-content">
+                        <a href="edit_contraceptive_form.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Edit</a><br>
+                        <!--<a  href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a><br>-->
+                        </div>
+                      </td>
               </tr>			
             <?php
               }

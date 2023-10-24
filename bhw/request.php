@@ -96,7 +96,16 @@ if(isset($_SESSION['user_data'])){
                                 <option value="Female">Female</option>
                             </select>
                             </div>
-        
+                            <div class="form-group">
+                            <label>Civil Status</label>
+                                <select class="form-control" required="required" name="civilStatus" >
+                                  <option value="" disabled selected>Civil Status</option>
+                                  <option value="single" >Single</option>
+                                  <option value="married" >Married</option>
+                                  <option value="widowed" >Widowed</option>
+                                  <option value="divorced" >Divorced</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>Sitio</label>
                                 <select class="form-control" required="required" name="address" required>
@@ -186,7 +195,34 @@ if(isset($_SESSION['user_data'])){
         }
     });
 </script>
+<script>//Date of Birth and Age Function(automatic calculation)
+    var dateOfBirthInput = document.getElementById("dateOfBirth");
+    var ageInput = document.getElementById("age");
 
+    // Restrict the selection of future dates
+    dateOfBirthInput.max = new Date().toISOString().split("T")[0];
+
+    // Add an event listener to the date of birth input field
+    dateOfBirthInput.addEventListener("change", function () {
+    // Get the selected date of birth
+    var selectedDate = new Date(dateOfBirthInput.value);
+
+    // Calculate the age
+    var today = new Date();
+    var age = today.getFullYear() - selectedDate.getFullYear();
+
+    // Check if the birthday has occurred this year
+    if (
+        today.getMonth() < selectedDate.getMonth() ||
+        (today.getMonth() === selectedDate.getMonth() && today.getDate() < selectedDate.getDate())
+    ) {
+        age--;
+    }
+
+    // Update the age input field with the calculated age
+    ageInput.value = age;
+    });
+    </script>
    <script src="../cssmainmenu/script.js"></script>
 </html>
 <?php

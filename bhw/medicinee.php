@@ -153,7 +153,7 @@ if(isset($_SESSION['user_data'])){
                         <div class="dropdown-content">
                         <a href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a><br>
                         <a  href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a><br>
-                        <a  onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>">Delete</a>
+                        <a onclick="confirmationDelete(this); return false;"href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>"style="background-color: white; transition: background-color 0.3s;"onmouseover="this.style.backgroundColor='red';"onmouseout="this.style.backgroundColor='white';">Delete</a>
                         </div>
                       </td>
                     </tr>

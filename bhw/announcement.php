@@ -27,7 +27,6 @@ if(isset($_SESSION['user_data'])){
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
 <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 
 <!--theme -->
@@ -35,7 +34,7 @@ if(isset($_SESSION['user_data'])){
 
 </head>
 <style>
-  .form-container {
+  .messageForm {
     background-color: #f5f5f5; /* Baguhin ang kulay base sa iyong estilo */
     border: 1px solid #ccc;
     padding: 20px;
@@ -71,29 +70,36 @@ if(isset($_SESSION['user_data'])){
       <div class="panel panel-default">
         <div class="panel-body">
         <h3><div class = "alert alert-info">SMS Announcement</div></h3>
-          
  
     <div class="form-container">
-      <form id="messageForm">
-      <label>Residents: </label>
-      <button id="contacts-button"><i class="fa-solid fa-user-plus"></i></button><br /><br />
-      <textarea class="selected-values" type="text" name="number" required ></textarea><br /><br />
+      <form id="messageForm" class="messageForm">
+        <label for="number">Residents: </label>
+        <button id="contacts-button"><i class="fa-solid fa-user-plus"></i></button><br /><br />
+        <textarea class="selected-values" type="text" name="number" required ></textarea><br /><br />
 
         <label for="message">Message:</label>
         <textarea  name="message" class="textmessagebox" rows="4" required></textarea><br /><br />
-
-      </form>
-      <a class="btn btn-success sendbtn"  type="submit"
+        <a class="btn btn-success sendbtn"  type="submit"
           value="Send Message"
           onclick="sendMessage(event)"> Send SMS</a>
-      
+      </form>
     </div>
-    <div id="table-container" style="display: none;">
-    <table id="table" class="table table-striped">
+
+    
+      
+          <?php if (isset($_GET['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+              <?=$_GET['success']?>
+            </div>
+          <?php } ?>
+          <br> <br>
+          <div id="table-container" style="display: none;">
+            <table id="table" class="table table-striped">
                   <thead>
                       <tr>
                       <th>Select All <input type="checkbox" id="select-all"></th>
                           <th>Name</th>
+                          <th>Number</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -113,47 +119,7 @@ if(isset($_SESSION['user_data'])){
                   </tbody>
               </table>
 
-      </table>
-    </div>
 
-    <script>
-      function sendMessage(event) {
-        event.preventDefault() // Prevent the default form submission
-
-        // Get form data
-        const formData = new FormData(document.getElementById("messageForm"))
-
-        // Create a new XMLHttpRequest object
-        const xhr = new XMLHttpRequest()
-        xhr.open("POST", "send_message.php", true)
-        xhr.setRequestHeader(
-          "Content-type",
-          "application/x-www-form-urlencoded"
-        )
-
-        // Handle the request
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              // Display the API response to the user
-              alert(xhr.responseText)
-            } else {
-              // Display an error message if the request fails
-              alert("Failed to send the message.")
-            }
-          }
-        }
-
-        // Send the form data
-        xhr.send(new URLSearchParams(formData).toString())
-      }
-    </script>
-      
-          <?php if (isset($_GET['success'])) { ?>
-            <div class="alert alert-success" role="alert">
-              <?=$_GET['success']?>
-            </div>
-          <?php } ?>
 <script>
 const selectAllCheckbox = document.getElementById('select-all');
 const selectedValues = document.querySelector('.selected-values');
@@ -186,18 +152,7 @@ checkboxes.forEach((checkbox) => {
         selectedValues.textContent = listArray.join(', ');
     });
 });
-</script>
-<script>
-  // Function to toggle the visibility of the table-container div
-  function toggleTable() {
-    var tableContainer = document.getElementById("table-container");
-    tableContainer.style.display = tableContainer.style.display === "none" ? "block" : "none";
-  }
-
-  // Add a click event listener to the "Contacts" button
-  document.getElementById("contacts-button").addEventListener("click", toggleTable);
-</script>
-
+</script> 
 
 
             </tbody>
@@ -219,6 +174,48 @@ checkboxes.forEach((checkbox) => {
             checkboxes[i].checked = this.checked;
         }
     });
+</script>
+<script>
+      function sendMessage(event) {
+        event.preventDefault() // Prevent the default form submission
+
+        // Get form data
+        const formData = new FormData(document.getElementById("messageForm"))
+
+        // Create a new XMLHttpRequest object
+        const xhr = new XMLHttpRequest()
+        xhr.open("POST", "send_message.php", true)
+        xhr.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        )
+
+        // Handle the request
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              // Display the API response to the user
+              alert(xhr.responseText)
+            } else {
+              // Display an error message if the request fails
+              alert("Failed to send the message.")
+            }
+          }
+        }
+
+        // Send the form data
+        xhr.send(new URLSearchParams(formData).toString())
+      }
+    </script>
+    <script>
+  // Function to toggle the visibility of the table-container div
+  function toggleTable() {
+    var tableContainer = document.getElementById("table-container");
+    tableContainer.style.display = tableContainer.style.display === "none" ? "block" : "none";
+  }
+
+  // Add a click event listener to the "Contacts" button
+  document.getElementById("contacts-button").addEventListener("click", toggleTable);
 </script>
 
   <!-- Scripts -->

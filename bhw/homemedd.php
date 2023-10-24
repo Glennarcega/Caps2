@@ -190,7 +190,7 @@ try {
                     <div class="card">
                     <h3>Family Planning</h3>
                     <div class="icon-box">
-                        <i class="fa-solid fa-syringe"></i>
+                        <i class="fa-style fa-family"></i>
                     </div>
                     <?php
                     // Include the database connection

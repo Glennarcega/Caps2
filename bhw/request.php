@@ -120,6 +120,7 @@ if(isset($_SESSION['user_data'])){
                                 <label>Quantity</label>
                                 <input type="number"  min="0" max="999999999" class="form-control"
                                     name="quantity_req" id="quantityInput" placeholder ="Enter Quantity Request" required />
+                                    <small id="quantityInputError" class="form-text text-danger"></small>
                                     <script>
                                         document.addEventListener("DOMContentLoaded", function () {
                                             const quantityInput = document.getElementById("quantityInput");
@@ -169,6 +170,23 @@ if(isset($_SESSION['user_data'])){
         }
     });
 </script>
+<script>
+    document.querySelector('#quantityInput').addEventListener('input', function () {
+        const input = parseFloat(this.value); // Parse the input as a float
+        const stockValueInput = document.querySelector('input[name="total"]');
+        const stockValue = parseFloat(stockValueInput.value);
+        const quantityInputError = document.querySelector('#quantityInputError');
+
+        if (isNaN(input) || input < 0 || input > stockValue) {
+            quantityInputError.textContent = 'Quantity is invalid or exceeds the stock.';
+            this.setCustomValidity('Quantity is invalid or exceeds the stock.');
+        } else {
+            quantityInputError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+</script>
+
    <script src="../cssmainmenu/script.js"></script>
 </html>
 <?php

@@ -48,14 +48,14 @@ if(isset($_SESSION['user_data'])){
 				  <?=$_GET['success']?>
 			  </div>
 			  <?php } ?>
-        <table id = "table" class = "table table-striped">
+        <table id = "table" class = "table table-striped table-hover">
 					<thead>
 						<tr>
 					  	<th>Email</th>
 							<th>Name</th>
 							<th>Role</th>
-             				 <th><center>Edit</center></th>
-							  <th><center>Delete</center></th>
+             				<th style="text-align: center;">Edit</th>
+							<th style="text-align: center;">Delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -69,8 +69,8 @@ if(isset($_SESSION['user_data'])){
               <td>
             <?php echo ($fetch['usertype'] == 2) ? 'BHW' : ''; ?>
              </td>
-                <td><center><a class = "btn btn-primary profile-button" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a>
-				<td><center> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a></center>
+                <td style="text-align: center;"><a class = "btn btn-primary profile-button" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a>
+				<td style="text-align: center;"> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a>
 			</td>
 						</tr>
 						<?php

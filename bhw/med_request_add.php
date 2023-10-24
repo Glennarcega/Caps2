@@ -132,7 +132,8 @@ if(isset($_SESSION['user_data'])){
                             <div class="form-group" required="required" required>
                                 <label>Quantity Request</label>
                                 <input type="number" value=0 min="0" max="999999999" class="form-control"
-                                    name="quantity_req" />
+                                 name="quantity_req" id="quantityInput" placeholder ="Enter Quantity Request" required />
+                                    <small id="quantityInputError" class="form-text text-danger"></small>
                             </div>
                             <div class="form-group" required="required" required>
                                 <label>Given Date</label>
@@ -164,7 +165,22 @@ if(isset($_SESSION['user_data'])){
 /*This is for the given date not to select previous dates*/
  // Get the current date in YYYY-MM-DD format
 </script>
+<script>
+    document.querySelector('#quantityInput').addEventListener('input', function () {
+        const input = parseFloat(this.value); // Parse the input as a float
+        const stockValueInput = document.querySelector('input[name="total"]');
+        const stockValue = parseFloat(stockValueInput.value);
+        const quantityInputError = document.querySelector('#quantityInputError');
 
+        if (isNaN(input) || input < 0 || input > stockValue) {
+            quantityInputError.textContent = 'Quantity is invalid or exceeds the stock.';
+            this.setCustomValidity('Quantity is invalid or exceeds the stock.');
+        } else {
+            quantityInputError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+</script>
 </html>
 <?php
 }

@@ -49,7 +49,7 @@ if(isset($_SESSION['user_data'])){
                 </div>
                 <?php } ?>
              
-              <table id = "table" class = "table table-striped">
+              <table id = "table" class = "table table-striped table-hover">
                 <thead>
                   <tr>
                     <!-- Checkbox-->

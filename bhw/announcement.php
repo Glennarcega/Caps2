@@ -24,14 +24,38 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 
 <!--theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 </head>
+<style>
+  .form-container {
+    background-color: #f5f5f5; /* Baguhin ang kulay base sa iyong estilo */
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 40px;
+    width: 450px;
+    margin: auto;
+  }
+  .selected-values{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 100%;
+  }
+  .sendbtn {
+  margin-left: 160px;
+  text-align: center;
+}
+.textmessagebox{
+  width:100%;
+}
+</style>
 <body>
   
   <?php try {
@@ -47,21 +71,49 @@ if(isset($_SESSION['user_data'])){
       <div class="panel panel-default">
         <div class="panel-body">
         <h3><div class = "alert alert-info">SMS Announcement</div></h3>
-          <a class="btn btn-success"  type="submit"
-          value="Send Message"
-          onclick="sendMessage(event)"> Send SMS</a>
-      
+          
  
     <div class="form-container">
       <form id="messageForm">
-
-        <label for="number">Recipient's Number:</label>
-        <textarea class="selected-values" type="text" name="number" required ></textarea><br /><br />
+      <label>Residents: </label>
+      <button id="contacts-button"><i class="fa-solid fa-user-plus"></i></button><br /><br />
+      <textarea class="selected-values" type="text" name="number" required ></textarea><br /><br />
 
         <label for="message">Message:</label>
-        <textarea  name="message" rows="4" required></textarea><br /><br />
+        <textarea  name="message" class="textmessagebox" rows="4" required></textarea><br /><br />
 
       </form>
+      <a class="btn btn-success sendbtn"  type="submit"
+          value="Send Message"
+          onclick="sendMessage(event)"> Send SMS</a>
+      
+    </div>
+    <div id="table-container" style="display: none;">
+    <table id="table" class="table table-striped">
+                  <thead>
+                      <tr>
+                      <th>Select All <input type="checkbox" id="select-all"></th>
+                          <th>Name</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <?php
+                      $query = $mysqli->query("SELECT * FROM residentrecords") or die(mysqli_error());
+                      while ($fetch = $query->fetch_array()) {
+                      ?>
+                          <tr>
+                          <td><input type="checkbox" class="checkbox" name="selected_records[]" value="<?php echo $fetch['residentId']; ?>"
+                     data-contact-number="<?php echo $fetch['contactNumber']; ?>">     </td>                         
+                     <td><?php echo $fetch['lastName'] . ' ' . $fetch['firstName'] . ' ' . $fetch['middleName']; ?>
+                              <td><?php echo $fetch['contactNumber'] ?>
+                          </tr>
+                      <?php
+                      }
+                      ?>
+                  </tbody>
+              </table>
+
+      </table>
     </div>
 
     <script>
@@ -102,35 +154,7 @@ if(isset($_SESSION['user_data'])){
               <?=$_GET['success']?>
             </div>
           <?php } ?>
-
-  
-                        <table id="table" class="table table-striped">
-                  <thead>
-                      <tr>
-                      <th>Select All <input type="checkbox" id="select-all"></th>
-                          <th>Name</th>
-                          <th>Number</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <?php
-                      $query = $mysqli->query("SELECT * FROM residentrecords") or die(mysqli_error());
-                      while ($fetch = $query->fetch_array()) {
-                      ?>
-                          <tr>
-                          <td><input type="checkbox" class="checkbox" name="selected_records[]" value="<?php echo $fetch['residentId']; ?>"
-                     data-contact-number="<?php echo $fetch['contactNumber']; ?>">     </td>                         
-                     <td><?php echo $fetch['lastName'] . ' ' . $fetch['firstName'] . ' ' . $fetch['middleName']; ?>
-                              <td><?php echo $fetch['contactNumber'] ?>
-                          </tr>
-                      <?php
-                      }
-                      ?>
-                  </tbody>
-              </table>
-
-
-              <script>
+<script>
 const selectAllCheckbox = document.getElementById('select-all');
 const selectedValues = document.querySelector('.selected-values');
 let listArray = [];
@@ -162,7 +186,18 @@ checkboxes.forEach((checkbox) => {
         selectedValues.textContent = listArray.join(', ');
     });
 });
-</script> 
+</script>
+<script>
+  // Function to toggle the visibility of the table-container div
+  function toggleTable() {
+    var tableContainer = document.getElementById("table-container");
+    tableContainer.style.display = tableContainer.style.display === "none" ? "block" : "none";
+  }
+
+  // Add a click event listener to the "Contacts" button
+  document.getElementById("contacts-button").addEventListener("click", toggleTable);
+</script>
+
 
 
             </tbody>

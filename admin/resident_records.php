@@ -40,7 +40,7 @@ if(isset($_SESSION['user_data'])){
             "processing": true,
             "serverSide": true,
             'serverMethod': 'post',
-            "ajax": "server.php",
+            "ajax": "server_resident_records.php",
             "searching": false, // Disable searching
             dom: 'Bfrtip',
             buttons: [
@@ -80,12 +80,9 @@ if(isset($_SESSION['user_data'])){
   <div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-body">
-           <h3> <div class = "alert alert-info">Request Medicine</div></h3>
-         
+           <h3> <div class = "alert alert-info">Resident Records</div></h3>
            <a class="btn btn-success" href="records.php"></i>Request Medicine</a>
             <a class="btn btn-success" href="resident_records.php"></i>Resident Records</a>
-
-
                 <br> </br>
       <table name="medicinesTable" id="medicinesTable" class="display" cellspacing="0" width="100%">
             <thead>
@@ -93,10 +90,10 @@ if(isset($_SESSION['user_data'])){
                    
                         <th>Last Name</th>
                         <th>First Name</th>
-                        <th>Product Name</th>
-                        <th>Unit</th>
-                        <th>Quantity</th>
-                        <th>Expiration Date</th>
+                        <th>Date Birth</th>
+                        <th>Age</th>
+                        <th>Sex</th>
+                        <th>Civil Status</th>
     
               </tr>
 

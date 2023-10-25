@@ -154,21 +154,22 @@
         const input = this.value;
         const emailError = document.querySelector('#emailError');
         
-        if (input.length > 27) {
-            this.value = input.slice(0, 27); // Truncate the input to 24 characters
+        if (input.length > 24) {
+            this.value = input.slice(0, 24); // Truncate the input to 24 characters
         }
 
-        if (input.length < 6 || input.length > 27) {
-            emailError.textContent = 'Email must be 6-24 characters.';
+        if (input.length > 24) {
+            emailError.textContent = 'Email must be at most 24 characters.';
             emailError.style.display = 'block'; // Ensure the error message is displayed
-            this.setCustomValidity('Email must be 6-24 characters.');
+            this.setCustomValidity('Email must be at most 24 characters.');
         } else {
-            emailError.textContent = '';
-            emailError.style.display = 'none'; // Hide the error message
-            this.setCustomValidity('');
+            emailError.style.display = 'none'; // Hide the error message if it's not applicable
+            this.setCustomValidity(''); // Reset the custom validity
         }
+
     });
 </script>
+
 
 <script>
      function togglePasswordButton(buttonId) {

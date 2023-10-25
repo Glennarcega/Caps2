@@ -279,7 +279,7 @@ try {
                 </script>
 
                 <div class="chart-container" style="width: 100%; max-width: 590px; float:left; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
-                    <canvas id="myChart3" width="1000" height="315"></canvas>
+                    <canvas id="myChart3" width="1000" height="350"></canvas>
                     <br>
                     <form method="post" style= "margin-left: 20px";>
                         <label for="start_date">Start Date:</label>
@@ -300,71 +300,72 @@ try {
                         </select>
                         <input type="submit" name="filter" value="Apply Filter" style="display: inline-block; padding: 5px; background-color: #3498db; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
                     </form>
-<br>
-</div>
+
                     <?php
-                    include "../connection/connect.php";
+                   include "../connection/connect.php";
 
-                    $productNames = [];
-                    $totalQuantities = [];
-
-                    if (isset($_POST['filter'])) {
-                        $start_date = $_POST['start_date'];
-                        $end_date = $_POST['end_date'];
-                        $selectedAddress = $_POST['selectedAddress'];
-                    
-                        if (empty($start_date) && empty($end_date) && $selectedAddress === "all") {
-                            // No filter criteria are selected, so just retrieve all records
-                            $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
-                    
-                            // Fetch and populate the data
-                            while ($data3 = $default_query->fetch_assoc()) {
-                                $productNames[] = $data3['productName'];
-                                $totalQuantities[] = $data3['total_quantity'];
-                            }
-                        } else {
-                            // Prepare the statement to filter by address and date range
-                            $stmt = $mysqli->prepare("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine WHERE address = ? AND givenDate BETWEEN ? AND ? GROUP BY productName");
-                    
-                            if ($stmt === false) {
-                                die("Preparation failed: " . $mysqli->error);
-                            }
-                    
-                            // Bind the parameters
-                            $stmt->bind_param("sss", $selectedAddress, $start_date, $end_date);
-                    
-                            // Execute the statement
-                            $stmt->execute();
-                    
-                            // Get the result
-                            $result = $stmt->get_result();
-                    
-                            // Fetch and populate the filtered data
-                            while ($data3 = $result->fetch_assoc()) {
-                                $productNames[] = $data3['productName'];
-                                $totalQuantities[] = $data3['total_quantity'];
-                            }
-                    
-                            // Close the prepared statement
-                            $stmt->close();
-                        }
-                    } else {
-                        // Default query if no filter applied
-                        $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
-                    
-                        // Fetch and populate the data
-                        while ($data3 = $default_query->fetch_assoc()) {
-                            $productNames[] = $data3['productName'];
-                            $totalQuantities[] = $data3['total_quantity'];
-                        }
-                    }
-                    
-                    // Check if no records are found
-                    if (empty($productNames)) {
-                        echo "No records found.";
-                    }
-                ?>    
+                   $productNames = [];
+                   $totalQuantities = [];
+                   
+                   if (isset($_POST['filter'])) {
+                       $start_date = $_POST['start_date'];
+                       $end_date = $_POST['end_date'];
+                       $selectedAddress = isset($_POST['selectedAddress']) ? $_POST['selectedAddress'] : "all"; // Set a default value if it's not set or empty
+                   
+                       if (empty($start_date) && empty($end_date) && $selectedAddress === "all") {
+                           // No filter criteria are selected, so just retrieve all records
+                           $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
+                   
+                           // Fetch and populate the data
+                           while ($data3 = $default_query->fetch_assoc()) {
+                               $productNames[] = $data3['productName'];
+                               $totalQuantities[] = $data3['total_quantity'];
+                           }
+                       } else {
+                           // Prepare the statement to filter by address and date range
+                           $stmt = $mysqli->prepare("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine WHERE address = ? AND givenDate BETWEEN ? AND ? GROUP BY productName");
+                   
+                           if ($stmt === false) {
+                               die("Preparation failed: " . $mysqli->error);
+                           }
+                   
+                           // Bind the parameters
+                           $stmt->bind_param("sss", $selectedAddress, $start_date, $end_date);
+                   
+                           // Execute the statement
+                           $stmt->execute();
+                   
+                           // Get the result
+                           $result = $stmt->get_result();
+                   
+                           // Fetch and populate the filtered data
+                           while ($data3 = $result->fetch_assoc()) {
+                               $productNames[] = $data3['productName'];
+                               $totalQuantities[] = $data3['total_quantity'];
+                           }
+                   
+                           // Close the prepared statement
+                           $stmt->close();
+                       }
+                   } else {
+                       // Default query if no filter applied
+                       $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
+                   
+                       // Fetch and populate the data
+                       while ($data3 = $default_query->fetch_assoc()) {
+                           $productNames[] = $data3['productName'];
+                           $totalQuantities[] = $data3['total_quantity'];
+                       }
+                   }
+                   
+                   // Check if no records are found
+                   if (empty($productNames)) {
+                       echo "No records found.";
+                   }
+?>                    
                 </div>
+               
+              
 
 
 
@@ -416,6 +417,7 @@ try {
                         config3
                     );
                 </script>
+                
             </div>
         </div>
     </div>

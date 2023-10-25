@@ -90,7 +90,7 @@ if(isset($_SESSION['user_data'])){
     <div class="form-group">
         <label>Email </label>
         <input type="email" class="form-control" name="email" id="email" placeholder="example@gmail.com" required/>
-        <small id="emailError" class="form-text text-danger"></small>
+        <small id="emailError" class="form-text text-danger">Email must be 6-28 characters.</small>
     </div>
     <div class="form-group">
     <label>Password</label>
@@ -203,19 +203,28 @@ if(isset($_SESSION['user_data'])){
             this.setCustomValidity('');
         }
     });
-    document.querySelector('#email').addEventListener('input', function () { //email
+</script>
+<script>
+    document.querySelector('#email').addEventListener('input', function () {
         const input = this.value;
         const emailError = document.querySelector('#emailError');
         
-        if (input.length < 6 || input.length > 28) {
-            emailError.textContent = '*Email must be 6-28 characters.';
-            this.setCustomValidity('*Email must be 6-28 characters.');
-        } else {
-            emailError.textContent = '';
-            this.setCustomValidity('');
+        if (input.length > 28) {
+            this.value = input.slice(0, 28); // Truncate the input to 28 characters
         }
+
+        if (input.length > 28) {
+            emailError.textContent = 'Email must be at most 28 characters.';
+            emailError.style.display = 'block'; // Ensure the error message is displayed
+            this.setCustomValidity('Email must be at most 28 characters.');
+        } else {
+            emailError.style.display = 'none'; // Hide the error message if it's not applicable
+            this.setCustomValidity(''); // Reset the custom validity
+        }
+
     });
 </script>
+
 
 <script>
        function validatePassword() {

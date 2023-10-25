@@ -106,7 +106,11 @@ if(isset($_SESSION['user_data'])){
                 <div class="row mt-2">
                   <div class="col-md-6"><label class="labels">Name</label><input type="text" name="fname" value = "<?php echo $_SESSION['user_data']['fname']; ?>" class="form-control" placeholder="First Name" required readonly></div>
                   <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value = "<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name" required readonly></div>
-                  <div class="col-md-6"><label class="labels emaillbl"><br>Email</label><input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required></div>
+                  <div class="col-md-6"><label class="labels emaillbl"><br>Email</label>
+                  <input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required>
+                  <small id="emailError" class="form-text text-danger">Email must be 6-28 characters.</small>
+
+                </div>
               </div>
                     <div class="row mt-3">
                     <div class="col-md-6"><label class="labels mobilenumlbl"><br>Mobile Number</label><input type="text" id="mobile_number" name="mobile_number" value = "<?php echo $_SESSION['user_data']['mobile_number']; ?>" class="form-control" placeholder="Ex.0946" required>
@@ -185,6 +189,27 @@ if(isset($_SESSION['user_data'])){
         }
     });
 </script>
+<script>
+    document.querySelector('#email').addEventListener('input', function () {
+        const input = this.value;
+        const emailError = document.querySelector('#emailError');
+        
+        if (input.length > 28) {
+            this.value = input.slice(0, 28); // Truncate the input to 28 characters
+        }
+
+        if (input.length > 28) {
+            emailError.textContent = 'Email must be at most 28 characters.';
+            emailError.style.display = 'block'; // Ensure the error message is displayed
+            this.setCustomValidity('Email must be at most 28 characters.');
+        } else {
+            emailError.style.display = 'none'; // Hide the error message if it's not applicable
+            this.setCustomValidity(''); // Reset the custom validity
+        }
+
+    });
+</script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     // Check if URL contains 'success' parameter and remove it

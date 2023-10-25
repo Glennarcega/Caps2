@@ -125,7 +125,7 @@ if(isset($_SESSION['user_data'])){
 </div>
  <br></br>
 	  <div class = "form-group">
-			<button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Update</button>
+			<button type = "submit" name="submit" id="submit-button" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Update</button>
 		</div>
   
 </section>
@@ -156,24 +156,32 @@ if(isset($_SESSION['user_data'])){
             }
         }
 </script>
-<script>//Change password function(for 8 characters and restriction of symbols)
-function validatePassword() {
+<script>
+       function validatePassword() {
     const passwordInput = document.getElementById("password");
     const password = passwordInput.value;
     const passwordValidationMsg = document.getElementById("password-validation-msg");
+    const submitButton = document.getElementById("submit-button"); // Get the submit button.
 
     // Define a regular expression pattern for allowed characters.
     const allowedCharacters = /^[a-zA-Z0-9!@#]+$/;
 
     if (password.length < 8) {
         passwordValidationMsg.textContent = "Password must be at least 8 characters long.";
+        submitButton.disabled = true; // Disable the submit button.
+        return false; // Prevent form submission
     } else if (!allowedCharacters.test(password)) {
         passwordValidationMsg.textContent = "Password contains disallowed characters. Only letters, numbers, !, @, and # are allowed.";
+        submitButton.disabled = true; // Disable the submit button.
+        return false; // Prevent form submission
     } else {
         passwordValidationMsg.textContent = ""; // Clear any previous validation message.
+        submitButton.disabled = false; // Enable the submit button.
+        return true; // Allow form submission
     }
 }
-</script>
+
+    </script>
 <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>
 <script src = "../js/bootstrap.js"></script>

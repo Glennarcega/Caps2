@@ -251,35 +251,21 @@ if(isset($_SESSION['user_data'])){
     // Set the maximum date for the input field to today
     givenDateInput.max = today.toISOString().split("T")[0];
     </script>
-    <script>//ContactNumber can only input 11 numbers
-    const contactNumberInput = document.querySelector('#contactNumber');
-    const contactNumberError = document.querySelector('#contactNumberError');
+   <script>
+    // ContactNumber can only input 11 numbers
+    document.querySelector('#contactNumber').addEventListener('input', function () {
+        const input = this.value.toString(); // Convert the input to a string
+        const contactNumberError = document.querySelector('#contactNumberError');
 
-    // Function to show the error message
-    function showError(message) {
-        contactNumberError.textContent = message;
-        contactNumberInput.classList.add('is-invalid');
-    }
-
-    // Function to clear the error message
-    function clearError() {
-        contactNumberError.textContent = '';
-        contactNumberInput.classList.remove('is-invalid');
-    }
-
-    contactNumberInput.addEventListener('input', function () {
-        const input = this.value.toString();
-        
-        if (input.length !== 11 || isNaN(input)) {
-            showError('Contact number must be exactly 11 digits.');
+        if (input.length !== 11 || isNaN(input) || !input.startsWith('09')) {
+            contactNumberError.textContent = 'Contact number must start with "09" and be exactly 11 digits.';
+            this.setCustomValidity('Contact number must start with "09" and be exactly 11 digits.');
         } else {
-            clearError();
+            contactNumberError.textContent = '';
+            this.setCustomValidity('');
         }
     });
-
-    // Handle blur event to clear the error message when the field loses focus
-    contactNumberInput.addEventListener('blur', clearError);
-    </script>
+</script>
    <script src="../cssmainmenu/script.js"></script>
 </html>
 <?php

@@ -110,7 +110,10 @@ if(isset($_SESSION['user_data'])){
                   <div class="col-md-6"><label class="labels emaillbl"><br>Email</label><input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required></div>
               </div>
                     <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels mobilenumlbl"><br>Mobile Number</label><input type="text" name="mobile_number" value = "<?php echo $_SESSION['user_data']['mobile_number']; ?>" class="form-control" placeholder="Ex.0946" required></div>
+                    <div class="col-md-6"><label class="labels mobilenumlbl"><br>Mobile Number</label><input type="text" id="mobile_number" name="mobile_number" value = "<?php echo $_SESSION['user_data']['mobile_number']; ?>" class="form-control" placeholder="Ex.0946" required>
+                    <small id="mobile_numberError" class="form-text text-danger"></small>
+
+                </div>
                     <div class="col-md-12"><label class="labels addresslbl"><br>Address</label><input type="text" name="address" value = "<?php echo $_SESSION['user_data']['address']; ?>" class="form-control" placeholder="Address" required></div>
               </div>
                 <br>
@@ -169,6 +172,21 @@ if(isset($_SESSION['user_data'])){
 <!-- Scripts -->
 <script src="../cssmainmenu/script.js"></script>
 <script>
+    // ContactNumber can only input 11 numbers
+    document.querySelector('#mobile_number').addEventListener('input', function () {
+        const input = this.value.toString(); // Convert the input to a string
+        const mobile_numberError = document.querySelector('#mobile_numberError');
+
+        if (input.length !== 11 || isNaN(input) || !input.startsWith('09')) {
+            mobile_numberError.textContent = 'Contact number must start with "09" and be exactly 11 digits.';
+            this.setCustomValidity('Contact number must start with "09" and be exactly 11 digits.');
+        } else {
+            mobile_numberError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+</script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
     // Check if URL contains 'success' parameter and remove it
     if (window.location.search.includes('success')) {
@@ -187,7 +205,7 @@ function validateFileType(){
         }   
     }
 </script>
-<script type="text/javascript">
+
     
 </script>
 </html>

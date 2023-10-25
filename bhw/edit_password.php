@@ -144,7 +144,7 @@ if(isset($_SESSION['user_data'])){
 </div>
  <br></br>
 	  <div class = "form-group">
-			<button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Update</button>
+			<button type = "submit" name="submit" id="submit-button" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Update</button>
 		</div>
         <?php
 	require_once '../connection/connect.php';
@@ -161,10 +161,10 @@ if(isset($_SESSION['user_data'])){
                 } else {
                   
                     $query = $mysqli->query("UPDATE `user` SET  `email` = '$email', `password` = '$pass' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
-                    echo '<script>alert("Update Password Successfully. Click OK to logout and Login again to see changes.");</script>';
+                    echo '<script>alert("Update Password Successfully. Click OK .");</script>';
                       
                     // Automatically redirect to the logout page
-                    echo '<script>window.location.href = "../index.php";</script>';
+                    echo '<script>window.location.href = "settings.php";</script>';
                 }
             }
 		?>
@@ -197,23 +197,31 @@ if(isset($_SESSION['user_data'])){
         }
 </script>
 <script>
-function validatePassword() {
+       function validatePassword() {
     const passwordInput = document.getElementById("password");
     const password = passwordInput.value;
     const passwordValidationMsg = document.getElementById("password-validation-msg");
+    const submitButton = document.getElementById("submit-button"); // Get the submit button.
 
     // Define a regular expression pattern for allowed characters.
     const allowedCharacters = /^[a-zA-Z0-9!@#]+$/;
 
     if (password.length < 8) {
         passwordValidationMsg.textContent = "Password must be at least 8 characters long.";
+        submitButton.disabled = true; // Disable the submit button.
+        return false; // Prevent form submission
     } else if (!allowedCharacters.test(password)) {
         passwordValidationMsg.textContent = "Password contains disallowed characters. Only letters, numbers, !, @, and # are allowed.";
+        submitButton.disabled = true; // Disable the submit button.
+        return false; // Prevent form submission
     } else {
         passwordValidationMsg.textContent = ""; // Clear any previous validation message.
+        submitButton.disabled = false; // Enable the submit button.
+        return true; // Allow form submission
     }
 }
-</script>
+
+    </script>
 
 <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>

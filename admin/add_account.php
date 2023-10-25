@@ -93,14 +93,16 @@ if(isset($_SESSION['user_data'])){
         <small id="emailError" class="form-text text-danger"></small>
     </div>
     <div class="form-group">
-        <label>Password</label>
-        <div class="password-input-container">
-            <input type="password" placeholder="Enter your password" name="password" class="form-control" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required style="padding-right: 40px;" />
-            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
-                <i class="fas fa-eye-slash"></i>
-            </button>
-        </div>
+    <label>Password</label>
+    <div class="password-input-container">
+        <input type="password" placeholder="Enter your password" name="password" class="form-control" id="password" autocomplete="off" required style="padding-right: 40px;" oninput="validatePassword()" />
+        <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
+            <i class="fas fa-eye-slash"></i>
+        </button>
     </div>
+    <p id="password-validation-msg" class="form-text text-danger"></p> <!-- Add a paragraph for validation messages -->
+</div>
+
 
     <div class="form-group">
         <label>Confirm Password</label>
@@ -120,7 +122,7 @@ if(isset($_SESSION['user_data'])){
 </div>
  <br></br>
 	  <div class = "form-group">
-			<button type = "submit" name="submit" class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Add Account</button>
+			<button type = "submit" name="submit" id="submit-button"  class = "btn btn-success form-control"><i class = "bx bx-plus"></i> Add Account</button>
 		</div>
   <?php
   if (isset($_POST['submit'])) {
@@ -188,13 +190,14 @@ if(isset($_SESSION['user_data'])){
         }
 </script>
 <script>
-    document.querySelector('#mobileNumber').addEventListener('input', function () { //mobile number
-        const input = this.value.toString();
+   // ContactNumber can only input 11 numbers
+   document.querySelector('#mobileNumber').addEventListener('input', function () {
+        const input = this.value.toString(); // Convert the input to a string
         const contactNumberError = document.querySelector('#contactNumberError');
-        
-        if (input.length !== 11 || isNaN(input)) {
-            contactNumberError.textContent = '*Mobile number must be exactly 11 digits.';
-            this.setCustomValidity('*Mobile number must be exactly 11 digits.');
+
+        if (input.length !== 11 || isNaN(input) || !input.startsWith('09')) {
+            contactNumberError.textContent = 'Contact number must start with "09" and be exactly 11 digits.';
+            this.setCustomValidity('Contact number must start with "09" and be exactly 11 digits.');
         } else {
             contactNumberError.textContent = '';
             this.setCustomValidity('');
@@ -213,6 +216,33 @@ if(isset($_SESSION['user_data'])){
         }
     });
 </script>
+
+<script>
+       function validatePassword() {
+    const passwordInput = document.getElementById("password");
+    const password = passwordInput.value;
+    const passwordValidationMsg = document.getElementById("password-validation-msg");
+    const submitButton = document.getElementById("submit-button"); // Get the submit button.
+
+    // Define a regular expression pattern for allowed characters.
+    const allowedCharacters = /^[a-zA-Z0-9!@#]+$/;
+
+    if (password.length < 8) {
+        passwordValidationMsg.textContent = "Password must be at least 8 characters long.";
+        submitButton.disabled = true; // Disable the submit button.
+        return false; // Prevent form submission
+    } else if (!allowedCharacters.test(password)) {
+        passwordValidationMsg.textContent = "Password contains disallowed characters. Only letters, numbers, !, @, and # are allowed.";
+        submitButton.disabled = true; // Disable the submit button.
+        return false; // Prevent form submission
+    } else {
+        passwordValidationMsg.textContent = ""; // Clear any previous validation message.
+        submitButton.disabled = false; // Enable the submit button.
+        return true; // Allow form submission
+    }
+}
+
+    </script>
 
 <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>

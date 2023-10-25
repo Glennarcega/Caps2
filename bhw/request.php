@@ -165,20 +165,22 @@ if(isset($_SESSION['user_data'])){
         }
     });
     </script>
-<script>//ContactNumber can only input 11 numbers
+<script>
+    // ContactNumber can only input 11 numbers
     document.querySelector('#contactNumber').addEventListener('input', function () {
         const input = this.value.toString(); // Convert the input to a string
         const contactNumberError = document.querySelector('#contactNumberError');
-        
-        if (input.length !== 11 || isNaN(input)) {
-            contactNumberError.textContent = 'Contact number must be exactly 11 digits.';
-            this.setCustomValidity('Contact number must be exactly 11 digits.');
+
+        if (input.length !== 11 || isNaN(input) || !input.startsWith('09')) {
+            contactNumberError.textContent = 'Contact number must start with "09" and be exactly 11 digits.';
+            this.setCustomValidity('Contact number must start with "09" and be exactly 11 digits.');
         } else {
             contactNumberError.textContent = '';
             this.setCustomValidity('');
         }
     });
 </script>
+
 <script>
     document.querySelector('#quantityInput').addEventListener('input', function () {
         const input = parseFloat(this.value); // Parse the input as a float

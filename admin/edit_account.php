@@ -63,7 +63,10 @@ if(isset($_SESSION['user_data'])){
 						<div class = "form-group">
 							<label>Email </label>
 							<input type = "text" class = "form-control" value = "<?php echo $fetch['email']?>" name = "email" />
+							<small id="emailError" class="form-text text-danger"></small>
+
 						</div>
+	
 						<div class="form-group">
 							<label for="usertypeSelect">Role</label>
 							<select class="form-control" required="required" name="usertype" id="usertypeSelect">
@@ -86,6 +89,34 @@ if(isset($_SESSION['user_data'])){
 </body>
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
+  <script>
+   // ContactNumber can only input 11 numbers
+   document.querySelector('#mobileNumber').addEventListener('input', function () {
+        const input = this.value.toString(); // Convert the input to a string
+        const contactNumberError = document.querySelector('#contactNumberError');
+
+        if (input.length !== 11 || isNaN(input) || !input.startsWith('09')) {
+            contactNumberError.textContent = 'Contact number must start with "09" and be exactly 11 digits.';
+            this.setCustomValidity('Contact number must start with "09" and be exactly 11 digits.');
+        } else {
+            contactNumberError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+    document.querySelector('#email').addEventListener('input', function () { //email
+        const input = this.value;
+        const emailError = document.querySelector('#emailError');
+        
+        if (input.length < 6 || input.length > 28) {
+            emailError.textContent = '*Email must be 6-28 characters.';
+            this.setCustomValidity('*Email must be 6-28 characters.');
+        } else {
+            emailError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+</script>
+
 </html>
 <?php
 }

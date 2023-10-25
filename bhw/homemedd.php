@@ -30,6 +30,7 @@ if(isset($_SESSION['user_data'])){
 
     <!-- graph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <style>
     
 <style>
@@ -216,7 +217,7 @@ try {
                 <br></br>
                 <div>
                 <div class="chart-container" style="width: 100%; max-width: 600px; float:right;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
-                    <canvas id="myChart" width="1000" height="415"></canvas>
+                    <canvas id="myChart" width="1000" height="470"></canvas>
                 </div>
 
                 <?php
@@ -268,6 +269,7 @@ try {
                                 }
                             }
                         },
+                        plugins: [ChartDataLabels]
                     };
 
                     var myChart = new Chart(
@@ -276,242 +278,145 @@ try {
                     );
                 </script>
 
-              <div class="chart-container" style="width: 100%; max-width:  600px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
-                  <canvas id="myChart2" width="1000" height="300"></canvas>
-                  <br>
-                  <form method="post" action="" style= "margin-left: 20px";>
-                    <label for="start_date">Start Date:</label>
-                    <input type="date" id="start_date" name="start_date">
-                    <label for="end_date">End Date:</label>
-                    <input type="date" id="end_date" name="end_date">
-                    <input type="submit" name="filter" value="Apply Filter" style="display: inline-block; padding: 5px; background-color: #3498db; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
-                 </form>
-            <br>
-              </div>
-            <?php
-                include "../connection/connect.php";
-                $query = $mysqli->query("SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
-                FROM residentrecords LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
-                GROUP BY residentrecords.address");
+                <div class="chart-container" style="width: 100%; max-width: 590px; float:left; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+                    <canvas id="myChart3" width="1000" height="315"></canvas>
+                    <br>
+                    <form method="post" style= "margin-left: 20px";>
+                        <label for="start_date">Start Date:</label>
+                        <input type="date" id="start_date" name="start_date">
+                        <label for="end_date">End Date:</label>
+                        <input type="date" id="end_date" name="end_date"><br>
+                        <label for="selectedAddress">Select Sitio:</label>
+                        <select name="selectedAddress" id="selectedAddress">
+                            <option value="" disabled selected>Select Sitio</option>
+                            <option value="IlangIlang">Ilang-Ilang</option>
+                            <option value="Orchids">Orchids</option>
+                            <option value="Sampaguita">Sampaguita</option>
+                            <option value="Camia">Camia</option>
+                            <option value="Rosal">Rosal</option>
+                            <option value="MalitamDos">Malitam Dos</option>
+                            <option value="MalitamTres">Malitam Tres</option>
+                            <option value="BadjCom">Badjao Community</option>
+                        </select>
+                        <input type="submit" name="filter" value="Apply Filter" style="display: inline-block; padding: 5px; background-color: #3498db; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                    </form>
+<br>
+</div>
+                    <?php
+                    include "../connection/connect.php";
 
-                foreach ($query as $data) {
-                    $address[] = $data['address'];
-                    $total_quantity[] = $data['total_quantity'];
-                }
-                ?>
-            <?php
-                include "../connection/connect.php";
+                    $productNames = [];
+                    $totalQuantities = [];
 
-                // Initialize data arrays
-                $address = array();
-                $total_quantity = array();
-
-                if (isset($_POST['filter'])) {
-                    $start_date = $_POST['start_date'];
-                    $end_date = $_POST['end_date'];
-
-                    // Use prepared statements to filter data based on date range
-                    $query = $mysqli->prepare("SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
-                        FROM residentrecords
-                        LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
-                        WHERE request_medicine.givenDate BETWEEN ? AND ?
-                        GROUP BY residentrecords.address");
-                    $query->bind_param("ss", $start_date, $end_date);
-                    $query->execute();
-
-                    // Fetch and populate the filtered data
-                    $result = $query->get_result();
-                    while ($data = $result->fetch_assoc()) {
-                        $address[] = $data['address'];
-                        $total_quantity[] = $data['total_quantity'];
+                    if (isset($_POST['filter'])) {
+                        $start_date = $_POST['start_date'];
+                        $end_date = $_POST['end_date'];
+                        $selectedAddress = $_POST['selectedAddress'];
+                    
+                        if (empty($start_date) && empty($end_date) && $selectedAddress === "all") {
+                            // No filter criteria are selected, so just retrieve all records
+                            $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
+                    
+                            // Fetch and populate the data
+                            while ($data3 = $default_query->fetch_assoc()) {
+                                $productNames[] = $data3['productName'];
+                                $totalQuantities[] = $data3['total_quantity'];
+                            }
+                        } else {
+                            // Prepare the statement to filter by address and date range
+                            $stmt = $mysqli->prepare("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine WHERE address = ? AND givenDate BETWEEN ? AND ? GROUP BY productName");
+                    
+                            if ($stmt === false) {
+                                die("Preparation failed: " . $mysqli->error);
+                            }
+                    
+                            // Bind the parameters
+                            $stmt->bind_param("sss", $selectedAddress, $start_date, $end_date);
+                    
+                            // Execute the statement
+                            $stmt->execute();
+                    
+                            // Get the result
+                            $result = $stmt->get_result();
+                    
+                            // Fetch and populate the filtered data
+                            while ($data3 = $result->fetch_assoc()) {
+                                $productNames[] = $data3['productName'];
+                                $totalQuantities[] = $data3['total_quantity'];
+                            }
+                    
+                            // Close the prepared statement
+                            $stmt->close();
+                        }
+                    } else {
+                        // Default query if no filter applied
+                        $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
+                    
+                        // Fetch and populate the data
+                        while ($data3 = $default_query->fetch_assoc()) {
+                            $productNames[] = $data3['productName'];
+                            $totalQuantities[] = $data3['total_quantity'];
+                        }
                     }
-
-                    // Close the prepared statement
-                    $query->close();
-                } else {
-                    // Default query if no filter applied
-                    $default_query = $mysqli->query("SELECT residentrecords.address, SUM(request_medicine.quantity_req) AS total_quantity
-                        FROM residentrecords
-                        LEFT JOIN request_medicine ON residentrecords.residentId = request_medicine.residentId
-                        GROUP BY residentrecords.address");
-
-                    // Fetch and populate the data
-                    while ($data = $default_query->fetch_assoc()) {
-                        $address[] = $data['address'];
-                        $total_quantity[] = $data['total_quantity'];
+                    
+                    // Check if no records are found
+                    if (empty($productNames)) {
+                        echo "No records found.";
                     }
-                }
-                // Check if no records are found
-                if (empty($address)) {
-                    echo "No records found.";
-                }
-                ?>
-            </div>
+                ?>    
+                </div>
+
+
 
                 <script>
-                    // === include 'setup' then 'config' above ===
-                    const labels2 = <?php echo json_encode($address) ?>;
-                    const data2 = {
-                        labels: labels2,
+                    // Your existing chart rendering code
+                    const labels3 = <?php echo json_encode($productNames) ?>;
+                    const $data3 = {
+                        labels: labels3,
                         datasets: [{
-                            label: 'Address',
-                            data: <?php echo json_encode($total_quantity) ?>,
+                            label: 'Most Requested Medicine',
+                            data: <?php echo json_encode($totalQuantities) ?>,
                             backgroundColor: [
-                'rgba(75, 0, 0, 0.2)',      // Dark Red
-                'rgba(153, 102, 0, 0.2)',  // Dark Orange
-                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
-                'rgba(0, 51, 51, 0.2)',   // Dark Teal
-                'rgba(0, 34, 51, 0.2)',   // Dark Blue
-                'rgba(51, 0, 51, 0.2)',   // Dark Purple
-                'rgba(51, 51, 51, 0.2)'   // Dark Gray
-            ],
-            borderColor: [
-                'rgb(75, 0, 0)',        // Dark Red
-                'rgb(153, 102, 0)',    // Dark Orange
-                'rgb(102, 75, 0)',     // Dark Yellow
-                'rgb(0, 51, 51)',      // Dark Teal
-                'rgb(0, 34, 51)',      // Dark Blue
-                'rgb(51, 0, 51)',      // Dark Purple
-                'rgb(51, 51, 51)'      // Dark Gray
-            ],
+                                'rgba(75, 0, 0, 0.2)',      // Dark Red
+                                'rgba(153, 102, 0, 0.2)',  // Dark Orange
+                                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
+                                'rgba(0, 51, 51, 0.2)',   // Dark Teal
+                                'rgba(0, 34, 51, 0.2)',   // Dark Blue
+                                'rgba(51, 0, 51, 0.2)',   // Dark Purple
+                                'rgba(51, 51, 51, 0.2)'   // Dark Gray
+                            ],
+                            borderColor: [
+                                'rgb(75, 0, 0)',        // Dark Red
+                                'rgb(153, 102, 0)',    // Dark Orange
+                                'rgb(102, 75, 0)',     // Dark Yellow
+                                'rgb(0, 51, 51)',      // Dark Teal
+                                'rgb(0, 34, 51)',      // Dark Blue
+                                'rgb(51, 0, 51)',      // Dark Purple
+                                'rgb(51, 51, 51)'      // Dark Gray
+                            ],
                             borderWidth: 1
                         }]
                     };
 
-                    const config2 = {
+                    const config3 = {
                         type: 'bar',
-                        data: data2,
+                        data: $data3,
                         options: {
                             scales: {
                                 y: {
                                     beginAtZero: true
                                 }
                             }
-                        }
+                        },
+                        plugins: [ChartDataLabels]
                     };
 
-                    var myChart2 = new Chart(
-                        document.getElementById('myChart2'),
-                        config2
+                    var myChart3 = new Chart(
+                        document.getElementById('myChart3'),
+                        config3
                     );
                 </script>
-
-                <br>
-                
-                <div>
-    <div class="chart-container" style="width: 100%; max-width: 600px; float:right;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
-        <canvas id="myChart3" width="1000" height="415"></canvas>
-                  <br>
-                  <form method="post" action="" style= "margin-left: 20px";>
-                    <label for="start_date">Start Date:</label>
-                    <input type="date" id="start_date" name="start_date">
-                    <label for="end_date">End Date:</label>
-                    <input type="date" id="end_date" name="end_date">
-                    <input type="submit" name="filter1" value="Apply Filter" style="display: inline-block; padding: 5px; background-color: #3498db; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
-                    </form>
-            <br>
-              </div>
-                    <?php
-                include "../connection/connect.php";
-
-                $productNames = [];
-                $totalQuantities = [];
-
-                if (isset($_POST['filter1'])) {
-                    $start_date = $_POST['start_date'];
-                    $end_date = $_POST['end_date'];
-
-                    // Prepare the statement
-                    $stmt = $mysqli->prepare("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine WHERE givenDate BETWEEN ? AND ? GROUP BY productName");
-
-                    if ($stmt === false) {
-                        die("Preparation failed: " . $mysqli->error);
-                    }
-
-                    // Bind the parameters
-                    $stmt->bind_param("ss", $start_date, $end_date);
-
-                    // Execute the statement
-                    $stmt->execute();
-
-                    // Get the result
-                    $result = $stmt->get_result();
-
-                    // Fetch and populate the filtered data
-                    while ($data3 = $result->fetch_assoc()) {
-                        $productNames[] = $data3['productName'];
-                        $totalQuantities[] = $data3['total_quantity'];
-                    }
-
-                    // Close the prepared statement
-                    $stmt->close();
-                } else {
-                    // Default query if no filter applied
-                    $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
-
-                    // Fetch and populate the data
-                    while ($data3 = $default_query->fetch_assoc()) {
-                        $productNames[] = $data3['productName'];
-                        $totalQuantities[] = $data3['total_quantity'];
-                    }
-                }
-
-                // Check if no records are found
-                if (empty($productNames)) {
-                    echo "No records found.";
-                }
-                ?>
-  </div>
-
-    <script>
-        // Chart data
-        const labels3 = <?php echo json_encode($productNames) ?>;
-        const $data3 = {
-            labels: labels3,
-            datasets: [{
-                label: 'Most Requested Medicine',
-                data: <?php echo json_encode($totalQuantities) ?>,
-                backgroundColor: [
-                    'rgba(75, 0, 0, 0.2)',      // Dark Red
-                    'rgba(153, 102, 0, 0.2)',  // Dark Orange
-                    'rgba(102, 75, 0, 0.2)',  // Dark Yellow
-                    'rgba(0, 51, 51, 0.2)',   // Dark Teal
-                    'rgba(0, 34, 51, 0.2)',   // Dark Blue
-                    'rgba(51, 0, 51, 0.2)',   // Dark Purple
-                    'rgba(51, 51, 51, 0.2)'   // Dark Gray
-                ],
-                borderColor: [
-                    'rgb(75, 0, 0)',        // Dark Red
-                    'rgb(153, 102, 0)',    // Dark Orange
-                    'rgb(102, 75, 0)',     // Dark Yellow
-                    'rgb(0, 51, 51)',      // Dark Teal
-                    'rgb(0, 34, 51)',      // Dark Blue
-                    'rgb(51, 0, 51)',      // Dark Purple
-                    'rgb(51, 51, 51)'      // Dark Gray
-                ],
-                borderWidth: 1
-            }]
-        };
-
-        const config3 = {
-            type: 'bar',
-            data: $data3,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            },
-        };
-
-        var myChart3 = new Chart(
-            document.getElementById('myChart3'),
-            config3
-        );
-    </script>
-
-</div>
+            </div>
         </div>
     </div>
 </section>

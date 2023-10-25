@@ -134,7 +134,7 @@ if(isset($_SESSION['user_data'])){
                           <td><?php echo $fetch['total'] ?></td>
                           <td><?php echo $fetch['expDate'] ?></td>
                           <td><?php echo $status ?></td>
-                        <td style="text-align: center;">
+                          <td style="text-align: center;">
                         
                               <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
                                   <button class="btn btn-primary" disabled>Request</button>

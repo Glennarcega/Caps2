@@ -77,8 +77,19 @@ if(isset($_SESSION['user_data'])){
         <button id="contacts-button"><i class="fa-solid fa-user-plus"></i></button><br /><br />
         <textarea class="selected-values" type="text" name="number" required ></textarea><br /><br />
 
+        <div class="form-group" required="required">
+            <label>Announcements</label>
+                <select class="form-control" required="required" name="announcemntType" id="announcementSelect">
+                <option value="" disabled selected>Type of Announcement</option>
+                <option value="Medical Checkup">Medical Checkup</option>
+                <option value="Maternal Health Services">Maternal Health Services</option>
+                <option value="Vaccination">Vaccination</option>
+                <option value="Distribution of Contraceptives">Distribution of Contraceptives</option>
+              </select>
+        </div>
+
         <label for="message">Message:</label>
-        <textarea  name="message" class="textmessagebox" rows="4" required></textarea><br /><br />
+        <textarea  name="message" id="message" class="textmessagebox" rows="1" required></textarea><br /><br />
         <a class="btn btn-success sendbtn"  type="submit"
           value="Send Message"
           onclick="sendMessage(event)"> Send SMS</a>
@@ -118,43 +129,6 @@ if(isset($_SESSION['user_data'])){
                       ?>
                   </tbody>
               </table>
-
-
-<script>
-const selectAllCheckbox = document.getElementById('select-all');
-const selectedValues = document.querySelector('.selected-values');
-let listArray = [];
-
-const checkboxes = document.querySelectorAll('.checkbox');
-
-selectAllCheckbox.addEventListener('change', function () {
-    if (this.checked) {
-        listArray = Array.from(checkboxes).map((checkbox) => {
-            checkbox.checked = true;
-            return checkbox.getAttribute('data-contact-number');
-        });
-    } else {
-        checkboxes.forEach((checkbox) => {
-            checkbox.checked = false;
-        });
-        listArray = [];
-    }
-    selectedValues.textContent = listArray.join(', ');
-});
-
-checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', function () {
-        if (this.checked === true) {
-            listArray.push(this.getAttribute('data-contact-number'));
-        } else {
-            listArray = listArray.filter((e) => e !== this.getAttribute('data-contact-number'));
-        }
-        selectedValues.textContent = listArray.join(', ');
-    });
-});
-</script> 
-
-
             </tbody>
           </table> 
           	
@@ -217,7 +191,72 @@ checkboxes.forEach((checkbox) => {
   // Add a click event listener to the "Contacts" button
   document.getElementById("contacts-button").addEventListener("click", toggleTable);
 </script>
+<script>
+const selectAllCheckbox = document.getElementById('select-all');
+const selectedValues = document.querySelector('.selected-values');
+let listArray = [];
 
+const checkboxes = document.querySelectorAll('.checkbox');
+
+selectAllCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+        listArray = Array.from(checkboxes).map((checkbox) => {
+            checkbox.checked = true;
+            return checkbox.getAttribute('data-contact-number');
+        });
+    } else {
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+        listArray = [];
+    }
+    selectedValues.textContent = listArray.join(', ');
+});
+
+checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', function () {
+        if (this.checked === true) {
+            listArray.push(this.getAttribute('data-contact-number'));
+        } else {
+            listArray = listArray.filter((e) => e !== this.getAttribute('data-contact-number'));
+        }
+        selectedValues.textContent = listArray.join(', ');
+    });
+});
+</script> 
+<script>
+    // Get the select and textarea elements
+    const announcementSelect = document.getElementById("announcementSelect");
+    const messageTextarea = document.getElementById("message");
+
+    // Add an event listener to the select element
+    announcementSelect.addEventListener("change", function() {
+        const selectedOption = announcementSelect.options[announcementSelect.selectedIndex].value;
+
+        // Define messages for different announcement types
+        let message = "";
+
+        switch (selectedOption) {
+            case "Medical Checkup":
+                message = "Magandang araw po! Ipinapaabot namin na andito po ang ating Doctor mayroon po tayong libreng Medical Checkup dito sa Health Center ngayong araw. Maari po kayong pumunta mula 9:00 ng umaga hanggang 4:00 ng hapon. Salamat po!";
+                break;
+            case "Maternal Health Services":
+                message = "Magandang araw po! Ipinapaabot namin na mayroon tayong libreng serbisyo para sa Kalusugan ng mga Nagdadalang-tao dito sa ating Health Center. Maaari po kayong pumunta mula 9:00 ng umaga hanggang 4:00 ng hapon tuwing Lunes at Miyerkules. Huwag kalimutang dalhin ang inyong prenatal record book para sa mga susunod na check-up. Salamat po!";
+                break;
+            case "Vaccination":
+                message = "Magandang araw po! Ipinapaabot namin na mayroon tayong libreng bakuna para sa ating mga sanggol dito sa Health Center. Ang vaccination schedule ay tuwing Martes at Huwebes lamang, mula 9:00 ng umaga hanggang 12:00 ng tanghali. Maari po kayong pumunta para sa proteksyon ng inyong mga anak. Salamat po";
+                break;
+            case "Distribution of Contraceptives":
+                message = "Magandang araw po! Ipinapaabot namin na mayroon tayong serbisyong pamamahagi ng mga kontraseptibo dito sa Health Center. Ito ay para sa mga nais kumontrol ng pagbubuntis. Ang serbisyong ito ay maaring puntahan tuwing Lunes mula 10:00 ng umaga hanggang 4:00 ng hapon. Huwag mag-atubiling magtanong sa mga healthcare professionals dito sa ating center para sa karagdagang impormasyon. Maraming salamat po!";
+                break;
+            default:
+                message = "";
+        }
+
+        // Update the textarea with the selected message
+        messageTextarea.value = message;
+    });
+</script> 
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>

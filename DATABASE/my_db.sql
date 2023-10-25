@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 10:51 AM
+-- Generation Time: Oct 25, 2023 at 11:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -59,7 +59,12 @@ INSERT INTO `contraceptivemethod_request` (`contraceptiveId`, `residentId`, `las
 (20, '291', 'angel ', 'babuy ', ' ', '61', 'Pills', 'Insert', 1, '2023-10-18', '', '', ''),
 (21, '291', 'angel ', 'babuy ', ' ', '61', 'Pills', 'Insert', 1, '2023-10-18', '', '', ''),
 (22, '291', 'angel ', 'babuy ', ' ', '61', 'Pills', 'Insert', 1, '2023-10-18', 'Changing Method', 'STM', 'medical condition'),
-(23, '291', 'angel ', 'babuy ', ' ', '61', 'Pills', 'Insert', 1, '2023-10-18', 'Changing Method', 'BBT', 'none');
+(23, '291', 'angel ', 'babuy ', ' ', '61', 'Pills', 'Insert', 1, '2023-10-18', 'Changing Method', 'BBT', 'none'),
+(24, '291', 'angel ', 'babuy ', ' ', '61', 'Pills', 'Insert', 1, '2023-10-23', 'Current User', 'IUD', 'medical condition'),
+(25, '295', 'ilagan', 'baby', '', '61', 'Pills', 'Insert', 1, '2023-10-22', 'New User', '', ''),
+(26, '291', 'angel ', 'babuy ', ' ', '61', 'Pills', 'Insert', 1, '2023-10-24', 'Current User', 'COC', 'NONE'),
+(27, '291', 'angel ', 'babuy ', ' ', '61', 'Pills', 'Insert', 1, '2024-10-24', 'Dropout & Restart', 'STM', 'E'),
+(28, '299', 'dfw', 'wdwd', '', '61', 'Pills', 'Insert', 1, '2023-10-24', 'Dropout & Restart', 'Implant', 'medical condition');
 
 -- --------------------------------------------------------
 
@@ -84,10 +89,11 @@ CREATE TABLE `medicines` (
 --
 
 INSERT INTO `medicines` (`productId`, `productName`, `sponsor`, `unit`, `batch`, `quantity1`, `total`, `expDate`, `status`) VALUES
-(55, 'condom', 'shell', 'Pcs', 'batch 2', 10, 8, '2023-11-04', 'available'),
+(55, 'condom', 'shell', 'Pcs', 'batch 2', 10, 3, '2023-11-04', 'available'),
 (56, 'lazartan', 'glenn', 'Tablet', 'batch 1', 1, 0, '2030-12-12', 'available'),
 (60, 'Flumucil', 'Laura', 'Pcs', 'Batch 1', 0, 976, '2023-11-02', 'unavailable'),
-(61, 'Pills', 'Lazada', 'Insert', 'Batch 1', 0, 64, '2026-11-11', 'available');
+(61, 'Pills', 'Lazada', 'Insert', 'Batch 1', 0, 59, '2026-11-11', 'available'),
+(62, 'Boi', 'Blanco', 'Bottles', 'Batch 1', 0, 98, '2025-11-11', 'available');
 
 -- --------------------------------------------------------
 
@@ -101,6 +107,7 @@ CREATE TABLE `request_medicine` (
   `lastName` varchar(200) NOT NULL,
   `firstName` varchar(200) NOT NULL,
   `middleName` varchar(200) NOT NULL,
+  `address` varchar(100) NOT NULL,
   `productId` varchar(100) NOT NULL,
   `productName` varchar(200) NOT NULL,
   `unit` varchar(100) NOT NULL,
@@ -112,28 +119,16 @@ CREATE TABLE `request_medicine` (
 -- Dumping data for table `request_medicine`
 --
 
-INSERT INTO `request_medicine` (`req_med_Id`, `residentId`, `lastName`, `firstName`, `middleName`, `productId`, `productName`, `unit`, `quantity_req`, `givenDate`) VALUES
-(86, '274', 'arcega', 'glenn emersom', 'plata', '60', 'Flumucil', 'Pcs', 1, '2023-10-15'),
-(87, '275', 'arcega', 'glaiza', '', '60', 'Flumucil', 'Pcs', 1, '2023-10-15'),
-(88, '274', 'arcega ', 'glenn emersom ', 'plata ', '60', 'Flumucil', 'Pcs', 7, '2023-10-15'),
-(89, '276', 'wfdw', 'wdfwf', '', '60', 'Flumucil', 'Pcs', 1, '1221-12-12'),
-(90, '275', 'arcega ', 'glaiza ', ' ', '60', 'Flumucil', 'Pcs', 1, '2023-12-12'),
-(91, '277', 'arcega', 'glenn', '', '60', 'Flumucil', 'Pcs', 1, '2023-10-16'),
-(92, '275', 'arcega ', 'glaiza ', ' ', '56', 'lazartan', 'Tablet', 0, '2023-10-18'),
-(93, '275', 'arcega ', 'glaiza ', ' ', '56', 'lazartan', 'Tablet', 1, '2023-10-18'),
-(94, '275', 'arcega ', 'glaiza ', ' ', '60', 'Flumucil', 'Pcs', 1, '2023-10-17'),
-(95, '278', 'arapa', 'pap', 'le', '61', 'Pills', 'Pcs', 1, '2023-10-16'),
-(96, '278', 'arapa ', 'pap ', 'le ', '61', 'Pills', 'Pcs', 1, '2023-10-17'),
-(97, '278', 'arapa ', 'pap ', 'le ', '55', 'condom', 'Pcs', 1, '2023-10-18'),
-(98, '279', 'arcega', 'glen', '', '56', 'lazartan', 'Tablet', 1, '2023-10-17'),
-(99, '280', 'arcega', 'ndw', '', '61', 'Pills', 'Insert', 1, '2023-10-17'),
-(100, '287', 'FEW', 'EFEF', '', '56', 'lazartan', 'Tablet', 1, '2023-10-17'),
-(101, '288', 'EF', 'W3FW', '', '55', 'condom', 'Pcs', 1, '2023-10-17'),
-(102, '289', 'ESVC', 'EC', '', '55', 'condom', 'Pcs', 1, '0012-12-19'),
-(103, '275', 'arcega ', 'glaiza ', ' ', '56', 'lazartan', 'Tablet', 1, '2023-10-19'),
-(104, '275', 'arcega ', 'glaiza ', ' ', '55', 'condom', 'Pcs', 1, '2023-10-18'),
-(105, '275', 'arcega ', 'glaiza ', ' ', '55', 'condom', 'Pcs', 1, '2023-10-19'),
-(106, '291', 'angel ', 'babuy ', ' ', '55', 'condom', 'Pcs', 1, '2023-10-18');
+INSERT INTO `request_medicine` (`req_med_Id`, `residentId`, `lastName`, `firstName`, `middleName`, `address`, `productId`, `productName`, `unit`, `quantity_req`, `givenDate`) VALUES
+(111, '291', 'angel ', 'babuy ', ' ', '', '55', 'condom', 'Pcs', 1, '2023-10-24'),
+(112, '296', 'kurimaw', 'ako', 'lang', '', '62', 'Boi', 'Bottles', 1, '2023-10-24'),
+(113, '297', 'efcbje', 'dwjb', '', '', '56', 'lazartan', 'Tablet', 1, '2023-10-25'),
+(114, '298', 'are', 'are', '', '', '55', 'condom', 'Pcs', 1, '2023-10-25'),
+(115, '300', 'haliparot', 'ajok', '', 'IlangIlang', '55', 'condom', 'Pcs', 1, '2023-10-25'),
+(116, '301', 'tanga', 'tanga', '', 'BadjCom', '55', 'condom', 'Pcs', 1, '2023-10-25'),
+(117, '302', 'susoo', 'susoo', '', '', '55', 'condom', 'Pcs', 1, '2023-10-25'),
+(118, '303', 'sibak', 'sinbak', '', 'Camia', '62', 'Boi', 'Bottles', 1, '2023-10-25'),
+(119, '275', 'angel ', 'babuyyyy ', ' ', '', '55', 'condom', 'Pcs', 1, '2023-10-25');
 
 -- --------------------------------------------------------
 
@@ -162,20 +157,31 @@ CREATE TABLE `residentrecords` (
 --
 
 INSERT INTO `residentrecords` (`residentId`, `productId`, `lastName`, `firstName`, `middleName`, `dateBirth`, `age`, `sex`, `civilStatus`, `occupation`, `houseNumber`, `address`, `contactNumber`) VALUES
-(274, 60, 'arcega', 'glenn emersom', 'plata', '2023-10-15', 0, 'Male', '', '', '', 'MalitamDos', '0930182938'),
-(275, 60, 'arcega', 'glaiza', '', '2023-10-02', 0, 'Male', '', '', '', 'Sampaguita', '09952846057'),
-(276, 60, 'wfdw', 'wdfwf', '', '1221-12-12', 0, 'Male', '', '', '', 'BadjCom', '09138219783'),
-(277, 60, 'arcega', 'glenn', '', '0012-12-12', 0, 'Male', '', '', '', 'IlangIlang', '0934829'),
-(279, 56, 'arcega', 'glen', '', '1212-12-12', 810, 'Female', '', '', '', 'MalitamTres', '09372183'),
-(280, 61, 'arcega', 'ndw', '', '2023-10-17', 0, 'Female', '', '', '', 'MalitamTres', '09823'),
-(283, 61, 'arcega', 'ndbew', '', '2001-11-17', 21, 'Female', '', '', '', 'BadjCom', '0930182938'),
-(284, 61, 'eve', 'eee', '', '2001-12-20', 21, 'Female', '', '', '', 'BadjCom', '018391292'),
-(287, 56, 'FEW', 'EFEF', '', '0121-12-12', 1901, 'Female', '', '', '', 'BadjCom', '01938912'),
-(288, 55, 'EF', 'W3FW', '', '0121-12-12', 1901, 'Female', '', '', '', 'MalitamDos', '0123892131'),
-(289, 55, 'ESVC', 'EC', '', '1212-12-12', 810, 'Female', '', '', '', 'Sampaguita', '1321E2'),
-(290, 61, 'arc', 'arcega', '', '2001-11-17', 21, 'Female', '', '', '', 'Orchids', '081921'),
-(291, 61, 'angel', 'babuy', '', '1980-11-27', 42, 'Female', '', '', '', 'BadjCom', '09788765'),
-(292, 61, 'beatrice', 'beatrice', '', '1900-12-26', 122, 'Female', '', '', '', 'BadjCom', '01290312893');
+(274, 60, 'angel', 'MAHAL', 'AKOOO', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09237648192'),
+(275, 60, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09232748344'),
+(276, 60, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '02732838232'),
+(277, 60, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09388277386'),
+(279, 56, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(280, 61, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(283, 61, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(284, 61, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(287, 56, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(288, 55, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(289, 55, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(290, 61, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(291, 61, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(292, 61, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(293, 55, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(294, 55, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(295, 61, 'angel', 'babuyyyy', '', '1980-11-27', 42, 'Female', 'married', '', '', 'BadjCom', '09'),
+(296, 62, 'kurimaw', 'ako', 'lang', '2001-11-11', 21, 'Male', 'single', '', '', 'Orchids', '09889139219'),
+(297, 56, 'efcbje', 'dwjb', '', '2001-12-12', 21, 'Female', 'married', '', '', 'MalitamTres', '13627362763'),
+(298, 55, 'are', 'are', '', '1980-12-28', 42, 'Male', 'single', '', '', 'Rosal', '09382787267'),
+(299, 61, 'dfw', 'wdwd', '', '2001-12-22', 21, 'Female', '', '', '', 'MalitamDos', '09232732622'),
+(300, 55, 'haliparot', 'ajok', '', '1980-12-27', 42, 'Male', 'single', '', '', 'IlangIlang', '09123613722'),
+(301, 55, 'tanga', 'tanga', '', '1980-12-29', 42, 'Male', 'single', '', '', 'BadjCom', '09132183722'),
+(302, 55, 'susoo', 'susoo', '', '1900-12-29', 122, 'Male', 'divorced', '', '', 'Sampaguita', '09937821827'),
+(303, 62, 'sibak', 'sinbak', '', '2008-12-12', 14, 'Male', 'married', '', '', 'Camia', '09987677676');
 
 -- --------------------------------------------------------
 
@@ -202,8 +208,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `fname`, `lname`, `usertype`, `address`, `mobile_number`, `photo`, `reset_token_hash`, `reset_token_expires_at`) VALUES
-(1, 'glennarcega177@gmail.com', '2374875de91ca665b7be96d70c6b11c5', 'glenn', 'arcega', 1, 'tabangao ambulong', '03928938922', 'profile.jpg', '', '0000-00-00 00:00:00.000000'),
-(86, 'bhw@gmail.com', '6adcff9bb6c324d349dfd67c82e1e832', 'bhw', 'bhw', 2, 'bhw1234', '10938712', 'profile.jpg', '', '0000-00-00 00:00:00.000000');
+(1, 'glennarcega177@gmail.com', '1106a08ad857cb393a67e355d0d48df6', 'glenn', 'arcega', 1, 'tabangao ambulong', '09213721736', 'profile.jpg', '', '0000-00-00 00:00:00.000000'),
+(86, 'gmadmsnd', 'd41d8cd98f00b204e9800998ecf8427e', 'bhw', 'bhw', 2, 'bhw1234', '09326736273', 'profile.jpg', '', '0000-00-00 00:00:00.000000'),
+(87, 'glennarcega@gmail.com', 'e88b26ac48d0d9b90fa60a6eae1a6ee5', 'ako', 'ako', 2, 'ako', '09239218922', '', '', '0000-00-00 00:00:00.000000'),
+(88, 'frd', 'd41d8cd98f00b204e9800998ecf8427e', 'si', 'si', 2, 'si', '09328738284', '', '', '0000-00-00 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -273,31 +281,31 @@ ALTER TABLE `usertypes`
 -- AUTO_INCREMENT for table `contraceptivemethod_request`
 --
 ALTER TABLE `contraceptivemethod_request`
-  MODIFY `contraceptiveId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `contraceptiveId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `medicines`
 --
 ALTER TABLE `medicines`
-  MODIFY `productId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `productId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `request_medicine`
 --
 ALTER TABLE `request_medicine`
-  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT for table `residentrecords`
 --
 ALTER TABLE `residentrecords`
-  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
+  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=304;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

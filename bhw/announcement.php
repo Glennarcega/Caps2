@@ -225,38 +225,29 @@ checkboxes.forEach((checkbox) => {
 });
 </script> 
 <script>
-    // Get the select and textarea elements
     const announcementSelect = document.getElementById("announcementSelect");
     const messageTextarea = document.getElementById("message");
 
-    // Add an event listener to the select element
+    // Create a mapping of announcement types to their messages
+    const announcementMessages = {
+        "Medical Checkup": "Magandang araw po! Ipinapaabot namin na andito po ang ating Doctor mayroon po tayong libreng Medical Checkup dito sa Health Center ngayong araw. Maari po kayong pumunta mula 9:00 ng umaga hanggang 4:00 ng hapon. Salamat po!",
+        "Maternal Health Services": "Magandang araw po! Ipinapaabot namin na mayroon tayong libreng serbisyo para sa Kalusugan ng mga Nagdadalang-tao dito sa ating Health Center. Maaari po kayong pumunta mula 9:00 ng umaga hanggang 4:00 ng hapon tuwing Lunes at Miyerkules. Huwag kalimutang dalhin ang inyong prenatal record book para sa mga susunod na check-up. Salamat po!",
+        "Vaccination": "Magandang araw po! Ipinapaabot namin na mayroon tayong libreng bakuna para sa ating mga sanggol dito sa Health Center. Ang vaccination schedule ay tuwing Martes at Huwebes lamang, mula 9:00 ng umaga hanggang 12:00 ng tanghali. Maari po kayong pumunta para sa proteksyon ng inyong mga anak. Salamat po",
+        "Distribution of Contraceptives": "Magandang araw po! Ipinapaabot namin na mayroon tayong serbisyong pamamahagi ng mga kontraseptibo dito sa Health Center. Ito ay para sa mga nais kumontrol ng pagbubuntis. Ang serbisyong ito ay maaring puntahan tuwing Lunes mula 10:00 ng umaga hanggang 4:00 ng hapon. Huwag mag-atubiling magtanong sa mga healthcare professionals dito sa ating center para sa karagdagang impormasyon. Maraming salamat po!"
+    };
+
+    // Add an event listener to the announcement select box
     announcementSelect.addEventListener("change", function() {
         const selectedOption = announcementSelect.options[announcementSelect.selectedIndex].value;
+        const selectedMessage = announcementMessages[selectedOption] || "";
 
-        // Define messages for different announcement types
-        let message = "";
-
-        switch (selectedOption) {
-            case "Medical Checkup":
-                message = "Magandang araw po! Ipinapaabot namin na andito po ang ating Doctor mayroon po tayong libreng Medical Checkup dito sa Health Center ngayong araw. Maari po kayong pumunta mula 9:00 ng umaga hanggang 4:00 ng hapon. Salamat po!";
-                break;
-            case "Maternal Health Services":
-                message = "Magandang araw po! Ipinapaabot namin na mayroon tayong libreng serbisyo para sa Kalusugan ng mga Nagdadalang-tao dito sa ating Health Center. Maaari po kayong pumunta mula 9:00 ng umaga hanggang 4:00 ng hapon tuwing Lunes at Miyerkules. Huwag kalimutang dalhin ang inyong prenatal record book para sa mga susunod na check-up. Salamat po!";
-                break;
-            case "Vaccination":
-                message = "Magandang araw po! Ipinapaabot namin na mayroon tayong libreng bakuna para sa ating mga sanggol dito sa Health Center. Ang vaccination schedule ay tuwing Martes at Huwebes lamang, mula 9:00 ng umaga hanggang 12:00 ng tanghali. Maari po kayong pumunta para sa proteksyon ng inyong mga anak. Salamat po";
-                break;
-            case "Distribution of Contraceptives":
-                message = "Magandang araw po! Ipinapaabot namin na mayroon tayong serbisyong pamamahagi ng mga kontraseptibo dito sa Health Center. Ito ay para sa mga nais kumontrol ng pagbubuntis. Ang serbisyong ito ay maaring puntahan tuwing Lunes mula 10:00 ng umaga hanggang 4:00 ng hapon. Huwag mag-atubiling magtanong sa mga healthcare professionals dito sa ating center para sa karagdagang impormasyon. Maraming salamat po!";
-                break;
-            default:
-                message = "";
-        }
-
-        // Update the textarea with the selected message
-        messageTextarea.value = message;
+        // Update the textarea's value and adjust its height
+        messageTextarea.value = selectedMessage;
+        messageTextarea.style.height = "auto"; // Reset the height to auto
+        messageTextarea.style.height = messageTextarea.scrollHeight + "px"; // Set the height to fit the content
     });
-</script> 
+</script>
+ 
   <!-- Scripts -->
   <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>
@@ -277,6 +268,8 @@ checkboxes.forEach((checkbox) => {
     }
 });
 </script>
+
+
 
 </html>
 <?php

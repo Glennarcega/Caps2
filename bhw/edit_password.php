@@ -120,7 +120,8 @@ if(isset($_SESSION['user_data'])){
 
     <div class="form-group">
         <label>Email </label>
-        <input type="email" class="form-control" name="email"value="<?php echo $_SESSION['user_data']['email']; ?>" placeholder="example@gmail.com" required/>
+        <input type="email" class="form-control" name="email" id="email" value="<?php echo $_SESSION['user_data']['email']; ?>" placeholder="example@gmail.com" required/>
+        <small id="emailError" class="form-text text-danger"></small>
     </div>
     <div class="form-group">
         <label>Password</label>
@@ -221,7 +222,27 @@ if(isset($_SESSION['user_data'])){
     }
 }
 
-    </script>
+</script>
+<script>
+    document.querySelector('#email').addEventListener('input', function () {
+        const input = this.value;
+        const emailError = document.querySelector('#emailError');
+        
+        if (input.length > 27) {
+            this.value = input.slice(0, 27); // Truncate the input to 24 characters
+        }
+
+        if (input.length < 6 || input.length > 27) {
+            emailError.textContent = 'Email must be 6-24 characters.';
+            emailError.style.display = 'block'; // Ensure the error message is displayed
+            this.setCustomValidity('Email must be 6-24 characters.');
+        } else {
+            emailError.textContent = '';
+            emailError.style.display = 'none'; // Hide the error message
+            this.setCustomValidity('');
+        }
+    });
+</script>
 
 <script src="../cssmainmenu/script.js"></script>
   <script src = "../js/jquery.js"></script>

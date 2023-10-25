@@ -58,13 +58,13 @@ if(isset($_SESSION['user_data'])){
             </div>
             <div class = "form-group">
               <label>Mobile Number </label>
-                <input type = "text"  class = "form-control" value = "<?php echo $fetch['mobile_number']?>" name = "mobile_number" required/>
+                <input type = "text"  class = "form-control"  id="mobileNumber" value = "<?php echo $fetch['mobile_number']?>" name = "mobile_number" required/>
+                <small id="contactNumberError" class="form-text text-danger"></small>
             </div>
 						<div class = "form-group">
 							<label>Email </label>
-							<input type = "text" class = "form-control" value = "<?php echo $fetch['email']?>" name = "email" />
+							<input type = "text" class = "form-control" id="email" value = "<?php echo $fetch['email']?>" name = "email" />
 							<small id="emailError" class="form-text text-danger"></small>
-
 						</div>
 	
 						<div class="form-group">
@@ -112,6 +112,41 @@ if(isset($_SESSION['user_data'])){
             this.setCustomValidity('*Email must be 6-28 characters.');
         } else {
             emailError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+</script>
+<script>//MobileNumber warning
+    // MobileNumber can only input 11 numbers starting with "09"
+    document.querySelector('#mobileNumber').addEventListener('input', function () {
+        const input = this.value.toString(); // Convert the input to a string
+        const contactNumberError = document.querySelector('#contactNumberError');
+
+        if (input.length !== 11 || isNaN(input) || !input.startsWith('09')) {
+            contactNumberError.textContent = 'Mobile number must start with "09" and be exactly 11 digits.';
+            this.setCustomValidity('Mobile number must start with "09" and be exactly 11 digits.');
+        } else {
+            contactNumberError.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+</script>
+<script>
+    document.querySelector('#email').addEventListener('input', function () {
+        const input = this.value;
+        const emailError = document.querySelector('#emailError');
+        
+        if (input.length > 27) {
+            this.value = input.slice(0, 27); // Truncate the input to 24 characters
+        }
+
+        if (input.length < 6 || input.length > 27) {
+            emailError.textContent = 'Email must be 6-24 characters.';
+            emailError.style.display = 'block'; // Ensure the error message is displayed
+            this.setCustomValidity('Email must be 6-24 characters.');
+        } else {
+            emailError.textContent = '';
+            emailError.style.display = 'none'; // Hide the error message
             this.setCustomValidity('');
         }
     });

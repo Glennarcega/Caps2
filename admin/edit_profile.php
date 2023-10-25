@@ -108,7 +108,7 @@ if(isset($_SESSION['user_data'])){
                   <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value = "<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name" required readonly></div>
                   <div class="col-md-6"><label class="labels emaillbl"><br>Email</label>
                   <input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required>
-                  <small id="emailError" class="form-text text-danger">Email must be 6-28 characters.</small>
+                  <small id="emailError" class="form-text text-danger">Email must be 24 characters only.</small>
 
                 </div>
               </div>
@@ -190,23 +190,31 @@ if(isset($_SESSION['user_data'])){
     });
 </script>
 <script>
-    document.querySelector('#email').addEventListener('input', function () {
-        const input = this.value;
-        const emailError = document.querySelector('#emailError');
-        
-        if (input.length > 28) {
-            this.value = input.slice(0, 28); // Truncate the input to 28 characters
-        }
+    document.addEventListener("DOMContentLoaded", function () {
+        const emailInput = document.querySelector('input[name="email"]');
+        const charCount = document.getElementById('charCount');
+        const emailError = document.getElementById('emailError');
+        const maxChars = 24;
 
-        if (input.length > 28) {
-            emailError.textContent = 'Email must be at most 28 characters.';
-            emailError.style.display = 'block'; // Ensure the error message is displayed
-            this.setCustomValidity('Email must be at most 28 characters.');
-        } else {
-            emailError.style.display = 'none'; // Hide the error message if it's not applicable
-            this.setCustomValidity(''); // Reset the custom validity
-        }
+        emailInput.addEventListener('input', function () {
+            const currentChars = this.value.length;
 
+            if (currentChars > maxChars) {
+                this.value = this.value.substring(0, maxChars); // Truncate input if it exceeds the limit
+                emailError.textContent = 'Email must be at most 24 characters.';
+                emailError.style.display = 'block';
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            charCount.textContent = `${currentChars}/${maxChars} characters`;
+
+            if (currentChars === maxChars) {
+                emailInput.setAttribute('disabled', 'disabled'); // Disable input once it reaches the limit
+            } else {
+                emailInput.removeAttribute('disabled');
+            }
+        });
     });
 </script>
 

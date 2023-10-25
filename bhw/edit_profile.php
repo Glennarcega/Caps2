@@ -108,8 +108,7 @@ if(isset($_SESSION['user_data'])){
                   <div class="col-md-6"><label class="labels">Name</label><input type="text" name="fname" value = "<?php echo $_SESSION['user_data']['fname']; ?>" class="form-control" placeholder="First Name" required readonly></div>
                   <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value = "<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name" required readonly></div>
                   <div class="col-md-6"><label class="labels emaillbl"><br>Email</label><input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required>
-                  <small id="emailError" class="form-text text-danger">Email must be 6-28 characters.</small>
-
+                  <small id="emailError" class="form-text text-danger">Email must be 24 characters only.</small>
                 </div>
               </div>
                     <div class="row mt-3">
@@ -227,9 +226,35 @@ function validateFileType(){
             alert("Only jpg/jpeg and png files are allowed!");
         }   
     }
+</script> 
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const emailInput = document.querySelector('input[name="email"]');
+        const charCount = document.getElementById('charCount');
+        const emailError = document.getElementById('emailError');
+        const maxChars = 24;
 
-    
+        emailInput.addEventListener('input', function () {
+            const currentChars = this.value.length;
+
+            if (currentChars > maxChars) {
+                this.value = this.value.substring(0, maxChars); // Truncate input if it exceeds the limit
+                emailError.textContent = 'Email must be at most 24 characters.';
+                emailError.style.display = 'block';
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            charCount.textContent = `${currentChars}/${maxChars} characters`;
+
+            if (currentChars === maxChars) {
+                emailInput.setAttribute('disabled', 'disabled'); // Disable input once it reaches the limit
+            } else {
+                emailInput.removeAttribute('disabled');
+            }
+        });
+    });
 </script>
 </html>
 <?php

@@ -22,6 +22,11 @@ if(isset($_SESSION['user_data'])){
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" href="../cssmainmenu/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    
+<!--theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
 </head>
 
 <body>

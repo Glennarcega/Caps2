@@ -91,6 +91,7 @@ if(isset($_SESSION['user_data'])){
                 <option value="Medical Checkup">Medical Checkup</option>
                 <option value="Maternal Health Services">Maternal Health Services</option>
                 <option value="Vaccination">Vaccination</option>
+                <option value="Distribution of Medicines">Distribution of Medicines</option>
                 <option value="Distribution of Contraceptives">Distribution of Contraceptives</option>
               </select>
         </div>
@@ -240,6 +241,7 @@ checkboxes.forEach((checkbox) => {
         "Medical Checkup": "Magandang araw po! Ipinapaabot namin na andito po ang ating Doctor mayroon po tayong libreng Medical Checkup dito sa Health Center ngayong araw. Maari po kayong pumunta mula 9:00 ng umaga hanggang 4:00 ng hapon. Salamat po!",
         "Maternal Health Services": "Magandang araw po! Ipinapaabot namin na mayroon tayong libreng serbisyo para sa Kalusugan ng mga Nagdadalang-tao dito sa ating Health Center. Maaari po kayong pumunta mula 9:00 ng umaga hanggang 4:00 ng hapon tuwing Lunes at Miyerkules. Huwag kalimutang dalhin ang inyong prenatal record book para sa mga susunod na check-up. Salamat po!",
         "Vaccination": "Magandang araw po! Ipinapaabot namin na mayroon tayong libreng bakuna para sa ating mga sanggol dito sa Health Center. Ang vaccination schedule ay tuwing Martes at Huwebes lamang, mula 9:00 ng umaga hanggang 12:00 ng tanghali. Maari po kayong pumunta para sa proteksyon ng inyong mga anak. Salamat po",
+        "Distribution of Medicines": "Magandang araw po! Ipinapaabot namin na mayroon tayong serbisyong pamamahagi ng mga gamot dito sa ating Health Center. Ito ay para sa mga nais humingi ng gamot na kanilang kailangan. Ang serbisyong ito ay maaring puntahan tuwing Miyerkules mula 9:00 ng umaga hanggang 4:00 ng hapon. Huwag mag-atubiling magtanong sa mga healthcare professionals dito sa ating center para sa karagdagang impormasyon. Maraming salamat po!",
         "Distribution of Contraceptives": "Magandang araw po! Ipinapaabot namin na mayroon tayong serbisyong pamamahagi ng mga kontraseptibo dito sa Health Center. Ito ay para sa mga nais kumontrol ng pagbubuntis. Ang serbisyong ito ay maaring puntahan tuwing Lunes mula 10:00 ng umaga hanggang 4:00 ng hapon. Huwag mag-atubiling magtanong sa mga healthcare professionals dito sa ating center para sa karagdagang impormasyon. Maraming salamat po!"
     };
 

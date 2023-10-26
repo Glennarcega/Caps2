@@ -98,72 +98,86 @@ if(isset($_SESSION['user_data'])){
           <a class="btn btn-success" href="add_med.php?"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>
           <br />
           <br />
-      
           <?php if (isset($_GET['success'])) { ?>
-            <div class="alert alert-success" role="alert">
-              <?=$_GET['success']?>
-            </div>
-          <?php } ?>
-  
-              <table id="table" class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Sponsor</th>
-                        <th>Product Name</th>
-                        <th>Unit</th>
-                        <th>Batch</th>
-                        <th>Quantity</th>
-                        <th>Expiration Date</th>
-                        <th>Status</th>
-                        <th style="text-align: center;">Request</th>
-                        <th style="text-align: center;">Action</th>
-                    </tr>
-                </thead>
-              <tbody>
-                    <?php
-                          $query = $mysqli->query("SELECT * FROM medicines") or die(mysqli_error());
-                          while ($fetch = $query->fetch_array()) {
-                          $status = ($fetch['total'] == 0) ? 'unavailable' : $fetch['status']; // Check if quantity is zero
+    <div class="alert alert-success" role="alert">
+        <?= $_GET['success'] ?>
+    </div>
+<?php } ?>
 
-                      ?>
-                        <tr>
-                          <td><?php echo $fetch['sponsor'] ?></td>
-                          <td><?php echo $fetch['productName'] ?></td>
-                          <td><?php echo $fetch['unit'] ?></td>
-                          <td><?php echo $fetch['batch'] ?></td>
-                          <td><?php echo $fetch['total'] ?></td>
-                          <td><?php echo $fetch['expDate'] ?></td>
-                          <td><?php echo $status ?></td>
-                          <td style="text-align: center;">
-                        
-                              <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
-                                  <button class="btn btn-primary" disabled>Request</button>
-                              <?php elseif ($fetch['unit'] == 'Insert'): ?>
-                                  <a class="btn btn-primary profile-button" href="contraceptives_form.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
-                              <?php else: ?>
-                                  <a class="btn btn-primary profile-button" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
-                              <?php endif; ?>
-                          
-                      </td>
-                     
-                  
-                      <td style="text-align: center;">
-                          <div class="dropdown">
+<table id="table" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Sponsor</th>
+            <th>Product Name</th>
+            <th>Unit</th>
+            <th>Batch</th>
+            <th>Quantity</th>
+            <th>Expiration Date</th>
+            <th>Status</th>
+            <th style="text-align: center;">Request</th>
+            <th style="text-align: center;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $query = $mysqli->query("SELECT * FROM medicines") or die(mysqli_error());
+        while ($fetch = $query->fetch_array()) {
+            $status = ($fetch['total'] == 0) ? 'unavailable' : $fetch['status']; // Check if quantity is zero
+
+            // Check if quantity is lower than 10
+            if ($fetch['total'] < 10) {
+                $quantityMessage = '<span class="text-danger">Low quantity</span>';
+            } else {
+                $quantityMessage = ''; // No message
+            }
+
+            // Check if the medicine is close to expiration (within 1 year)
+$expirationDate = strtotime($fetch['expDate']);
+$expirationYear = date('Y', $expirationDate); // Get the year of the expiration date
+$currentYear = date('Y'); // Get the current year
+
+if ($expirationYear == $currentYear) {
+    $expirationMessage = '<span class="text-warning">Expires soon</span>';
+} else {
+    $expirationMessage = ''; // No message
+}
+
+        ?>
+            <tr>
+                <td><?php echo $fetch['sponsor'] ?></td>
+                <td><?php echo $fetch['productName'] ?></td>
+                <td><?php echo $fetch['unit'] ?></td>
+                <td><?php echo $fetch['batch'] ?></td>
+                <td><?php echo $fetch['total'] . ' ' . $quantityMessage ?></td>
+                <td><?php echo $fetch['expDate'] . ' ' . $expirationMessage ?></td>
+                <td><?php echo $status ?></td>
+                <td style="text-align: center">
+                    <?php if ($status == 'unavailable' || $fetch['total'] == 0) : ?>
+                        <button class="btn btn-primary" disabled>Request</button>
+                    <?php elseif ($fetch['unit'] == 'Insert') : ?>
+                        <a class="btn btn-primary profile-button" href="contraceptives_form.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+                    <?php else : ?>
+                        <a class="btn btn-primary profile-button" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
+                    <?php endif; ?>
+                </td>
+                <td style="text-align: center;">
+                    <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-ellipsis"></i></button>
                         <div class="dropdown-content">
-                        <a href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"></i> Edit</a><br>
-                        <a  href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a><br>
-                        <a onclick="confirmationDelete(this); return false;"href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>"style="background-color: white; transition: background-color 0.3s;"onmouseover="this.style.backgroundColor='red';"onmouseout="this.style.backgroundColor='white';">Delete</a>
+                            <a href="edit_med.php?productId=<?php echo $fetch['productId'] ?>"> Edit</a><br>
+                            <a href="report.php?productId=<?php echo $fetch['productId'] ?>">View</a><br>
+                            <a onclick="confirmationDelete(this); return false;" href="../admin_query/delete_med.php?productId=<?php echo $fetch['productId'] ?>" style="background-color: white; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='red';" onmouseout="this.style.backgroundColor='white';"> Delete</a>
                         </div>
-                      </td>
-                    </tr>
-                  <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
-            </tbody>
-          </table>
+                    </div>
+                </td>
+            </tr>
+        <?php
+        }
+        ?>
+    </tbody>
+</table>
+
+         
         </div>
       </div>
     </div>

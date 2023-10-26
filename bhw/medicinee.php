@@ -131,16 +131,16 @@ if(isset($_SESSION['user_data'])){
                 $quantityMessage = ''; // No message
             }
 
-            // Check if the medicine is close to expiration (within 1 year)
-$expirationDate = strtotime($fetch['expDate']);
-$expirationYear = date('Y', $expirationDate); // Get the year of the expiration date
-$currentYear = date('Y'); // Get the current year
+                    // Check if the medicine is close to expiration (within 1 year)
+        $expirationDate = strtotime($fetch['expDate']);
+        $expirationYear = date('Y', $expirationDate); // Get the year of the expiration date
+        $currentYear = date('Y'); // Get the current year
 
-if ($expirationYear == $currentYear) {
-    $expirationMessage = '<span class="text-warning">Expires soon</span>';
-} else {
-    $expirationMessage = ''; // No message
-}
+        if ($expirationYear == $currentYear) {
+            $expirationMessage = '<span class="text-warning">Expires soon</span>';
+        } else {
+            $expirationMessage = ''; // No message
+        }
 
         ?>
             <tr>

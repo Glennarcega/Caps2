@@ -66,6 +66,7 @@ if(isset($_SESSION['user_data'])){
             $lastName = isset($fetch['lastName']) ? $fetch['lastName'] : '';
             $firstName = isset($fetch['firstName']) ? $fetch['firstName'] : '';
             $middleName = isset($fetch['middleName']) ? $fetch['middleName'] : '';
+            $address = isset($fetch['address']) ? $fetch['address'] : '';
         }
         } else {
             echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
@@ -107,7 +108,13 @@ if(isset($_SESSION['user_data'])){
                                 <input type="text" class="form-control" name="middleName" 
                                 value="<?php echo $middleName; ?> "readonly />
                             </div>
-                        
+
+                            <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-control" name="address" 
+                             value="<?php echo $address; ?>" readonly />
+                            </div>
+
                             <div class="form-group">
                                 <label>Product ID</label>
                                 <input type="text" class="form-control" name="productId"
@@ -144,6 +151,7 @@ if(isset($_SESSION['user_data'])){
                                 <label>Type of Client</label>
                                 <select class="form-control" required="required" name="clientType" required>
                                     <option value="" disabled selected>Type of Client</option>
+                                    <option value="New User">New User</option>
                                     <option value="Current User">Current User</option>
                                     <option value="Dropout">Dropout</option>
                                     <option value="Dropout & Restart">Dropout / Restart</option>
@@ -188,23 +196,28 @@ if(isset($_SESSION['user_data'])){
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-        $(document).ready(function() {
-            // Initially hide the "Method Currently used" section
-            $("#changingMethodSection").hide();
+    $(document).ready(function() {
+        // Initially hide the "Method Currently used" section
+        $("#changingMethodSection").hide();
 
-            // Attach change event handler to the clientType select element
-            $("select[name='clientType']").change(function() {
-                var selectedOption = $(this).val();
-                if (selectedOption === "Dropout") {
-                    // If "New User" is selected, hide the "Method Currently used" section
-                    $("#changingMethodSection").hide();
-                } else {
-                    // For other options, show the "Method Currently used" section
-                    $("#changingMethodSection").show();
-                }
-            });
+        // Attach change event handler to the clientType select element
+        $("select[name='clientType']").change(function() {
+            var selectedOption = $(this).val();
+            if (selectedOption === "Dropout") {
+                // If "Dropout" is selected, hide the "Method Currently used" section
+                $("#changingMethodSection").hide();
+            } else if (selectedOption === "New User") {
+                // If "New User" is selected, hide the "Method Currently used" section
+                $("#changingMethodSection").hide();
+            } else {
+                // For other options, show the "Method Currently used" section
+                $("#changingMethodSection").show();
+            }
         });
-    </script>
+    });
+</script>
+
+   
     
  <script src="../cssmainmenu/script.js"></script>
  <script>

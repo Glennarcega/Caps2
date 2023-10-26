@@ -32,6 +32,8 @@ if(isset($_SESSION['user_data'])){
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <style>
+    
+<style>
 * {
   box-sizing: border-box;
 }
@@ -315,7 +317,7 @@ try {
                    
                        if (empty($start_date) && empty($end_date) && $selectedAddress === "all") {
                            // No filter criteria are selected, so just retrieve all records
-                           $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
+                           $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM record_data_graph GROUP BY productName");
                    
                            // Fetch and populate the data
                            while ($data3 = $default_query->fetch_assoc()) {
@@ -324,7 +326,7 @@ try {
                            }
                        } else {
                            // Prepare the statement to filter by address and date range
-                           $stmt = $mysqli->prepare("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine WHERE address = ? AND givenDate BETWEEN ? AND ? GROUP BY productName");
+                           $stmt = $mysqli->prepare("SELECT productName, SUM(quantity_req) AS total_quantity FROM record_data_graph WHERE address = ? AND givenDate BETWEEN ? AND ? GROUP BY productName");
                    
                            if ($stmt === false) {
                                die("Preparation failed: " . $mysqli->error);
@@ -350,7 +352,7 @@ try {
                        }
                    } else {
                        // Default query if no filter applied
-                       $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
+                       $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM record_data_graph GROUP BY productName");
                    
                        // Fetch and populate the data
                        while ($data3 = $default_query->fetch_assoc()) {

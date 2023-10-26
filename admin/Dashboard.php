@@ -190,7 +190,9 @@ body {
                     <div class="icon-box">
                         <i class="fa-style fa-family"></i>
                     </div>
-                    <?php
+        
+                 
+                   <?php
                     // Include the database connection
                     include "../connection/connect.php";
 
@@ -208,6 +210,7 @@ body {
                     // Output the result
                     echo "<h5>Number of Contraceptive User : " . $contraceptivemethodCount . "</h5>";
                     ?>
+
                     </div>
                 </div>
                 </div>
@@ -311,7 +314,7 @@ body {
                    
                        if (empty($start_date) && empty($end_date) && $selectedAddress === "all") {
                            // No filter criteria are selected, so just retrieve all records
-                           $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
+                           $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM record_data_graph GROUP BY productName");
                    
                            // Fetch and populate the data
                            while ($data3 = $default_query->fetch_assoc()) {
@@ -320,7 +323,7 @@ body {
                            }
                        } else {
                            // Prepare the statement to filter by address and date range
-                           $stmt = $mysqli->prepare("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine WHERE address = ? AND givenDate BETWEEN ? AND ? GROUP BY productName");
+                           $stmt = $mysqli->prepare("SELECT productName, SUM(quantity_req) AS total_quantity FROM record_data_graph WHERE address = ? AND givenDate BETWEEN ? AND ? GROUP BY productName");
                    
                            if ($stmt === false) {
                                die("Preparation failed: " . $mysqli->error);
@@ -346,7 +349,7 @@ body {
                        }
                    } else {
                        // Default query if no filter applied
-                       $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM request_medicine GROUP BY productName");
+                       $default_query = $mysqli->query("SELECT productName, SUM(quantity_req) AS total_quantity FROM record_data_graph GROUP BY productName");
                    
                        // Fetch and populate the data
                        while ($data3 = $default_query->fetch_assoc()) {
@@ -419,6 +422,7 @@ body {
         </div>
     </div>
 </section>
+    
 
 </body>
 <script type="text/javascript">

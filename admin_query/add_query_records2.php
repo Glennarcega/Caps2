@@ -35,6 +35,8 @@ if (isset($_POST['add_rec'])) {
                     $insertQuery = $mysqli->query("INSERT INTO request_medicine (residentId,lastName,firstName,middleName, productId, productName, unit, quantity_req, givenDate) VALUES ('$residentId','$lastName','$firstName','$middleName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate')");
 
                     if ($insertQuery) {
+                        $recordQuery = $mysqli->query("INSERT INTO record_data_graph (residentId, productId, address, productName, quantity_req, givenDate) VALUES ('$residentId', '$productId', '$address', '$productName', '$quantity_req', '$givenDate')");
+
                         echo '<script>alert("Request Medicine Successful. Click OK ");</script>';
 
                         echo '<script>window.location.href = "resident_med.php?residentId=' . $residentId . '";</script>';

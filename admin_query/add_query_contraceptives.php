@@ -40,13 +40,25 @@ if (isset($_POST['add_rec'])) {
 
             if ($query) {
                 $residentId = mysqli_insert_id($mysqli);
-                $query = $mysqli->query("INSERT INTO contraceptivemethod_request (residentId, lastName, firstName, middleName,address, productId, productName, unit, quantity_req, givenDate,clientType,changingMethod,reason) VALUES ('$residentId','$lastName','$firstName','$middleName','$address','$productId','$productName','$unit', '$quantity_req', '$givenDate', '$clientType','$changingMethod','$reason')");
-
-                echo '<script>window.location.href = "./userRecMed.php?success=Add Request Successfully";</script>';
-                exit(); // Add this line to stop further script execution
+                $query = $mysqli->query("INSERT INTO contraceptivemethod_request (residentId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate, clientType, changingMethod, reason) VALUES ('$residentId', '$lastName', '$firstName', '$middleName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate', '$clientType', '$changingMethod', '$reason')");
+            
+                if ($query) {
+                    // The insertion into contraceptivemethod_request was successful
+                    $recordQuery = $mysqli->query("INSERT INTO record_data_graph (residentId, productId, address, productName, quantity_req, givenDate) VALUES ('$residentId', '$productId', '$address', '$productName', '$quantity_req', '$givenDate')");
+                    
+                    if ($recordQuery) {
+                        echo '<script>window.location.href = "./userRecMed.php?success=Add Request Successfully";</script>';
+                        exit();
+                    } else {
+                        echo "Error inserting data into record_data_graph: " . mysqli_error($mysqli);
+                    }
+                } else {
+                    echo "Error inserting data into contraceptivemethod_request: " . mysqli_error($mysqli);
+                }
             } else {
                 echo "Error: " . mysqli_error($mysqli);
             }
+            
         } else {
             // Insufficient quantity, show an error message
             echo '<script>alert("Insufficient quantity available.");</script>';

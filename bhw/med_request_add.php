@@ -66,6 +66,8 @@ if(isset($_SESSION['user_data'])){
             $lastName = isset($fetch['lastName']) ? $fetch['lastName'] : '';
             $firstName = isset($fetch['firstName']) ? $fetch['firstName'] : '';
             $middleName = isset($fetch['middleName']) ? $fetch['middleName'] : '';
+            $address = isset($fetch['address']) ? $fetch['address'] : '';
+
         }
         } else {
             echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';
@@ -108,6 +110,12 @@ if(isset($_SESSION['user_data'])){
                                 <input type="text" class="form-control" name="middleName" 
                                 value="<?php echo $middleName; ?> "readonly />
                             </div>
+                         <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-control" name="address" 
+                             value="<?php echo $address; ?>" readonly />
+                        </div>
+                           
                             <div class="form-group">
                                 <label>Product ID</label>
                                 <input type="text" class="form-control" name="productId"

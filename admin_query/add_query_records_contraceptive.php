@@ -32,14 +32,19 @@ if (isset($_POST['add_rec'])) {
                 $updateQuery = $mysqli->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
 
                 if ($updateQuery) {
-                    $insertQuery = $mysqli->query("INSERT INTO contraceptivemethod_request (residentId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate,clientType,changingMethod,reason) VALUES ('$residentId','$lastName','$firstName','$middleName','$productId','$productName','$unit', '$quantity_req', '$givenDate', '$clientType','$changingMethod','$reason')");
-
-
+                    $insertQuery = $mysqli->query("INSERT INTO contraceptivemethod_request (residentId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate, clientType, changingMethod, reason) VALUES ('$residentId', '$lastName', '$firstName', '$middleName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate', '$clientType', '$changingMethod', '$reason')");
+                
                     if ($insertQuery) {
-                        echo '<script>alert("Request Medicine Successful. Click OK ");</script>';
-
-                        echo '<script>window.location.href = "individual_records_FP.php?residentId=' . $residentId . '";</script>';
-                        exit();
+                        // Insert data into record_data_graph
+                        $recordQuery = $mysqli->query("INSERT INTO record_data_graph (residentId, productId, address, productName, quantity_req, givenDate) VALUES ('$residentId', '$productId', '$address', '$productName', '$quantity_req', '$givenDate')");
+                
+                        if ($recordQuery) {
+                            echo '<script>alert("Request Medicine Successful. Click OK ");</script>';
+                            echo '<script>window.location.href = "individual_records_FP.php?residentId=' . $residentId . '";</script>';
+                            exit();
+                        } else {
+                            echo "Error inserting data into record_data_graph: " . mysqli_error($mysqli);
+                        }
                     } else {
                         echo "Error: " . mysqli_error($mysqli);
                     }

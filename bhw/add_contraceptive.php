@@ -72,13 +72,30 @@ if(isset($_SESSION['user_data'])){
             if ($fetch['unit'] != 'Insert') {
                 continue;
             }
-        ?>
+             // Check if quantity is lower than 10
+             if ($fetch['total'] < 10) {
+                $quantityMessage = '<span class="text-danger">Low quantity</span>';
+            } else {
+                $quantityMessage = ''; // No message
+            }
+
+                    // Check if the medicine is close to expiration (within 1 year)
+            $expirationDate = strtotime($fetch['expDate']);
+            $expirationYear = date('Y', $expirationDate); // Get the year of the expiration date
+            $currentYear = date('Y'); // Get the current year
+
+            if ($expirationYear == $currentYear) {
+                $expirationMessage = '<span class="text-warning">Expires soon</span>';
+            } else {
+                $expirationMessage = ''; // No message
+            }
+            ?>
         <tr>
             <td><?php echo $fetch['sponsor'] ?></td>
             <td><?php echo $fetch['productName'] ?></td>
             <td><?php echo $fetch['unit'] ?></td>
-            <td><?php echo $fetch['total'] ?></td>
-            <td><?php echo $fetch['expDate'] ?></td>
+            <td><?php echo $fetch['total']  . ' ' . $quantityMessage ?></td>
+            <td><?php echo $fetch['expDate']. ' ' . $expirationMessage ?></td>
             <td><?php echo $status ?></td>
             <td style="text-align: center;">
                 

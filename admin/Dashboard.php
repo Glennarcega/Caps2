@@ -194,8 +194,8 @@ body {
                     // Include the database connection
                     include "../connection/connect.php";
 
-                    // SQL query to count medicines
-                    $sql = "SELECT COUNT(*) as contraceptivemethod_count FROM contraceptivemethod_request";
+                    // SQL query to count distinct residentIds
+                    $sql = "SELECT COUNT(DISTINCT residentId) as contraceptivemethod_count FROM contraceptivemethod_request";
                     $result = $mysqli->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -206,8 +206,8 @@ body {
                     }
 
                     // Output the result
-                    echo "<h5>Number of Contraceptive : " . $contraceptivemethodCount . "</h5>";
-                   ?>
+                    echo "<h5>Number of Contraceptive User : " . $contraceptivemethodCount . "</h5>";
+                    ?>
                     </div>
                 </div>
                 </div>

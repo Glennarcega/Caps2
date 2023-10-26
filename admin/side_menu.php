@@ -39,13 +39,7 @@
         </a>
         <span class="tooltip">Medicine</span>
       </li>
-      <li>
-        <a href="Contraceptives.php">
-          <i class="bx bx-capsule"></i>
-          <span class="link_name">Contraceptive Records</span>
-        </a>
-        <span class="tooltip">Contraceptives</span>
-      </li>
+     
       <li>
         <a href="records.php">
           <i class="bx bx-folder"></i>

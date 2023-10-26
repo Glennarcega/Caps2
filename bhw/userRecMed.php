@@ -58,7 +58,7 @@ if(isset($_SESSION['user_data'])){
 /* Style for the links within the dropdown content */
 .dropdown-content a {
     display: block;
-    padding: 8px 20px;
+    padding: 8px 10px;
     text-decoration: none;
     color: #333;
 }
@@ -114,8 +114,6 @@ if(isset($_SESSION['user_data'])){
                     <th>Sex</th>
                     <th>Address</th>
                     <th>Contact Number</th>
-                    <th style="text-align: center;">Medicine</th>
-                    <th style="text-align: center;">Family Planning</th>
                     <th style="text-align: center;">Action</th>
                   </tr>
                 </thead>
@@ -131,14 +129,14 @@ if(isset($_SESSION['user_data'])){
                 <td><?php echo $fetch['sex']?></td>
                 <td><?php echo $fetch['address']?></td>
                 <td><?php echo $fetch['contactNumber']?></td>
-                <th style="text-align: center;"><a class="btn btn-primary profile-button" href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Update</a>
-                <th style="text-align: center;"><a class="btn btn-primary profile-button" href="individual_records_FP.php?residentId=<?php echo $fetch['residentId'] ?>"> Update</a>
                 <td style="text-align: center;">
                           <div class="dropdown">
                         <button class="dropbtn"><i class="fa-solid fa-ellipsis"></i></button>
                         <div class="dropdown-content">
                         <a href="edit_contraceptive_form.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Edit</a><br>
-                        <!--<a  href="report.php?productId=<?php echo $fetch['productId'] ?>"></i> View</a><br>-->
+                        <a  href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i>Request Medicine</a><br>
+                        <a href="individual_records_FP.php?residentId=<?php echo $fetch['residentId'] ?>"> Request Contrcaeptive</a><br>
+ 
                         </div>
                       </td>
               </tr>			

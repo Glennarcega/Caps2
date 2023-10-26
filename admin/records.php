@@ -80,7 +80,7 @@ if(isset($_SESSION['user_data'])){
   <div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-body">
-           <h3> <div class = "alert alert-info">Request Medicine</div></h3>
+           <h3> <div class = "alert alert-info">Request Medicine Records</div></h3>
          
            <a class="btn btn-success" href="records.php"></i>Request Medicine</a>
             <a class="btn btn-success" href="resident_records.php"></i>Resident Records</a>

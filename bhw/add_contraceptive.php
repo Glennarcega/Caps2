@@ -59,7 +59,7 @@ if(isset($_SESSION['user_data'])){
             <th>Quantity</th>
             <th>Expiration Date</th>
             <th>Status</th>
-            <th>Request</th>
+            <th style="text-align: center;">Request</th>
         </tr>
     </thead>
     <tbody>
@@ -80,8 +80,8 @@ if(isset($_SESSION['user_data'])){
             <td><?php echo $fetch['total'] ?></td>
             <td><?php echo $fetch['expDate'] ?></td>
             <td><?php echo $status ?></td>
-            <td>
-                <center>
+            <td style="text-align: center;">
+                
                     <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
                         <button class="btn btn-warning" disabled>Request</button>
                     <?php else: ?>
@@ -98,7 +98,6 @@ if(isset($_SESSION['user_data'])){
                         }
                         ?>
                     <?php endif; ?>
-                </center>
             </td>
         </tr>
         <?php } ?>

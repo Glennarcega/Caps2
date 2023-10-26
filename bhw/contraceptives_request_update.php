@@ -145,6 +145,7 @@ if(isset($_SESSION['user_data'])){
                                 <select class="form-control" required="required" name="clientType" required>
                                     <option value="" disabled selected>Type of Client</option>
                                     <option value="Current User">Current User</option>
+                                    <option value="Dropout">Dropout</option>
                                     <option value="Dropout & Restart">Dropout / Restart</option>
                                     <option value="Changing Method">Changing Method</option>
                                 </select>
@@ -186,7 +187,7 @@ if(isset($_SESSION['user_data'])){
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+<script>
         $(document).ready(function() {
             // Initially hide the "Method Currently used" section
             $("#changingMethodSection").hide();
@@ -194,7 +195,7 @@ if(isset($_SESSION['user_data'])){
             // Attach change event handler to the clientType select element
             $("select[name='clientType']").change(function() {
                 var selectedOption = $(this).val();
-                if (selectedOption === "New User") {
+                if (selectedOption === "Dropout") {
                     // If "New User" is selected, hide the "Method Currently used" section
                     $("#changingMethodSection").hide();
                 } else {
@@ -204,6 +205,7 @@ if(isset($_SESSION['user_data'])){
             });
         });
     </script>
+    
  <script src="../cssmainmenu/script.js"></script>
  <script>
   document.addEventListener("DOMContentLoaded", function() {

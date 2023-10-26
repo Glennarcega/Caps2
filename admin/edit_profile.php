@@ -107,9 +107,9 @@ if(isset($_SESSION['user_data'])){
                   <div class="col-md-6"><label class="labels">Name</label><input type="text" name="fname" value = "<?php echo $_SESSION['user_data']['fname']; ?>" class="form-control" placeholder="First Name" required readonly></div>
                   <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value = "<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name" required readonly></div>
                   <div class="col-md-6"><label class="labels emaillbl"><br>Email</label>
-                  <input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required>
-                  <small id="emailError" class="form-text text-danger">Email must be 24 characters only.</small>
-
+                  <input type="text" name="email" id="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required>
+                  <span id="emailWarning" class="text-danger" style="display:none; font-size:11px;">Email must be at most 24 characters only.</span>
+                </div>
                 </div>
               </div>
                     <div class="row mt-3">

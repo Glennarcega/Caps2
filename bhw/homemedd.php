@@ -32,8 +32,6 @@ if(isset($_SESSION['user_data'])){
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <style>
-    
-<style>
 * {
   box-sizing: border-box;
 }

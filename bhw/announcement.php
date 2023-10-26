@@ -51,8 +51,15 @@ if(isset($_SESSION['user_data'])){
   margin-left: 160px;
   text-align: center;
 }
-.textmessagebox{
+  .textmessagebox{
   width:100%;
+}
+@media screen and (max-width: 600px) {
+  .form-container .form-group {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
 }
 </style>
 <body>

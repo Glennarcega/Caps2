@@ -107,8 +107,8 @@ if(isset($_SESSION['user_data'])){
                 <div class="row mt-2">
                   <div class="col-md-6"><label class="labels">Name</label><input type="text" name="fname" value = "<?php echo $_SESSION['user_data']['fname']; ?>" class="form-control" placeholder="First Name" required readonly></div>
                   <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lname" value = "<?php echo $_SESSION['user_data']['lname']; ?>" placeholder="Last Name" required readonly></div>
-                  <div class="col-md-6"><label class="labels emaillbl"><br>Email</label><input type="text" name="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required>
-                  <small id="emailError" class="form-text text-danger">Email must be 24 characters only.</small>
+                  <div class="col-md-6"><label class="labels emaillbl"><br>Email</label><input type="text" name="email" id="email" value = "<?php echo $_SESSION['user_data']['email']; ?>" class="form-control" value="" placeholder="Example@gmail.com" required>
+                  <span id="emailWarning" class="text-danger" style="display:none; font-size:11px;">Email must be at most 24 characters only.</span>
                 </div>
               </div>
                     <div class="row mt-3">
@@ -188,25 +188,25 @@ if(isset($_SESSION['user_data'])){
         }
     });
 </script>
-<script>
-    document.querySelector('#email').addEventListener('input', function () {
-        const input = this.value;
-        const emailError = document.querySelector('#emailError');
-        
-        if (input.length > 28) {
-            this.value = input.slice(0, 28); // Truncate the input to 28 characters
-        }
-
-        if (input.length > 28) {
-            emailError.textContent = 'Email must be at most 28 characters.';
-            emailError.style.display = 'block'; // Ensure the error message is displayed
-            this.setCustomValidity('Email must be at most 28 characters.');
-        } else {
-            emailError.style.display = 'none'; // Hide the error message if it's not applicable
-            this.setCustomValidity(''); // Reset the custom validity
-        }
-
-    });
+<script>//naglilimit sa email inputbox hanggang 24charac lang
+   document.querySelector('#email').addEventListener('input', function () {
+    const input = this.value;
+    const emailError = document.querySelector('#emailError');
+    
+    if (input.length > 24) {
+        this.value = input.slice(0, 24); // Truncate the input to 24 characters
+        emailError.textContent = 'Email must be at most 24 characters.';
+        emailError.style.display = 'block'; // Display the error message
+        this.setCustomValidity('Email must be at most 24 characters.');
+    } else if (input.length < 1) {
+        emailError.textContent = 'Email is required.';
+        emailError.style.display = 'block'; // Display the error message
+        this.setCustomValidity('Email is required.');
+    } else {
+        emailError.style.display = 'none'; // Hide the error message if it's not applicable
+        this.setCustomValidity(''); // Reset the custom validity
+    }
+});
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -227,35 +227,24 @@ function validateFileType(){
         }   
     }
 </script> 
-</script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const emailInput = document.querySelector('input[name="email"]');
-        const charCount = document.getElementById('charCount');
-        const emailError = document.getElementById('emailError');
-        const maxChars = 24;
+document.addEventListener("DOMContentLoaded", function () {
+    const emailInput = document.querySelector('#email');
+    const emailWarning = document.getElementById('emailWarning');
+    const maxChars = 24;
 
-        emailInput.addEventListener('input', function () {
-            const currentChars = this.value.length;
+    emailInput.addEventListener('input', function () {
+        const currentChars = this.value.length;
 
-            if (currentChars > maxChars) {
-                this.value = this.value.substring(0, maxChars); // Truncate input if it exceeds the limit
-                emailError.textContent = 'Email must be at most 24 characters.';
-                emailError.style.display = 'block';
-            } else {
-                emailError.style.display = 'none';
-            }
-
-            charCount.textContent = `${currentChars}/${maxChars} characters`;
-
-            if (currentChars === maxChars) {
-                emailInput.setAttribute('disabled', 'disabled'); // Disable input once it reaches the limit
-            } else {
-                emailInput.removeAttribute('disabled');
-            }
-        });
+        if (currentChars === maxChars) {
+            emailWarning.style.display = 'block';
+        } else {
+            emailWarning.style.display = 'none';
+        }
     });
+});
 </script>
+
 </html>
 <?php
 }

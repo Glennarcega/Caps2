@@ -84,25 +84,44 @@
     display: none;
     margin-top: -20px;
 }
+@media screen and (max-width: 600px) {
+  .bodyy .form-container {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
 
     @media screen and (max-width: 767px) {
-        /* Additional CSS for low-resolution tablets and iPads */
-        /* You can add styles specific to this screen size here */
+        .bodyy .form-container{
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
     }
 
     @media screen and (max-width: 1024px) {
-        /* Additional CSS for tablets (portrait mode) */
-        /* You can add styles specific to this screen size here */
+        .bodyy .form-container{
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
     }
 
     @media screen and (max-width: 1280px) {
-        /* Additional CSS for desktops */
-        /* You can add styles specific to this screen size here */
+        .bodyy .form-container{
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
     }
 
     @media screen and (min-width: 1281px) {
-        /* Additional CSS for larger screens */
-        /* You can add styles specific to this screen size here */
+        .bodyy .form-container{
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
     }
 
 </style>

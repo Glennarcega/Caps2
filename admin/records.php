@@ -81,11 +81,8 @@ if(isset($_SESSION['user_data'])){
 		<div class="panel panel-default">
 			<div class="panel-body">
            <h3> <div class = "alert alert-info">Request Medicine Records</div></h3>
-         
            <a class="btn btn-success" href="records.php"></i>Request Medicine</a>
             <a class="btn btn-success" href="resident_records.php"></i>Resident Records</a>
-
-
                 <br> </br>
       <table name="medicinesTable" id="medicinesTable" class="display" cellspacing="0" width="100%">
             <thead>

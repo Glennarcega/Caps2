@@ -164,14 +164,14 @@ if(isset($_SESSION['user_data'])){
     const submitButton = document.getElementById("submit-button"); // Get the submit button.
 
     // Define a regular expression pattern for allowed characters.
-    const allowedCharacters = /^[a-zA-Z0-9!@#]+$/;
+    const allowedCharacters = /^[a-zA -Z0-9 /^!@#$%^&*()\-_=+\{}|;:,<.>\/?+$/]+$/;
 
     if (password.length < 8) {
         passwordValidationMsg.textContent = "Password must be at least 8 characters long.";
         submitButton.disabled = true; // Disable the submit button.
         return false; // Prevent form submission
     } else if (!allowedCharacters.test(password)) {
-        passwordValidationMsg.textContent = "Password contains disallowed characters. Only letters, numbers, !, @, and # are allowed.";
+        passwordValidationMsg.textContent = "Password contains disallowed that characters.";
         submitButton.disabled = true; // Disable the submit button.
         return false; // Prevent form submission
     } else {

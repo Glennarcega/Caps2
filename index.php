@@ -86,28 +86,40 @@
     margin-top: -20px;
 }
 
-    @media screen and (max-width: 767px) {
-        /* Additional CSS for low-resolution tablets and iPads */
-        /* You can add styles specific to this screen size here */
-    }
 
-    @media screen and (max-width: 1024px) {
-        /* Additional CSS for tablets (portrait mode) */
-        /* You can add styles specific to this screen size here */
-    }
 
-    @media screen and (max-width: 1280px) {
-        /* Additional CSS for desktops */
-        /* You can add styles specific to this screen size here */
-    }
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    
 
-    @media screen and (min-width: 1281px) {
-        /* Additional CSS for larger screens */
-        /* You can add styles specific to this screen size here */
-    }
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  background-image: url("./img/opening.jpg");
+  font-size: 16px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+    text-align: center;
+}
+
+
 
 </style>
-<body class ="bodyy">
+<body>
+
+        <div class="column">
+        <div class="card">
 <div class="form-container">
     <form class="mx-auto"
           action="check-login.php"
@@ -149,6 +161,8 @@
         <a href="forgot-password.php" style="text-decoration: none;">Forgot Password?</a>
     </form>
 </div>
+</div>
+<div>
 
 <script>
     document.querySelector('#email').addEventListener('input', function () {

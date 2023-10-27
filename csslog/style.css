@@ -17,12 +17,6 @@ form{
     text-align: center;
     min-height: 500px;
 }
-.bodyy{
-    background-image: url("../img/opening.jpg");
-    display: block;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 .form-control{
     box-shadow: none;
@@ -47,12 +41,9 @@ form{
 }
 
 
-
-
-
 /* Add mobile-first styles */
 body {
-    font-size: 16px;
+    overflow: hidden;
 }
 
 form {

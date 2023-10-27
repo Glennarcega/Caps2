@@ -123,8 +123,7 @@
 <div class="form-container">
     <form class="mx-auto"
           action="check-login.php"
-          method="post"
-          style="background-color: rgba(255, 250, 205, 0.8)">
+          method="post">
         <img src="img/ourlogo.png" alt="Logo" class="logo">
         <h6 class="text-center p-1">Medicine Management System for Barangay Malitam</h6>
         <h2 class="text-center p-1">LOGIN</h2>

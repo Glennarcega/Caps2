@@ -102,17 +102,26 @@ if(isset($_SESSION['user_data'])){
 
                   if ($query->num_rows > 0) {
                       while ($fetch = $query->fetch_assoc()) {
-                      
+                     
+                          $currentDate = date("Y-m-d");
+                
                           // Display the records within the table rows
                           echo '<tr>';
-                          echo '<td style="text-align: center;">' . $fetch['clientType'] . '</td>';
+                          echo '<td  style="text-align: center;">' . $fetch['clientType'];
+                          
+                          // Compare the givenDate with the current date
+                          if ($fetch['givenDate'] === $currentDate) {
+                            echo  '  <span class="Success" style="color: green;">- New</span>';
+                          }
+                  
+                          echo '</td>';
                           echo '<td style="text-align: center;">' . $fetch['changingMethod'] . '</td>';
                           echo '<td style="text-align: center;">'. $fetch['productName'] . '</td>';
                           echo '<td style="text-align: center;">' . $fetch['unit'] . '</td>';
                           echo '<td style="text-align: center;">' . $fetch['quantity_req'] . '</td>';
                           echo '<td style="text-align: center;">' . $fetch['givenDate'] . '</td>';
                           echo '</tr>';
-                      }
+                      }                      
                   } else {
                       echo '<tr><td colspan="3">No records found! </td></tr>';
                   }

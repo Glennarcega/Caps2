@@ -100,18 +100,25 @@ if(isset($_SESSION['user_data'])){
                   $query = $mysqli->query("SELECT * FROM request_medicine WHERE residentId = '$desiredResidentId' ORDER BY givenDate DESC");
 
                   if ($query->num_rows > 0) {
-                      while ($fetch = $query->fetch_assoc()) {
-                      
-                          // Display the records within the table rows
-                          echo '<tr>';
-                          echo '<td>' . $fetch['productName'] . '</td>';
-                          echo '<td>' . $fetch['unit'] . '</td>';
-                          echo '<td>' . $fetch['quantity_req'] . '</td>';
-                          echo '<td>' . $fetch['givenDate'] . '</td>';
-                          echo '</tr>';
-                      }
-                  } else {
-                      echo '<tr><td colspan="3">No records found! </td></tr>';
+                    while ($fetch = $query->fetch_assoc()) {
+                        // Get the current date
+                        $currentDate = date("Y-m-d");
+                
+                        // Display the records within the table rows
+                        echo '<tr>';
+                        echo '<td>' . $fetch['productName'];
+                        
+                        // Compare the givenDate with the current date
+                        if ($fetch['givenDate'] === $currentDate) {
+                          echo  '  <span class="Success" style="color: green;">- New</span>';
+                        }
+                
+                        echo '</td>';
+                        echo '<td>' . $fetch['unit'] . '</td>';
+                        echo '<td>' . $fetch['quantity_req'] . '</td>';
+                        echo '<td>' . $fetch['givenDate'] . '</td>';
+                        echo '</tr>';
+                    }
                   }
               } else {
                   echo '<tr><td colspan="3">Resident ID not provided in the URL.</td></tr>';

@@ -107,7 +107,7 @@ if(isset($_SESSION['user_data'])){
               <table id = "table" class = "table table-striped table-hover">
                 <thead>
                   <tr>
-                    <!-- Checkbox-->
+                    
                     <th>Resident Name</th>
                     <th>Date of Birth</th>
                     <th>Age</th>
@@ -130,11 +130,11 @@ if(isset($_SESSION['user_data'])){
                 <td><?php echo $fetch['address']?></td>
                 <td><?php echo $fetch['contactNumber']?></td>
                 <td style="text-align: center;">
-                          <div class="dropdown">
-                        <button class="dropbtn"><i class="fa-solid fa-ellipsis"></i></button>
-                        <div class="dropdown-content">
-                        <a href="edit_contraceptive_form.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Edit</a><br>
-                        <a  href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i>Request Medicine</a><br>
+                <div class="dropdown">
+                <button class="dropbtn"><i class="fa-solid fa-ellipsis"></i></button>
+                <div class="dropdown-content">
+                  <a href="edit_contraceptive_form.php?residentId=<?php echo $fetch['residentId'] ?>"></i> Edit</a><br>
+                  <a  href="resident_med.php?residentId=<?php echo $fetch['residentId'] ?>"></i>Request Medicine</a><br>
                         <a href="individual_records_FP.php?residentId=<?php echo $fetch['residentId'] ?>"> Request Contrcaeptive</a><br>
  
                         </div>

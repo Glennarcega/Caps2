@@ -182,6 +182,9 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
         <span class="fas fa-key"></span>
         <div class="password-input-container">
             <input type="text" name="password" id="password" oninput="validatePassword(this.value)" autocomplete="off" required placeholder="Enter New Password" style="font-size: 15px; height: 50px; width: 255px;" />
+            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
+            <i class="fas fa-eye-slash toggle-password"></i>
+        </button>
         </div>
     </div>
 </div>
@@ -210,29 +213,29 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 </body>
 
 <script>
-function togglePasswordButton(buttonId) {
-    var passwordInput = document.getElementById(buttonId.replace('Toggle', ''));
-    var showPasswordBtn = document.getElementById(buttonId);
+     function togglePasswordButton(buttonId) {
+            var passwordInput = document.getElementById(buttonId.replace('Toggle', ''));
+            var showPasswordBtn = document.getElementById(buttonId);
 
-    if (passwordInput.value.length > 0) {
-        showPasswordBtn.style.display = "block";
-    } else {
-        showPasswordBtn.style.display = "none";
-    }
-}
+            if (passwordInput.value.length > 0) {
+                showPasswordBtn.style.display = "block";
+            } else {
+                showPasswordBtn.style.display = "none";
+            }
+        }
 
-function togglePasswordVisibility(inputId) {
-    var passwordInput = document.getElementById(inputId);
-    var showPasswordBtn = document.getElementById(inputId + "Toggle");
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = document.getElementById(inputId);
+            var showPasswordBtn = document.getElementById(inputId + "Toggle");
 
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        showPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
-    } else {
-        passwordInput.type = "password";
-        showPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
-    }
-}
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
+            } else {
+                passwordInput.type = "password";
+                showPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            }
+        }
 </script>
 
 <script>

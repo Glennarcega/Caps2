@@ -17,7 +17,7 @@
 
 .toggle-password-btn {
         position: absolute;
-        right: 10px;
+        right: -7px;
         top: 50%;
         transform: translateY(-50%);
         background: none;
@@ -58,10 +58,14 @@
 
 .input-icon {
     position: relative;
-    display: flex;
-    align-items: center;
+    display: inline-block;
+    max-width: 100%;
 }
-
+.input-icon input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
 .input-icon span {
     position: absolute;
     left: 10px;
@@ -71,10 +75,13 @@
     color: #555;
 }
 
-.toggle-password {
-    cursor: pointer;
-    transition: color 0.3s;
-    margin-left: -30px; /* I-adjust ang margin para ilagay ang icon sa kanan ng password field */
+.toggle-password-btn {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
 }
 
 .toggle-password.active {
@@ -89,13 +96,11 @@
 
 
 /* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-    
-
+@media (max-width: 600px) {
+  .column .toggle-password-btn {
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
   }
 }
 
@@ -150,7 +155,7 @@
     <div class="form-field d-flex align-items-center">
         <div class="input-icon">
             <span class="fas fa-key"></span>
-            <input type="password" name="password" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required placeholder="Password" style="font-size:15px; height: 50px; width:255px;"/>
+            <input type="password" name="password" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required placeholder="Password" style="font-size:15px; height: 50px; width:255px; padding-right: 40px;"/>
             <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
             <i class="fas fa-eye-slash toggle-password"></i>
             </button>

@@ -82,12 +82,10 @@ body {
   text-align: center;
   background-color: #f1f1f1;
 
+
 }
 
-.icon-box{
-        font-size: 50px;
-        color: #04c487;
-}
+
 
 </style>
 <body>
@@ -107,7 +105,7 @@ body {
         <h3><div class = "alert alert-info">SMS Announcement</div></h3>
         <div class="row">
         <div class="column">
-          <div class="card" style="margin: 0 auto; width: 300px;">
+        <div class="card" style="width: 400px; margin: 0 auto;">
           <form id="messageForm" >
         <label for="number">Residents: </label>
         <button id="contacts-button"><i class="fa-solid fa-user-plus"></i></button><br /><br />

@@ -34,26 +34,61 @@ if(isset($_SESSION['user_data'])){
 
 </head>
 <style>
-  .messageForm {
-    background-color: #f5f5f5; /* Baguhin ang kulay base sa iyong estilo */
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 40px;
-    width: 450px;
-    margin: auto;
-  }
   .selected-values{
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 100%;
   }
-  .sendbtn {
-  margin-left: 160px;
-  text-align: center;
-}
+
 .textmessagebox{
   width:100%;
 }
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  background-color: #f1f1f1;
+
+}
+
+.icon-box{
+        font-size: 50px;
+        color: #04c487;
+}
+
 </style>
 <body>
   
@@ -70,9 +105,10 @@ if(isset($_SESSION['user_data'])){
       <div class="panel panel-default">
         <div class="panel-body">
         <h3><div class = "alert alert-info">SMS Announcement</div></h3>
- 
-    <div class="form-container">
-      <form id="messageForm" class="messageForm">
+        <div class="row">
+        <div class="column">
+          <div class="card" style="margin: 0 auto; width: 300px;">
+          <form id="messageForm" >
         <label for="number">Residents: </label>
         <button id="contacts-button"><i class="fa-solid fa-user-plus"></i></button><br /><br />
         <textarea class="selected-values" type="text" name="number" required ></textarea><br /><br />
@@ -90,14 +126,13 @@ if(isset($_SESSION['user_data'])){
 
         <label for="message">Message:</label>
         <textarea  name="message" id="message" class="textmessagebox" rows="1" required></textarea><br /><br />
-        <a class="btn btn-success sendbtn"  type="submit"
-          value="Send Message"
-          onclick="sendMessage(event)"> Send SMS</a>
+        <a class="btn btn-success sendbtn" style="text-align: center;" type="submit"value="Send Message" onclick="sendMessage(event)"> Send SMS</a>
       </form>
+            </div>
+         
+    </div>
     </div>
 
-    
-      
           <?php if (isset($_GET['success'])) { ?>
             <div class="alert alert-success" role="alert">
               <?=$_GET['success']?>

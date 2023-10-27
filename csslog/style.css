@@ -42,9 +42,7 @@ form{
 
 
 /* Add mobile-first styles */
-body {
-    overflow: hidden;
-}
+
 
 form {
     width: 100%;

@@ -71,9 +71,10 @@ if(isset($_SESSION['user_data'])){
 							<label for="usertypeSelect">Role</label>
 							<select class="form-control" required="required" name="usertype" id="usertypeSelect">
 								<option value="" disabled selected>Select User Type</option>
-								<option value="2" <?php if ($fetch['usertype'] === '2') echo 'selected'; ?>>BHW</option>
-								<option value="1" <?php if ($fetch['usertype'] === '1') echo 'selected'; ?>>Admin</option>
-							</select>
+								<option value="2" <?php if ($fetch['usertype'] === '2') echo 'selected'; ?>>Activate</option>
+								<option value="3" <?php if ($fetch['usertype'] === '3') echo 'selected'; ?>>Deactivate</option>
+
+                            </select>
 						</div>
 					
 						<br />

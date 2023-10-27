@@ -7,8 +7,7 @@
 		$mobile_number = $_POST['mobile_number'];
 		$email = $_POST['email'];
 		$usertype = $_POST['usertype'];
-		$password = md5($_POST['password']);
-		$query = $mysqli->query("UPDATE `user` SET `fname` = '$fname', `lname` = '$lname', `address` = '$address', `mobile_number` = '$mobile_number', `email` = '$email', `usertype` = '$usertype', `password` = '$password' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
+		$query = $mysqli->query("UPDATE `user` SET `fname` = '$fname', `lname` = '$lname', `address` = '$address', `mobile_number` = '$mobile_number', `email` = '$email', `usertype` = '$usertype' WHERE `id` = '$_REQUEST[id]'") or die(mysqli_error());
 	
 		header("location:../admin/account.php?success=Edit Account Succesfully!");
 

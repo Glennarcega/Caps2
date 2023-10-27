@@ -53,24 +53,28 @@ if(isset($_SESSION['user_data'])){
 						<tr>
 					  	<th>Email</th>
 							<th>Name</th>
-							<th>Role</th>
+							<th>Status</th>
              				<th style="text-align: center;">Edit</th>
-							<th style="text-align: center;">Delete</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php  
-							$query = $mysqli->query("SELECT * FROM `user` WHERE usertype ='2'") or die(mysqli_error());
-							while($fetch = $query->fetch_array()){
+						$userTypes = [2, 3];
+						$userTypesString = implode(',', $userTypes); // Converts the array to a comma-separated string
+
+						$query = $mysqli->query("SELECT * FROM `user` WHERE usertype IN ($userTypesString)") or die(mysqli_error());
+													while($fetch = $query->fetch_array()){
 						?>
 						<tr>
 						<td><?php echo $fetch['email']?></td>
             <td><?php echo $fetch['fname'] . ' ' . $fetch['lname']; ?></td>
               <td>
-            <?php echo ($fetch['usertype'] == 2) ? 'BHW' : ''; ?>
+			  <?php
+echo ($fetch['usertype'] == 2) ? 'Active' : ($fetch['usertype'] == 3 ? 'Deactivated' : '');
+?>
+
              </td>
                 <td style="text-align: center;"><a class = "btn btn-primary profile-button" href = "edit_account.php?id=<?php echo $fetch['id']?>"> Edit</a>
-				<td style="text-align: center;"> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "../admin_query/delete_account.php?id=<?php echo $fetch['id']?>"> Delete</a>
 			</td>
 						</tr>
 						<?php
@@ -89,14 +93,7 @@ if(isset($_SESSION['user_data'])){
 <script src="../js/jquery.dataTables.js"></script>
 <script src="../js/dataTables.bootstrap.js"></script>
 
-  <script type = "text/javascript">
-	function confirmationDelete(anchor){
-		var conf = confirm("Are you sure you want to delete this record?");
-		if(conf){
-			window.location = anchor.attr("href");
-		}
-	} 
-</script>
+
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#table").DataTable();

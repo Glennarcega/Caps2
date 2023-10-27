@@ -48,7 +48,7 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 
 .toggle-password-btn {
         position: absolute;
-        right: 10px;
+        right: -7px;
         top: 50%;
         transform: translateY(-50%);
         background: none;
@@ -116,7 +116,14 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
     display: none;
     margin-top: -20px;
 }
+.password-input-container {
+    display: flex;
+    flex-direction: column;
+}
 
+#password-validation-msg {
+    margin-top: 5px;
+}
 
 
 /* Responsive columns */
@@ -171,26 +178,29 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 
         <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
         <div class="form-field d-flex align-items-center">
-            <div class="input-icon">
-                <span class="fas fa-key"></span>
-                <input type="password" name="password" id="password" oninput="togglePasswordButton('passwordToggle')" autocomplete="off" required placeholder="Enter New Password" style="font-size: 15px; height: 50px; width: 255px;" />
-                <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
-                    <i class="fas fa-eye-slash toggle-password"></i>
-                </button>
-            </div>
-            <p id="password-validation-msg" class="form-text text-danger"></p> <!-- Add a paragraph for validation messages -->
+    <div class="input-icon">
+        <span class="fas fa-key"></span>
+        <div class="password-input-container">
+            <input type="text" name="password" id="password" oninput="validatePassword(this.value)" autocomplete="off" required placeholder="Enter New Password" style="font-size: 15px; height: 50px; width: 255px;" />
         </div>
-        
+    </div>
+</div>
+<small id="passwordError" class="form-text text-danger"></small>
 
-        <div class="form-field d-flex align-items-center">
-            <div class="input-icon">
-                <span class="fas fa-key"></span>
-                <input type="password" name="password_confirmation" id="password_confirmation" oninput="togglePasswordButton('passwordConfirmationToggle')" autocomplete="off" required placeholder="Confirm Password" style="font-size: 15px; height: 50px; width: 255px;" />
-                <button type="button" id="passwordConfirmationToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password_confirmation')">
-                    <i class="fas fa-eye-slash toggle-password"></i>
-                </button>
-            </div>
+
+<div class="form-field d-flex align-items-center">
+    <div class="input-icon">
+        <span class="fas fa-key"></span>
+        <div class="password-input-container">
+            <input type="password" name="password_confirmation" id="password_confirmation" oninput="validatePasswordConfirmation(this.value)" autocomplete="off" required placeholder="Confirm Password" style="font-size: 15px; height: 50px; width: 255px;" />
+            <small id="passwordConfirmationError" class="form-text text-danger" style="margin-top: 5px;"></small>
         </div>
+        <button type="button" id="passwordConfirmationToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password_confirmation')">
+            <i class="fas fa-eye-slash toggle-password"></i>
+        </button>
+    </div>
+</div>
+
 
         <br>
         <button class="btn btn-primary mt-0">Send</button>
@@ -200,9 +210,9 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 </body>
 
 <script>
-function togglePasswordButton(inputId) {
-    var passwordInput = document.getElementById(inputId);
-    var showPasswordBtn = document.getElementById(inputId + "Toggle");
+function togglePasswordButton(buttonId) {
+    var passwordInput = document.getElementById(buttonId.replace('Toggle', ''));
+    var showPasswordBtn = document.getElementById(buttonId);
 
     if (passwordInput.value.length > 0) {
         showPasswordBtn.style.display = "block";
@@ -217,40 +227,47 @@ function togglePasswordVisibility(inputId) {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        showPasswordBtn.querySelector("i").classList.remove("fa-eye-slash");
-        showPasswordBtn.querySelector("i").classList.add("fa-eye");
+        showPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
     } else {
         passwordInput.type = "password";
-        showPasswordBtn.querySelector("i").classList.remove("fa-eye");
-        showPasswordBtn.querySelector("i").classList.add("fa-eye-slash");
+        showPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
     }
 }
 </script>
 
 <script>
-       function validatePassword() {
-    const passwordInput = document.getElementById("password");
-    const password = passwordInput.value;
-    const passwordValidationMsg = document.getElementById("password-validation-msg");
-    const submitButton = document.getElementById("submit-button"); // Get the submit button.
+    function validatePassword(password) {
+        var passwordField = document.getElementById("password");
+        var passwordError = document.getElementById("passwordError");
 
-    // Define a regular expression pattern for allowed characters.
-    const allowedCharacters = /^[a-zA -Z0-9 /^!@#$%^&*()\-_=+\{}|;:,<.>\/?+$/]+$/;
-
-    if (password.length < 8) {
-        passwordValidationMsg.textContent = "Password must be at least 8 characters long.";
-        submitButton.disabled = true; // Disable the submit button.
-        return false; // Prevent form submission
-    } else if (!allowedCharacters.test(password)) {
-        passwordValidationMsg.textContent = "Password contains disallowed that characters.";
-        submitButton.disabled = true; // Disable the submit button.
-        return false; // Prevent form submission
-    } else {
-        passwordValidationMsg.textContent = ""; // Clear any previous validation message.
-        submitButton.disabled = false; // Enable the submit button.
-        return true; // Allow form submission
+        if (password.length > 24) {
+            passwordField.classList.add("is-invalid");
+            passwordError.textContent = "Password must be 24 characters or less.";
+        } else if (/[^a-zA-Z0-9_]+/.test(password)) {
+            passwordField.classList.add("is-invalid");
+            passwordError.textContent = "Password can only contain letters, numbers, and underscores.";
+        } else {
+            passwordField.classList.remove("is-invalid");
+            passwordError.textContent = "";
+        }
     }
-}
+</script>
+<script>
+    // Function to enforce character limit
+    function enforceCharacterLimit(inputElement, maxLength) {
+        if (inputElement.value.length > maxLength) {
+            inputElement.value = inputElement.value.slice(0, maxLength);
+        }
+    }
 
-    </script>
+    // Add event listeners to the input fields
+    document.getElementById("password").addEventListener("input", function () {
+        enforceCharacterLimit(this, 24);
+    });
+
+    document.getElementById("password_confirmation").addEventListener("input", function () {
+        enforceCharacterLimit(this, 24);
+    });
+</script>
+
 </html>

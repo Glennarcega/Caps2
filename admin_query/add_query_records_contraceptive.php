@@ -39,7 +39,7 @@ if (isset($_POST['add_rec'])) {
                         $recordQuery = $mysqli->query("INSERT INTO record_data_graph (residentId, productId, address, productName, quantity_req, givenDate) VALUES ('$residentId', '$productId', '$address', '$productName', '$quantity_req', '$givenDate')");
                 
                         if ($recordQuery) {
-                            echo '<script>alert("Request Medicine Successful. Click OK ");</script>';
+                            echo '<script>alert("Request Contraceptive Successful. Click OK ");</script>';
                             echo '<script>window.location.href = "individual_records_FP.php?residentId=' . $residentId . '";</script>';
                             exit();
                         } else {

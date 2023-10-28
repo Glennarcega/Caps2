@@ -54,7 +54,7 @@ if(isset($_SESSION['user_data'])){
 					  	<th>Email</th>
 							<th>Name</th>
 							<th>Status</th>
-             				<th style="text-align: center;">Edit</th>
+             				<th style="text-align: center;">Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -92,7 +92,15 @@ echo ($fetch['usertype'] == 2) ? 'Active' : ($fetch['usertype'] == 3 ? 'Deactiva
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery.dataTables.js"></script>
 <script src="../js/dataTables.bootstrap.js"></script>
-
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Check if URL contains 'success' parameter and remove it
+    if (window.location.search.includes('success')) {
+        var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
+});
+</script>
 
 <script type="text/javascript">
 	$(document).ready(function () {

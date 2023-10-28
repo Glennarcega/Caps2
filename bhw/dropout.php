@@ -73,11 +73,6 @@ if(isset($_SESSION['user_data'])){
         }
       ?>
                         
-            <?php
-                 $productName = isset($_GET['productName']) ? $_GET['productName'] : '';
-                 $query = $mysqli->query("SELECT * FROM `medicines` WHERE productName = '$productName'") or die(mysqli_error());
-                 $fetch = $query->fetch_array();
-            ?>
                  <form method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                          <?php
@@ -114,111 +109,30 @@ if(isset($_SESSION['user_data'])){
                             <input type="text" class="form-control" name="address" 
                              value="<?php echo $address; ?>" readonly />
                             </div>
-
                             <div class="form-group">
-                                <label>Product ID</label>
-                                <input type="text" class="form-control" name="productId"
-                                    value="<?php echo $fetch['productId']; ?>" readonly />
-                            </div>
-                            <div class="form-group">
-                                <label>Product Name</label>
-                                <input type="text" class="form-control" name="productName"
-                                    value="<?php echo $fetch['productName']; ?>" readonly />
-                            </div>
-                            <div class="form-group">
-                                <label>Unit</label>
-                                <input type="text" class="form-control" name="unit"
-                                    value="<?php echo $fetch['unit']; ?>" readonly />
-                            </div>
-                            <div class="form-group">
-                                <label>Product Quantity</label>
-                                <input type="text" class="form-control" name="total"
-                                    value="<?php echo $fetch['total']; ?>" readonly />
-                            </div>
-           
-                            <div class="form-group" required="required" style="display: none;">
-                            <label>Quantity</label>
-                            <input type="number"  value='1' class="form-control"
-                                name="quantity_req" id="quantityInput" placeholder="Enter Quantity Request" required />
-                        </div>
-
-                            
-                            <div class="form-group" required="required" required>
-                                <label>Given Date</label>
-                                <input type="date" class="form-control" name="givenDate" id="givenDate" required/>
-                            </div>
-                            <div class="form-group" >                     
                                 <label>Type of Client</label>
-                                <select class="form-control" required="required" name="clientType" required>
-                                    <option value="" disabled selected>Type of Client</option>
-                                    <option value="New User">New User</option>
-                                    <option value="Current User">Current User</option>
-                                    <option value="Dropout & Restart">Dropout / Restart</option>
-                                    <option value="Changing Method">Changing Method</option>
-                                </select>
+                                <input type="text" class="form-control" name="clientype" id="clientype" readonly value="Dropout" />
                             </div>
-                            <div class="form-group" id="changingMethodSection" >
-                            <label>Method Currently used (for Changing Method)</label>
-                            <select class="form-control" name="changingMethod"> 
-                                <option value="" disabled selected>Changing Method</option>
-                                <option value="COC">COC (Combined Oral Contraceptives)</option>
-                                <option value="IUD">IUD (Intrauterine Device)</option>
-                                <option value="POP">POP (Progestogen-only Pills)</option>
-                                <option value="BOM/CMM">BOM/CMM (Billings Ovulation Method)</option>
-                                <option value="Injectable">Injectable</option>
-                                <option value="BBT">BBT (Basal Body Temperature)</option>
-                                <option value="Implant">Implant</option>
-                                <option value="STM">STM (Symptothermal Method)</option>
-                                <option value="LAM">LAM (Lactational Amenorrhea Method)</option>
-                               
-                               
-                            </select>
-                            <div>
-                            <div class="form-group">
-                                <label>Reason</label>
-                                <input type="comvobox" class="form-control" name="reason"/>
-                            </div>
-                        
-                        </div>
-                        </div>
+                            <div class="form-group" required="required" required>
+                                <label>Dropout Date</label>
+                                <input type="date" class="form-control" name="givenDate" id="givenDate" required/>    
+                          </div>
+                     
                             <div class="form-group">
                                 <button name="add_rec" class="btn btn-primary profile-button form-control"><i
-                                        class="bx bx-pencil"></i> Request</button>
+                                        class="bx bx-pencil"></i> Dropout</button>
                             </div>
-                            <?php require_once '../admin_query/add_query_records_contraceptive.php'?>
+                            
+                            <?php require_once '../admin_query/dropout_query.php'?>
 						</form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Initially hide the "Method Currently used" section
-        $("#changingMethodSection").hide();
 
-        // Attach change event handler to the clientType select element
-        $("select[name='clientType']").change(function() {
-            var selectedOption = $(this).val();
-            if (selectedOption === "Dropout") {
-                // If "Dropout" is selected, hide the "Method Currently used" section
-                $("#changingMethodSection").hide();
-            } else if (selectedOption === "New User") {
-                // If "New User" is selected, hide the "Method Currently used" section
-                $("#changingMethodSection").hide();
-            } else {
-                // For other options, show the "Method Currently used" section
-                $("#changingMethodSection").show();
-            }
-        });
-    });
-</script>
-
-   
-    
  <script src="../cssmainmenu/script.js"></script>
  <script>
   document.addEventListener("DOMContentLoaded", function() {

@@ -20,6 +20,7 @@ if(isset($_SESSION['user_data'])){
 <head>
   <title>Resident - Contraceptive Request</title>
   <!-- Link Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
@@ -68,11 +69,21 @@ if(isset($_SESSION['user_data'])){
                 <?php
                     if (isset($_GET['residentId'])) {
                         $residentId = $_GET['residentId'];
-                        echo '<a class="btn btn-success" href="add_contraceptive.php?residentId=' . $residentId . '"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>';
-                    } else {
+                        echo '<a class="btn btn-success" href="add_contraceptive.php?residentId=' . $residentId . '"><i class="glyphicon glyphicon-plus"></i> Add Contraceptive   </a>';
+                      } else {
                         echo '<p>Resident ID not provided.</p>';
                     }
                   ?>
+                    <?php
+                    if (isset($_GET['residentId'])) {
+                        $residentId = $_GET['residentId'];
+                        echo '<a class="btn btn-success" href="dropout.php?residentId=' . $residentId . '"><i class="fa-solid fa-minus"></i> Dropout   </a>';
+
+                      } else {
+                        echo '<p>Resident ID not provided.</p>';
+                    }
+                  ?>
+
                   <br /><br />
               
                   <?php if (isset($_GET['success'])) { ?>

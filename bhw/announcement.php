@@ -18,7 +18,7 @@ if(isset($_SESSION['user_data'])){
 <html lang="en">
 
 <head>
-  <title>Barangay Health Worker</title>
+  <title>SMS Announcements</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -102,7 +102,7 @@ body {
     <div class="container-fluid">
       <div class="panel panel-default">
         <div class="panel-body">
-        <h3><div class = "alert alert-info">SMS Announcement</div></h3>
+        <h3><div class = "alert alert-info">SMS Announcements</div></h3>
         <div class="row">
         <div class="column">
         <div class="card" style="width: 400px; margin: 0 auto;">
@@ -114,7 +114,7 @@ body {
         <div class="form-group" required="required">
             <label>Announcements</label>
                 <select class="form-control" required="required" name="announcemntType" id="announcementSelect">
-                <option value="" disabled selected>Type of Announcement</option>
+                <option value="" disabled selected>Types of Announcement</option>
                 <option value="Medical Checkup">Medical Checkup</option>
                 <option value="Maternal Health Services">Maternal Health Services</option>
                 <option value="Vaccination">Vaccination</option>

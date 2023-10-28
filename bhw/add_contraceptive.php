@@ -15,7 +15,7 @@ if(isset($_SESSION['user_data'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Sidebar</title>
+  <title>Contraceptive</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -41,7 +41,7 @@ if(isset($_SESSION['user_data'])){
     <div class="container-fluid">
       <div class="panel panel-default">
         <div class="panel-body">
-        <h3><div class="alert alert-info">Medicine</div></h3>
+        <h3><div class="alert alert-info">Contraceptives</div></h3>
            <br /> <br />
       
           <?php if (isset($_GET['success'])) { ?>

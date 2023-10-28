@@ -18,7 +18,7 @@ if(isset($_SESSION['user_data'])){
 <html lang="en">
 
 <head>
-  <title>Barangay Health Worker</title>
+  <title>Resident Records</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>

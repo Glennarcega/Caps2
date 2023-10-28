@@ -188,7 +188,7 @@ body {
                     <div class="card">
                     <h3>Family Planning</h3>
                     <div class="icon-box">
-                        <i class="fa-style fa-family"></i>
+                    <i class="fa-solid fa-person-breastfeeding"></i>
                     </div>
         
                  

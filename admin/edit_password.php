@@ -60,6 +60,7 @@ if(isset($_SESSION['user_data'])){
           ?>
          
   <section class="home-section">
+    <br>
     <div class = "container-fluid">
 		<div class = "panel panel-default">
 			<div class = "panel-body">

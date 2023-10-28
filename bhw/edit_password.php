@@ -102,11 +102,11 @@ if(isset($_SESSION['user_data'])){
 }
  ?>
   <section class="home-section">
-    <div class="text">Account</div>
+    <br>
     <div class = "container-fluid">
 		<div class = "panel panel-default">
 			<div class = "panel-body">
-				<div class = "alert alert-info">Account / Create Account</div>
+				<div class = "alert alert-info">Account / Edit Account</div>
 				<div class = "col-md-4">	
     <div class="form-container">
     <form action="" method="POST">

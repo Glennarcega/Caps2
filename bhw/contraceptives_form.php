@@ -16,7 +16,7 @@ if(isset($_SESSION['user_data'])){
 <html lang="en">
 
 <head>
-  <title>Responsive Sidebar</title>
+  <title>Family Planning Form</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -153,15 +153,15 @@ if(isset($_SESSION['user_data'])){
                             <label>Method Currently used (for Changing Method)</label>
                             <select class="form-control" name="changingMethod"> 
                                 <option value="" disabled selected>Changing Method</option>
-                                <option value="COC">COC</option>
-                                <option value="IUD">IUD</option>
-                                <option value="POP">POP</option>
-                                <option value="BOM/CMM">BOM/CMM</option>
+                                <option value="COC">COC (Combined Oral Contraceptives)</option>
+                                <option value="IUD">IUD (Intrauterine Device)</option>
+                                <option value="POP">POP (Progestogen-only Pills)</option>
+                                <option value="BOM/CMM">BOM/CMM (Billings Ovulation Method)</option>
                                 <option value="Injectable">Injectable</option>
-                                <option value="BBT">BBT</option>
+                                <option value="BBT">BBT (Basal Body Temperature)</option>
                                 <option value="Implant">Implant</option>
-                                <option value="STM">STM</option>
-                                <option value="LAM">LAM</option>
+                                <option value="STM">STM (Symptothermal Method)</option>
+                                <option value="LAM">LAM (Lactational Amenorrhea Method)</option>
                                 <option value="others">Others</option>
                             </select>
                             <div>

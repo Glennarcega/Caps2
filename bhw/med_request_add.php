@@ -16,7 +16,7 @@ if(isset($_SESSION['user_data'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Barangay Health Worker</title>
+    <title>Request Medicine</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />

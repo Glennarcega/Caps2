@@ -14,7 +14,7 @@ if(isset($_SESSION['user_data'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Sidebar</title>
+  <title>Medicines</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
@@ -94,7 +94,7 @@ if(isset($_SESSION['user_data'])){
     <div class="container-fluid">
       <div class="panel panel-default">
         <div class="panel-body">
-        <h3><div class = "alert alert-info">Medicine</div></h3>
+        <h3><div class = "alert alert-info">Medicines</div></h3>
           <a class="btn btn-success" href="add_med.php?"><i class="glyphicon glyphicon-plus"></i> Add Medicine</a>
           <br />
           <br />

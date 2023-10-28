@@ -16,7 +16,7 @@ if(isset($_SESSION['user_data'])){
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Barangay Health Worker</title>
+    <title>BHW's - Dashboard</title>
     <!-- Link Styles -->
     <link rel="stylesheet" href="../cssmainmenu/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -191,7 +191,7 @@ try {
                     <div class="card">
                     <h3>Family Planning</h3>
                     <div class="icon-box">
-                        <i class="fa-style fa-family"></i>
+                        <i class="fa-solid fa-person-breastfeeding"></i>
                     </div>
         
                  

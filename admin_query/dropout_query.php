@@ -9,7 +9,7 @@ if (isset($_POST['add_rec'])) {
     $middleName = $_POST['middleName'];
     $givenDate = $_POST['givenDate'];
     $clientType = 'Dropout'; // Set the default value
-    $changingMethod = 'None'; // Set the default value
+    $changingMethod = $_POST['changingMethod'];
     $unit = 'None'; // Set the default value
     $productName = 'None'; // Set the default value
 

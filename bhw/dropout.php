@@ -113,6 +113,23 @@ if(isset($_SESSION['user_data'])){
                                 <label>Type of Client</label>
                                 <input type="text" class="form-control" name="clientype" id="clientype" readonly value="Dropout" />
                             </div>
+                            <div class="form-group" id="changingMethodSection" >
+                            <label>Method Currently used</label>
+                            <select class="form-control" name="changingMethod"> 
+                                <option value="" disabled selected>Changing Method</option>
+                                <option value="COC">COC (Combined Oral Contraceptives)</option>
+                                <option value="IUD">IUD (Intrauterine Device)</option>
+                                <option value="POP">POP (Progestogen-only Pills)</option>
+                                <option value="BOM/CMM">BOM/CMM (Billings Ovulation Method)</option>
+                                <option value="Injectable">Injectable</option>
+                                <option value="BBT">BBT (Basal Body Temperature)</option>
+                                <option value="Implant">Implant</option>
+                                <option value="STM">STM (Symptothermal Method)</option>
+                                <option value="LAM">LAM (Lactational Amenorrhea Method)</option>
+                               
+                               
+                            </select>
+                            <div>
                             <div class="form-group" required="required" required>
                                 <label>Dropout Date</label>
                                 <input type="date" class="form-control" name="givenDate" id="givenDate" required/>    

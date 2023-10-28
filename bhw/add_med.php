@@ -93,7 +93,7 @@ if(isset($_SESSION['user_data'])){
 								<option value="unavailable">Unavailable</option>
 							</select>
 						</div>
-						<br /><br />
+						<br />
 						<div class = "form-group">
 							<button name = "add_med" class = "btn btn-primary profile-button form-control"><i class = "bx bx-save"></i> Saved</button>
 						</div>

@@ -22,7 +22,8 @@ if(isset($_SESSION['user_data'])){
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
  <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
- 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 <!--theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 </head>
@@ -40,7 +41,7 @@ if(isset($_SESSION['user_data'])){
 		<div class = "panel panel-default">
 			<div class = "panel-body">
 			<h3><div class = "alert alert-info">Accounts</div></h3>
-				<a class = "btn btn-success" href = "add_account.php"></i> Create New Account</a>
+				<a class = "btn btn-success" href = "add_account.php"><i class="glyphicon glyphicon-plus"></i>  Create New Account</a>
 				<br />
 				<br />
 				<?php if (isset($_GET['success'])) { ?>

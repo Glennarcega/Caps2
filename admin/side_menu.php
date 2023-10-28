@@ -37,7 +37,7 @@
           <i class="bx bx-plus-medical"></i>
           <span class="link_name">Medicine Records</span>
         </a>
-        <span class="tooltip">Medicine</span>
+        <span class="tooltip">Medicine Records</span>
       </li>
      
       <li>

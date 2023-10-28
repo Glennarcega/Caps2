@@ -16,7 +16,7 @@ if(isset($_SESSION['user_data'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Sidebar</title>
+  <title>Account/Change Account</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -68,7 +68,7 @@ if(isset($_SESSION['user_data'])){
 						</div>
 	
 						<div class="form-group">
-							<label for="usertypeSelect">Role</label>
+							<label for="usertypeSelect">Status</label>
 							<select class="form-control" required="required" name="usertype" id="usertypeSelect">
 								<option value="" disabled selected>Select User Type</option>
 								<option value="2" <?php if ($fetch['usertype'] === '2') echo 'selected'; ?>>Activate</option>

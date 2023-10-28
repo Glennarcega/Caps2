@@ -16,7 +16,7 @@ if(isset($_SESSION['user_data'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Responsive Sidebar</title>
+  <title>Accounts</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -39,7 +39,7 @@ if(isset($_SESSION['user_data'])){
     <div class = "container-fluid">
 		<div class = "panel panel-default">
 			<div class = "panel-body">
-			<h3><div class = "alert alert-info">Account</div></h3>
+			<h3><div class = "alert alert-info">Accounts</div></h3>
 				<a class = "btn btn-success" href = "add_account.php"></i> Create New Account</a>
 				<br />
 				<br />

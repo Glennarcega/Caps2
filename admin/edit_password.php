@@ -15,7 +15,7 @@ if(isset($_SESSION['user_data'])){
 <html lang="en">
 
 <head>
-  <title>Add Account</title>
+  <title>Edit Account</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -60,11 +60,10 @@ if(isset($_SESSION['user_data'])){
           ?>
          
   <section class="home-section">
-    <div class="text">Account</div>
     <div class = "container-fluid">
 		<div class = "panel panel-default">
 			<div class = "panel-body">
-				<div class = "alert alert-info">Account / Create Account</div>
+				<div class = "alert alert-info">Account / Edit Account</div>
 				<div class = "col-md-4">	
     <div class="form-container">
     <form action="" method="POST">

@@ -62,7 +62,7 @@ if(isset($_SESSION['user_data'])){
 								<option value="Bottles" <?php if ($fetch['unit'] === 'Bottles') echo 'selected'; ?>>Bottles</option>
 								<option value="Pcs" <?php if ($fetch['unit'] === 'Pcs') echo 'selected'; ?>>Pcs</option>
 								<option value="Tablet" <?php if ($fetch['unit'] === 'Tablet') echo 'selected'; ?>>Tablet</option>
-								<option value="Insert" <?php if ($fetch['unit'] === 'Insert') echo 'selected'; ?>>Insert</option>
+								<option value="Family Planning" <?php if ($fetch['unit'] === 'Family Planning') echo 'selected'; ?>>Family Planning</option>
 							</select>
 						</div>
         				  <div class = "form-group">

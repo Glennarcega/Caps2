@@ -154,7 +154,7 @@ if(isset($_SESSION['user_data'])){
                 <td style="text-align: center">
                     <?php if ($status == 'unavailable' || $fetch['total'] == 0) : ?>
                         <button class="btn btn-primary" disabled>Request</button>
-                    <?php elseif ($fetch['unit'] == 'Insert') : ?>
+                    <?php elseif ($fetch['unit'] == 'Family Planning') : ?>
                         <a class="btn btn-primary profile-button" href="contraceptives_form.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>
                     <?php else : ?>
                         <a class="btn btn-primary profile-button" href="request.php?productName=<?php echo urlencode($fetch['productName']); ?>">Request</a>

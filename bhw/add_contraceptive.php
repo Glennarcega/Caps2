@@ -69,7 +69,7 @@ if(isset($_SESSION['user_data'])){
             $status = ($fetch['total'] == 0) ? 'unavailable' : $fetch['status']; // Check if quantity is zero
 
             // Add a condition to skip rows where 'unit' is equal to 'Insert'
-            if ($fetch['unit'] != 'Insert') {
+            if ($fetch['unit'] != 'Family Planning') {
                 continue;
             }
              // Check if quantity is lower than 10
@@ -105,7 +105,7 @@ if(isset($_SESSION['user_data'])){
                         <?php
                         if (isset($_GET['residentId'])) {
                             $residentId = $_GET['residentId'];
-                            if ($fetch['unit'] == 'Insert') {
+                            if ($fetch['unit'] == 'Insert') {   
                                 echo '<a class="btn btn-primary profile-button" href="contraceptives_request_update.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';
                             } else {
                                 echo '<a class="btn btn-primary profile-button" href="contraceptives_request_update.php?residentId=' . $residentId . '&productName=' . urlencode($fetch['productName']) . '"> Request</a>';

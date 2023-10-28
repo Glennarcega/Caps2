@@ -69,7 +69,7 @@ if(isset($_SESSION['user_data'])){
 								<option value="Bottles">Bottles</option>
 								<option value="Pcs">Pcs</option>
 								<option value="Tablet">Tablet</option>
-								<option value="Insert">Insert</option>
+								<option value="Family Planning">Family Planning</option>
 							</select>
 						</div>
           			  <div class = "form-group">

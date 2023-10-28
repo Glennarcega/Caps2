@@ -71,7 +71,7 @@ if(isset($_SESSION['user_data'])){
             $status = ($fetch['total'] == 0) ? 'unavailable' : $fetch['status']; // Check if quantity is zero
 
             // Add a condition to skip rows where 'unit' is equal to 'Insert'
-            if ($fetch['unit'] == 'Insert') {
+            if ($fetch['unit'] == 'Family Planning') {
                 continue;
             }
              // Check if quantity is lower than 10

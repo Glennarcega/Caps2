@@ -100,7 +100,7 @@ if(isset($_SESSION['user_data'])){
             <td style="text-align: center;">
                 
                     <?php if ($status == 'unavailable' || $fetch['total'] == 0): ?>
-                        <button class="btn btn-warning" disabled>Request</button>
+                        <button class="btn btn-primary profile-button" disabled>Request</button>
                     <?php else: ?>
                         <?php
                         if (isset($_GET['residentId'])) {

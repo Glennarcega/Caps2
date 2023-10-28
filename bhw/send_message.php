@@ -5,7 +5,7 @@ $message = $_POST['message'];
 
 $ch = curl_init();
 $parameters = array(
-    'apikey' => '',
+    'apikey' => 'd9a2903a64895a8d8335b87f7e486297',
     'number' => $number,
     'message' => $message,
     'sendername' => 'SEMAPHORE'

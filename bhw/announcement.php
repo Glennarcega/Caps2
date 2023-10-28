@@ -183,36 +183,37 @@ body {
     });
 </script>
 <script>
-      function sendMessage(event) {
-        event.preventDefault() // Prevent the default form submission
+     function sendMessage(event) {
+  event.preventDefault(); // Prevent the default form submission
 
-        // Get form data
-        const formData = new FormData(document.getElementById("messageForm"))
+  // Get form data
+  const formData = new FormData(document.getElementById("messageForm"));
 
-        // Create a new XMLHttpRequest object
-        const xhr = new XMLHttpRequest()
-        xhr.open("POST", "send_message.php", true)
-        xhr.setRequestHeader(
-          "Content-type",
-          "application/x-www-form-urlencoded"
-        )
+  // Create a new XMLHttpRequest object
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "send_message.php", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-        // Handle the request
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              // Display the API response to the user
-              alert(xhr.responseText)
-            } else {
-              // Display an error message if the request fails
-              alert("Failed to send the message.")
-            }
-          }
-        }
+  // Handle the request
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        // Display the API response to the user
+        alert(xhr.responseText);
 
-        // Send the form data
-        xhr.send(new URLSearchParams(formData).toString())
+        // Redirect to "medicinee.php" after successful message send
+        window.location.href = "announcement.php";
+      } else {
+        // Display an error message if the request fails
+        alert("Failed to send the message.");
       }
+    }
+  }
+
+  // Send the form data
+  xhr.send(new URLSearchParams(formData).toString());
+}
+
     </script>
     <script>
   // Function to toggle the visibility of the table-container div

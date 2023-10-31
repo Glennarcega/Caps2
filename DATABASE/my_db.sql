@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2023 at 05:22 PM
+-- Generation Time: Oct 31, 2023 at 04:38 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -100,8 +100,8 @@ INSERT INTO `medicines` (`productId`, `productName`, `sponsor`, `unit`, `batch`,
 (96, 'Zinc Supplements', 'Philippine Red Cross', 'Boxes', 'Batch 3', 30, 300, '2024-10-29', 'available'),
 (97, 'Amoxicillin Capsules 500mg', 'Philippine Red Cross', 'Boxes', 'Batch 3', 30, 300, '2024-10-29', 'available'),
 (98, 'Levothyroxine (Thyroid Hormone) Tablets', 'Philippine Red Cross', 'Boxes', 'Batch 3', 30, 300, '2024-10-29', 'available'),
-(99, 'Atorvastatin (Statins) Tablets', 'Batangas City Municipality', 'Boxes', 'Batch 4', 30, 300, '2024-10-29', 'available'),
-(100, 'Metformin (Antidiabetic) Tablets', 'Batangas City Municipality', 'Boxes', 'Batch 4', 30, 299, '2024-10-29', 'available'),
+(99, 'Atorvastatin (Statins) Tablets', 'Batangas City Municipality', 'Boxes', 'Batch 4', 30, 299, '2024-10-29', 'available'),
+(100, 'Metformin (Antidiabetic) Tablets', 'Batangas City Municipality', 'Boxes', 'Batch 4', 30, 298, '2024-10-29', 'available'),
 (101, 'Losartan (Angiotensin II Receptor Blocker) Tablets', 'Batangas City Municipality', 'Boxes', 'Batch 4', 30, 300, '2024-10-29', 'available'),
 (102, 'Betadine', 'Batangas City Municipality', 'Bottles', 'Batch 4', 30, 300, '2024-10-29', 'available'),
 (103, 'Biogesic', 'Batangas City Municipality', 'Boxes', 'Batch 4', 30, 300, '2024-10-29', 'available');
@@ -127,7 +127,9 @@ CREATE TABLE `record_data_graph` (
 --
 
 INSERT INTO `record_data_graph` (`recordId`, `residentId`, `productId`, `address`, `productName`, `quantity_req`, `givenDate`) VALUES
-(10, '312', 100, 'IlangIlang', 'Metformin (Antidiabetic) Tablets', 1, '2023-10-29');
+(10, '312', 100, 'IlangIlang', 'Metformin (Antidiabetic) Tablets', 1, '2023-10-29'),
+(11, '313', 100, 'IlangIlang', 'Metformin (Antidiabetic) Tablets', 1, '2023-10-31'),
+(12, '314', 99, 'Orchids', 'Atorvastatin (Statins) Tablets', 1, '2023-10-31');
 
 -- --------------------------------------------------------
 
@@ -1196,7 +1198,9 @@ INSERT INTO `request_medicine` (`req_med_Id`, `residentId`, `lastName`, `firstNa
 (1166, '345', 'dela Cruz', 'Virgilio ', 'Solis ', '80', 'Multivitamins Syrup 60ml ', 'Bottles ', 1, '2023-10-29'),
 (1167, '346', 'Gonzales', 'Yolanda ', 'Tadeo ', '80', 'Multivitamins Syrup 60ml ', 'Bottles ', 1, '2023-10-29'),
 (1168, '347', 'Rodriguez', 'Yolanda ', 'Tan ', '80', 'Multivitamins Syrup 60ml ', 'Bottles ', 1, '2023-10-29'),
-(1169, '348', 'Santos', 'Yolanda ', 'Uriarte ', '80', 'Multivitamins Syrup 60ml ', 'Bottles ', 1, '2023-10-29');
+(1169, '348', 'Santos', 'Yolanda ', 'Uriarte ', '80', 'Multivitamins Syrup 60ml ', 'Bottles ', 1, '2023-10-29'),
+(1170, '313', 'arcega', 'glenn', '', '100', 'Metformin (Antidiabetic) Tablets', 'Boxes', 1, '2023-10-31'),
+(1171, '314', 'arcega', 'glaiza mae', 'plata', '99', 'Atorvastatin (Statins) Tablets', 'Boxes', 1, '2023-10-31');
 
 -- --------------------------------------------------------
 
@@ -1223,7 +1227,9 @@ CREATE TABLE `residentrecords` (
 --
 
 INSERT INTO `residentrecords` (`residentId`, `productId`, `lastName`, `firstName`, `middleName`, `dateBirth`, `age`, `sex`, `civilStatus`, `address`, `contactNumber`) VALUES
-(312, 100, 'Manalo', 'John', '', '2000-06-08', 23, 'Male', 'single', 'IlangIlang', '09875264363');
+(312, 100, 'Manalo', 'John', '', '2000-06-08', 23, 'Male', 'single', 'IlangIlang', '09875264363'),
+(313, 100, 'arcega', 'glenn', '', '2001-11-17', 21, 'Male', 'single', 'IlangIlang', '09952846057'),
+(314, 99, 'arcega', 'glaiza mae', 'plata', '2003-03-22', 20, 'Female', 'single', 'Orchids', '09123456767');
 
 -- --------------------------------------------------------
 
@@ -1341,19 +1347,19 @@ ALTER TABLE `medicines`
 -- AUTO_INCREMENT for table `record_data_graph`
 --
 ALTER TABLE `record_data_graph`
-  MODIFY `recordId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `recordId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `request_medicine`
 --
 ALTER TABLE `request_medicine`
-  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1170;
+  MODIFY `req_med_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1172;
 
 --
 -- AUTO_INCREMENT for table `residentrecords`
 --
 ALTER TABLE `residentrecords`
-  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
+  MODIFY `residentId` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=315;
 
 --
 -- AUTO_INCREMENT for table `user`

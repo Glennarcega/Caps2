@@ -32,8 +32,30 @@ if(isset($_SESSION['user_data'])){
   
 <!--theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
 </head>
+<style>
+  /*Para sa Add Contraceptive at Dropout*/
+.button-container {
+    text-align: left; 
+}
+
+.btn {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Add a media query for smaller screen sizes */
+@media (max-width: 768px) {
+    .button-container {
+        text-align: left; /* Left-align the buttons when screen size is reduced */
+    }
+}
+
+</style>
 <body>
 <?php try {
     include_once('side_menu.php');
@@ -68,23 +90,17 @@ if(isset($_SESSION['user_data'])){
                 ?>
               </div>
               <br />
-                <?php
-                    if (isset($_GET['residentId'])) {
-                        $residentId = $_GET['residentId'];
-                        echo '<a class="btn btn-success" href="add_contraceptive.php?residentId=' . $residentId . '"><i class="glyphicon glyphicon-plus"></i> Add Contraceptive   </a>';
-                      } else {
-                        echo '<p>Resident ID not provided.</p>';
-                    }
-                  ?>
-                    <?php
-                    if (isset($_GET['residentId'])) {
-                        $residentId = $_GET['residentId'];
-                        echo '<a class="btn btn-success" href="dropout.php?residentId=' . $residentId . '"><i class="fa-solid fa-minus"></i> Dropout   </a>';
-
-                      } else {
-                        echo '<p>Resident ID not provided.</p>';
-                    }
-                  ?>
+              <?php
+                if (isset($_GET['residentId'])) {
+                    $residentId = $_GET['residentId'];
+                    echo '<div class="button-container">';
+                    echo '<a class="btn btn-success" href="add_contraceptive.php?residentId=' . $residentId . '"><i class="glyphicon glyphicon-plus"></i> Add Contraceptive</a>';
+                    echo '<a class="btn btn-success" href="dropout.php?residentId=' . $residentId . '"><i class="fa-solid fa-minus"></i> Dropout</a>';
+                    echo '</div>';
+                } else {
+                    echo '<p>Resident ID not provided.</p>';
+                }
+                ?>
 
                   <br /><br />
               

@@ -105,7 +105,6 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 .toggle-password {
     cursor: pointer;
     transition: color 0.3s;
-    margin-left: -30px; /* I-adjust ang margin para ilagay ang icon sa kanan ng password field */
 }
 
 .toggle-password.active {
@@ -128,18 +127,16 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 
 /* Responsive columns */
 @media screen and (max-width: 600px) {
-  .column {
+  .column  {
     width: 100%;
     display: block;
     margin-bottom: 20px;
-    
-
   }
 }
 
 /* Style the counter cards */
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 20px;
   text-align: center;
   background-image: url("./img/opening.jpg");
@@ -149,10 +146,8 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
     background-size: cover;
     padding: 20px;
     text-align: center;
+    height: 56.2vw;
 }
-
-
-
 </style>
 </head>
 
@@ -160,8 +155,7 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
 <div class="column">
         <div class="card">
 <div class="form-container">
-    <form method="post" class="mx-auto" method="post" action="process-reset-password.php"
-          style="background-color: #FFFACD">
+    <form method="post" class="mx-auto" method="post" action="process-reset-password.php">
         <img src="img/ourlogo.png" alt="Logo" class="logo">
         <h6 class="text-center p-1">Medicine Management System for Barangay Malitam</h6>
         <h2 class="text-center p-1">Reset Password</h2>
@@ -182,9 +176,9 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
         <span class="fas fa-key"></span>
         <div class="password-input-container">
             <input type="text" name="password" id="password" oninput="validatePassword(this.value)" autocomplete="off" required placeholder="Enter New Password" style="font-size: 15px; height: 50px; width: 255px;" />
-            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password')">
-            <i class="fas fa-eye-slash toggle-password"></i>
-        </button>
+            <button type="button" id="passwordToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password', 'passwordToggle')">
+                <i class="fas fa-eye-slash toggle-password"></i>
+            </button>
         </div>
     </div>
 </div>
@@ -198,7 +192,7 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
             <input type="password" name="password_confirmation" id="password_confirmation" oninput="validatePasswordConfirmation(this.value)" autocomplete="off" required placeholder="Confirm Password" style="font-size: 15px; height: 50px; width: 255px;" />
             <small id="passwordConfirmationError" class="form-text text-danger" style="margin-top: 5px;"></small>
         </div>
-        <button type="button" id="passwordConfirmationToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password_confirmation')">
+        <button type="button" id="passwordConfirmationToggle" class="toggle-password-btn" onclick="togglePasswordVisibility('password_confirmation', 'passwordConfirmationToggle')">
             <i class="fas fa-eye-slash toggle-password"></i>
         </button>
     </div>
@@ -224,9 +218,9 @@ if (strtotime($user["reset_token_expires_at"]) <= time()) {
             }
         }
 
-        function togglePasswordVisibility(inputId) {
+        function togglePasswordVisibility(inputId, buttonId) {
             var passwordInput = document.getElementById(inputId);
-            var showPasswordBtn = document.getElementById(inputId + "Toggle");
+            var showPasswordBtn = document.getElementById(buttonId);
 
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";

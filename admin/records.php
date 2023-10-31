@@ -69,6 +69,43 @@ if(isset($_SESSION['user_data'])){
         });
     </script>
 </head>
+<style>
+.button-container {
+    text-align: center; /* Center-align the buttons by default */
+}
+
+.btn {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/*button ng request med at rec*/
+.button-container { 
+    text-align: left; 
+}
+
+.btn {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Add a media query for smaller screen sizes */
+@media (max-width: 768px) {
+    .button-container {
+        text-align: left; 
+    }
+}
+
+
+</style>
 <body>
 <?php try {
     include_once('side_menu.php');
@@ -83,8 +120,10 @@ if(isset($_SESSION['user_data'])){
 		<div class="panel panel-default">
 			<div class="panel-body">
            <h3> <div class = "alert alert-info">Request Medicine Records</div></h3>
+            <div class = "button-container">
            <a class="btn btn-success" href="records.php"></i>Request Medicine</a>
             <a class="btn btn-success" href="resident_records.php"></i>Resident Records</a>
+            </div>
                 <br> </br>
       <table name="medicinesTable" id="medicinesTable" class="display" cellspacing="0" width="100%">
             <thead>

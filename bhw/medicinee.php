@@ -16,6 +16,8 @@ if(isset($_SESSION['user_data'])){
 <head>
   <title>Medicines</title>
   <!-- Link Styles -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />

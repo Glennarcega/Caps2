@@ -20,6 +20,8 @@ if(isset($_SESSION['user_data'])){
 <head>
   <title>Resident Records</title>
   <!-- Link Styles -->
+  <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
@@ -109,11 +111,9 @@ if(isset($_SESSION['user_data'])){
                   <tr>
                     
                     <th>Resident Name</th>
-                    <th>Date of Birth</th>
                     <th>Age</th>
                     <th>Sex</th>
                     <th>Address</th>
-                    <th>Contact Number</th>
                     <th style="text-align: center;">Action</th>
                   </tr>
                 </thead>
@@ -124,11 +124,9 @@ if(isset($_SESSION['user_data'])){
               ?>	
 					  	<tr>	
                 <td><?php echo $fetch['lastName'] . ' ' . $fetch['firstName'] . ' ' . $fetch['middleName']; ?></td>
-                <td><?php echo $fetch['dateBirth']?></td>
                 <td><?php echo $fetch['age']?></td>
                 <td><?php echo $fetch['sex']?></td>
                 <td><?php echo $fetch['address']?></td>
-                <td><?php echo $fetch['contactNumber']?></td>
                 <td style="text-align: center;">
                 <div class="dropdown">
                 <button class="dropbtn"><i class="fa-solid fa-ellipsis"></i></button>

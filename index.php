@@ -116,6 +116,7 @@
     background-size: cover;
     padding: 20px;
     text-align: center;
+    height: 56.2vw;
 }
 
 

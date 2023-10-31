@@ -220,7 +220,7 @@ body {
                 </div>
                 <br></br>
                 <div>
-                <div class="chart-container" style="width: 100%; max-width: 600px; float:right;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+                <div class="chart-container" style="width: 100%; max-width: 100vw; float:right;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
                     <canvas id="myChart" width="1000" height="470"></canvas>
                 </div>
 
@@ -234,55 +234,44 @@ body {
                 }
                 ?>
                 <script>
-                    // === include 'setup' then 'config' above ===
-                    const labels = <?php echo json_encode($productName) ?>;
-                    const data = {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Number of Available Medicine ',
-                            data: <?php echo json_encode($total) ?>,
-                            backgroundColor: [
-                                'rgba(75, 0, 0, 0.2)',      // Dark Red
-                                'rgba(153, 102, 0, 0.2)',  // Dark Orange
-                                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
-                                'rgba(0, 51, 51, 0.2)',   // Dark Teal
-                                'rgba(0, 34, 51, 0.2)',   // Dark Blue
-                                'rgba(51, 0, 51, 0.2)',   // Dark Purple
-                                'rgba(51, 51, 51, 0.2)'   // Dark Gray
-                            ],
-                            borderColor: [
-                                'rgb(75, 0, 0)',        // Dark Red
-                                'rgb(153, 102, 0)',    // Dark Orange
-                                'rgb(102, 75, 0)',     // Dark Yellow
-                                'rgb(0, 51, 51)',      // Dark Teal
-                                'rgb(0, 34, 51)',      // Dark Blue
-                                'rgb(51, 0, 51)',      // Dark Purple
-                                'rgb(51, 51, 51)'      // Dark Gray
-                            ],
-                            borderWidth: 1
-                        }]
-                    };
+    // === include 'setup' then 'config' above ===
+    const labels = <?php echo json_encode($productName) ?>;
+    const stockData = <?php echo json_encode($total) ?>;
 
-                    const config = {
-                        type: 'bar',
-                        data: data,
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        },
-                        plugins: [ChartDataLabels]
-                    };
+    // Create an array to store the dynamic colors
+    const dynamicColors = stockData.map(value => (value <= 100 ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 179, 111, 0.8)'));
+    
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Number of Available Medicine ',
+            data: stockData,
+            backgroundColor: dynamicColors,
+            borderColor: dynamicColors, // You can customize border colors as well
+            borderWidth: 1
+        }]
+    };
 
-                    var myChart = new Chart(
-                        document.getElementById('myChart'),
-                        config
-                    );
-                </script>
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    };
 
-                <div class="chart-container" style="width: 100%; max-width: 590px; float:left; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+    var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
+
+                <div class="chart-container" style="width: 100%; max-width: 100vw;  margin-top: 45px; float:left; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
                     <canvas id="myChart3" width="1000" height="350"></canvas>
                     <br>
                     <form method="post" style= "margin-left: 20px";>
@@ -382,24 +371,8 @@ body {
                             label: 'Most Requested Medicine',
                             data: <?php echo json_encode($totalQuantities) ?>,
                             backgroundColor: [
-                                'rgba(75, 0, 0, 0.2)',      // Dark Red
-                                'rgba(153, 102, 0, 0.2)',  // Dark Orange
-                                'rgba(102, 75, 0, 0.2)',  // Dark Yellow
-                                'rgba(0, 51, 51, 0.2)',   // Dark Teal
-                                'rgba(0, 34, 51, 0.2)',   // Dark Blue
-                                'rgba(51, 0, 51, 0.2)',   // Dark Purple
-                                'rgba(51, 51, 51, 0.2)'   // Dark Gray
+                                'rgba(0, 179, 111, 0.8)'
                             ],
-                            borderColor: [
-                                'rgb(75, 0, 0)',        // Dark Red
-                                'rgb(153, 102, 0)',    // Dark Orange
-                                'rgb(102, 75, 0)',     // Dark Yellow
-                                'rgb(0, 51, 51)',      // Dark Teal
-                                'rgb(0, 34, 51)',      // Dark Blue
-                                'rgb(51, 0, 51)',      // Dark Purple
-                                'rgb(51, 51, 51)'      // Dark Gray
-                            ],
-                            borderWidth: 1
                         }]
                     };
 

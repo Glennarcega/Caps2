@@ -18,10 +18,11 @@ if(isset($_SESSION['user_data'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Resident - Contraceptive Request</title>
   <!-- Link Styles -->
   <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -50,6 +51,9 @@ if(isset($_SESSION['user_data'])){
 
 /* Add a media query for smaller screen sizes */
 @media (max-width: 768px) {
+    .table{
+      font-size: 12px;
+    }
     .button-container {
         text-align: left; /* Left-align the buttons when screen size is reduced */
     }
@@ -109,7 +113,7 @@ if(isset($_SESSION['user_data'])){
                       <?=$_GET['success']?>
                     </div>
                   <?php } ?>
-                  
+                  <div class="table-responsive"> 
                   <table id="table" class="table table-striped table-hover">
                     <thead>
                       <tr>
@@ -160,6 +164,7 @@ if(isset($_SESSION['user_data'])){
               ?>
               </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>

@@ -1,110 +1,199 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
-    font-family: 'Poppins', sans-serif;
-    margin:0; padding:0;
-    box-sizing: border-box;
-    outline: none; border:none;
-    text-decoration: none;
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
 }
-
-form{
-    border-radius: 20px;
-    margin-top: 30px;
-    width: 400px;
-    padding: 50px;
-    text-align: center;
-    min-height: 500px;
+body{
+  background-image: url(../img/opening.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed;
 }
-
-.form-control{
-    box-shadow: none;
-    border: none;
-    margin-bottom: 10px;
-    border-radius: 4px 4px 0 0;
-    }
- h4{
-    font-size: 2rem !important;
-    font-weight: 700;
- }  
- .form-label{
-    font-weight: 800 !important;
- }
- .logo {
-    width: 160px;
-    height: 120px;
-    border-radius: 50%;
-    margin: auto;
-    margin-bottom: 0px;
-    display: block;
-}
-
-
-/* Add mobile-first styles */
-
-
-form {
-    width: 100%;
-    max-width: 400px;
-    margin: 30px auto;
-    padding: 20px;
-    text-align: center;
-    background: rgba(255, 250, 205, 0.8);
-    border-radius: 20px;
-}
-
 .logo {
-    max-width: 100%;
-    height: auto;
+  width: 160px;
+  height: 120px;
+  border-radius: 50%;
+  margin: auto;
+  margin-bottom: 0px;
+  display: block;
+} 
+.alert{
+    width: 50%;
+    margin: auto;
 }
-
+::selection{
+  background: rgba(26,188,156,0.3);
+}
+.container .wrapper{
+  max-width: 440px;
+  padding: 0 20px;
+  margin: 30px auto;
+  background: rgba(255, 250, 205, 0.8);
+}
+.wrapper{
+  width: 100%;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
+}
+.wrapper .title{
+  height: 90px;
+  background: #16a085;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper form{
+  padding: 30px 25px 25px 25px;
+}
+.wrapper form .row{
+  height: 45px;
+  margin-bottom: 15px;
+  position: relative;
+}
+.wrapper form .row input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 60px;
+  border-radius: 20px;
+  border: 1px solid lightgrey;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+form .row input:focus{
+  border-color: #16a085;
+  box-shadow: inset 0px 0px 2px 2px rgba(26,188,156,0.25);
+}
+form .row input::placeholder{
+  color: #999;
+}
+.wrapper form .row i{
+  position: absolute;
+  width: 47px;
+  height: 100%;
+  color: #675e5e;
+  font-size: 18px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper form .pass{
+  margin: -8px 0 20px 0;
+  color: blue;
+}
+.wrapper form .pass a{
+  color: blue;
+  font-size: 17px;
+  text-decoration: none;
+}
+.wrapper form .pass a:hover{
+  text-decoration: none;
+}
+/**/
+/* Form container */
 .form-field {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  position: relative;
 }
 
-/* Add media queries for tablet and desktop screens */
-@media screen and (min-width: 768px) {
-    body {
-        font-size: 18px;
-    }
-
-    form {
-        padding: 30px;
-    }
+/* Input container */
+.input-icon {
+  position: relative;
 }
 
-@media screen and (min-width: 1024px) {
-    body {
-        font-size: 20px;
-    }
-
-    form {
-        padding: 40px;
-    }
+/* Email input field */
+input[type="email"] {
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  padding-left: 40px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: white;
+  transition: border-color 0.2s;
 }
-
-
-.btn-primary{
-   
-    width: 100%;
-    border: none;
-    border-radius: 50px;
-    background: #04c487;
-    
-}
-
-.form-container form .error-msg{
-   margin:10px 0;
-   display: block;
-   background: crimson;
-   color:#fff;
-   border-radius: 5px;
-   font-size: 20px;
-   padding:10px;
+input[type="password"], input[type="text"] {
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  padding-left: 40px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: white;
+  transition: border-color 0.2s;
 }
 
 
 
+/* Placeholder text for both email and password inputs */
+input[type="email"]::placeholder {
+  color: #999;
+}
+input[type="password"]::placeholder, input[type="text"]::placeholder {
+  color: #999;
+}
 
- 
+/* Error text */
+
+#emailError {
+  color: red;
+  display: none;
+  margin-top: -20px;
+}
+
+/* Icon styling for email and password inputs */
+.input-icon.email .fa-user, .input-icon.password .fa-key {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  font-size: 20px;
+  color: #666;
+}
+
+/* Toggle password button */
+.toggle-password-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* Password visibility icons */
+.toggle-password i {
+  font-size: 20px;
+  color: #666;
+}
+
+/* Password visibility icons when active */
+.toggle-password.active i {
+  color: #000;
+}
+
+.wrapper form .button input{
+  color: #fff;
+  width: 85%;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 0px;
+  background: #16a085;
+  border: 1px solid #16a085;
+  border: radius 15px;
+  cursor: pointer;
+}
+form .button input:hover{
+  background: #12876f;
+}

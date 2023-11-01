@@ -15,10 +15,11 @@ if(isset($_SESSION['user_data'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Medicine Records</title>
   <!-- Link Styles -->
   <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../cssmainmenu/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css " />
@@ -27,6 +28,14 @@ if(isset($_SESSION['user_data'])){
 <!--theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 </head>
+<style>
+	/* For screens with a maximum width of 300px */
+@media (max-width: 300px) {
+	.home-section{
+		margin-left: -20px;
+	}
+}
+</style>
 <body> 
 <?php try {
     include_once('side_menu.php');

@@ -20,9 +20,15 @@ body{
   margin-bottom: 0px;
   display: block;
 } 
-.alert{
+.alertwarning{
     width: 50%;
     margin: auto;
+}
+.alertsuc{
+    width: 70%;
+    margin-left: -40px;
+    margin: auto;
+    text-align: center;
 }
 ::selection{
   background: rgba(26,188,156,0.3);

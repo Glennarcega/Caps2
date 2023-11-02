@@ -18,13 +18,13 @@
         <h6 class="text-center p-1" style="text-align: center;">Medicine Management System for Barangay Malitam</h6>
         <h2 style="text-align: center;">LOGIN</h2>
         <?php if (isset($_GET['error'])) { ?>
-          <div class="alert alert-danger" role="alert">
+          <div class="alertwarning alert-danger" role="alert">
               <?= $_GET['error'] ?>
           </div>
       <?php } ?>
       
       <?php if (isset($_GET['success'])) { ?>
-          <div class="alert alert-success" role="alert">
+          <div class="alertsuc alert-success" role="alert">
               <?= $_GET['success'] ?>
           </div>
       <?php } ?>

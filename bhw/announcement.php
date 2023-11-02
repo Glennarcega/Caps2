@@ -16,8 +16,9 @@ if(isset($_SESSION['user_data'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SMS Announcements</title>
   <!-- Link Styles -->
   <link rel="stylesheet" href="../cssmainmenu/style.css">
@@ -66,14 +67,6 @@ body {
   clear: both;
 }
 
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
-}
 
 /* Style the counter cards */
 .card {
@@ -105,7 +98,7 @@ body {
         <h3><div class = "alert alert-info">SMS Announcements</div></h3>
         <div class="row">
         <div class="column">
-        <div class="card" style="width: 400px; margin: 0 auto;">
+        <div class="card" style="width: 50%; margin: 0 auto;">
           <form id="messageForm" >
         <label for="number">Residents: </label>
         <button id="contacts-button"><i class="fa-solid fa-user-plus"></i></button><br /><br />

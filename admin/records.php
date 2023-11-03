@@ -38,12 +38,13 @@ if(isset($_SESSION['user_data'])){
     <script>
     $(document).ready(function () {
         var table = $('#medicinesTable').DataTable({
-            "paging": false,
+            "paging": true,
             "processing": true,
             "serverSide": true,
             'serverMethod': 'post',
             "ajax": "server.php",
             "searching": false, // Disable searching
+            "order": [[0, 'asc']], // Sort the first column (index 0) in ascending order
             dom: 'Bfrtip',
             buttons: [
                 {extend: 'copy', attr: {id: 'medicines'}}, 'csv', 'excel', 'pdf'
@@ -51,24 +52,6 @@ if(isset($_SESSION['user_data'])){
         });
     });
 </script>
-
-    <script>
-        $(document).ready(function () {
-            var table = $('#request_medicineTable').DataTable({
-                "paging": false,
-                "processing": true,
-                "serverSide": true,
-                'serverMethod': 'post',
-                "ajax": "server.php",
-                dom: 'Bfrtip',
-                buttons: [
-                    {extend: 'copy', attr: {id: 'request_medicineTable'}}, 'csv', 'excel', 'pdf'
-                ]
-            });
-
-        });
-    </script>
-</head>
 <style>
 .button-container {
     text-align: center; /* Center-align the buttons by default */
@@ -105,7 +88,10 @@ if(isset($_SESSION['user_data'])){
 }
 
 
+
 </style>
+</head>
+
 <body>
 <?php try {
     include_once('side_menu.php');
@@ -125,29 +111,19 @@ if(isset($_SESSION['user_data'])){
             <a class="btn btn-success" href="resident_records.php"></i>Resident Records</a>
             </div>
                 <br> </br>
-      <table name="medicinesTable" id="medicinesTable" class="display" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                   
-                        <th>Last Name</th>
-                        <th>First Name</th>
-                        <th>Product Name</th>
-                        <th>Unit</th>
-                        <th>Quantity</th>
-                        <th>Expiration Date</th>
+            <table name="medicinesTable" id="medicinesTable" class = "table table-striped table-hover  width="100%">
+                    <thead>
+                        <tr>
+                            <th>Last Name</th>
+                            <th>First Name</th>
+                            <th>Product Name</th>
+                            <th>Unit</th>
+                            <th>Quantity</th>
+                            <th>Expiration Date</th>
+                            </tr>
+                  </thead>
+              <tbody>
     
-              </tr>
-
-            </thead>
-          <tbody>
-                </tr>
-            </thead>
-        </table>
-
-    </div>
-                			
-        	
-            </tbody>
           </table>
         </div>
 	

@@ -400,10 +400,9 @@ body {
 
 </body>
 <script type="text/javascript">
-    history.pushState(null, null, location.href);
-    window.onpopstate = function () {
-        history.go(1);
-    };
+    window.onpopstate = function (event) {
+  history.pushState(event.state, "", location.href);
+};
 </script>
    <script src="../cssmainmenu/script.js"></script>
 

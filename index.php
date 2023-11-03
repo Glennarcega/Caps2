@@ -113,4 +113,10 @@
       }
   });
   </script>
+  
+ <script type="text/javascript">
+    window.onpopstate = function (event) {
+  history.pushState(event.state, "", location.href);
+};
+</script>
 </html>

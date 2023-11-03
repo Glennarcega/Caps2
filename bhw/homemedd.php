@@ -275,7 +275,7 @@ try {
                         <label for="start_date">Start Date:</label>
                         <input type="date" id="start_date" name="start_date">
                         <label for="end_date">End Date:</label>
-                        <input type="date" id="end_date" name="end_date"><br>
+                        <input type="date" id="end_date" name="end_date">
                         <label for="selectedAddress">Select Sitio:</label>
                         <select name="selectedAddress" id="selectedAddress">
                             <option value="" disabled selected>Select Sitio</option>
@@ -398,10 +398,9 @@ try {
 </section>
 </body>
 <script type="text/javascript">
-    history.pushState(null, null, location.href);
-    window.onpopstate = function () {
-        history.go(1);
-    };
+    window.onpopstate = function (event) {
+  history.pushState(event.state, "", location.href);
+};
 </script>
 <script src="../cssmainmenu/script.js"></script>
 </html>

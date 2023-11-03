@@ -147,6 +147,10 @@ if(isset($_SESSION['user_data'])){
                                 <label>Given Date</label>
                                 <input type="date" class="form-control" name="givenDate" id="givenDate" required/>
                             </div>
+                            <div class="form-group" required="required" required>
+                                <label>Return Date</label>
+                                <input type="date" class="form-control" name="returnDate" id="returnDate" required />
+                            </div>
                             <div class="form-group" >                     
                                 <label>Type of Client</label>
                                 <select class="form-control" required="required" name="clientType" required>

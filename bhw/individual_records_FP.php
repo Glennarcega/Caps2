@@ -123,6 +123,7 @@ if(isset($_SESSION['user_data'])){
                         <th style="text-align: center;">Unit</th>
                         <th style="text-align: center;">Quantity</th>
                         <th style="text-align: center;">Given Date</th>
+                        <th style="text-align: center;">Return Date</th>
                       </tr>
                     </thead>
                 <tbody>
@@ -153,6 +154,7 @@ if(isset($_SESSION['user_data'])){
                           echo '<td style="text-align: center;">' . $fetch['unit'] . '</td>';
                           echo '<td style="text-align: center;">' . $fetch['quantity_req'] . '</td>';
                           echo '<td style="text-align: center;">' . $fetch['givenDate'] . '</td>';
+                          echo '<td style="text-align: center;">' . $fetch['returnDate'] . '</td>';
                           echo '</tr>';
                       }                      
                   } else {

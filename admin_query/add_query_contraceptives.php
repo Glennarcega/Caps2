@@ -14,6 +14,7 @@ if (isset($_POST['add_rec'])) {
     $unit = $_POST['unit'];
     $quantity_req = $_POST['quantity_req'];
     $givenDate = $_POST['givenDate'];
+    $returnDate = $_POST['returnDate'];
     $clientType = $_POST['clientType'];
     $changingMethod = $_POST['changingMethod'];
     $reason = $_POST['reason'];
@@ -40,7 +41,7 @@ if (isset($_POST['add_rec'])) {
 
             if ($query) {
                 $residentId = mysqli_insert_id($mysqli);
-                $query = $mysqli->query("INSERT INTO contraceptivemethod_request (residentId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate, clientType, changingMethod, reason) VALUES ('$residentId', '$lastName', '$firstName', '$middleName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate', '$clientType', '$changingMethod', '$reason')");
+                $query = $mysqli->query("INSERT INTO contraceptivemethod_request (residentId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate, returnDate, clientType, changingMethod, reason) VALUES ('$residentId', '$lastName', '$firstName', '$middleName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate', '$returnDate', '$clientType',  '$changingMethod', '$reason')");
             
                 if ($query) {
                     // The insertion into contraceptivemethod_request was successful

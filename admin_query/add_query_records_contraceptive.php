@@ -12,6 +12,7 @@ if (isset($_POST['add_rec'])) {
     $unit = $_POST['unit'];
     $quantity_req = $_POST['quantity_req'];
     $givenDate = $_POST['givenDate'];
+    $returnDate = $_POST['returnDate'];
     $clientType = $_POST['clientType'];
     $changingMethod = $_POST['changingMethod'];
     $reason = $_POST['reason'];
@@ -32,7 +33,7 @@ if (isset($_POST['add_rec'])) {
                 $updateQuery = $mysqli->query("UPDATE medicines SET total = '$quantity' WHERE productId = '$productId'");
 
                 if ($updateQuery) {
-                    $insertQuery = $mysqli->query("INSERT INTO contraceptivemethod_request (residentId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate, clientType, changingMethod, reason) VALUES ('$residentId', '$lastName', '$firstName', '$middleName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate', '$clientType', '$changingMethod', '$reason')");
+                    $insertQuery = $mysqli->query("INSERT INTO contraceptivemethod_request (residentId, lastName, firstName, middleName, productId, productName, unit, quantity_req, givenDate, returnDate, clientType, changingMethod, reason) VALUES ('$residentId', '$lastName', '$firstName', '$middleName', '$productId', '$productName', '$unit', '$quantity_req', '$givenDate', '$returnDate', '$clientType', '$changingMethod', '$reason')");
                 
                     if ($insertQuery) {
                         // Insert data into record_data_graph
